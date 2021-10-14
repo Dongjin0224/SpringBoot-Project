@@ -30,4 +30,7 @@ public class WebController {
 
     @GetMapping("copy")
     public String copy(){return "copy";}
+
+    @GetMapping("detail")
+    public String detail(){return "detail";}
 }
