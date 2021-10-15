@@ -7,50 +7,62 @@
 <html>
 <head>
     <title>Untitled</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/css/main.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/css/main.css"/>
 </head>
 <style>
-    .content.main{
+    .content.main {
         width: 74%;
         border-radius: 25px;
         padding: 2%;
         margin: auto;
     }
 
-    .board_title_wrap img{
+    .board_title_wrap img {
         width: 60px;
     }
-    .board_title_wrap{
+
+    .board_title_wrap {
         display: flex;
         margin-bottom: 30px;
     }
-    .board_title{
+
+    .board_title {
         margin-left: 10px;
         font-weight: bold;
         font-size: 20px;
     }
-    .board_date{
-        margin-bottom: 30px;
-    }
-    .board_btn_wrap{
-        text-align: right;
+
+    .board_date {
+        margin-bottom: 55px;
     }
 
-    .btn_like{
+    .board_btn_wrap {
+        text-align: center;
+    }
+
+    .btn_like {
         margin-top: 10px;
         border-radius: 15px;
-        width: 20%;
+        width: 30%;
     }
-    .btn_report{
+
+    .btn_report {
         margin-top: 10px;
         border-radius: 15px;
-        width: 20%;
+        width: 30%;
     }
-    .btn_reple{
+
+    .btn_reple {
         display: inline-block;
-        width: 40% !important;
+        width: 60% !important;
+        border-radius: 15px;
+    }
+
+    .board_btn_reply {
+        width: 60%;
+        margin: auto;
         border-radius: 15px;
     }
 </style>
@@ -100,31 +112,33 @@
         <div class="inner alt">
             <div class="content main">
                 <section class="tiles">
-                    <div class="board_detail_wrap">
-                        <div class="board_question">
-                            <div class="board_title_wrap">
-                                <img src="/img/q.png" alt="">
-                                <span class="board_title">
+                    <div style="width: 80%;margin: auto">
+                        <div class="board_detail_wrap">
+                            <div class="board_question">
+                                <div class="board_title_wrap">
+                                    <img src="/img/q.png" alt="">
+                                    <span class="board_title">
                                     밀가루 때문에 증상이 악화 될 수 있나요?
                                     <div class="board_title_detail">
                                         (수원 영통 30대 초반/남 지루성 피부염)
                                     </div>
                                 </span>
-                            </div>
-                            <div class="board_content">
-                                지루성피부염을 앓고 있는데 점점 증상이 심해지고 있는거<br>
-                                같아서 걱정입니다.
+                                </div>
+                                <div class="board_content">
+                                    지루성피부염을 앓고 있는데 점점 증상이 심해지고 있는거<br>
+                                    같아서 걱정입니다.
+                                    <br>
+                                    <br>
+                                    밀가루 음식을 먹지 말라고 하던데 정말인가요?<br>
+                                    그거 때문에 증상이 악화될 수 있나요?
+                                </div>
                                 <br>
-                                <br>
-                                밀가루 음식을 먹지 말라고 하던데 정말인가요?<br>
-                                그거 때문에 증상이 악화될 수 있나요?
-                            </div>
-                            <br>
-                            <div class="board_date">
-                                2021.10.17
-                            </div>
-                            <div class="board_btn_reply">
-                                    <a href="#" class="button primary fit">답변달기</a>
+                                <div class="board_date">
+                                    2021.10.17
+                                </div>
+                                <div class="board_btn_reply">
+                                    <a href="#" class="button primary fit" style="border-radius: 15px">답변달기</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -164,7 +178,7 @@
                                 2021.10.17
                             </div>
                             <div class="board_btn_wrap">
-                                <a href="#" class="button primary fit btn_reple">답변달기</a><br>
+                                <a href="#" class="button primary fit btn_reple">진료예약</a><br>
                                 <a href="#" class="button primary btn_like">좋아요</a>
                                 <a href="#" class="button btn_report">신고하기</a>
                             </div>
@@ -182,7 +196,8 @@
         <div class="inner">
             <section>
                 <h3>Nullam sed gravida</h3>
-                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus sed magna gravida non.</p>
+                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem
+                    tristique cursus sed magna gravida non.</p>
                 <ul class="icons">
                     <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
                     <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -212,7 +227,8 @@
             </section>
             <section>
                 <h3>Morbi sed volutpat</h3>
-                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.<p>
+                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.
+                <p>
                 <p><a href="#" class="major">(000) 000-0000</a></p>
             </section>
         </div>
