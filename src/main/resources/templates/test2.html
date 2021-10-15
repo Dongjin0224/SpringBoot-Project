@@ -12,16 +12,20 @@
     <link rel="stylesheet" href="/css/main.css" />
 </head>
 <style>
-    .content.main{
+   .content.main{
         width: 74%;
         border-radius: 25px;
         padding: 2%;
         margin: auto;
     }
 
-    ul {
+/*    ul {
         display: flex;
         justify-content: space-evenly;
+    }*/
+
+    li {
+        marker: none;
     }
 
     code {
@@ -34,14 +38,48 @@
         border-bottom: none;
     }
 
-    .doctor{
-        list-style: none;
+    .td1 {
+        width: 30%;
+        background-color: white;
+    }
+    .td2 {
+        background-color: white;
+    }
+    .td3 {
+        background-color: white;
+        display: flex;
+    }
+   .td4 {
+       width: 22%;
+       background-color: white;
+   }
+
+    .tr1 {
+        border: none;
     }
 
-    .docInfo{
-        display: inline-block;
-        width: 45%;
+    .tabs {
+        margin: auto;
+        width: 90%;
     }
+
+    input[type="submit"].small, input[type="reset"].small, input[type="button"].small, button.small, .button.small {
+        float: right;
+        margin: auto;
+    }
+
+    input[type="submit"], input[type="reset"], input[type="button"], button, .button {
+        background-color: transparent;
+        box-shadow: inset 0 0 0 3px #00b0ff;
+        color: #00b0ff !important;
+    }
+
+   table th {
+       font-size: initial;
+       font-weight: 400;
+       padding: 0 0.75rem 0.75rem 0.75rem;
+       text-align: left;
+   }
 </style>
 <body class="is-preload">
 
@@ -94,46 +132,68 @@
                         <h3>My page</h3>
                     <hr>
                         <div>
-                            <fieldset>
-                             <!--   <div class="toc2"><h3>profile</h3></div>
-                                <div class="toc2">
-                                    <div style="font-weight: 600">이름</div><div>임재훈</div>
-                                </div>
-                                <div class="toc2">
-                                    <div style="font-weight: 600">이메일</div><div>abcd1234@efghij.klm</div>
-                                </div>
-                                <div class="toc2">
-                                    <div style="font-weight: 600">전화번호</div><div>010-1234-5678</div>
-                                </div>-->
-                                <ul class="doctor">
-                                    <li><strong><div class="docInfo">이름</div></strong> 임재훈</li>
-                                </ul>
-                                <ul class="doctor">
-                                    <li><strong><div class="docInfo">전화번호</div></strong> abcd1234@efghij.klm</li>
-                                </ul>
-                                <ul class="doctor">
-                                    <li><strong><div class="docInfo">이메일</div></strong> 010-1234-5678</li>
-                                </ul>
+                            <fieldset style="width: 70%; margin: auto;">
+                                <h3>profile<a href="#" class="button small">수정</a></h3>
+                                <table style="width: 80%; margin: auto;">
+                                    <tr class="tr1">
+                                        <td class="td1"><strong>이름</strong></td>
+                                        <td class="td2">홍길동</td>
+                                    </tr>
+                                    <tr class="tr1">
+                                        <td class="td1"><strong>전화번호</strong></td>
+                                        <td class="td2">010-1234-5678</td>
+                                    </tr>
+                                    <tr class="tr1">
+                                        <td class="td1"><strong>이메일</strong></td>
+                                        <td class="td2">abcd123@gmail.com</td>
+                                    </tr>
+                                </table>
                             </fieldset>
+                        <!-- 수정 버튼 누르면 나오는 곳 -->
+                            <!--<fieldset style="width: 80%; margin: auto;">
+                                <form method="post" action="#">
+                                  <h3>profile<a href="#" class="button small">돌아가기</a></h3>
+                                  <table style="width: 80%; margin: auto;">
+                                      <tr class="tr1">
+                                          <td class="td4"><strong>이름</strong></td>
+                                          <td class="td3"><input type="text" name="" value="" placeholder="홍길동"><a href="#" class="button small">변경</a></td>
+                                      </tr>
+                                      <tr class="tr1">
+                                          <td class="td4"><strong>전화번호</strong></td>
+                                          <td class="td3"><input type="text" name="" value="" placeholder="010-9168-5043"><a href="#" class="button small">변경</a></td>
+                                      </tr>
+                                      <tr class="tr1">
+                                          <td class="td4"><strong>이메일</strong></td>
+                                          <td class="td3"><input type="text" name="" value="" placeholder="010-9168-5043"><a href="#" class="button small">변경</a></td>
+                                      </tr>
+                                  </table>
+                                  </form>
+                            </fieldset>-->
                         </div>
                     </div>
 
                     <hr>
 
-                    <ul class="tabs">
+                    <ul class="tabs" style="list-style: none !important;">
                         <li>
                             <h3>내가<span class="extra"> 쓴 질문</span></h3>
                             <div class="spotlight">
                                 <table>
                                     <thead>
                                      <tr class="">
-                                         <th class="">진료과목</th>
-                                         <th class="">제목</th>
-                                         <th class="">날짜</th>
-                                         <th class="">조회수</th>
+                                         <th class=""><strong>진료과목</strong></th>
+                                         <th class=""><strong>제목</strong></th>
+                                         <th class=""><strong>날짜</strong></th>
+                                         <th class=""><strong>조회수</strong></th>
                                        </tr>
                                     </thead>
                                     <tbody>
+                                      <tr class="">
+                                         <td class="">[정형외과]</td>
+                                         <td class="" ><a>발목 삐었어요</a></td>
+                                         <td class="" >2222.2.22</td>
+                                         <td class="" >12345</td>
+                                      </tr>
                                       <tr class="">
                                          <td class="">[정형외과]</td>
                                          <td class="" ><a>발목 삐었어요</a></td>
@@ -152,10 +212,10 @@
                                 <table>
                                     <thead>
                                        <tr class="">
-                                           <th class="">병원이름</th>
-                                           <th class="">진료과목</th>
-                                           <th class="">담당의사</th>
-                                           <th class="">날짜</th>
+                                           <th class=""><strong>병원이름</strong></th>
+                                           <th class=""><strong>진료과목</strong></th>
+                                           <th class=""><strong>담당의사</strong></th>
+                                           <th class=""><strong>날짜</strong></th>
                                        </tr>
                                     </thead>
                                     <tbody>
