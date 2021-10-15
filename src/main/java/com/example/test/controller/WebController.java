@@ -30,4 +30,10 @@ public class WebController {
 
     @GetMapping("copy")
     public String copy(){return "copy";}
+
+    @GetMapping("myPageUser")
+    public String myPageUser(){return "myPageUser";}
+
+    @GetMapping("test2")
+    public String test2(){return "test2";}
 }
