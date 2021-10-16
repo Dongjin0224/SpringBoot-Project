@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<!--
+	Hypothesis by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+-->
+<html>
+<head>
+    <title>Untitled</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/qna.css">
+</head>
+<style>
+    .content.main{
+        width: 74%;
+        border-radius: 25px;
+        padding: 2%;
+        margin: auto;
+    }
+
+
+
+</style>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index"><strong>Hypothesis</strong> <span class="extra">by Pixelarity</span></a>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="index">Home</a></li>
+                <li>
+                    <a href="#" class="icon solid fa-angle-down">Dropdown</a>
+                    <ul>
+                        <li><a href="#">Option One</a></li>
+                        <li><a href="#">Option Two</a></li>
+                        <li><a href="#">Option Three</a></li>
+                        <li>
+                            <a href="#">Submenu</a>
+                            <ul>
+                                <li><a href="#">Option One</a></li>
+                                <li><a href="#">Option Two</a></li>
+                                <li><a href="#">Option Three</a></li>
+                                <li><a href="#">Option Four</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="current"><a href="generic">Generic</a></li>
+                <li><a href="elements">Elements</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- Section -->
+    <section id="one" class="main alt">
+        <div class="inner alt">
+            <div class="content main">
+                <section class="tiles" style="flex-flow: column;
+    width: 56%;
+    margin-left: 21%;">
+                <form>
+                    <div>
+                        <header style="margin-top: 15%;">
+                            <h2><i class="fas fa-user">  회원가입</i></h2>
+                        </header>
+                    <label>아이디<input type="text" placeholder="4자 이상, 16자 이하로 입력해주세요."></label>
+                    <label>비밀번호<input type="password" placeholder="8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함"></label>
+                    <label>이름<input type="text" placeholder="이름 입력"></label>
+                        <label>이메일</label>
+                        <label style="display: inline-flex;width: 100%;">
+                            <input type="text" placeholder="">
+
+                        <select
+                                id="email_select" name='email_detail'>
+                            <option selected disabled>선택</option>
+                            <option value="naver.com">@naver.com</option>
+                            <option value="daum.net">@daum.net</option>
+                            <option value="gmail.com">@gmail.com</option>
+                            <option value="nate.com">@nate.com</option>
+                            <option value="hotmail.com">@hotmail.com</option>
+                            <option value="icloud.com">@icloud.com</option>
+                            <option value="outlook.com">@outlook.com</option>
+                            <option value="_manual">직접입력</option>
+                        </select></label>
+
+                    <label>전화번호</label>
+                    <label style="display: inline-flex; width: 100%;"><input type="text" placeholder="휴대폰 번호(-제외)">
+                        <input type="button" value="인증번호 전송" class="button primary" onclick=""></label>
+                        <!--이용약관-->
+                        <label style="padding-top: 40px;">이용약관</label>
+                        <fieldset>
+                            <div class="col-12">
+                                <input type="checkbox" id="agreeAll" name="agreeAll"
+                                       onclick="selectAll(this)"> <label for="agreeAll"style="margin-bottom: -2%;"><strong>전체
+                                동의하기</strong></label>
+                            </div>
+                            <hr>
+                            <div class="col-12">
+                                <input type="checkbox" id="agree" name="term" class="terms"
+                                       onclick="checkSelectAll()"> <label for="agree"><strong>[필수]</strong><a
+                                    href=""
+                                    target="_blank">&nbsp;개인정보 수집 및 이용 동의</a></label>
+                            </div>
+                            <div class="col-12">
+                                <input type="checkbox" id="term" name="term" class="terms"
+                                       onclick="checkSelectAll()"> <label for="term"><strong>[필수]</strong><a
+                                    href=""
+                                    target="_blank">&nbsp;이용약관</a></label>
+                            </div>
+                            <div class="col-12">
+                                <input type="checkbox" id="event" name="term" class="termSel"
+                                       onclick="checkSelectAll()"> <label for="event"
+                                                                          style="padding-bottom: 5%;"><strong
+                                    style="color: #A4C2EF;">[선택]</strong>&nbsp;이벤트, 프로모션 알림 메일 및
+                                SMS 수신</label>
+                            </div>
+                        </fieldset>
+
+                        <!-- 완료 -->
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li id="join" style="margin: auto;"><input type="button" value="sign up"
+                                                     class="button primary large" onclick="formSubmit()" style="width: 10em;"/></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <section>
+                <h3>Nullam sed gravida</h3>
+                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus sed magna gravida non.</p>
+                <ul class="icons">
+                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                </ul>
+            </section>
+            <section class="narrow">
+                <h4>Lorem aliquam</h4>
+                <ul class="links">
+                    <li><a href="#">Ultrices nulla</a></li>
+                    <li><a href="#">Quis lectus donec</a></li>
+                    <li><a href="#">Magna ligula</a></li>
+                    <li><a href="#">Sed etiam tristique</a></li>
+                    <li><a href="#">Cursus magna</a></li>
+                    <li><a href="#">Gravida dolore</a></li>
+                </ul>
+            </section>
+            <section class="narrow">
+                <h4>Magna tempus</h4>
+                <ul class="links">
+                    <li><a href="#">Feugiat ligula</a></li>
+                    <li><a href="#">Vulputate tristique</a></li>
+                    <li><a href="#">Ultrices nulla</a></li>
+                    <li><a href="#">Cursus sed magna</a></li>
+                    <li><a href="#">Sed lectus donec</a></li>
+                </ul>
+            </section>
+            <section>
+                <h3>Morbi sed volutpat</h3>
+                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.<p>
+                <p><a href="#" class="major">(000) 000-0000</a></p>
+            </section>
+        </div>
+        <div class="copyright">
+            <p>&copy; Untitled. All rights reserved.</p>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.selectorr.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script>
+function checkSelectAll()  {
+// 전체 체크박스
+const checkboxes
+= document.querySelectorAll('input[name="term"]');
+// 선택된 체크박스
+const checked
+= document.querySelectorAll('input[name="term"]:checked');
+// select all 체크박스
+const selectAll
+= document.querySelector('input[name="agreeAll"]');
+
+if(checkboxes.length === checked.length)  {
+selectAll.checked = true;
+}else {
+selectAll.checked = false;
+}
+
+}
+
+function selectAll(selectAll)  {
+const checkboxes
+= document.getElementsByName('term');
+
+checkboxes.forEach((checkbox) => {
+checkbox.checked = selectAll.checked
+})
+}
+</script>
+</body>
+</html>

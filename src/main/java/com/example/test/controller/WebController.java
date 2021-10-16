@@ -30,4 +30,19 @@ public class WebController {
 
     @GetMapping("copy")
     public String copy(){return "copy";}
+
+    @GetMapping("login")
+    public String login(){return "login";}
+
+    @GetMapping("memberSignUp")
+    public String memberSignUp(){return "memberSignUp";}
+
+    @GetMapping("doctorSignUp")
+    public String doctorSignUp(){return "doctorSignUp";}
+
+    @GetMapping("medicalService")
+    public String medicalService(){return "medicalService";}
+
+    @GetMapping("msRead")
+    public String msRead(){return "msRead";}
 }
