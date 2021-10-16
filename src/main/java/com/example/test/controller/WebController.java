@@ -31,6 +31,7 @@ public class WebController {
     @GetMapping("copy")
     public String copy(){return "copy";}
 
+
     @GetMapping("write")
     public String write(){return "write";}
 
@@ -75,4 +76,19 @@ public class WebController {
 
     @GetMapping("test2")
     public String test2(){return "test2";}
+
+    @GetMapping("login")
+    public String login(){return "login";}
+
+    @GetMapping("memberSignUp")
+    public String memberSignUp(){return "memberSignUp";}
+
+    @GetMapping("doctorSignUp")
+    public String doctorSignUp(){return "doctorSignUp";}
+
+    @GetMapping("medicalService")
+    public String medicalService(){return "medicalService";}
+
+    @GetMapping("msRead")
+    public String msRead(){return "msRead";}
 }
