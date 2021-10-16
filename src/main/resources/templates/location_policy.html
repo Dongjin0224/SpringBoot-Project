@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<!--
+	Hypothesis by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Untitled</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet"
+          href="//img.echosting.cafe24.com/editors/froala/3.2.2/css/froala_editor.pkgd.min.css">
+    <link rel="stylesheet"
+          href="//img.echosting.cafe24.com/editors/froala/css/themes/ec_froala.css">
+</head>
+<style>
+    #location_policy {
+        border-width: 1px;
+        border-color: #e8e8e8;
+        background-color: #fff;
+        border: double #e8e8e8;
+        font-size: 12px;
+        margin:0 auto;
+        width:100%;
+        height: 550px;
+        line-height: 200%;
+        margin-bottom: 6% !important;
+    }
+
+    .under_location_policy_class_p{
+        margin-left:15px;
+        margin-right:15px;
+        margin-bottom:3px;
+    }
+    table.policy-table td {
+        width: 350px;
+        padding: 10px;
+        vertical-align: top;
+        border: 1px solid #ccc;
+    }
+    table.policy-table {
+        width:95%;
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+        margin: 0 auto;
+    }
+
+    .content.main{
+        width: 74%;
+        border-radius: 25px;
+        padding: 2%;
+        margin: auto;
+    }
+
+    /* Header */
+    .subject{
+        font-weight: bold;
+        font-size: 10px !important;
+        display: flex !important;
+        flex-direction: column;
+        text-align: center;
+    }
+    .subjectImg{
+        width: 48px;
+    }
+</style>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index"><strong>Hello</strong> <span class="extra">Doctor</span></a>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li>
+                    <a href="#" class="icon solid fa-angle-down">메뉴</a>
+                    <ul>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/note.png" alt="" class="subjectImg">지식 iN</a>
+                            <a href="#" class="subject"><img src="/img/location.png" alt="" class="subjectImg">병원 찾기</a>
+                        </li>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/megaphone.png" alt="" class="subjectImg">이용안내</a>
+                            <a href="#" class="subject"><img src="/img/electricity.png" alt="" class="subjectImg">의학상식</a>
+                        </li>
+                        <li>
+                            <!--<a href="#" class="subject" style="float: left;"><img src="/img/membership.png" alt="" class="subjectImg">멤버십</a>-->
+                            <a href="#" class="subject" style="float: left;"><img src="/img/volunteer.png" alt="" class="subjectImg">의료봉사</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="icon solid fa-angle-down">카테고리</a>
+                    <ul>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/joints.png" alt="" class="subjectImg">정형외과</a>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/diamond.png" alt="" class="subjectImg">성형외과</a>
+                            <a href="#" class="subject"><img src="/img/lungs.png" alt="" class="subjectImg">내과</a>
+                        </li>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/family_clinic.png" alt="" class="subjectImg">가정의학과</a>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/teen.png" alt="" class="subjectImg">소아과</a>
+                            <a href="#" class="subject"><img src="/img/pore.png" alt="" class="subjectImg">피부과</a>
+                        </li>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/cognition.png" alt="" class="subjectImg">신경과</a>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/kidneys.png" alt="" class="subjectImg">비뇨의학과</a>
+                            <a href="#" class="subject"><img src="/img/ear.png" alt="" class="subjectImg">이비인후과</a>
+                        </li>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/medicine.png" alt="" class="subjectImg">한방의학과</a>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/pregnant.png" alt="" class="subjectImg">산부인과</a>
+                            <a href="#" class="subject"><img src="/img/tooth.png" alt="" class="subjectImg">치과</a>
+                        </li>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/neurology.png" alt="" class="subjectImg">신경외과</a>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/ambulance.png" alt="" class="subjectImg">응급의학과</a>
+                            <!--<a href="#" class="subject" style="float: left;"><img src="/img/note.png" alt="" class="subjectImg">지식 iN</a>-->
+                        </li>
+                        <!--<li>
+                            <a href="#">Submenu</a>
+                            <ul>
+                                <li><a href="#">Option One</a></li>
+                                <li><a href="#">Option Two</a></li>
+                                <li><a href="#">Option Three</a></li>
+                                <li><a href="#">Option Four</a></li>
+                            </ul>
+                        </li>-->
+                    </ul>
+                </li>
+                <li><a href="#">로그인</a></li>
+                <!--<li><a href="#"></a></li>-->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section -->
+    <section id="one" class="main alt">
+        <div class="inner alt">
+            <div class="content main">
+                <h4 style="text-align: center; border-bottom: none; margin-bottom: 5%;">LOCATION POLICY</h4>
+                <div id="location_policy" style="overflow-y: scroll; margin-bottom: 100px;">
+                    <p class="under_location_policy_class_p">제 1 조 (목적) 본 약관은 회원(“헬로닥터” 서비스 약관에 동의한 자를 말합니다. 이하 “회원”이라고 합니다.)이 헬로닥터 주식회사(이하 “회사”라고 합니다.)이 제공하는 “헬로닥터” 서비스(이하 “서비스”라고 합니다)를 이용함에 있어 회사와 회원의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 2 조 (이용약관의 효력 및 변경)</p>
+                    <p class="under_location_policy_class_p">1. 본 약관은 서비스를 신청한 고객 또는 개인위치정보주체가 본 약관에 동의하고 회사가 정한 소정의 절차에 따라 서비스의 이용자로 등록함으로써 효력이 발생합니다.</p>
+                    <p class="under_location_policy_class_p">2. 회원이 온라인에서 본 약관의 "동의하기" 버튼을 클릭하였을 경우 본 약관의 내용을 모두 읽고 이를 충분히 이해하였으며, 그 적용에 동의한 것으로 봅니다.</p>
+                    <p class="under_location_policy_class_p">3. 회사는 위치정보의 보호 및 이용 등에 관한 법률, 콘텐츠산업 진흥법, 전자상거래 등에서의 소비자보호에 관한 법률, 소비자기본법 약관의 규제에 관한 법률 등 관련법령을 위배하지 않는 범위에서 본 약관을 개정할 수 있습니다.</p>
+                    <p class="under_location_policy_class_p">4. 회사가 약관을 개정할 경우에는 기존약관과 개정약관 및 개정약관의 적용일자와 개정사유를 명시하여 현행약관과 함께 그 적용일자 10일 전부터 적용일 이후 상당한 기간 동안 공지만을 하고, 개정 내용이 회원에게 불리한 경우에는 그 적용일자 30일 전부터 적용일 이후 상당한 기간 동안 각각 이를 서비스 홈페이지에 게시하거나 회원에게 전자적 형태(전자우편, SMS 등)로 약관 개정 사실을 발송하여 고지합니다.</p>
+                    <p class="under_location_policy_class_p">5. 회사가 전항에 따라 회원에게 통지하면서 공지 또는 공지∙고지일로부터 개정약관 시행일 7일 후까지 거부의사를 표시하지 아니하면 이용약관에 승인한 것으로 봅니다. 회원이 개정약관에 동의하지 않을 경우 회원은 이용계약을 해지할 수 있습니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 3 조 (관계법령의 적용) 본 약관은 신의성실의 원칙에 따라 공정하게 적용하며, 본 약관에 명시되지 아니한 사항에 대하여는 관계법령 또는 상관례에 따릅니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 4 조 (서비스의 내용) 회사가 제공하는 서비스는 아래와 같습니다.</p>
+                    <table cellpadding="0" cellspacing="0" class="policy-table">
+                        <tbody>
+                        <tr>
+                            <td valign="top">
+                                <p class="under_location_policy_class_p">　서비스 명</p>
+                            </td>
+                            <td valign="top">
+                                <p class="under_location_policy_class_p">　서비스 내용</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <p class="under_location_policy_class_p">　헬로닥터</p>
+                            </td>
+                            <td valign="top">
+                                <p class="under_location_policy_class_p">
+                                    <span>　일반 이용자의 질문 카테고리와 위치 정보에 따라 상담 메시지가 근처 여러 의사에게 동시 전송되어 치료 상담, 치료비 등 1:N, 1:1 상담을 진행</span>
+                                    <br><br>
+                                    <span>　위치를 기반으로 하여 일반 이용자가 의사 이용자와 병원 정보를 검색</span>
+                                    <br><br>
+                                    <span>　의사 이용자가 병원 정보를 등록함에 따라 병원 위치 정보를 일반 이용자에게 제공</span>
+                                    <br><br>
+                                    <span>　의사 이용자가 기존에 보유하고 있는 환자 데이터를 업로드 함으로써 닥톡 내 메시지 및 문자 메시지 전송 가능</span>
+                                    <br><br>
+                                    <span>　일반 이용자의 위치, 관심 카테고리, 기존 활동 내역 등과 병원 위치, 진료 분야, 기존 활동 내역 등을 매칭하여 다양한 의료 정보 및 이벤트 정보를 제공</span>
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p><br></p>
+                    <p class="under_location_policy_class_p">제 5 조 (서비스 이용요금)</p>
+                    <p class="under_location_policy_class_p">1. 회사가 제공하는 서비스는 기본적으로 무료입니다. 단, 의사 이용자는 월 정액 서비스 요금을 지불하여야 원활한 서비스 이용이 가능합니다. 또한 별도의 유료 서비스의 경우 해당 서비스에 명시된 요금을 지불하여야 사용 가능합니다.</p>
+                    <p class="under_location_policy_class_p">2. 회사는 유료 서비스 이용요금을 회사와 계약한 전자지불업체에서 정한 방법에 의하거나 회사가 정한 청구서에 합산하여 청구할 수 있습니다.</p>
+                    <p class="under_location_policy_class_p">3. 유료서비스 이용을 통하여 결제된 대금에 대한 취소 및 환불은 회사의 결제 이용약관 등 관계법에 따릅니다.</p>
+                    <p class="under_location_policy_class_p">4. 회원의 개인정보도용 및 결제사기로 인한 환불요청 또는 결제자의 개인정보 요구는 법률이 정한 경우 외에는 거절될 수 있습니다.</p>
+                    <p class="under_location_policy_class_p">5. 무선 서비스 이용 시 발생하는 데이터 통신료는 별도이며 가입한 각 이동통신사의 정책에 따릅니다.</p>
+                    <p class="under_location_policy_class_p">6. MMS 등으로 게시물을 등록할 경우 발생하는 요금은 이동통신사의 정책에 따릅니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 6 조 (서비스내용변경 통지 등)</p>
+                    <p class="under_location_policy_class_p">1. 회사가 서비스 내용을 변경하거나 종료하는 경우 회사는 회원의 등록된 전자우편 주소로 이메일을 통하여 서비스 내용의 변경 사항 또는 종료를 통지할 수 있습니다. 회원이 잘못 등록한 전자우편 주소로 인하여 서비스 내용의 변경 사항 또는 종료가 전달되지 못할 경우의 책임은 회원에게 있습니다.</p>
+                    <p class="under_location_policy_class_p">2. 1항의 경우 불특정 다수인을 상대로 통지를 함에 있어서는 웹사이트 등 기타 회사의 공지사항을 통하여 회원들에게 통지할 수 있습니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 7 조 (서비스이용의 제한 및 중지)</p>
+                    <p class="under_location_policy_class_p">1. 회사는 아래 각 호의 1에 해당하는 사유가 발생한 경우에는 회원의 서비스 이용을 제한하거나 중지시킬 수 있습니다.</p>
+                    <p class="under_location_policy_class_p">　　1) 회원이 회사 서비스의 운영을 고의 또는 중과실로 방해하는 경우</p>
+                    <p class="under_location_policy_class_p">　　2) 서비스용 설비 점검, 보수 또는 공사로 인하여 부득이한 경우</p>
+                    <p class="under_location_policy_class_p">　　3) 전기통신사업법에 규정된 기간통신사업자가 전기통신 서비스를 중지했을 경우</p>
+                    <p class="under_location_policy_class_p">　　4) 국가비상사태, 서비스 설비의 장애 또는 서비스 이용의 폭주 등으로 서비스 이용에 지장이 있는 때</p>
+                    <p class="under_location_policy_class_p">　　5) 기타 중대한 사유로 인하여 회사가 서비스 제공을 지속하는 것이 부적당하다고 인정하는 경우</p>
+                    <p class="under_location_policy_class_p">2. 회사는 전항의 규정에 의하여 서비스의 이용을 제한하거나 중지한 때에는 그 사유 및 제한기간 등을 회원에게 알려야 합니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 8 조 (개인위치정보의 이용 또는 제공)</p>
+                    <p class="under_location_policy_class_p">1. 회사는 개인위치정보를 이용하여 서비스를 제공하고자 하는 경우에는 미리 이용약관에 명시한 후 개인위치정보주체의 동의를 얻어야 합니다.</p>
+                    <p class="under_location_policy_class_p">2. 회원 및 법정대리인의 권리와 그 행사방법은 제소 당시의 이용자의 주소에 의하며, 주소가 없는 경우에는 거소를 관할하는 지방법원의 전속관할로 합니다. 다만, 제소 당시 이용자의 주소 또는 거소가 분명하지 않거나 외국 거주자의 경우에는 민사소송법상의 관할법원에 제기합니다.</p>
+                    <p class="under_location_policy_class_p">3. 회사는 타사업자 또는 이용 고객과의 요금정산 및 민원처리를 위해 위치정보 이용·제공․사실 확인자료를 자동 기록·보존하며, 해당 자료는 1년간 보관합니다.</p>
+                    <p class="under_location_policy_class_p">4. 회사는 개인위치정보를 회원이 지정하는 제3자에게 제공하는 경우에는 개인위치정보를 수집한 당해 통신 단말장치로 매회 회원에게 제공받는 자, 제공일시 및 제공목적을 즉시 통보합니다. 단, 아래 각 호의 1에 해당하는 경우에는 회원이 미리 특정하여 지정한 통신 단말장치 또는 전자우편주소로 통보합니다.</p>
+                    <p class="under_location_policy_class_p">　　1) 개인위치정보를 수집한 당해 통신단말장치가 문자, 음성 또는 영상의 수신기능을 갖추지 아니한 경우</p>
+                    <p class="under_location_policy_class_p">　　2) 회원이 온라인 게시 등의 방법으로 통보할 것을 미리 요청한 경우</p>
+                    <p class="under_location_policy_class_p">5. 회사는 일반 이용자와 의사 이용자가 위치를 기반으로 보다 효과적인 치료 상담 및 의료 정보, 이벤트 정보를 주고 받을 수 있도록 하고자, 일반 이용자의 위치 정보에 따라 근처 여러 의사에게 1:N, 1:1 상담을 진행할 수 있도록 하고 일반 이용자의 위치 정보 및 기존 활동 정보를 토대로 다양한 의료 정보 및 이벤트 정보를 제공한다. 또한 의사 이용자가 등록한 병원 위치 정보를 토대로 일반 이용자가 의사 이용자와 병원 정보를 검색할 수 있도록 한다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 9 조 (개인위치정보주체의 권리)</p>
+                    <p class="under_location_policy_class_p">1. 회원은 회사에 대하여 언제든지 개인위치정보를 이용한 위치기반서비스 제공 및 개인위치정보의 제3자 제공에 대한 동의의 전부 또는 일부를 철회할 수 있습니다. 이 경우 회사는 수집한 개인위치정보 및 위치정보 이용, 제공사실 확인자료를 파기합니다.</p>
+                    <p class="under_location_policy_class_p">2. 회원은 회사에 대하여 언제든지 개인위치정보의 수집, 이용 또는 제공의 일시적인 중지를 요구할 수 있으며, 회사는 이를 거절할 수 없고 이를 위한 기술적 수단을 갖추고 있습니다.</p>
+                    <p class="under_location_policy_class_p">3. 회원은 회사에 대하여 아래 각 호의 자료에 대한 열람 또는 고지를 요구할 수 있고, 당해 자료에 오류가 있는 경우에는 그 정정을 요구할 수 있습니다. 이 경우 회사는 정당한 사유 없이 회원의 요구를 거절할 수 없습니다.</p>
+                    <p class="under_location_policy_class_p">　　1) 본인에 대한 위치정보 수집, 이용, 제공사실 확인자료</p>
+                    <p class="under_location_policy_class_p">　　2) 본인의 개인위치정보가 위치정보의 보호 및 이용 등에 관한 법률 또는 다른 법률 규정에 의하여 제3자에게 제공된 이유 및 내용</p>
+                    <p class="under_location_policy_class_p">4. 회원은 제1항 내지 제3항의 권리행사를 위해 회사의 소정의 절차를 통해 요구할 수 있습니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 10 조 (14세 미만자의 서비스 이용 불가)</p>
+                    <p class="under_location_policy_class_p">1. 14세 미만자는 회사의 서비스를 이용할 수 없습니다. 회원가입 시 생년월일 확인을 통해 14세 미만자의 회원가입이 불가하도록 공지하고 있으며, 14세 미만자가 본인 이외의 개인정보를 통해 회원가입 후 서비스를 이용하는 행위에 대한 모든 법적 책임은 해당 본인에게 있습니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 11 조 (위치정보관리책임자의 지정)</p>
+                    <p class="under_location_policy_class_p">1. 회사는 위치정보를 적절히 관리․보호하고 개인위치정보주체의 불만을 원활히 처리할 수 있도록 실질적인 책임을 질 수 있는 지위에 있는 자를 위치정보관리책임자로 지정해 운영합니다.</p>
+                    <p class="under_location_policy_class_p">2. 위치정보관리책임자는 위치기반서비스를 제공하는 부서의 부서장으로서 구체적인 사항은 본 약관의 부칙에 따릅니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 12 조 (손해배상)</p>
+                    <p class="under_location_policy_class_p">1. 회사가 위치정보의 보호 및 이용 등에 관한 법률 제15조 내지 제26조의 규정을 위반한 행위로 회원에게 손해가 발생한 경우 회원은 회사에 대하여 손해배상 청구를 할 수 있습니다. 이 경우 회사는 고의, 과실이 없음을 입증하지 못하는 경우 책임을 면할 수 없습니다.</p>
+                    <p class="under_location_policy_class_p">2. 회원이 본 약관의 규정을 위반하여 회사에 손해가 발생한 경우 회사는 회원에 대하여 손해배상을 청구할 수 있습니다. 이 경우 회원은 고의, 과실이 없음을 입증하지 못하는 경우 책임을 면할 수 없습니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 13 조 (면책)</p>
+                    <p class="under_location_policy_class_p">1. 회사는 다음 각 호의 경우로 서비스를 제공할 수 없는 경우 이로 인하여 회원에게 발생한 손해에 대해서는 책임을 부담하지 않습니다.</p>
+                    <p class="under_location_policy_class_p">　　1) 천재지변 또는 이에 준하는 불가항력의 상태가 있는 경우</p>
+                    <p class="under_location_policy_class_p">　　2) 서비스 제공을 위하여 회사와 서비스 제휴계약을 체결한 제3자의 고의적인 서비스 방해가 있는 경우</p>
+                    <p class="under_location_policy_class_p">　　3) 회원의 귀책사유로 서비스 이용에 장애가 있는 경우</p>
+                    <p class="under_location_policy_class_p">　　4) 제1호 내지 제3호를 제외한 기타 회사의 고의∙과실이 없는 사유로 인한 경우</p>
+                    <br>
+                    <p class="under_location_policy_class_p">2. 회사는 서비스 및 서비스에 게재된 정보, 자료, 사실의 신뢰도, 정확성 등에 대해서는 보증을 하지 않으며 이로 인해 발생한 회원의 손해에 대하여는 책임을 부담하지 아니합니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 14 조 (규정의 준용)</p>
+                    <p class="under_location_policy_class_p">1. 본 약관은 대한민국법령에 의하여 규정되고 이행됩니다.</p>
+                    <p class="under_location_policy_class_p">2. 본 약관에 규정되지 않은 사항에 대해서는 관련법령 및 상관습에 의합니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 15 조 (분쟁의 조정 및 기타)</p>
+                    <p class="under_location_policy_class_p">1. 회사는 위치정보와 관련된 분쟁에 대해 당사자간 협의가 이루어지지 아니하거나 협의를 할 수 없는 경우에는 위치정보의 보호 및 이용 등에 관한 법률 제28조의 규정에 의한 방송통신위원회에 재정을 신청할 수 있습니다.</p>
+                    <p class="under_location_policy_class_p">2. 회사 또는 고객은 위치정보와 관련된 분쟁에 대해 당사자간 협의가 이루어지지 아니하거나 협의를 할 수 없는 경우에는 개인정보보호법 제43조의 규정에 의한 개인정보분쟁조정위원회에 조정을 신청할 수 있습니다.</p>
+                    <br>
+                    <p class="under_location_policy_class_p">제 16 조 (회사의 연락처) 회사의 상호 및 주소 등은 다음과 같습니다.</p>
+                    <p class="under_location_policy_class_p">1. 상 호 : 헬로닥터 주식회사</p>
+                    <p class="under_location_policy_class_p">2. 대 표: 임재훈</p>
+                    <p class="under_location_policy_class_p">3. 주 소 : 서울시 서초구 논현로 161, 3층</p>
+                    <p class="under_location_policy_class_p">4. 대표전화 : 02-543-8805</p>
+                    <br>
+                    <div style="text-align: center;"><strong>부칙</strong></div>
+                    <br>
+                    <p class="under_location_policy_class_p">제1조 (시행일) 이 약관은 2017년 02월 13일부터 시행한다.</p>
+                    <p class="under_location_policy_class_p">제2조 위치정보관리책임자는 2017년 02월을 기준으로 다음과 같이 지정합니다.</p>
+                    <p class="under_location_policy_class_p">1. 소속 : 헬로닥터 주식회사</p>
+                    <p class="under_location_policy_class_p">2. 담당자: 김동진 이사</p>
+                    <p class="under_location_policy_class_p">3. 연락처 : 02-123-5432</p>
+                </div>
+                <!-- location_policy DIV 끝 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <section>
+                <p style="text-align: center; font-weight: bold;">
+                    <a style="border-bottom: none;" href="#">이용안내</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">공지사항</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">이용약관</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">개인정보취급방침</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">위치기반이용약관</a>
+                </p>
+                <p style="text-align: center; margin-bottom: 1%;">
+                    사업자번호&nbsp;&nbsp;210&nbsp;<span>-</span>10&nbsp;<span>-</span>212020&nbsp;&nbsp;&nbsp;&nbsp; <span><strong>|</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    서울특별시&nbsp;강남구&nbsp;역삼동&nbsp;125, &nbsp;20층&nbsp;2001호&nbsp;(역삼1동)
+                </p>
+                <p style="text-align: center;">
+                    헬로닥터 주식회사, 임재훈 대표&nbsp;&nbsp; <span><strong>/</strong></span>&nbsp;&nbsp;
+                    개인정보보호책임자 김동진 이사
+                </p>
+            </section>
+        </div>
+        <div class="copyright" style="color: #7a7a7a !important;">
+            <!--<p>Copyright &nbsp; &copy; &nbsp; Hello Doctor. &nbsp;&nbsp; All rights reserved</p>-->
+            <p>Copyright &copy; HelloDoctor Corp. All rights reserved.</p>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.selectorr.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

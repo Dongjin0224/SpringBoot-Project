@@ -31,6 +31,24 @@ public class WebController {
     @GetMapping("copy")
     public String copy(){return "copy";}
 
+    @GetMapping("write")
+    public String write(){return "write";}
+
+    @GetMapping("header")
+    public String header(){return "header";}
+
+    @GetMapping("term")
+    public String term(){return "term";}
+
+    @GetMapping("privacy_policy")
+    public String privacy_policy(){return "privacy_policy";}
+
+    @GetMapping("location_policy")
+    public String location_policy(){return "location_policy";}
+
+    @GetMapping("volunteer_register")
+    public String volunteer_register(){return "volunteer_register";}
+
     @GetMapping("detail")
     public String detail(){return "detail";}
 
