@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<!--
+	Hypothesis by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+-->
+<html>
+<head>
+    <title>report</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<style>
+    .content.main {
+        width: 74%;
+        border-radius: 25px;
+        padding: 2%;
+        margin: auto;
+    }
+
+    .report_title {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .report_ser {
+        font-size: 13px;
+        margin: 25px 0px;
+    }
+
+    .report_detail_wrap {
+        border: 1px solid #358bca;
+        padding: 45px;
+        border-radius: 25px;
+    }
+
+    .detail_title input[type='text'] {
+        width: 78%;
+        display: inline;
+        border: none;
+    }
+
+    .radio_report {
+        appearance: auto !important;
+    }
+
+    .radio_wrap {
+        margin: 25px 0;
+    }
+
+    .radio_wrap label {
+        width: 48%;
+    }
+
+    input[type="submit"].fit, input[type="reset"].fit, input[type="button"].fit, button.fit, .button.fit {
+        width: 48%;
+        border-radius: 25px;
+    }
+</style>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index"><strong>Hypothesis</strong> <span class="extra">by Pixelarity</span></a>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="index">Home</a></li>
+                <li>
+                    <a href="#" class="icon solid fa-angle-down">Dropdown</a>
+                    <ul>
+                        <li><a href="#">Option One</a></li>
+                        <li><a href="#">Option Two</a></li>
+                        <li><a href="#">Option Three</a></li>
+                        <li>
+                            <a href="#">Submenu</a>
+                            <ul>
+                                <li><a href="#">Option One</a></li>
+                                <li><a href="#">Option Two</a></li>
+                                <li><a href="#">Option Three</a></li>
+                                <li><a href="#">Option Four</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="current"><a href="generic">Generic</a></li>
+                <li><a href="elements">Elements</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- Section -->
+    <section id="one" class="main alt">
+        <div class="inner alt">
+            <div class="content main">
+                <section class="tiles">
+                    <div style="width: 80%;margin: auto">
+                        <div class="report_wrapper">
+                            <form>
+                                <div class="report_title">
+                                    헬로닥터 게시물 신고
+                                </div>
+                                <div class="report_ser">
+                                    게시물 신고는 헬로닥터 이용수칙에 맞지 않는 글을 신고하는 기능이며, 반대 의견을 표시하는 것이 아닙니다.
+                                    회원님의 관심과 신고가 건전하고 올바른 헬로닥터 문화를 만듭니다.
+                                    허위 신고의 경우 신고자가 제재받을 수 있음을 유념해 주세요.
+                                </div>
+                                <div class="report_detail_wrap">
+                                    <div class="detail_title">
+                                        <span class="detail_title_ns"
+                                              style="font-weight: bold;">게시물 제목&nbsp; &nbsp;:</span>
+                                        <span>
+                                    <input type="text" value="기침이 너무 심해요" name="" readonly>
+                                </span><!--게시물 제목 -->
+                                        <br>
+                                        <span class="detail_title_ns" style="font-weight: bold;">답변자&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;  :</span>
+                                        <span>
+                                    <input type="text" value="이성은(한의사)" name="" readonly>
+                                </span><!--답글 작성자-->
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <span style="font-weight: bold;">신고사유</span>
+                                        <span style="margin-left: 20px;color: darkgray;font-size: 13px;">여러 사유에 해당하는 경우 대표적인 사유 1개를 선택해주세요</span>
+                                    </div>
+                                    <div class="radio_wrap">
+                                        <input type="radio" id="report1" name="report" value="영리목적/홍보성"
+                                               class="radio_report">
+                                        <label for="report1">영리목적/홍보성</label>
+                                        <input type="radio" id="report2" name="report" value="개인정보노출"
+                                               class="radio_report">
+                                        <label for="report2">개인정보노출</label>
+                                        <input type="radio" id="report3" name="report" value="불법정보"
+                                               class="radio_report">
+                                        <label for="report3">불법정보</label>
+                                        <input type="radio" id="report4" name="report" value="음란성/선정성"
+                                               class="radio_report">
+                                        <label for="report4">음란성/선정성</label>
+                                        <input type="radio" id="report5" name="report" value="욕설/인신공격"
+                                               class="radio_report">
+                                        <label for="report5">욕설/인신공격</label>
+                                        <input type="radio" id="report6" name="report" value="아이디/DB거래"
+                                               class="radio_report">
+                                        <label for="report6">아이디/DB거래</label>
+                                        <input type="radio" id="report7" name="report" value="같은 내용 반복(도배)"
+                                               class="radio_report">
+                                        <label for="report7">같은 내용 반복(도배)</label>
+                                        <input type="radio" id="report8" name="report" value="기타" class="radio_report">
+                                        <label for="report8">기타</label>
+                                    </div>
+                                    <hr>
+                                    <div style="margin-bottom: 15px;font-weight: bold;">
+                                        상세내용(선택)
+                                    </div>
+                                    <textarea name="" id="" cols="30" rows="4"></textarea>
+
+                                </div>
+                                <div style="margin: 25px 0;">
+                                    권리 침해/저작권 위반 등은 권리침해 신고센터를 통해 문의해주세요.
+                                </div>
+                                <div>
+                                    <a href="" class="button fit">취소</a>
+                                    <input type="button" class="button primary fit" value="신고하기">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <section>
+                <h3>Nullam sed gravida</h3>
+                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem
+                    tristique cursus sed magna gravida non.</p>
+                <ul class="icons">
+                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                </ul>
+            </section>
+            <section class="narrow">
+                <h4>Lorem aliquam</h4>
+                <ul class="links">
+                    <li><a href="#">Ultrices nulla</a></li>
+                    <li><a href="#">Quis lectus donec</a></li>
+                    <li><a href="#">Magna ligula</a></li>
+                    <li><a href="#">Sed etiam tristique</a></li>
+                    <li><a href="#">Cursus magna</a></li>
+                    <li><a href="#">Gravida dolore</a></li>
+                </ul>
+            </section>
+            <section class="narrow">
+                <h4>Magna tempus</h4>
+                <ul class="links">
+                    <li><a href="#">Feugiat ligula</a></li>
+                    <li><a href="#">Vulputate tristique</a></li>
+                    <li><a href="#">Ultrices nulla</a></li>
+                    <li><a href="#">Cursus sed magna</a></li>
+                    <li><a href="#">Sed lectus donec</a></li>
+                </ul>
+            </section>
+            <section>
+                <h3>Morbi sed volutpat</h3>
+                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.
+                <p>
+                <p><a href="#" class="major">(000) 000-0000</a></p>
+            </section>
+        </div>
+        <div class="copyright">
+            <p>&copy; Untitled. All rights reserved.</p>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.selectorr.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+</html>

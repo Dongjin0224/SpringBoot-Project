@@ -31,6 +31,15 @@ public class WebController {
     @GetMapping("copy")
     public String copy(){return "copy";}
 
+    @GetMapping("detail")
+    public String detail(){return "detail";}
+
+    @GetMapping("map")
+    public String map(){return "map";}
+
+    @GetMapping("report")
+    public String report(){return "report";}
+
     @GetMapping("appointment")
     public String appointment(){return "appointment";}
 
@@ -39,5 +48,4 @@ public class WebController {
 
     @GetMapping("payTerm")
     public String payTerm(){return "payTerm";}
-
 }
