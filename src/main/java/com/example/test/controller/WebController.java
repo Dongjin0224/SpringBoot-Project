@@ -34,6 +34,9 @@ public class WebController {
     @GetMapping("myPageUser")
     public String myPageUser(){return "myPageUser";}
 
+    @GetMapping("myPageDoc")
+    public String myPageDoc(){return "myPageDoc";}
+
     @GetMapping("test2")
     public String test2(){return "test2";}
 }
