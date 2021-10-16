@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--
+   Hypothesis by Pixelarity
+   pixelarity.com | hello@pixelarity.com
+   License: pixelarity.com/license
+-->
+<html>
+<head>
+	<title>Untitled</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/css/main.css"/>
+	<link rel="stylesheet" href="/css/qna.css">
+</head>
+<style>
+
+	.inner.alt {
+		display: flex;
+		justify-content: center;
+		margin: 0;
+		max-width: 100%;
+		width: 100%;
+	}
+
+	#subjectField {
+		border: solid 1px #358bca;
+		background: white;
+		padding: 10%;
+		border-radius: 25px;
+	}
+
+	#subjectForm {
+		width: 22%;
+		margin-right: 2%;
+		margin-left: 2%;
+	}
+
+	.imgDiv{
+		margin-right: 2%;
+		width: 22%;
+		margin-left: 2%;
+	}
+
+	.subject {
+		font-weight: bold;
+		font-size: 12px !important;
+		display: flex !important;
+		flex-direction: column;
+		float: left;
+		text-align: center;
+		font-weight: bold !important;
+	}
+
+	.subjectImg {
+		width: 58px;
+	}
+
+	.content.main {
+		width: 54%;
+		border-radius: 25px;
+		padding: 2%;
+	}
+
+	th {
+		text-align: center;
+	}
+
+
+	input[type="checkbox"] + label, input[type="radio"] + label {
+		color: #3b3b3b;
+		padding: 3%;
+	}
+
+	input[type="checkbox"] + label:before, input[type="radio"] + label:before {
+		border-color: #eeeeee;
+		display: none;
+	}
+
+	[type=radio] + label {
+		cursor: pointer;
+	}
+
+	[type=radio]:checked + label {
+		border-radius: 25%;
+		outline: 3px solid #00b0ff;
+	}
+
+	#searchWrap{
+		display: flex;
+		width: 74%;
+		margin: auto;
+        float: left;
+        padding-right: 4%;
+	}
+
+	#searchForm{
+		margin: auto;
+		padding-bottom: 5%;
+	}
+
+	.tiles{
+		margin: auto;
+	}
+
+	.pageWrap{
+		padding-bottom: 2%;
+	}
+    a {
+        border-bottom: none;
+    }
+</style>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+	<!-- Header -->
+	<header id="header">
+
+		<!-- Logo -->
+		<div class="logo">
+			<a href="index"><strong>Hypothesis</strong> <span class="extra">by Pixelarity</span></a>
+		</div>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="index">Home</a></li>
+				<li>
+					<a href="#" class="icon solid fa-angle-down">Dropdown</a>
+					<ul>
+						<li><a href="#">Option One</a></li>
+						<li><a href="#">Option Two</a></li>
+						<li><a href="#">Option Three</a></li>
+						<li>
+							<a href="#">Submenu</a>
+							<ul>
+								<li><a href="#">Option One</a></li>
+								<li><a href="#">Option Two</a></li>
+								<li><a href="#">Option Three</a></li>
+								<li><a href="#">Option Four</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="current"><a href="generic">Generic</a></li>
+				<li><a href="elements">Elements</a></li>
+			</ul>
+		</nav>
+
+	</header>
+
+	<!-- Section -->
+	<section id="one" class="main alt">
+		<header class="accent1">
+			<h1>메인게시판(이름미정)</h1>
+			<p>Ipsum dolor lorem feugiat magna neque egestas augue eu vulpu magna erat. Aliquam erat volutpat. Nam dui
+				mi tincidunt.</p>
+		</header>
+
+		<div class="inner alt">
+			<form action="" name="subjectForm" id="subjectForm">
+				<fieldset id="subjectField">
+					<h3 style="text-align: center">진료과목</h3>
+					<div class="category">
+						<input type="radio" id="joint" name="category">
+						<label for="joint" class="subject"><img src="/img/joints.png" alt=""
+																class="subjectImg">정형외과</label>
+						<input type="radio" id="plastic" name="category">
+						<label for="plastic" class="subject"><img src="/img/diamond.png" alt="" class="subjectImg">성형외과</label>
+						<input type="radio" id="internal" name="category">
+						<label for="internal" class="subject"><img src="/img/lungs.png" alt=""
+																   class="subjectImg">내과</label>
+						<input type="radio" id="family" name="category">
+						<label for="family" class="subject"><img src="/img/family_clinic.png" alt="" class="subjectImg">가정의학과</label>
+						<input type="radio" id="kids" name="category">
+						<label for="kids" class="subject"><img src="/img/teen.png" alt="" class="subjectImg">소아과</label>
+						<input type="radio" id="skin" name="category">
+						<label for="skin" class="subject"><img src="/img/pore.png" alt="" class="subjectImg">피부과</label>
+						<input type="radio" id="nerv" name="category">
+						<label for="nerv" class="subject"><img src="/img/cognition.png" alt=""
+															   class="subjectImg">신경과</label>
+						<input type="radio" id="urology" name="category">
+						<label for="urology" class="subject"><img src="/img/kidneys.png" alt="" class="subjectImg">비뇨의학과</label>
+						<input type="radio" id="earNoseThroat" name="category">
+						<label for="earNoseThroat" class="subject"><img src="/img/ear.png" alt="" class="subjectImg">이비인후과</label>
+						<input type="radio" id="oriental" name="category">
+						<label for="oriental" class="subject"><img src="/img/medicine.png" alt="" class="subjectImg">한방의학과</label>
+						<input type="radio" id="obstetrics" name="category">
+						<label for="obstetrics" class="subject"><img src="/img/pregnant.png" alt="" class="subjectImg">산부인과</label>
+						<input type="radio" id="dentist" name="category">
+						<label for="dentist" class="subject"><img src="/img/tooth.png" alt=""
+																  class="subjectImg">치과</label>
+						<input type="radio" id="neurosurgery" name="category">
+						<label for="neurosurgery" class="subject"><img src="/img/neurology.png" alt=""
+																	   class="subjectImg">신경외과</label>
+						<input type="radio" id="emergency" name="category">
+						<label for="emergency" class="subject"><img src="/img/ambulance.png" alt="" class="subjectImg">응급의학과</label>
+					</div>
+				</fieldset>
+			</form>
+			<div class="content main">
+				<div class="searchDiv">
+					<form action="" name="searchForm" id="searchForm">
+						<div class="field">
+							<div id="searchWrap">
+								<input id="keyword" type="text" name="keyword" style="border: 2px solid #358bca; border-radius: 0;">
+								<a href="javascript:void(0)" class="search button primary icon solid fa-search" style="border-radius: 0;">검색</a>
+                            </div>
+                            <div id="questionWrap">
+								<a href="javascript:void(0)" class="question button primary icon solid fa-question-circle" style="width: 26%; border-radius: 0;">질문하기</a>
+                            </div>
+						</div>
+					</form>
+				</div>
+				<section class="tiles">
+					<table>
+						<thead>
+						<tr class="">
+							<th class="">번호</th>
+							<th class="">진료과목</th>
+							<th class="">제목</th>
+							<th class="">날짜</th>
+							<th class="">조회수</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr class="">
+							<td class="">1</td>
+							<td class="">[정형외과]</td>
+							<td class="" ><a>발목 삐었어요</a></td>
+							<td class="" >2222.2.22</td>
+							<td class="" >12345</td>
+						</tr>
+						</tbody>
+						<tfoot>
+						</tfoot>
+					</table>
+				</section>
+
+			</div>
+			<div class="imgDiv">
+				<img src="/img/ad.png" alt="" style="width: 360px; border-radius: 25px;">
+			</div>
+		</div>
+		<!--				<div th:object="${pageMaker}">-->
+		<!--					<div class="big-width" style="text-align: center">-->
+		<!--						<a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&lt;</code></a>-->
+		<!--						<th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">-->
+		<!--							<code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>-->
+		<!--							<a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>-->
+		<!--						</th:block>-->
+		<!--						<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><code>&gt;</code></a>-->
+		<!--					</div>-->
+		<!--					<div class="small-width" style="text-align: center">-->
+		<!--						<a class="changePage" th:if="*{criteria.pageNum > 1}" th:href="*{criteria.pageNum - 1}"><code>&lt;</code></a>-->
+		<!--						<code th:text="*{criteria.pageNum}"></code>-->
+		<!--						<a class="changePage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}"><code>&gt;</code></a>-->
+		<!--					</div>-->
+		<!--					<form action="/board/list" th:object="${criteria}" name="pageForm">-->
+		<!--						<input type="hidden" name="pageNum" th:field="*{pageNum}">-->
+		<!--						<input type="hidden" name="amount" th:field="*{amount}">-->
+		<!--						<input type="hidden" name="type" th:field="*{type}">-->
+		<!--						<input type="hidden" name="keyword" th:field="*{keyword}">-->
+		<!--					</form>-->
+		<!--				</div>-->
+		<div class="pageWrap">
+			<div class="big-width" style="text-align: center">
+				<a class="changePage"><code>&lt;</code></a>
+				<code>1</code>
+				<a class="changePage" href="javascript:void(0)"><code>2</code></a>
+				<a class="changePage" href="javascript:void(0)"><code>3</code></a>
+				<a class="changePage" href="javascript:void(0)"><code>4</code></a>
+				<a class="changePage" href="javascript:void(0)"><code>5</code></a>
+				<a class="changePage" href="javascript:void(0)"><code>6</code></a>
+				<a class="changePage" href="javascript:void(0)"><code>7</code></a>
+				<a class="changePage" href="javascript:void(0)"><code>8</code></a>
+				<a class="changePage" href="javascript:void(0)"><code>9</code></a>
+				<a class="changePage" href="javascript:void(0)"><code>10</code></a>
+				<a class="changePage"><code>&gt;</code></a>
+			</div>
+		</div>
+	</section>
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<section>
+				<h3>Nullam sed gravida</h3>
+				<p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem
+					tristique cursus sed magna gravida non.</p>
+				<ul class="icons">
+					<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+				</ul>
+			</section>
+			<section class="narrow">
+				<h4>Lorem aliquam</h4>
+				<ul class="links">
+					<li><a href="#">Ultrices nulla</a></li>
+					<li><a href="#">Quis lectus donec</a></li>
+					<li><a href="#">Magna ligula</a></li>
+					<li><a href="#">Sed etiam tristique</a></li>
+					<li><a href="#">Cursus magna</a></li>
+					<li><a href="#">Gravida dolore</a></li>
+				</ul>
+			</section>
+			<section class="narrow">
+				<h4>Magna tempus</h4>
+				<ul class="links">
+					<li><a href="#">Feugiat ligula</a></li>
+					<li><a href="#">Vulputate tristique</a></li>
+					<li><a href="#">Ultrices nulla</a></li>
+					<li><a href="#">Cursus sed magna</a></li>
+					<li><a href="#">Sed lectus donec</a></li>
+				</ul>
+			</section>
+			<section>
+				<h3>Morbi sed volutpat</h3>
+				<p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.
+				<p>
+				<p><a href="#" class="major">(000) 000-0000</a></p>
+			</section>
+		</div>
+		<div class="copyright">
+			<p>&copy; Untitled. All rights reserved.</p>
+		</div>
+	</footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.selectorr.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+</html>
+</html>
