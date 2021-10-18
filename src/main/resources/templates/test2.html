@@ -1,17 +1,127 @@
 <!DOCTYPE HTML>
 <!--
-   Hypothesis by Pixelarity
-   pixelarity.com | hello@pixelarity.com
-   License: pixelarity.com/license
+	Hypothesis by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
 -->
 <html>
 <head>
     <title>Untitled</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/css/main.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/css/main.css"/>
     <link rel="stylesheet" href="/css/qna.css">
 </head>
+<style>
+    a {
+        border-bottom: none;
+    }
+
+    .content.main {
+        width: 74%;
+        border-radius: 25px;
+        margin: auto;
+        margin-top: 6%;
+    }
+
+    #wrapper > .main > .inner > .content {
+        padding: 2rem;
+        background-color: #ffffff;
+    }
+
+    .tab {
+        overflow: hidden;
+        /*border: 1px solid #ccc;
+        background-color: #f1f1f1;*/
+        height: 100%;
+        text-align: center;
+        width: 15%;
+        float: left;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        color: #808080;
+        background-color: #f5f5f5;
+    }
+
+    .tab button {
+        color: black !important;
+        box-shadow: none;
+        margin-top: 1%;
+        width: 100%;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    .tabcontent {
+        display: block;
+        position: relative;
+        left: 8%;
+        width: 95%;
+    }
+
+
+    .td1 {
+        width: 30%;
+        background-color: white;
+        padding-left: 0;
+    }
+
+    .td2 {
+        background-color: white;
+    }
+
+    .td3 {
+        background-color: white;
+        display: flex;
+    }
+
+    .td4 {
+        background-color: white;
+        display: flex;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .td5 {
+        background-color: white;
+        display: flex;
+        padding-top: 0;
+    }
+
+    .tr1 {
+        border: none;
+        background: none;
+    }
+
+    .tabs {
+        margin: auto;
+        width: 100%;
+    }
+
+    .first {
+        width: 80%;
+    }
+
+    .second {
+        margin: auto;
+    }
+
+    input[type="submit"], input[type="reset"], input[type="button"], button, .button {
+        background-color: transparent;
+        box-shadow: inset 0 0 0 3px #358bca;
+        color: #358bca !important;
+    }
+
+    table th {
+        font-size: initial;
+        font-weight: 400;
+        padding: 0 0.75rem 0.75rem 0.75rem;
+        text-align: left;
+    }
+
+</style>
 <body class="is-preload">
 
 <!-- Wrapper -->
@@ -51,70 +161,44 @@
             </ul>
         </nav>
     </header>
-    <div class="tab">
-        <button class="tablinks" onclick="openLogin(event, 'login')" id="defaultOpen">로그인</button>
-        <button class="tablinks" onclick="openLogin(event, 'join')">회원가입</button>
-    </div>
+
 
     <!-- Section -->
     <section id="one" class="main alt">
         <div class="inner alt">
             <div class="content main">
-                <div id="login" class="tabcontent" style="margin-top: 7%;">
-                    <section class="tiles" style="margin-left: 28px;">
-                        <form method="post" action="" name="loginForm">
-                            <div style="display:flex; justify-content:space-evenly;padding: 24px;">
-                                <div style="width: 18em;">
-                                    <div><h3><i class="fas fa-user">  회원 로그인</i></h3></div><div><h6>건강상담을 위해서는 로그인이 필요합니다.</h6></div>
-                                    <div>
-                                        <div  style="width:100%">
-                                            <p style="margin:0;">아이디 </p>
-                                            <input type="text" name="member_id" id="member_id"placeholder="ID" value=""/>
-                                            <br>
-                                            <p style="margin:0;">비밀번호</p>
-                                            <input type="password" name="member_pw" id="member_pw" placeholder="PassWord" value=""/>
-                                            <div style="text-align:center; margin-top:9%">
-                                                <a href="#">아이디 찾기</a><span>&nbsp;|&nbsp;</span><a href="#">비밀번호 찾기</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <ul class="actions" style="display:block; text-align:center; margin-top:9%">
-                                            <li><input type="button" value="로그인" class="primary" style="width:100%; font-size:1em;" onclick="check()"/></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <form method="post" action="" name="loginForm">
-                            <div style="display:flex; justify-content:space-evenly;padding: 24px; border-left: solid lightsteelblue;">
-                                <div style="width: 18em;">
-                                    <div><h3><i class="fas fa-user-md">  의사회원 로그인</i></h3></div><div><h6>회원들의 건강상담을 위해서는 로그인이 필요합니다.</h6></div>
-                                    <div>
-                                        <div style="width:100%">
-                                            <p style="margin:0;">아이디 </p>
-                                            <input type="text" name="member_id" id="member_id" placeholder="ID" value=""/>
-                                            <br>
-                                            <p style="margin:0;">비밀번호</p>
-                                            <input type="password" name="member_pw" id="member_pw" placeholder="PassWord"value=""/>
-                                            <div style="text-align:center; margin-top:9%">
-                                                <a href="#">아이디 찾기</a><span>&nbsp;|&nbsp;</span><a href="#">비밀번호 찾기</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <ul class="actions" style="display:block; text-align:center; margin-top:9%">
-                                            <li><input type="button" value="로그인" class="primary" style="width:100%; font-size:1em;" onclick="check()"/></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </section>
+                <div class="tab">
+                    <button class="tablinks" onclick="openLogin(event, 'login')" id="defaultOpen">프로필</button>
+                    <button class="tablinks" onclick="openLogin(event, 'join')">내 질문 목록</button>
                 </div>
-                <div id="join" class="tabcontent">
-                    <h3>회원가입</h3>
-                    <p>Paris is the capital of France.</p>
+                <div id="login" class="tabcontent">
+
+                </div>
+                <div id="join" class="tabcontent" style="padding: 1%;">
+                    <table style="width: 80%">
+                        <thead>
+                        <tr class="">
+                            <th class=""><strong>진료과목</strong></th>
+                            <th class=""><strong>제목</strong></th>
+                            <th class=""><strong>날짜</strong></th>
+                            <th class=""><strong>조회수</strong></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="">
+                            <td class="">[정형외과]</td>
+                            <td class=""><a>발목 삐었어요</a></td>
+                            <td class="">2222.2.22</td>
+                            <td class="">12345</td>
+                        </tr>
+                        <tr class="">
+                            <td class="">[정형외과]</td>
+                            <td class=""><a>발목 삐었어요</a></td>
+                            <td class="">2222.2.22</td>
+                            <td class="">12345</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
 
             </div>
@@ -126,7 +210,8 @@
         <div class="inner">
             <section>
                 <h3>Nullam sed gravida</h3>
-                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus sed magna gravida non.</p>
+                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem
+                    tristique cursus sed magna gravida non.</p>
                 <ul class="icons">
                     <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
                     <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -156,7 +241,8 @@
             </section>
             <section>
                 <h3>Morbi sed volutpat</h3>
-                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.<p>
+                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.
+                <p>
                 <p><a href="#" class="major">(000) 000-0000</a></p>
             </section>
         </div>
@@ -198,38 +284,23 @@
         document.getElementById(loginName).style.display = "block";
         evt.currentTarget.className += " active";
     }
+
     document.getElementById("defaultOpen").click();
+
+    document.getElementById("modifyProfile").addEventListener("click", function () {
+        var target = document.getElementsByClassName("first");
+        var target = document.getElementsByClassName("first");
+        target[0].style.display = "none";
+        target[1].style.display = "block";
+    })
+
+    document.getElementById("back").addEventListener("click", function () {
+        var target = document.getElementsByClassName("first");
+        var target = document.getElementsByClassName("first");
+        target[0].style.display = "block";
+        target[1].style.display = "none";
+    })
+
 </script>
 </body>
-<style>
-    .content.main{
-        width: 74%;
-        border-radius: 25px;
-        padding: 2%;
-        margin: auto;
-        margin-top: 6%;
-    }
-
-    .tab {
-        overflow: hidden;
-        border: 1px solid #ccc;
-        background-color: #f1f1f1;
-        height: 4em;
-        text-align: center;
-        position: fixed;
-        width: 100%;
-    }
-
-
-
-
-    /* Create an active/current tablink class */
-    .tab button.active {
-        background-color: #ccc;
-    }
-    .tab button {
-        box-shadow: none;
-        margin-top: 1%;
-    }
-</style>
 </html>

@@ -7,40 +7,57 @@
 <html>
 <head>
     <title>Untitled</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/css/main.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/css/main.css"/>
 </head>
 <style>
-    .content.main{
-        width: 74%;
+    .content.main {
+        width: 90%;
         border-radius: 25px;
         padding: 2%;
         margin: auto;
     }
 
-    ul {
-        display: flex;
-        justify-content: space-evenly;
-        list-style: none !important;
-    }
-
-    ul li {
-        font-weight: 500;
-    }
-
-    li {
-        marker: none;
-    }
-
-    code {
-        background: white;
-        border-color: white;
-        border: none;
-    }
-
     a {
         border-bottom: none;
+    }
+
+    #wrapper > .main > .inner > .content {
+        padding: 2rem;
+        background-color: #ffffff;
+    }
+
+    .tab {
+        overflow: hidden;
+        /*border: 1px solid #ccc;
+        background-color: #f1f1f1;*/
+        height: 100%;
+        text-align: center;
+        width: 15%;
+        float: left;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        color: #808080;
+        background-color: #f5f5f5;
+    }
+
+    .tab button {
+        color: black !important;
+        box-shadow: none;
+        margin-top: 1%;
+        width: 100%;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    .tabcontent {
+        display: block;
+        position: relative;
+        left: 8%;
+        width: 95%;
     }
 
     .td1 {
@@ -48,19 +65,23 @@
         background-color: white;
         padding-left: 0;
     }
+
     .td2 {
         background-color: white;
     }
+
     .td3 {
         background-color: white;
         display: flex;
     }
+
     .td4 {
         background-color: white;
         display: flex;
         padding-top: 0;
         padding-bottom: 0;
     }
+
     .td5 {
         background-color: white;
         display: flex;
@@ -78,10 +99,10 @@
     }
 
     .first {
-        margin: auto;
+        width: 80%;
     }
 
-    .second{
+    .second {
         margin: auto;
     }
 
@@ -96,6 +117,18 @@
         font-weight: 400;
         padding: 0 0.75rem 0.75rem 0.75rem;
         text-align: left;
+    }
+
+    table {
+        margin: 0;
+    }
+
+    table td {
+        font-size: smaller;
+    }
+
+    #wrapper > .main > .inner > .content {
+        min-height: 450px;
     }
 </style>
 <body class="is-preload">
@@ -143,14 +176,17 @@
     <section id="one" class="main alt">
         <div class="inner alt">
             <div class="content main">
-                <section class="tiles" style="padding-top: 2%;">
-                    <div style="padding-top: 2%; width: 80%; margin: auto; ">
-                    <div>
-                        <h3>My page</h3>
-                        <hr>
+                    <!-- Tab links -->
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'myOne')" id="defaultOpen">내 정보</button>
+                        <button class="tablinks" onclick="openCity(event, 'myTwo')">질문 내역</button>
+                        <button class="tablinks" onclick="openCity(event, 'myThree')">진료 예약</button>
+                    </div>
+
+                    <!-- Tab content -->
+                    <div id="myOne" class="tabcontent">
                         <div>
-                           <fieldset class="first">
-                                <h3>profile</h3>
+                            <fieldset class="first">
                                 <table style="width: 100%; margin: auto;">
                                     <tr class="tr1">
                                         <td class="td1"><strong>이름</strong></td>
@@ -162,102 +198,103 @@
                                     </tr>
                                     <tr class="tr1">
                                         <td class="td1"><strong>이메일</strong></td>
-                                        <td class="td2">abcd123@gmail.com<button id="modifyProfile" class="button small" style="float: right;">수정하기</button></td>
+                                        <td class="td2">abcd123@gmail.com
+                                            <button id="modifyProfile" class="button small" style="float: right;">수정하기
+                                            </button>
+                                        </td>
                                     </tr>
                                 </table>
                             </fieldset>
                             <!-- 수정 버튼 누르면 나오는 곳 -->
                             <fieldset class="first" style="display: none;">
                                 <!--<form method="post" action="#">-->
-                                  <h3>profile</h3>
-                                  <table style="width: 100%; margin: auto;">
-                                      <tr class="tr1">
-                                          <td class="td1"><strong>이름</strong></td>
-                                          <td class="td3">홍길동</td>
-                                      </tr>
-                                      <tr class="tr1">
-                                          <td class="td1"><strong>전화번호</strong></td>
-                                          <td class="td4"><input type="text" name="" value="" placeholder="010-1234-5678"></td>
-                                      </tr>
-                                      <tr class="tr1" style="background: none;">
-                                          <td class="td1"><strong>인증번호</strong></td>
-                                          <td class="td4"><input type="text" name="" value="" placeholder="인증번호"><a onclick="" class="button small" style="width: 80px; margin: auto;">확인</a></td>
-                                      </tr>
-                                      <tr class="tr1">
-                                          <td class="td1"><strong>이메일</strong></td>
-                                          <td class="td5"><input type="text" name="" value="" placeholder="abcd123@gmail.com"></td>
-                                      </tr>
-                                  </table>
-                                    <div style="display: flex; justify-content: center">
-                                        <a href="#" class="button small" style="margin-right: 5%; width: 80px; padding: initial;">변경하기</a><button id="back" class="button small" style="margin-right: 5%; width: 80px;">취소</button>
-                                    </div>
-                                  <!--</form>-->
+                                <table style="width: 100%; margin: auto;">
+                                    <tr class="tr1">
+                                        <td class="td1"><strong>이름</strong></td>
+                                        <td class="td3">홍길동</td>
+                                    </tr>
+                                    <tr class="tr1">
+                                        <td class="td1"><strong>전화번호</strong></td>
+                                        <td class="td4"><input type="text" name="" value="" placeholder="010-1234-5678"><a
+                                                onclick="" class="button small"
+                                                style="width: 80px; margin: auto;">전송</a>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr1" style="background: none;">
+                                        <td class="td1"><strong>인증번호</strong></td>
+                                        <td class="td4"><input type="text" name="" value="" placeholder="인증번호"><a
+                                                onclick=""
+                                                class="button small"
+                                                style="width: 80px; margin: auto;">확인</a>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr1">
+                                        <td class="td1"><strong>이메일</strong></td>
+                                        <td class="td5"><input type="text" name="" value=""
+                                                               placeholder="abcd123@gmail.com">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="display: flex; justify-content: center">
+                                    <a href="#" class="button small"
+                                       style="margin-right: 5%; width: 80px; padding: initial;">변경하기</a>
+                                    <button id="back" class="button small" style="margin-right: 5%; width: 80px;">취소
+                                    </button>
+                                </div>
+                                <!--</form>-->
                             </fieldset>
                         </div>
                     </div>
 
-                    <hr>
-
-                    <ul class="tabs">
-                        <li>
-                            <h3>내가<span class="extra"> 쓴 질문</span></h3>
-                            <div class="spotlight">
-                                <table>
-                                    <thead>
-                                    <tr class="">
-                                        <th class=""><strong>진료과목</strong></th>
-                                        <th class=""><strong>제목</strong></th>
-                                        <th class=""><strong>날짜</strong></th>
-                                        <th class=""><strong>조회수</strong></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr class="">
-                                        <td class="">[정형외과]</td>
-                                        <td class="" ><a>발목 삐었어요</a></td>
-                                        <td class="" >2222.2.22</td>
-                                        <td class="" >12345</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="">[정형외과]</td>
-                                        <td class="" ><a>발목 삐었어요</a></td>
-                                        <td class="" >2222.2.22</td>
-                                        <td class="" >12345</td>
-                                    </tr>
-                                    </tbody>
-                                    <tfoot>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </li>
-                        <li>
-                            <h3>진료 <span class="extra">예약</span></h3>
-                            <div class="spotlight">
-                                <table>
-                                    <thead>
-                                    <tr class="">
-                                        <th class=""><strong>병원이름</strong></th>
-                                        <th class=""><strong>진료과목</strong></th>
-                                        <th class=""><strong>담당의사</strong></th>
-                                        <th class=""><strong>날짜</strong></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr class="">
-                                        <td class="">다나아병원</td>
-                                        <td class="">[정형외과]</td>
-                                        <td class="">화타</td>
-                                        <td class="" >2222.2.22</td>
-                                    </tr>
-                                    </tbody>
-                                    <tfoot>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </li>
-                    </ul>
+                    <div id="myTwo" class="tabcontent" style="padding: 1%;">
+                        <table style="width: 80%">
+                            <thead>
+                            <tr class="">
+                                <th class=""><strong>진료과목</strong></th>
+                                <th class=""><strong>제목</strong></th>
+                                <th class=""><strong>날짜</strong></th>
+                                <th class=""><strong>조회수</strong></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="">
+                                <td class="">[정형외과]</td>
+                                <td class=""><a>발목 삐었어요</a></td>
+                                <td class="">2222.2.22</td>
+                                <td class="">12345</td>
+                            </tr>
+                            <tr class="">
+                                <td class="">[정형외과]</td>
+                                <td class=""><a>발목 삐었어요</a></td>
+                                <td class="">2222.2.22</td>
+                                <td class="">12345</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </section>
+
+                    <div id="myThree" class="tabcontent" style="padding: 1%;">
+                        <table style="width: 80%">
+                            <thead>
+                            <tr class="">
+                                <th class=""><strong>병원이름</strong></th>
+                                <th class=""><strong>진료과목</strong></th>
+                                <th class=""><strong>담당의사</strong></th>
+                                <th class=""><strong>날짜</strong></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="">
+                                <td class="">다나아병원</td>
+                                <td class="">[정형외과]</td>
+                                <td class="">화타</td>
+                                <td class="">2222.2.22</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
             </div>
         </div>
     </section>
@@ -267,7 +304,8 @@
         <div class="inner">
             <section>
                 <h3>Nullam sed gravida</h3>
-                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus sed magna gravida non.</p>
+                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem
+                    tristique cursus sed magna gravida non.</p>
                 <ul class="icons">
                     <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
                     <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -297,7 +335,8 @@
             </section>
             <section>
                 <h3>Morbi sed volutpat</h3>
-                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.<p>
+                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.
+                <p>
                 <p><a href="#" class="major">(000) 000-0000</a></p>
             </section>
         </div>
@@ -321,19 +360,41 @@
 <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 <script>
-    document.getElementById("modifyProfile").addEventListener("click",function () {
+    document.getElementById("defaultOpen").click();
+
+    function openCity(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("modifyProfile").addEventListener("click", function () {
         var target = document.getElementsByClassName("first");
         var target = document.getElementsByClassName("first");
         target[0].style.display = "none";
         target[1].style.display = "block";
     })
 
-    document.getElementById("back").addEventListener("click",function () {
+    document.getElementById("back").addEventListener("click", function () {
         var target = document.getElementsByClassName("first");
         var target = document.getElementsByClassName("first");
         target[0].style.display = "block";
         target[1].style.display = "none";
     })
 </script>
-
 </html>
