@@ -163,6 +163,17 @@
         min-height: 530px;
     }
 
+    /* Header */
+    .subject{
+        font-weight: bold;
+        font-size: 10px !important;
+        display: flex !important;
+        flex-direction: column;
+        text-align: center;
+    }
+    .subjectImg{
+        width: 48px;
+    }
 </style>
 <body class="is-preload">
 
@@ -371,12 +382,11 @@
     <!--자바 스크립트로 인풋 태그 추가, 삭제 넣기-->
     <td class="td6">
         <div class="div2">
-            <input type="text" name="" value="" placeholder="약력"><a
-                onclick="" class="button small"
+            <input type="text" name="" value="" placeholder="약력">
+            <a class="button small" onclick="addInput()"
                 style="width: 80px; margin: auto; background-color: #f5f5f5;">추가</a>
         </div>
     </td>
-
 
                                     </tr>
                                     <tr class="tr1">
@@ -392,6 +402,7 @@
                                             style="margin-right: 5%; width: 80px; background-color: #f5f5f5;">취소
                                     </button>
                                 </div>
+
                                 <!--</form>-->
                             </fieldset>
                         </div>
@@ -477,12 +488,12 @@
                                             </div>
                                             <strong><a
                                                     href="#" class="button small"
-                                                    style="width: 85px; padding: initial; float: right;">회원권
+                                                    style="width: 85px; padding: initial; float: right; background-color: #f5f5f5;">회원권
                                                 구매</a></strong>
                                         </div>
                                         <div style="padding-left: 2%">
 
-                                            <ul style="padding: revert;">
+                                            <ul style="padding: revert; font-weight: 900; line-height: 35px;">
                                                 <li>이름 [진료과목]</li>
                                                 <li>병원 정보</li>
                                                 <li>약력</li>
@@ -582,5 +593,21 @@
     })
 
 
+
+    let i = 0;
+    function addInput(){
+
+        document.getElementsByClassName('td6')[0].innerHTML+="<div class='div2' id='text"+i+"'>" +
+            "            <input type='text' name='' value='' placeholder='약력'>" +
+            "            <a class='button small' onclick='fn1(" + i + ")'" +
+            "                style='width: 80px; margin: auto; background-color: #f5f5f5;'>삭제</a>" +
+            "        </div>";
+
+        i++;
+    }
+
+    function fn1(i) {
+        $('#text'+i).remove();
+    }
 </script>
 </html>
