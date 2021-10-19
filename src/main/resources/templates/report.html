@@ -57,12 +57,17 @@
 
     input[type="submit"].fit, input[type="reset"].fit, input[type="button"].fit, button.fit, .button.fit {
         border-radius: 0px;
-        width: 60%;
+        width: 43%;
 
     }
     input[type="checkbox"] + label, input[type="radio"] + label {
         color: #3b3b3b;
         font-size: 14px;
+    }
+
+    input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, button:hover, .button:hover {
+        background-color: rgba(35, 177, 236, 0.1);
+        border-radius: 0px;
     }
 </style>
 <body class="is-preload">
@@ -176,8 +181,8 @@
                                     권리 침해/저작권 위반 등은 권리침해 신고센터를 통해 문의해주세요.
                                 </div>
                                 <div style="text-align: center">
-                                    <a href="" class="button fit" style="margin-bottom: 5px;">취소</a>
-                                    <input type="button" class="button primary fit" value="신고하기">
+                                    <a href="" class="button" style="margin-bottom: 5px;box-shadow: none;font-size: 20px;">취소</a>
+                                    <input type="button" class="button" value="신고하기" style="box-shadow: none;font-size: 20px">
                                 </div>
                             </form>
                         </div>
