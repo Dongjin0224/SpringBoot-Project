@@ -38,7 +38,7 @@ public class WebController {
     public String write(){return "write";}
     //  vanny
     @GetMapping("header")
-    public String header(){return "header";}
+    public String header(){return "headerTest";}
     //  vanny
     @GetMapping("term")
     public String term(){return "term";}
@@ -93,4 +93,11 @@ public class WebController {
     //  jin
     @GetMapping("msRead")
     public String msRead(){return "msRead";}
+    //  dong
+    @GetMapping("footer")
+    public String footer(){return "footer";}
+    //  dong
+    @GetMapping("category")
+    public String category(){return "category";}
+
 }
