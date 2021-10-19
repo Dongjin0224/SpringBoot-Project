@@ -148,6 +148,28 @@
     table tbody tr:nth-child(2n + 1) {
         background-color: white;
     }
+    div.rankingDiv{
+        margin-right: 2%;
+        width: 17%;
+        margin-left: 2%;
+        padding-top: 30px;
+    }
+
+    div.ranking{
+        height: 300px;
+        background: #ffffff;
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 25px;
+        box-shadow: 10px 10px 5px #0066ff3b !important;
+    }
+
+    div.rankingWrap{
+        border: 3px solid #358bca;
+        height: 260px;
+        border-radius: 25px;
+    }
+
 </style>
 <body class="is-preload">
 
@@ -322,32 +344,15 @@
 
                 </div>
             </div>
-            <div class="imgDiv">
-                <img src="/img/ad.png" alt="" style="width: 250px; border-radius: 25px;">
+            <div class="rankingDiv">
+                <div class="ranking">
+                    <div class="rankingWrap"></div>
+                </div>
+                <div class="ranking">
+                    <div class="rankingWrap"></div>
+                </div>
             </div>
         </div>
-        <!--				<div th:object="${pageMaker}">-->
-        <!--					<div class="big-width" style="text-align: center">-->
-        <!--						<a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&lt;</code></a>-->
-        <!--						<th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">-->
-        <!--							<code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>-->
-        <!--							<a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>-->
-        <!--						</th:block>-->
-        <!--						<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><code>&gt;</code></a>-->
-        <!--					</div>-->
-        <!--					<div class="small-width" style="text-align: center">-->
-        <!--						<a class="changePage" th:if="*{criteria.pageNum > 1}" th:href="*{criteria.pageNum - 1}"><code>&lt;</code></a>-->
-        <!--						<code th:text="*{criteria.pageNum}"></code>-->
-        <!--						<a class="changePage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}"><code>&gt;</code></a>-->
-        <!--					</div>-->
-        <!--					<form action="/board/list" th:object="${criteria}" name="pageForm">-->
-        <!--						<input type="hidden" name="pageNum" th:field="*{pageNum}">-->
-        <!--						<input type="hidden" name="amount" th:field="*{amount}">-->
-        <!--						<input type="hidden" name="type" th:field="*{type}">-->
-        <!--						<input type="hidden" name="keyword" th:field="*{keyword}">-->
-        <!--					</form>-->
-        <!--				</div>-->
-
     </section>
     <!-- Footer -->
     <footer id="footer">
