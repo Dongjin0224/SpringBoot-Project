@@ -7,104 +7,178 @@
 <html>
 <head>
     <title>Untitled</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/css/main.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/css/main.css"/>
 </head>
 <style>
-    .content.main{
-        width: 74%;
-        border-radius: 25px;
-        padding: 2%;
+    .content.main {
+        width: 90%;
         margin: auto;
+        border-radius: 25px;
+        padding: 3rem 4rem 3rem 4rem !important;
+    }
+    #wrapper > .main > .inner > .content {
+        min-height: 550px;
     }
 
-    ul {
-        display: flex;
-        justify-content: space-evenly;
-        list-style: none !important;
+    .tab {
+        width: 17%;
     }
 
-    ul li {
-        font-weight: 500;
+    .tabcontent {
+        display: block;
+        width: 80%;
+        padding-left: 5%;
     }
 
-    li {
-        marker: none;
+    .tab button {
+        box-shadow: none !important;
+        border: none;
+        border-radius: 0;
+        width: 100%;
+        font-size: 1rem !important;
+        color: #333333 !important;
+    }
+    .tab button.active {
+        color: #358BC9 !important;
+
+        background-color: white;
+
+    }
+
+
+    /* 강사님 css */
+    hr {
+        margin:0;
+    }
+
+    hr.dark{
+        border-bottom-color: #000;
+    }
+
+    div.area {
+        margin-bottom: 1%;
+    }
+
+    input.phone   {
+        width: 80px;
+        height: 30px;
+        display: inline;
+    }
+
+    div.info {
+        font-size: 0.9em
+    ;
+    }
+    div.info label {
+        margin:0;
+        display:inline-block;
+        width:200px;
+    }
+
+    p#checkPhone {
+        display: inline-block;
+        margin: 0 0 0 2%;
+        font-size: 0.7em;
+    }
+
+    div.info div div {
+        vertical-align: middle;
+        display: inline-block;
+        line-height: 30px;
+        padding: 7px 0;
+        width: 350px;
+    }
+
+    div.info input[type='text'], div.info input[type='password']{
+        border-color: #bfb9b95c;
+        font-size: 0.8em;
+    }
+
+
+    div.info input[type='text']:not(.phone), div.info input[type='password'] {
+        height: 30px;
+        width: 260px;
+    }
+
+    .profile {
+        font-weight: bold;
+    }
+
+    input[type="submit"].small, input[type="reset"].small, input[type="button"].small, button.small, .button.small {
+        font-size: 0.9rem;
+        height: 2.0625rem;
+        line-height: 2.0625rem;
+        border-radius: 0;
+        padding: 0 1.25rem;
+        box-shadow: none;
+    }
+
+    .div2 {
+        display: flex !important;
+    }
+
+    input[type="text"] {
+        border-radius: 0;
+    }
+
+    .box {
+        border-color: #358bca;
+    }
+    .ulBox ul li::marker {
+        font-family: 'Font Awesome 5 Free';
+        content: "\f138";
+        position: absolute;
+        left : 1em;
+        color: #358bca;
+    }
+
+    a {
+        border: none;
+    }
+
+    table {
+        margin: 0 0 2rem 0;
+        width: 100%;
+        border-top: 1.1px solid;
+        border-bottom: 1.1px solid;
+    }
+
+    table tbody tr {
+        border-left: 0;
+        border-right: 0;
+        border-top: 1px solid;
+    }
+
+    table th {
+        font-size: 1rem;
+        font-weight: 400;
+        padding: 0.5rem 0.75rem;
+        text-align: left;
+    }
+
+    table td {
+        font-size: 0.8rem;
+        background-color: white;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .th1 {
+        width: 20%;
+    }
+
+    .th3 {
+        width: 20%;
+    }
+
+    .th4 {
+        width: 12%;
     }
 
     code {
         background: white;
         border-color: white;
-        border: none;
-    }
-
-    a {
-        border-bottom: none;
-    }
-
-    .td1 {
-        width: 30%;
-        background-color: white;
-        padding-left: 0;
-    }
-    .td2 {
-        background-color: white;
-    }
-    .td3 {
-        background-color: white;
-        display: flex;
-    }
-    .td4 {
-        background-color: white;
-        display: flex;
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-    .td5 {
-        background-color: white;
-        display: flex;
-        padding-top: 0;
-    }
-
-    .tr1 {
-        border: none;
-        background: none;
-    }
-
-    .tabs {
-        margin: auto;
-        width: 100%;
-    }
-
-    .first {
-        margin: auto;
-    }
-
-    .second{
-        margin: auto;
-    }
-
-    input[type="submit"], input[type="reset"], input[type="button"], button, .button {
-        background-color: transparent;
-        box-shadow: inset 0 0 0 3px #358bca;
-        color: #358bca !important;
-    }
-
-    table th {
-        font-size: initial;
-        font-weight: 400;
-        padding: 0 0.75rem 0.75rem 0.75rem;
-        text-align: left;
-    }
-
-    .box {
-        border-radius: 1rem;
-        border: solid 1px;
-        border-color: #358bca;
-        padding: 1.5rem;
-        width: 80%;
-        margin: auto;
     }
 </style>
 <body class="is-preload">
@@ -117,252 +191,366 @@
 
         <!-- Logo -->
         <div class="logo">
-            <a href="index"><strong>Hypothesis</strong> <span class="extra">by Pixelarity</span></a>
+            <a href="index"><strong>Hello</strong> <span class="extra">Doctor</span></a>
         </div>
 
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="index">Home</a></li>
                 <li>
-                    <a href="#" class="icon solid fa-angle-down">Dropdown</a>
+                    <a href="#" class="icon solid fa-angle-down">메뉴</a>
                     <ul>
-                        <li><a href="#">Option One</a></li>
-                        <li><a href="#">Option Two</a></li>
-                        <li><a href="#">Option Three</a></li>
                         <li>
-                            <a href="#">Submenu</a>
-                            <ul>
-                                <li><a href="#">Option One</a></li>
-                                <li><a href="#">Option Two</a></li>
-                                <li><a href="#">Option Three</a></li>
-                                <li><a href="#">Option Four</a></li>
-                            </ul>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/note.png" alt=""
+                                                                                  class="subjectImg">지식 iN</a>
+                            <a href="#" class="subject"><img src="/img/location.png" alt="" class="subjectImg">병원 찾기</a>
+                        </li>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/megaphone.png" alt=""
+                                                                                  class="subjectImg">이용안내</a>
+                            <a href="#" class="subject"><img src="/img/electricity.png" alt=""
+                                                             class="subjectImg">의학상식</a>
+                        </li>
+                        <li>
+                            <!--<a href="#" class="subject" style="float: left;"><img src="/img/membership.png" alt="" class="subjectImg">멤버십</a>-->
+                            <a href="#" class="subject" style="float: left;"><img src="/img/volunteer.png" alt=""
+                                                                                  class="subjectImg">의료봉사</a>
                         </li>
                     </ul>
                 </li>
-                <li class="current"><a href="generic">Generic</a></li>
-                <li><a href="elements">Elements</a></li>
+                <li>
+                    <a href="#" class="icon solid fa-angle-down">카테고리</a>
+                    <ul>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/joints.png" alt=""
+                                                                                  class="subjectImg">정형외과</a>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/diamond.png" alt=""
+                                                                                  class="subjectImg">성형외과</a>
+                            <a href="#" class="subject"><img src="/img/lungs.png" alt="" class="subjectImg">내과</a>
+                        </li>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/family_clinic.png" alt=""
+                                                                                  class="subjectImg">가정의학과</a>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/teen.png" alt=""
+                                                                                  class="subjectImg">소아과</a>
+                            <a href="#" class="subject"><img src="/img/pore.png" alt="" class="subjectImg">피부과</a>
+                        </li>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/cognition.png" alt=""
+                                                                                  class="subjectImg">신경과</a>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/kidneys.png" alt=""
+                                                                                  class="subjectImg">비뇨의학과</a>
+                            <a href="#" class="subject"><img src="/img/ear.png" alt="" class="subjectImg">이비인후과</a>
+                        </li>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/medicine.png" alt=""
+                                                                                  class="subjectImg">한방의학과</a>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/pregnant.png" alt=""
+                                                                                  class="subjectImg">산부인과</a>
+                            <a href="#" class="subject"><img src="/img/tooth.png" alt="" class="subjectImg">치과</a>
+                        </li>
+                        <li>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/neurology.png" alt=""
+                                                                                  class="subjectImg">신경외과</a>
+                            <a href="#" class="subject" style="float: left;"><img src="/img/ambulance.png" alt=""
+                                                                                  class="subjectImg">응급의학과</a>
+                            <!--<a href="#" class="subject" style="float: left;"><img src="/img/note.png" alt="" class="subjectImg">지식 iN</a>-->
+                        </li>
+                        <!--<li>
+                                  <a href="#">Submenu</a>
+                                  <ul>
+                                      <li><a href="#">Option One</a></li>
+                                      <li><a href="#">Option Two</a></li>
+                                      <li><a href="#">Option Three</a></li>
+                                      <li><a href="#">Option Four</a></li>
+                                  </ul>
+                              </li>-->
+                    </ul>
+                </li>
+                <li><a href="#">로그인</a></li>
+                <!--<li><a href="#"></a></li>-->
             </ul>
         </nav>
-
     </header>
 
     <!-- Section -->
     <section id="one" class="main alt">
         <div class="inner alt">
             <div class="content main">
-                <section class="tiles" style="padding-top: 2%;">
-                    <div style="padding-top: 2%; width: 80%; margin: auto; ">
+                <section class="tiles" style="display: flex">
+
+
+                    <!-- Tab links -->
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'myOne')" id="defaultOpen">내 정보</button>
+                        <button class="tablinks" onclick="openCity(event, 'myTwo')">답변 내역</button>
+                        <button class="tablinks" onclick="openCity(event, 'myThree')">진료 예약</button>
+                        <button class="tablinks" onclick="openCity(event, 'myFour')">봉사 신청</button>
+                        <button class="tablinks" onclick="openCity(event, 'myFive')">회원권</button>
+                    </div>
+
+                    <!-- Tab content -->
+                    <div id="myOne" class="tabcontent">
                         <div>
-                            <h3>My page</h3>
-                            <hr>
-                            <div>
-                                <fieldset class="first">
-                                    <h3>profile</h3>
-                                    <table style="width: 100%; margin: auto;">
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>사진</strong></td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>이름</strong></td>
-                                            <td class="td2">홍길동</td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>전화번호</strong></td>
-                                            <td class="td2">010-1234-5678</td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>전공</strong></td>
-                                            <td class="td2">방사선과</td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>소속기관</strong></td>
-                                            <td class="td2">다나아병원</td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>주소</strong></td>
-                                            <td class="td2">OO시 OO구</td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong></strong></td>
-                                            <td class="td2">OO동 OOOOOO</td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong></strong></td>
-                                            <td class="td2">OOO병원</td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>약력</strong></td>
-                                            <td class="td2">약력들어 갈 자리</td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>이메일</strong></td>
-                                            <td class="td2">abcd123@gmail.com<button id="modifyProfile" class="button small" style="float: right;">수정하기</button></td>
-                                        </tr>
-                                    </table>
-                                </fieldset>
-                                <!-- 수정 버튼 누르면 나오는 곳 -->
-                                <fieldset class="first" style="display: none;">
-                                    <!--<form method="post" action="#">-->
-                                    <h3>profile</h3>
-                                    <table style="width: 100%; margin: auto;">
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>이름</strong></td>
-                                            <td class="td3">홍길동</td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>전화번호</strong></td>
-                                            <td class="td4"><input type="text" name="" value="" placeholder="010-1234-5678"></td>
-                                        </tr>
-                                        <tr class="tr1" style="background: none;">
-                                            <td class="td1"><strong>인증번호</strong></td>
-                                            <td class="td4"><input type="text" name="" value="" placeholder="인증번호"><a onclick="" class="button small" style="width: 80px; margin: auto;">확인</a></td>
-                                        </tr>
-                                        <tr class="tr1" style="background: none;">
-                                            <td class="td1"><strong>전공</strong></td>
-                                            <td class="td4">방사선과</td>
-                                        </tr>
-                                        <tr class="tr1" style="background: none;">
-                                            <td class="td1"><strong>소속기관</strong></td>
-                                            <td class="td4"><input type="text" name="" value="" placeholder="OOO병원"></td>
-                                        </tr>
-                                        <tr class="tr1" style="background: none;">
-                                            <td class="td1"><strong></strong></td>
-                                            <td class="td4"><input type="text" name="" value="" placeholder="OO시 OO구"></td>
-                                        </tr>
-                                        <tr class="tr1" style="background: none;">
-                                            <td class="td1"><strong></strong></td>
-                                            <td class="td4"><input type="text" name="" value="" placeholder="OO동 OOOOOO"></td>
-                                        </tr>
-                                        <tr class="tr1" style="background: none;">
-                                            <td class="td1"><strong></strong></td>
-                                            <td class="td4"><input type="text" name="" value="" placeholder="OOO병원"></td>
-                                        </tr>
-                                        <tr class="tr1" style="background: none;">
-                                            <td class="td1"><strong>약력</strong></td>
-                                            <td class="td4"><input type="text" name="" value="" placeholder="약력"></td>
-                                        </tr>
-                                        <tr class="tr1">
-                                            <td class="td1"><strong>이메일</strong></td>
-                                            <td class="td5"><input type="text" name="" value="" placeholder="abcd123@gmail.com"></td>
-                                        </tr>
-                                    </table>
-                                    <div style="display: flex; justify-content: center">
-                                        <a href="#" class="button small" style="margin-right: 5%; width: 80px; padding: initial;">변경하기</a><button id="back" class="button small" style="margin-right: 5%; width: 80px;">취소</button>
+                            <fieldset class="first">
+                                <div class='area'>
+                                    <h3 style="margin-bottom: 1%;">회원정보</h3>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <p style='font-size: 0.6em; margin-bottom: 1%; padding-top: 2%;'>
+                                            <span style='color:red;'>*</span>
+                                            표시는 필수입력 항목 이오니 반드시 입력해 주세요.
+                                        </p>
+                                        <div>
+                                            <button id="modifyProfile" class="button small" style="float: right;">수정하기</button>
+                                        </div>
                                     </div>
-                                    <!--</form>-->
-                                </fieldset>
+                                    <div class='info'>
+                                        <hr class='dark'>
+                                        <div>
+                                            <label class="profile">이름</label>
+                                            <div>
+                                                홍길동
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                010
+                                                - 1234
+                                                - 5678
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label class="profile">e-mail<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                abcd123@gmail.com
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label class="profile">전공</label>
+                                            <div>
+                                                이비인후과
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label class="profile">소속기관<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                소속기관 정보 들어갈 자리
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                약력 들어갈 자리
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <hr class='dark'>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <!-- 수정 버튼 누르면 나오는 곳 -->
+                            <fieldset class="first" style="display: none;">
+                                <!--<form method="post" action="#">-->
+                                <div class='area'>
+                                    <h3 style="margin-bottom: 1%;">회원정보</h3>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <p style='font-size: 0.6em; margin-bottom: 1%; padding-top: 2%;'>
+                                            <span style='color:red;'>*</span>
+                                            표시는 필수입력 항목 이오니 반드시 입력해 주세요.
+                                        </p>
+                                    </div>
+                                    <div class='info'>
+                                        <hr class='dark'>
+                                        <div>
+                                            <label class="profile">이름</label>
+                                            <div>
+                                                홍길동
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label for="docPhoneNum" class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                <input class='phone' type='text' id='docPhoneNum' name='docPhoneNum' readonly>
+                                                - <input class='phone' type='text' id='docPhoneNum2' name='docPhoneNum2' readonly>
+                                                - <input class='phone' type='text' id='docPhoneNum3' name='docPhoneNum3' readonly>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label for="docEmail" class="profile">e-mail<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                <input type='text' id='docEmail' name='docEmail'>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label class="profile">전공</label>
+                                            <div>
+                                                이비인후과
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label for="docAddress" class="profile">소속기관<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                <input type='text' id='docAddress' name='docAddress'>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div class="td6">
+                                                <div class="div2">
+                                                    <input type="text" name="" value="" placeholder="약력">
+                                                    <a class="button small" onclick="addInput()"
+                                                       style="width: 80px; margin: auto;">추가</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <hr class='dark'>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: center">
+                                    <a href="#" class="button small" style="margin-right: 5%; width: 80px; padding: initial;">변경하기</a>
+                                    <button id="back" class="button small" style="margin-right: 5%; width: 80px;">취소</button>
+                                </div>
+
+                                <!--</form>-->
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div id="myTwo" class="tabcontent">
+                        <h3 style="text-align: center">답변 내역</h3>
+                        <table>
+                            <thead>
+                            <tr class="">
+                                <th class="th1"><strong>진료과목</strong></th>
+                                <th class="th2"><strong>제목</strong></th>
+                                <th class="th3"><strong>날짜</strong></th>
+                                <th class="th4"><strong>조회수</strong></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="">
+                                <td class="">[정형외과]</td>
+                                <td class=""><a>발목 삐었어요</a></td>
+                                <td class="">2222.2.22</td>
+                                <td class="">12345</td>
+                            </tr>
+                            <tr class="">
+                                <td class="">[정형외과]</td>
+                                <td class=""><a>발목 삐었어요</a></td>
+                                <td class="">2222.2.22</td>
+                                <td class="">12345</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="pageWrap">
+                            <div class="big-width" style="text-align: center">
+                                <a class="changePage"><code>&lt;</code></a>
+                                <code>1</code>
+                                <a class="changePage" href="javascript:void(0)"><code>2</code></a>
+                                <a class="changePage"><code>&gt;</code></a>
                             </div>
                         </div>
-
-                        <hr>
-
-                        <ul class="tabs" style="padding-left: 0;">
-                            <li>
-                                <h3>답변<span class="extra"> 목록</span></h3>
-                                <div class="spotlight">
-                                    <table>
-                                        <thead>
-                                        <tr class="">
-                                            <th class=""><strong>진료과목</strong></th>
-                                            <th class=""><strong>제목</strong></th>
-                                            <th class=""><strong>날짜</strong></th>
-                                            <th class=""><strong>조회수</strong></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="">
-                                            <td class="">[정형외과]</td>
-                                            <td class="" ><a>발목 삐었어요</a></td>
-                                            <td class="" >2222.2.22</td>
-                                            <td class="" >12345</td>
-                                        </tr>
-                                        <tr class="">
-                                            <td class="">[정형외과]</td>
-                                            <td class="" ><a>발목 삐었어요</a></td>
-                                            <td class="" >2222.2.22</td>
-                                            <td class="" >12345</td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </li>
-                            <li>
-                                <h3>진료 <span class="extra">예약</span></h3>
-                                <div class="spotlight">
-                                    <table>
-                                        <thead>
-                                        <tr class="">
-                                            <th class=""><strong>이름</strong></th>
-                                            <th class=""><strong>전화번호</strong></th>
-                                            <th class=""><strong>진료과목</strong></th>
-                                            <th class=""><strong>날짜</strong></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="">
-                                            <td class="">신짱구</td>
-                                            <td class="">010-1234-5678</td>
-                                            <td class="">피부과</td>
-                                            <td class="" >2222.12.22</td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </li>
-                            <li>
-                                <h3>봉사 <span class="extra">일정</span></h3>
-                                <div class="spotlight">
-                                    <table>
-                                        <thead>
-                                        <tr class="">
-                                            <th class=""><strong>전공분야</strong></th>
-                                            <th class=""><strong>제목</strong></th>
-                                            <th class=""><strong>인원수</strong></th>
-                                            <th class=""><strong>날짜</strong></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="">
-                                            <td class="">[외과]</td>
-                                            <td class="">강원도 노인 돌봄</td>
-                                            <td class="">5</td>
-                                            <td class="" >2222.12.22</td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </li>
-                            <li>
-                                <h3>회원<span class="extra">권</span></h3>
-                                <div class="spotlight">
-                                    <table style="margin: 0;">
-                                        <tr class="" style="border-color: white;">
-                                            <td class="" style="margin: auto; background-color: white;">
-                                                <div class="box">
-                                                    <div style="text-align: center; display: grid"><span style="font-weight: bold; font-size: 1.1rem">프리미엄 회원권</span><strong><a href="#" class="button small" style="width: 85px; padding: initial; float: right;">회원권 구매</a></strong></div>
-                                                    <div style="padding-left: 2%">
-                                                        <span>- 이름 [진료과목]</span><br>
-                                                        <span>- 병원 정보</span><br>
-                                                        <span>- 약력</span><br>
-                                                        <span>- 진료예약 : 무제한</span><br>
-                                                        <span>- 한달 기본 제공 댓글 수 : 무제한</span><br>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
+
+                    <div id="myThree" class="tabcontent">
+                        <h3 style="text-align: center">진료 예약</h3>
+                        <table>
+                            <thead>
+                            <tr class="">
+                                <th class=""><strong>이름</strong></th>
+                                <th class=""><strong>전화번호</strong></th>
+                                <th class=""><strong>진료과목</strong></th>
+                                <th class=""><strong>날짜</strong></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="">
+                                <td class="">신짱구</td>
+                                <td class="">010-1234-5678</td>
+                                <td class="">피부과</td>
+                                <td class="">2222.12.22</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="big-width" style="text-align: center">
+                            <a class="changePage"><code>&lt;</code></a>
+                            <code>1</code>
+                            <a class="changePage" href="javascript:void(0)"><code>2</code></a>
+                            <a class="changePage"><code>&gt;</code></a>
+                        </div>
+                    </div>
+
+                    <div id="myFour" class="tabcontent">
+                        <h3 style="text-align: center">봉사 신청</h3>
+                        <table>
+                            <thead>
+                            <tr class="">
+                                <th class="th1"><strong>전공분야</strong></th>
+                                <th class="th2"><strong>제목</strong></th>
+                                <th class="th4"><strong>인원수</strong></th>
+                                <th class="th3"><strong>날짜</strong></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="">
+                                <td class="">[외과]</td>
+                                <td class="">강원도 노인 돌봄</td>
+                                <td class="">5</td>
+                                <td class="">2222.12.22</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="big-width" style="text-align: center">
+                            <a class="changePage"><code>&lt;</code></a>
+                            <code>1</code>
+                            <a class="changePage" href="javascript:void(0)"><code>2</code></a>
+                            <a class="changePage"><code>&gt;</code></a>
+                        </div>
+                    </div>
+
+                    <div id="myFive" class="tabcontent">
+                        <table style="border: 0;">
+                            <tr class="" style="border-color: white;">
+                                <td class="" style="margin: auto; background-color: white;">
+                                    <div class="box" style="margin-bottom: 0;">
+                                        <div style="text-align: center; display: grid">
+                                            <div
+                                                    style="font-weight: bold; font-size: 1.1rem">프리미엄 회원권
+                                            </div>
+                                            <strong><a
+                                                    href="#" class="button small"
+                                                    style="width: 85px; padding: initial; float: right;">회원권
+                                                구매</a></strong>
+                                        </div>
+                                        <div class="ulBox" style="padding-left: 2%">
+
+                                            <ul style="padding: revert; font-weight: 900; line-height: 35px;">
+                                                <li>이름 [진료과목]</li>
+                                                <li>병원 정보</li>
+                                                <li>약력</li>
+                                                <li>진료예약 : 무제한</li>
+                                                <li>한달 기본 제공 댓글 수 : 무제한</li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
                 </section>
             </div>
         </div>
@@ -372,43 +560,27 @@
     <footer id="footer">
         <div class="inner">
             <section>
-                <h3>Nullam sed gravida</h3>
-                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus sed magna gravida non.</p>
-                <ul class="icons">
-                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-                </ul>
-            </section>
-            <section class="narrow">
-                <h4>Lorem aliquam</h4>
-                <ul class="links">
-                    <li><a href="#">Ultrices nulla</a></li>
-                    <li><a href="#">Quis lectus donec</a></li>
-                    <li><a href="#">Magna ligula</a></li>
-                    <li><a href="#">Sed etiam tristique</a></li>
-                    <li><a href="#">Cursus magna</a></li>
-                    <li><a href="#">Gravida dolore</a></li>
-                </ul>
-            </section>
-            <section class="narrow">
-                <h4>Magna tempus</h4>
-                <ul class="links">
-                    <li><a href="#">Feugiat ligula</a></li>
-                    <li><a href="#">Vulputate tristique</a></li>
-                    <li><a href="#">Ultrices nulla</a></li>
-                    <li><a href="#">Cursus sed magna</a></li>
-                    <li><a href="#">Sed lectus donec</a></li>
-                </ul>
-            </section>
-            <section>
-                <h3>Morbi sed volutpat</h3>
-                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.<p>
-                <p><a href="#" class="major">(000) 000-0000</a></p>
+                <p style="text-align: center; font-weight: bold;">
+                    <a style="border-bottom: none;" href="#">이용안내</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">공지사항</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">이용약관</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">개인정보취급방침</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">위치기반이용약관</a>
+                </p>
+                <p style="text-align: center; margin-bottom: 1%;">
+                    사업자번호&nbsp;&nbsp;210&nbsp;<span>-</span>10&nbsp;<span>-</span>212020&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span><strong>|</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    서울특별시&nbsp;강남구&nbsp;역삼동&nbsp;125, &nbsp;20층&nbsp;2001호&nbsp;(역삼1동)
+                </p>
+                <p style="text-align: center;">
+                    헬로닥터 주식회사, 임재훈 대표&nbsp;&nbsp; <span><strong>/</strong></span>&nbsp;&nbsp;
+                    개인정보보호책임자 김동진 이사
+                </p>
             </section>
         </div>
-        <div class="copyright">
-            <p>&copy; Untitled. All rights reserved.</p>
+        <div class="copyright" style="color: #7a7a7a !important;">
+            <!--<p>Copyright &nbsp; &copy; &nbsp; Hello Doctor. &nbsp;&nbsp; All rights reserved</p>-->
+            <p>Copyright &copy; HelloDoctor Corp. All rights reserved.</p>
         </div>
     </footer>
 
@@ -427,19 +599,58 @@
 <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 <script>
-    document.getElementById("modifyProfile").addEventListener("click",function () {
-        var target = document.getElementsByClassName("first");
-        var target = document.getElementsByClassName("first");
+    document.getElementById("defaultOpen").click();
+
+    function openCity(evt, cityName) {
+        // Declare all variables
+        let i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("modifyProfile").addEventListener("click", function () {
+        let target = document.getElementsByClassName("first");
+
         target[0].style.display = "none";
         target[1].style.display = "block";
     })
 
-    document.getElementById("back").addEventListener("click",function () {
-        var target = document.getElementsByClassName("first");
-        var target = document.getElementsByClassName("first");
+    document.getElementById("back").addEventListener("click", function () {
+        let target = document.getElementsByClassName("first");
         target[0].style.display = "block";
         target[1].style.display = "none";
     })
-</script>
 
+
+
+    let i = 0;
+    function addInput(){
+
+        document.getElementsByClassName('td6')[0].innerHTML+="<div class='div2' id='text"+i+"'>" +
+            "            <input type='text' name='' value='' placeholder='약력'>" +
+            "            <a class='button small' onclick='fn1(" + i + ")'" +
+            "                style='width: 80px; margin: auto;'>삭제</a>" +
+            "        </div>";
+
+        i++;
+    }
+
+    function fn1(i) {
+        $('#text'+i).remove();
+    }
+</script>
 </html>
