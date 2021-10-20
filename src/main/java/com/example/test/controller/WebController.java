@@ -30,4 +30,74 @@ public class WebController {
 
     @GetMapping("copy")
     public String copy(){return "copy";}
+
+
+
+    //  vanny
+    @GetMapping("write")
+    public String write(){return "write";}
+    //  vanny
+    @GetMapping("header")
+    public String header(){return "headerTest";}
+    //  vanny
+    @GetMapping("term")
+    public String term(){return "term";}
+    //  vanny
+    @GetMapping("privacy_policy")
+    public String privacy_policy(){return "privacy_policy";}
+    //  vanny
+    @GetMapping("location_policy")
+    public String location_policy(){return "location_policy";}
+    //  vanny
+    @GetMapping("volunteer_register")
+    public String volunteer_register(){return "volunteer_register";}
+    //  hong
+    @GetMapping("detail")
+    public String detail(){return "detail";}
+    //  hong
+    @GetMapping("map")
+    public String map(){return "map";}
+    //  hong
+    @GetMapping("report")
+    public String report(){return "report";}
+    //  dong
+    @GetMapping("appointment")
+    public String appointment(){return "appointment";}
+    //  dong
+    @GetMapping("membership")
+    public String membership(){return "membership";}
+    //  dong
+    @GetMapping("payTerm")
+    public String payTerm(){return "payTerm";}
+    //  lim
+    @GetMapping("myPageUser")
+    public String myPageUser(){return "myPageUser";}
+    //  lim
+    @GetMapping("myPageDoc")
+    public String myPageDoc(){return "myPageDoc";}
+    //  lim
+    @GetMapping("test2")
+    public String test2(){return "test2";}
+    //  jin
+    @GetMapping("login")
+    public String login(){return "login";}
+    //  jin
+    @GetMapping("memberSignUp")
+    public String memberSignUp(){return "memberSignUp";}
+    //  jin
+    @GetMapping("doctorSignUp")
+    public String doctorSignUp(){return "doctorSignUp";}
+    //  jin
+    @GetMapping("medicalService")
+    public String medicalService(){return "medicalService";}
+    //  jin
+    @GetMapping("msRead")
+    public String msRead(){return "msRead";}
+    //  dong
+    @GetMapping("footer")
+    public String footer(){return "footer";}
+    //  dong
+    @GetMapping("category")
+    public String category(){return "category";}
+
 }
