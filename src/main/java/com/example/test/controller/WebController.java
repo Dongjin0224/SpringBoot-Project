@@ -3,6 +3,7 @@ package com.example.test.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
@@ -38,7 +39,7 @@ public class WebController {
     public String write(){return "write";}
     //  vanny
     @GetMapping("header")
-    public String header(){return "header";}
+    public String header(){return "headerTest";}
     //  vanny
     @GetMapping("term")
     public String term(){return "term";}
@@ -57,6 +58,12 @@ public class WebController {
     //  hong
     @GetMapping("map")
     public String map(){return "map";}
+    //  hong
+    @GetMapping("search_map")
+    public String searchMap(){return "searchMap";}
+    //  hong
+    @GetMapping("search_docs")
+    public String searchDocs(){return "searchDocs";}
     //  hong
     @GetMapping("report")
     public String report(){return "report";}
@@ -93,10 +100,11 @@ public class WebController {
     //  jin
     @GetMapping("msRead")
     public String msRead(){return "msRead";}
-    //
-    @GetMapping("guide")
-    public String guide(){return "guide";}
-
+    //  dong
+    @GetMapping("footer")
+    public String footer(){return "footer";}
+    //  dong
     @GetMapping("category")
     public String category(){return "category";}
+
 }

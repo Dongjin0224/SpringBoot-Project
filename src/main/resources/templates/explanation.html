@@ -19,32 +19,40 @@
         padding: 2%;
         margin: auto;
     }
-    table{
-        border:1px solid lightgray;
-        height: 37px;
-        /*text-align: center;*/
-    }
-    td{
-        border: 1px solid lightgray;
-        height: 37px;
-        /*text-align: center;*/
-    }
-   table th{
-        border: 1px solid lightgray;
-        font-size: 0.9rem ;
-        font-weight: 400;
-        padding: 0 0.75rem 0rem 0.75rem;
-        text-align: left;
-        height: 0px;
-    }
 
-    hr{
-        color:#358bca;
-        border-color:#358bca;
-        height: 2px;
-        background-color:#358bca;
+    @media (max-width: 2800px){
+        .image1{
+            display:none;
+        }
+        .image2{
+            display: none;
+        }
+        .image3{
+            display: none;
+        }
     }
-
+    @media (max-width: 1400px){
+        .image1{
+            display: none;
+        }
+        .image2{
+            display: block;
+        }
+        .image3{
+            display: none;
+        }
+    }
+    @media (max-width: 700px){
+        .image1{
+            display: none;
+        }
+        .image2{
+            display: none;
+        }
+        .image3{
+            display: block;
+        }
+    }
 </style>
 <body class="is-preload">
 
@@ -86,63 +94,67 @@
         </nav>
 
     </header>
+    <img src="/img/001.jpeg" style="width:100%"/></section>
 
     <!-- Section -->
     <section id="one" class="main alt">
         <div class="inner alt">
-            <div class="content main">
-                <section class="tiles" style="margin: auto;">
-                    <div class="inner">
+            <div class="content main" style="margin-top: -4%;">
+                <section class="tiles">
+                <div style="width: 77%;margin: auto;">
+                    <div>
+                    <p style="font-weight: bold; margin-top: 10%;">헬로닥터란?</p>
+                    <p>사이트에 등록된 질문에 대하여 해당 분야의 전문가인 닥터들이
+                        전문적인 답변을 직접 공식적으로 제공해주는 서비스 입니다.</p>
+                    </div>
 
-                        <!-- Elements -->
-                        <header class="major" style="text-align: center;">
-                            <h3 style="margin-bottom: -3%;">의료봉사 공고</h3>
-                            <hr>
-                        </header>
-                        <!--href에 알맞는 URL 설정-->
-                      <!-- <h3><a href="" class="button small">글 등록</a></h3>-->
-                        <div class="table-wrapper">
-                            <table style="font-size: 11px;">
-                                <thead>
-                                <tr class="tHead">
-                                    <!--<th class="bno">번호</th>-->
-                                    <th class="title">제목</th>
-                                    <th class="writer">작성자</th>
-                                    <th class="personnel">모집인원</th>
-                                    <th class="regDate">작성일</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                    <tr class="tBody">
-                                        <td class="title">[국내의료봉사]해남 무료진료<a id="goRead"></a></td>
-                                        <td class="writer" >전진주</td>
-                                        <td class="personnel" >5/15</td>
-                                        <td class="regDate">2021-10-16</td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-
-                            <div>
-                                <div class="big-width" style="text-align: center">
-                                    <a class="changePage"> &lt;</a>
-                                    <th>
-                                        <a class="changePage"></a>
-                                    </th>
-                                    <a class="changePage">&gt;</a>
-                                </div>
-
-                                <form action="" name="pageForm">
-                                    <input type="hidden" name="pageNum">
-                                    <input type="hidden" name="amount">
-                                    <input type="hidden" name="type">
-                                    <input type="hidden" name="keyword">
-                                </form>
-                            </div>
+                        <p style="font-weight: bold;">헬로닥터의 효과</p>
+                        <p>1. &nbsp;&nbsp;전문성있는 답변등록으로 의료인 그리고 병원의 이미지를제고할 수 있습니다.</p>
+                    <div style="border: solid #eeeeee;
+                         background-color: #f5f5f5cc;">
+                        <div style="padding: 5%;">
+                           <i class="fab fa-quora"style="color: #50b550;font-size: large;"></i>
+                            독감 증상이 궁금합니다.
+                        </div>
+                        <div style="padding: 5%;padding-top: 0;">
+                            <i class="fab fa-amilia" style="color: #72b5d1;font-size: medium;"></i>
+                            안녕하세요 지식IN 상담의사 최연철 입니다.
+                            인플루엔자(독감)의 대표적인 증상은 고열과 인후통등이지만,
+                            사람에 따라 증상이 다양하게 나타날 수 있습니다.
+                            증상이 계속 지속된다면 의료진의 진료를 보시길 권합니다.
                         </div>
                     </div>
-                </section>
+
+
+                        <p style="margin-top: 8%;">2.&nbsp;&nbsp;소외된 계층에게까지 정확한 의료정보를 제공할 수 있습니다.</p>
+                    <div style="border: solid #eeeeee;
+                         background-color: #f5f5f5cc;">
+                        <div style="padding: 5%;">
+                            <i class="fab fa-quora"style="color: #50b550;font-size: large;"></i>
+                            가정형편이 좋지 않은데 손가락이 부러졌어요 병원에 가지않아도 될까요?
+                        </div>
+                        <div style="padding: 5%;padding-top: 0;">
+                            <i class="fab fa-amilia" style="color: #72b5d1;font-size: medium;"></i>
+                            안녕하세요 지식IN 상담의사 박천생 입니다.
+                            골절이라면 통증이 심한경우가 많습니다. 가정형편이 좋지 않다면
+                            의료급여 및 복지혜택을 받을 수 있으니 꼭 병원에 내원하시기 바랍니다.
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                        <p style="font-weight: bold;margin-top: 9%;">헬로닥터 제공기능</p>
+                        <p>1.&nbsp;&nbsp;헬로닥터 검색결과에 작성한 답변이 노출되며, 닥터의 정보가 표시됩니다.</p>
+                        <p>2.&nbsp;&nbsp;답변 상세페이지에서 의사의 약력과 병원정보를 자연스럽게 노출할 수 있습니다.</p>
+                        <p>3.&nbsp;&nbsp;프로필에 있는 예약버튼으로 글쓴이의 병원예약을 유도할 수 있습니다.</p>
+                    </div>
+                    <div style="padding: 9%;display: flex;justify-content: center;">
+                    <input type="button" value="회원가입" style="border-radius: 0;
+}">
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
