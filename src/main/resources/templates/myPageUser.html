@@ -138,16 +138,28 @@
         border: none;
     }
 
+    table {
+        margin: 0 0 2rem 0;
+        width: 100%;
+        border-top: 1.1px solid;
+        border-bottom: 1.1px solid;
+    }
+
+    table tbody tr {
+        border-left: 0;
+        border-right: 0;
+        border-top: 1px solid;
+    }
+
     table th {
-        font-size: 0.9rem;
+        font-size: 1rem;
         font-weight: 400;
         padding: 0.5rem 0.75rem;
         text-align: left;
-        border-bottom: 2px solid lightsteelblue;
-        border-top: 2px solid lightsteelblue;
     }
 
     table td {
+        font-size: 0.8rem;
         background-color: white;
         padding: 0.5rem 0.75rem;
     }
@@ -368,7 +380,7 @@
 
                     <div id="myTwo" class="tabcontent">
                         <h3 style="text-align: center">질문 내역</h3>
-                        <table>
+                        <table class="table1">
                             <thead>
                             <tr class="">
                                 <th class="th1"><strong>진료과목</strong></th>
@@ -378,13 +390,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="">
+                            <tr class="table2">
                                 <td class="">[정형외과]</td>
                                 <td class=""><a>발목 삐었어요</a></td>
                                 <td class="">2222.2.22</td>
                                 <td class="">12345</td>
                             </tr>
-                            <tr class="">
+                            <tr class="table2">
                                 <td class="">[정형외과]</td>
                                 <td class=""><a>발목 삐었어요</a></td>
                                 <td class="">2222.2.22</td>
@@ -404,7 +416,7 @@
 
                     <div id="myThree" class="tabcontent">
                         <h3 style="text-align: center">진료 예약</h3>
-                        <table>
+                        <table class="table1">
                             <thead>
                             <tr class="">
                                 <th class=""><strong>이름</strong></th>
@@ -414,7 +426,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="">
+                            <tr class="table2">
                                 <td class="">신짱구</td>
                                 <td class="">010-1234-5678</td>
                                 <td class="">피부과</td>
@@ -514,22 +526,5 @@
         target[1].style.display = "none";
     })
 
-
-
-    let i = 0;
-    function addInput(){
-
-        document.getElementsByClassName('td6')[0].innerHTML+="<div class='div2' id='text"+i+"'>" +
-            "            <input type='text' name='' value='' placeholder='약력'>" +
-            "            <a class='button small' onclick='fn1(" + i + ")'" +
-            "                style='width: 80px; margin: auto;'>삭제</a>" +
-            "        </div>";
-
-        i++;
-    }
-
-    function fn1(i) {
-        $('#text'+i).remove();
-    }
 </script>
 </html>
