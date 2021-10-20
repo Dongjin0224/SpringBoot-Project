@@ -34,8 +34,6 @@ public class WebController {
     @GetMapping("login")
     public String login(){return "login";}
 
-    @GetMapping("memberSignUp")
-    public String memberSignUp(){return "memberSignUp";}
 
     @GetMapping("doctorSignUp")
     public String doctorSignUp(){return "doctorSignUp";}
@@ -45,4 +43,10 @@ public class WebController {
 
     @GetMapping("msRead")
     public String msRead(){return "msRead";}
+
+    @GetMapping("notice")
+    public String notice(){return "notice";}
+
+    @GetMapping("explanation")
+    public String explanation(){return "explanation";}
 }
