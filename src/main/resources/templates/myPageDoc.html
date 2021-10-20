@@ -180,6 +180,58 @@
         background: white;
         border-color: white;
     }
+
+
+
+    #map {
+        height: 425px;
+        width: 100%;
+    }
+
+    .gm-control-active {
+        display: none !important;
+    }
+    .gmnoprint {
+        display: none !important;
+    }
+
+    #map input {
+        height: 40px;
+        width: 260px;
+        border-color: #bfb9b95c;
+    }
+
+    .search {
+        width: 88px !important;
+        background-color: white !important;
+        left: 59.8% !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        height: 40px !important;
+        border: 1px solid !important;
+        border-color: #bfb9b95c !important;
+        line-height: 40px !important;
+    }
+    .search:hover{
+        background-color: #358bca !important;
+        color: white !important;
+    }
+    .clear {
+        width: 87px !important;
+        background-color: white !important;
+        color: #1a73e8;
+        left: 80% !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        height: 40px !important;
+        border: 1px solid !important;
+        border-color: #bfb9b95c !important;
+        line-height: 40px !important;
+    }
+    .clear:hover{
+        background-color: #358bca !important;
+        color: white !important;
+    }
 </style>
 <body class="is-preload">
 
@@ -400,7 +452,16 @@
                                         <div>
                                             <label for="docAddress" class="profile">소속기관<span style='color:red; font-size:1em;'> *</span></label>
                                             <div>
-                                                <input type='text' id='docAddress' name='docAddress'>
+                                                <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 0%;'>
+                                                    <span style='color:red;'>*</span>
+                                                    기관명
+                                                </p>
+                                                <input type='text' id='docAddress' name='docAddress' placeholder="소속기관">
+                                                <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 5%;'>
+                                                    <span style='color:red;'>*</span>
+                                                    원하는 위치를 클릭시 해당 지점으로 좌표가 등록됩니다.
+                                                </p>
+                                                <div id="map" style="width: 435px"></div>
                                             </div>
                                         </div>
                                         <hr>
@@ -652,5 +713,99 @@
     function fn1(i) {
         $('#text'+i).remove();
     }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMkjU3PD_8DSxtcmM3n4lfoAWRC7BEdQ8&callback=initMap&v=weekly"
+    async>
+</script>
+<script>
+    let map;
+    let marker;
+    let geocoder;
+    let responseDiv;
+    let response;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: { lat: 37.555946, lng: 126.972317 },
+            mapTypeControl: false,
+        });
+        geocoder = new google.maps.Geocoder();
+
+        const inputText = document.createElement("input");
+
+        inputText.type = "text";
+        inputText.class= "searchBar";
+        inputText.placeholder = "주소를 검색해 주세요.";
+
+        const submitButton = document.createElement("input");
+
+        submitButton.type = "button";
+        submitButton.value = "검색";
+        submitButton.classList.add("button1", "button-1","search");
+
+        const clearButton = document.createElement("input");
+
+        clearButton.type = "button";
+        clearButton.value = "취소";
+        clearButton.classList.add("button1", "button-secondary1","clear");
+        response = document.createElement("pre");
+        response.id = "response";
+        response.innerText = "";
+        responseDiv = document.createElement("div");
+        responseDiv.id = "response-container";
+        responseDiv.appendChild(response);
+
+        const instructionsElement = document.createElement("p");
+
+        instructionsElement.id = "instructions";
+        // instructionsElement.innerHTML =
+        //     "<strong>Instructions</strong>: Enter an address in the textbox to geocode or click on the map to reverse geocode.";
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputText);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(submitButton);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(clearButton);
+        map.controls[google.maps.ControlPosition.LEFT_TOP].push(instructionsElement);
+        map.controls[google.maps.ControlPosition.LEFT_TOP].push(responseDiv);
+        marker = new google.maps.Marker({
+            map,
+        });
+        map.addListener("click", (e) => {
+            geocode({ location: e.latLng });
+        });
+        submitButton.addEventListener("click", () =>
+            geocode({ address: inputText.value })
+        );
+        clearButton.addEventListener("click", () => {
+            clear();
+        });
+        clear();
+    }
+
+    function clear() {
+        marker.setMap(null);
+        responseDiv.style.display = "none";
+    }
+
+    function geocode(request) {
+        clear();
+        geocoder
+            .geocode(request)
+            .then((result) => {
+                const { results } = result;
+
+                map.setCenter(results[0].geometry.location);
+                marker.setPosition(results[0].geometry.location);
+                marker.setMap(map);
+                responseDiv.style.display = "none";
+                response.innerText = JSON.stringify(result, null, 2);
+
+                var location = results[0].geometry.location;
+                alert(location);
+                return results;
+            })
+            .catch((e) => {
+                alert("Geocode was not successful for the following reason: " + e);
+            });
+    }
+
 </script>
 </html>
