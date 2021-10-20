@@ -13,7 +13,7 @@
 </head>
 <style>
     .content.main {
-        width: 74%;
+        width: 90%;
         border-radius: 25px;
         padding: 4% !important;
         margin: auto;
@@ -92,6 +92,117 @@
         display: inline;
     }
 
+    /*결제 DIV*/
+    dl dt{
+        margin: 0;
+    }
+
+    dl dd{
+        margin: auto;
+    }
+
+    dl{
+        margin: 6%;
+        padding-left: 45%;
+    }
+
+    div.standard{
+        display: flex;
+        border: 2px solid #358bca;
+        padding: 2%;
+        border-radius: 15px;
+        margin-bottom: 10%;
+        background: linear-gradient(
+                45deg, silver, transparent);
+    }
+
+    div.premium{
+        display: flex;
+        border: 2px solid #358bca;
+        padding: 2%;
+        border-radius: 15px;
+        background: linear-gradient(
+                45deg, gold, transparent);
+    }
+
+    div.product_titleArea{
+        width: 35%;
+        padding: 1%;
+        border-right: 2px solid #1b1a1a40;
+    }
+
+    p.text{
+        margin: auto;
+    }
+
+    div.product_info{
+        width: 65%;
+    }
+
+    div.regular_payment{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div button{
+        box-shadow: none;
+        font-size: 16px;
+    }
+
+    span.sale_price{
+        font-weight: bold;
+    }
+
+    .box_layer .layer_bg {
+        position: fixed;
+        background: rgba(255,255,255,0.7);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 90;
+    }
+
+    .box_layer .layer_poc {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 400px;
+        border: 1px solid #ccc;
+        border-top: 3px solid #358bca;
+        margin: -200px 0 0 -249px;
+        background: #fff;
+        padding: 2% 14px 4%  14px;
+        z-index: 100;
+    }
+
+    .box_layer .layer_poc .poc_title {
+        font-size: 25px;
+        line-height: 42px;
+        color: #358bca;
+        letter-spacing: -1px;
+    }
+
+    .box_layer .layer_poc .poc_text {
+        font-size: 17px;
+        line-height: 26px;
+        color: #333;
+        letter-spacing: -0.5px;
+        border-bottom: 1px solid #e9e9e9;
+        padding-bottom: 20px;
+    }
+
+    .box_layer .layer_poc .table_title {
+        font-size: 17px;
+        line-height: 28px;
+        color: #333;
+        letter-spacing: -0.5px;
+        background: url(//cdnimg.melon.co.kr/resource/image/web/cm/bl_layer.png) 0 11px no-repeat;
+        padding: 0 0 0 13px;
+        margin: 20px 0 20px 0;
+    }
+
 </style>
 <body class="is-preload">
 
@@ -138,69 +249,116 @@
     <section id="one" class="main alt">
         <div class="inner alt">
             <div class="content main">
-                <h3>멤버쉽 선택</h3>
-                <form action="" name="patmentForm">
-                    <div class="buttonWrap">
-                        <input type="radio" name="grade" id="basic" value="basic" onclick="check()" checked><label class="rank" for="basic">BASIC</label>
-                        <input type="radio" name="grade" id="standard" value="standard" onclick="check()"><label class="rank" for="standard" style="background: darkgray;">STANDARD</label>
-                        <input type="radio" name="grade" id="premium" value="premium" onclick="check()"><label class="rank" for="premium" style="background: linear-gradient(45deg, black, transparent);">PREMIUM</label>
-                    </div>
-                    <hr>
-                    <fieldset class="choice" id="basicMember" style="background: #358bca;">
-                        <h3>BASIC 회원권</h3>
-                        <div class="price"><strong style="color: white">가격 : 무료</strong></div>
-                        <ul>
-                            <li>병원주소</li>
-                            <li>약력</li>
-                            <li>진료예약 : 5회</li>
-                            <li>답변 횟수 : 10개</li>
-                        </ul>
-                        <hr>
-                    </fieldset>
-                    <fieldset class="choice" id="standardMember" style="background: darkgray; display: none;">
-                        <h3>STANDARD 회원권</h3>
-                        <div class="price"><strong style="color: white">가격 : 49,000원</strong></div>
-                        <ul>
-                            <li>병원주소</li>
-                            <li>약력</li>
-                            <li>진료예약 : 20회</li>
-                            <li>답변 횟수 : 50개</li>
-                        </ul>
-                        <hr>
-                    </fieldset>
-                    <fieldset class="choice" id="premiumMember" style="background: linear-gradient(45deg, black, transparent); display: none;">
-                        <h3>PREMIUM 회원권</h3>
-                        <div class="price"><strong style="color: white">가격 : 99,000원</strong></div>
-                        <ul>
-                            <li>병원주소</li>
-                            <li>약력</li>
-                            <li>진료예약 : 무제한</li>
-                            <li>답변 횟수 : 무제한</li>
-                        </ul>
-                        <hr>
-                    </fieldset>
-                    <hr>
-                    <div class="payment" style="display: none">
-                        <div>
-                            <h3>결제수단</h3>
-                            <input type="radio" name="pay" id="kakao"><label for="kakao">카카오</label>
-                            <input type="radio" name="pay" id="card"><label for="card">카드</label>
-                            <input type="radio" name="pay" id="x"><label for="x">미정</label>
-                        </div><br>
-                        <div>
-                            <h3>약관동의</h3>
-                            <input type="checkbox" id="payTerm" name="payTerm">
-                            <label for="payTerm"><a href="/payTerm" target="_blank">결제 동의</a></label>
+                <h3>멤버쉽 선택 <sub>회원권에 대한 정보는 물음표를 클릭하세요.</sub> </h3>
+<!--                <div class="basic">-->
+<!--                    <div></div>-->
+<!--                    <div></div>-->
+<!--                </div>-->
+                <div class="product">
+                    <div class="standard">
+                        <div class="product_titleArea">
+                            <h4 class="title">STANDARD 회원권 <a href="#" class="icon solid fa-question-circle"></a></h4>
+                            <div class="pText">
+                                <p class="text">진료예약 : 20회</p>
+                                <p class="text">답변 개수 : 50회</p>
+                            </div>
                         </div>
-                        <br>
-                        <div>
-                            <input type="button" name="payBtn" id="payBtn" class="button primary fit" value="결제하기">
+                        <div class="product_info">
+                            <div class="regular_payment">
+                                <dl>
+                                    <dt></dt>
+                                    <dd>
+                                        <span class="sale_price">49,900원</span>
+                                    </dd>
+                                </dl>
+                                <div class="btn_buy_product">
+                                    <button type="button" title="BASIC 정기결제" data-prodid="400013">구매</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
+
+                    <div class="premium">
+                        <div class="product_titleArea">
+                            <h4 class="title">PREMIUM 회원권 <a href="#" class="icon solid fa-question-circle"></a></h4>
+                            <div class="pText">
+                                <p class="text">진료예약 : 무제한</p>
+                                <p class="text">답변 개수 : 무제한</p>
+                            </div>
+                        </div>
+                        <div class="product_info">
+                            <div class="regular_payment">
+                                <dl>
+                                    <dt></dt>
+                                    <dd>
+                                        <span class="sale_price">99,900원</span>
+                                    </dd>
+                                </dl>
+                                <div class="btn_buy_product">
+                                    <button type="button" title="BASIC 정기결제" data-prodid="400013">구매</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
     </section>
 
+    <div class="box_layer" data-index="0" style="display: none;">
+        <div class="layer_poc" style="top: 373.5px;">
+            <div class="poc_top">
+                <h1 class="poc_title">회원권 안내</h1>
+                <p class="poc_text">기본으로 제공되는 회원권에 대한 정보입니다. 회원권을 구매하시면 더 많은 진료예약, 답변이 가능합니다.</p>
+            </div>
+            <div class="poc_cont">
+                <p class="table_title">회원권 별 정보</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="poc">기능</th>
+                        <th scope="col" class="poc_type1">BASIC</th>
+                        <th scope="col" class="poc_type1">STANDARD</th>
+                        <th scope="col" class="poc_type3">PREMIUM</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row" class="poc">이름(진료과목)</th>
+                        <td class="poc_type1">○</td>
+                        <td class="poc_type2">○</td>
+                        <td class="poc_type3">○</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="poc">병원주소</th>
+                        <td class="poc_type1">○</td>
+                        <td class="poc_type2">○</td>
+                        <td class="poc_type3">○</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="poc">약력</th>
+                        <td class="poc_type1">○</td>
+                        <td class="poc_type2">○</td>
+                        <td class="poc_type3">○</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="poc point_c">진료예약</th>
+                        <td class="poc_type1">5회</td>
+                        <td class="poc_type2">20회</td>
+                        <td class="poc_type3">무제한</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="poc poc">답변개수</th>
+                        <td class="poc_type1">10회</td>
+                        <td class="poc_type2">50회</td>
+                        <td class="poc_type3">무제한</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a href="#" class="btn_close">팝업 닫기</a>
+        </div>
+        <div class="layer_bg"></div>
+    </div>
     <!-- Footer -->
     <footer id="footer">
         <div class="inner">
@@ -260,29 +418,14 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script>
-    let choose = document.getElementsByName("grade");
-    let form = document.patmentForm;
-
-    function check(){
-        if(choose[0].checked){
-                 $("#basicMember").css("display", "block")
-                 $("#standardMember").css("display", "none")
-                 $("#premiumMember").css("display", "none")
-                 $(".payment").css("display", "none");
-        }
-        if(choose[1].checked){
-                 $("#basicMember").css("display", "none")
-                 $("#standardMember").css("display", "block")
-                 $("#premiumMember").css("display", "none")
-                 $(".payment").css("display", "block");
-        }
-        if(choose[2].checked){
-                 $("#basicMember").css("display", "none")
-                 $("#standardMember").css("display", "none")
-                 $("#premiumMember").css("display", "block")
-                 $(".payment").css("display", "block");
-        }
-    };
+    $(document).ready(function(){
+        $(".icon").on("click", function(){
+            $(".box_layer").css("display", "block");
+        })
+        $(".btn_close").on("click", function(){
+            $(".box_layer").css("display", "none");
+        })
+    })
 </script>
 </body>
 </html>
