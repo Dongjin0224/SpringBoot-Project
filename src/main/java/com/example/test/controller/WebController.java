@@ -60,7 +60,7 @@ public class WebController {
     public String map(){return "map";}
     //  hong
     @GetMapping("search_map")
-    public String searchMap(){return "search_map";}
+    public String searchMap(){return "searchMap";}
     //  hong
     @GetMapping("search_docs")
     public String searchDocs(){return "searchDocs";}
