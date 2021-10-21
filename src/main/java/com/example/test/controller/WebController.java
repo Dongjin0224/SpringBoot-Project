@@ -107,8 +107,4 @@ public class WebController {
     @GetMapping("category")
     public String category(){return "category";}
 
-    @GetMapping("explanation")
-    public String explanation(){return "explanation";}
-
-
 }
