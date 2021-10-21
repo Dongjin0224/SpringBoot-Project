@@ -19,13 +19,14 @@
         padding: 3rem 4rem 3rem 4rem !important;
     }
     #wrapper > .main > .inner > .content {
-        min-height: 550px;
+        min-height: 460px;
     }
 
     .tab {
+        height: 348px;
         width: 17%;
+        background-color: #bfb9b91c;
     }
-
     .tabcontent {
         display: block;
         width: 80%;
@@ -41,10 +42,8 @@
         color: #333333 !important;
     }
     .tab button.active {
-        color: #358BC9 !important;
-
-        background-color: white;
-
+        background-color: #358bca80 !important;
+        color: white !important;
     }
 
 
@@ -131,7 +130,21 @@
         content: "\f138";
         position: absolute;
         left : 1em;
-        color: #358bca;
+        color: black;
+    }
+
+    .ulBox ul {
+        padding-top: 0 !important;
+        padding: revert;
+        font-weight: 900;
+        line-height: 35px;
+        margin: 0;
+    }
+
+    .btn_buy_product button{
+        margin-bottom: 100%;
+        margin-left: 25%;
+        color: black !important;
     }
 
     a {
@@ -231,6 +244,74 @@
     .clear:hover{
         background-color: #358bca !important;
         color: white !important;
+    }
+
+    /*회원권*/
+
+    div.price{
+        display: inline;
+    }
+
+    /*결제 DIV*/
+    dl dt{
+        margin: 0;
+    }
+
+    dl dd{
+        margin: auto;
+    }
+
+    dl{
+        margin: 6%;
+        padding-left: 45%;
+    }
+
+    div.standard{
+        display: flex;
+        border: 2px solid silver;
+        padding: 2%;
+        border-radius: 15px;
+        margin-bottom: 10%;
+        background: linear-gradient(
+                45deg, silver, transparent);
+    }
+
+    div.premium{
+        display: flex;
+        border: 2px solid gold;
+        padding: 2%;
+        border-radius: 15px;
+        background: linear-gradient(
+                45deg, gold, transparent);
+    }
+
+    div.product_titleArea{
+        width: 30%;
+        padding: 1%;
+        border-right: 2px solid #1b1a1a40;
+    }
+
+    p.text{
+        margin: auto;
+    }
+
+    div.product_info{
+        width: 65%;
+    }
+
+    div.regular_payment{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    div button{
+        box-shadow: none;
+        font-size: 16px;
+    }
+
+    span.sale_price{
+        font-weight: bold;
     }
 </style>
 <body class="is-preload">
@@ -511,27 +592,51 @@
                         <table style="border: 0;">
                             <tr class="" style="border-color: white;">
                                 <td class="" style="margin: auto; background-color: white;">
-                                    <div class="box" style="margin-bottom: 0;">
-                                        <div style="text-align: center; display: grid">
-                                            <div
-                                                    style="font-weight: bold; font-size: 1.1rem">프리미엄 회원권
+                                    <div class="product">
+                                        <div class="standard">
+                                            <div class="product_titleArea">
+                                                <h4 class="title">STANDARD 회원권</h4>
                                             </div>
-                                            <strong><a
-                                                    href="#" class="button small"
-                                                    style="width: 85px; padding: initial; float: right;">회원권
-                                                구매</a></strong>
+                                            <div class="product_info">
+                                                <div class="regular_payment">
+                                                    <div class="ulBox" style="padding-left: 2%">
+                                                        <ul style="padding: revert; font-weight: 900; line-height: 35px;">
+                                                            <li>이름 [진료과목]</li>
+                                                            <li>병원 정보</li>
+                                                            <li>약력</li>
+                                                            <li>진료 예약 : 무제한</li>
+                                                            <li>답변 개수 : 무제한</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="btn_buy_product">
+                                                        <button type="button" title="BASIC 정기결제" data-prodid="400013">회원권 구매</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="ulBox" style="padding-left: 2%">
 
-                                            <ul style="padding: revert; font-weight: 900; line-height: 35px;">
-                                                <li>이름 [진료과목]</li>
-                                                <li>병원 정보</li>
-                                                <li>약력</li>
-                                                <li>진료예약 : 무제한</li>
-                                                <li>한달 기본 제공 댓글 수 : 무제한</li>
-                                            </ul>
-
-                                        </div>
+                                        <!--<div class="premium">
+                                            <div class="product_titleArea">
+                                                <h4 class="title">PREMIUM 회원권 <a href="#" class="icon solid fa-question-circle"></a></h4>
+                                                <div class="pText">
+                                                    <p class="text">진료예약 : 무제한</p>
+                                                    <p class="text">답변 개수 : 무제한</p>
+                                                </div>
+                                            </div>
+                                            <div class="product_info">
+                                                <div class="regular_payment">
+                                                    <dl>
+                                                        <dt></dt>
+                                                        <dd>
+                                                            <span class="sale_price">99,900원</span>
+                                                        </dd>
+                                                    </dl>
+                                                    <div class="btn_buy_product">
+                                                        <button type="button" title="BASIC 정기결제" data-prodid="400013">구매</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
                                     </div>
                                 </td>
                             </tr>
