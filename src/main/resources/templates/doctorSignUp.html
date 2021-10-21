@@ -79,12 +79,12 @@
 
     }
     .search {
-        width: 88px !important;
+        width: 105px !important;
         background-color: white !important;
-        left: 63% !important;
+        left: 65% !important;
         box-shadow: none !important;
         border-radius: 0 !important;
-        height: 42px !important;
+        height: 53.5px !important;
         border: 1px solid !important;
         border-color: #bfb9b95c !important;
         line-height: 40px !important;
@@ -95,13 +95,13 @@
         color: white !important;
     }
     .clear {
-        width: 88px !important;
+        width: 101px !important;
         background-color: white !important;
         color: #1a73e8;
-        left: 80% !important;
+        left: 82% !important;
         box-shadow: none !important;
         border-radius: 0 !important;
-        height: 42px !important;
+        height: 53.5px !important;
         border: 1px solid !important;
         border-color: #bfb9b95c !important;
         line-height: 40px !important;
@@ -157,20 +157,18 @@
     /*}*/
 
     /*모달창*/
-    #my_modal {
+   /* #my_modal {
         display: none;
-        width: 445px;
-        padding: 16px 30px;
+        width: 604px;
+        padding: 15px 34px;
         background-color: #fefefe;
         border: 1px solid #888;
         border-radius: 3px;
     }
-
     #my_modal .modal_close_btn {
         position: relative;
-        margin-left: 170px;
+        margin-left: 253px;
     }
-
     .box {
         border-color: #358bca;
     }
@@ -180,6 +178,61 @@
         position: absolute;
         left : 1em;
         color: #358bca;
+    }*/
+
+    .box_layer .layer_bg {
+        position: fixed;
+        background: rgba(255,255,255,0.7);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 90;
+    }
+
+    .box_layer .layer_poc {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 510px;
+        border: 1px solid #ccc;
+        border-top: 3px solid #358bca;
+        margin: -200px 0 0 -249px;
+        background: #fff;
+        padding: 1%;
+        z-index: 100;
+    }
+
+    .box_layer .layer_poc .poc_title {
+        font-size: 25px;
+        line-height: 42px;
+        color: #358bca;
+        letter-spacing: -1px;
+    }
+
+    .box_layer .layer_poc .poc_text {
+        font-size: 17px;
+        line-height: 26px;
+        color: #333;
+        letter-spacing: -0.5px;
+        border-bottom: 1px solid #e9e9e9;
+        padding-bottom: 20px;
+    }
+
+    .box_layer .layer_poc .table_title {
+        font-size: 17px;
+        line-height: 28px;
+        color: #333;
+        letter-spacing: -0.5px;
+        background: url(//cdnimg.melon.co.kr/resource/image/web/cm/bl_layer.png) 0 11px no-repeat;
+        padding: 0 0 0 13px;
+        margin: 20px 0 20px 0;
+    }
+    table td {
+        font-size: 14px;
+    }
+    a {
+        border-bottom: none;
     }
 </style>
 <body class="is-preload">
@@ -297,57 +350,65 @@
                 </section>
             </div>
         </div>
-        <div id="my_modal">
-            <div style="font-size: 11px; margin-bottom: 20px;">
-                ※ 기본회원(BASIC)은 아래의 서비스를 제공합니다. 회원권을 구매하시면 더 많은 서비스를 이용하실 수 있습니다.</div>
-            <div class="poc_cont">
-                <table>
-                    <thead>
-                    <tr>
-                        <th scope="col" class="poc">기능</th>
-                        <th scope="col" class="poc_type1">BASIC</th>
-                        <th scope="col" class="poc_type1">STANDARD</th>
-                        <th scope="col" class="poc_type3">PREMIUM</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row" class="poc">이름(진료과목)</th>
-                        <td class="poc_type1">○</td>
-                        <td class="poc_type2">○</td>
-                        <td class="poc_type3">○</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="poc">병원주소</th>
-                        <td class="poc_type1">○</td>
-                        <td class="poc_type2">○</td>
-                        <td class="poc_type3">○</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="poc">약력</th>
-                        <td class="poc_type1">○</td>
-                        <td class="poc_type2">○</td>
-                        <td class="poc_type3">○</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="poc point_c">진료예약</th>
-                        <td class="poc_type1">5회</td>
-                        <td class="poc_type2">20회</td>
-                        <td class="poc_type3">무제한</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="poc poc">답변개수</th>
-                        <td class="poc_type1">10회</td>
-                        <td class="poc_type2">50회</td>
-                        <td class="poc_type3">무제한</td>
-                    </tr>
-                    </tbody>
-                </table>
+        <!--<div id="my_modal">-->
+            <!--<div style="font-size: 14px; margin-bottom: 20px;">
+                ※ 기본회원(BASIC)은 아래의 서비스를 제공합니다. 회원권을 구매하시면 더 많은 서비스를 이용하실 수 있습니다.</div>-->
+        <div class="box_layer" data-index="0" style="display: none;">
+            <div class="layer_poc" style="top: 1494.5px;">
+                <div class="poc_top">
+                    <h1 class="poc_title">회원권 안내</h1>
+                    <p class="poc_text">기본으로 제공되는 회원권에 대한 정보입니다. 회원권을 구매하시면 더 많은 진료예약, 답변이 가능합니다.</p>
+                </div>
+                <div class="poc_cont">
+                    <p class="table_title">회원권 별 정보</p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th scope="col" class="poc">기능</th>
+                            <th scope="col" class="poc_type1">BASIC</th>
+                            <th scope="col" class="poc_type1">STANDARD</th>
+                            <th scope="col" class="poc_type3">PREMIUM</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row" class="poc">이름(진료과목)</th>
+                            <td class="poc_type1">○</td>
+                            <td class="poc_type2">○</td>
+                            <td class="poc_type3">○</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="poc">병원주소</th>
+                            <td class="poc_type1">○</td>
+                            <td class="poc_type2">○</td>
+                            <td class="poc_type3">○</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="poc">약력</th>
+                            <td class="poc_type1">○</td>
+                            <td class="poc_type2">○</td>
+                            <td class="poc_type3">○</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="poc point_c">진료예약</th>
+                            <td class="poc_type1">5회</td>
+                            <td class="poc_type2">20회</td>
+                            <td class="poc_type3">무제한</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="poc poc">답변개수</th>
+                            <td class="poc_type1">10회</td>
+                            <td class="poc_type2">50회</td>
+                            <td class="poc_type3">무제한</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+<!--                <a href="#" class="btn_close">확인</a>-->
+                <input type="button" class="btn_close" value="확인" style="margin-left: 39%;">
             </div>
-
-            <div><a class="modal_close_btn">닫기</a></div>
-
-            </div>
+            <div class="layer_bg"></div>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -497,7 +558,7 @@
             });
     }
     /*기본회원권 설명 모달창*/
-    function modal(id) {
+   /* function modal(id) {
         var zIndex = 9999;
         var modal = document.getElementById(id);
 
@@ -548,7 +609,16 @@
     document.getElementById('popup_open_btn').addEventListener('click', function() {
         // 모달창 띄우기
         modal('my_modal');
-    });
+    });*/
+
+    $(document).ready(function(){
+        $("#popup_open_btn").on("click", function(){
+            $(".box_layer").css("display", "block");
+        })
+        $(".btn_close").on("click", function(){
+            $(".box_layer").css("display", "none");
+        })
+    })
 </script>
 </body>
 </html>
