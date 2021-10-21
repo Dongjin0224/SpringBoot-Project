@@ -1,0 +1,12 @@
+/* Header */
+.headerCategory{
+    font-weight: bold;
+    font-size: 10px !important;
+    display: flex !important;
+    flex-direction: column;
+    text-align: center;
+}
+.categoryImg{
+    width: 48px;
+    display: block; margin: 0px auto;
+}
