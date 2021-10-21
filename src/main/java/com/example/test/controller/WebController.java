@@ -113,5 +113,7 @@ public class WebController {
     @GetMapping("notice")
     public String notice(){return "notice";}
 
+    @GetMapping("guide")
+    public String guide(){return "guide";}
 
 }
