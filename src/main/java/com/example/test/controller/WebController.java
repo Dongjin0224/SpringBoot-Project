@@ -28,17 +28,12 @@ public class WebController {
     @GetMapping("mainBoard")
     public String mainBoard(){ return "mainBoard"; }
 
-    @GetMapping("copy")
-    public String copy(){return "copy";}
-
-
-
     //  vanny
     @GetMapping("write")
     public String write(){return "write";}
     //  vanny
     @GetMapping("header")
-    public String header(){return "header";}
+    public String header(){return "headerTest";}
     //  vanny
     @GetMapping("term")
     public String term(){return "term";}
@@ -57,6 +52,12 @@ public class WebController {
     //  hong
     @GetMapping("map")
     public String map(){return "map";}
+    //  hong
+    @GetMapping("search_map")
+    public String searchMap(){return "searchMap";}
+    //  hong
+    @GetMapping("search_docs")
+    public String searchDocs(){return "searchDocs";}
     //  hong
     @GetMapping("report")
     public String report(){return "report";}
@@ -96,4 +97,5 @@ public class WebController {
     //  dong
     @GetMapping("category")
     public String category(){return "category";}
+
 }
