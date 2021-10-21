@@ -106,5 +106,4 @@ public class WebController {
     //  young
     @GetMapping("guide")
     public String guide(){return "guide";}
-
 }
