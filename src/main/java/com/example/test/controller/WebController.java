@@ -39,7 +39,7 @@ public class WebController {
     public String write(){return "write";}
     //  vanny
     @GetMapping("header")
-    public String header(){return "headerTest";}
+    public String header(){return "header";}
     //  vanny
     @GetMapping("term")
     public String term(){return "term";}
