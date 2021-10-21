@@ -11,13 +11,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/qna.css">
+    <link rel="stylesheet" href="/css/header.css">
 </head>
 <style>
     .content.main{
-        width: 74%;
+        width: 90%;
         border-radius: 25px;
         padding: 2%;
         margin: auto;
+    }
+    .gm-control-active {
+        display: none !important;
+    }
+    .gmnoprint {
+        display: none !important;
     }
     input{
         border-radius: 0 !important;
@@ -51,35 +58,59 @@
     }
 
     .button1 {
-        background-color: #fff;
+        background-color: blue !important;
         border: 0;
         border-radius: 2px;
-        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+        box-shadow: none !important;/*0 1px 4px -1px rgba(0, 0, 0, 0.3);*/
         margin: 10px;
         padding: 0 0.5em;
         font: 400 18px Roboto, Arial, sans-serif;
         overflow: hidden;
         height: 40px;
         cursor: pointer;
-        margin-left: 5px;
+        color:white !important;
     }
     .button1:hover {
         background: #ebebeb;
     }
-    .search {
-        background-color: #1a73e8;
-        left: 385px !important;
-        top: 55px !important;
-        color: white !important;
-    }
+
     .button-primary1:hover {
         background-color: #1765cc;
+
+
+    }
+    .search {
+        width: 88px !important;
+        background-color: white !important;
+        left: 63% !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        height: 43.5px !important;
+        border: 1px solid !important;
+        border-color: #bfb9b95c !important;
+        line-height: 40px !important;
+        margin-top: 0% !important;
+    }
+    .search:hover{
+        background-color: #358bca !important;
+        color: white !important;
     }
     .clear {
-        background-color: white;
+        width: 87px !important;
+        background-color: white !important;
         color: #1a73e8;
-        left: 439px !important;
-        top: 55px !important;
+        left: 80% !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        height: 43.5px !important;
+        border: 1px solid !important;
+        border-color: #bfb9b95c !important;
+        line-height: 40px !important;
+        margin-top: 0% !important;
+    }
+    .clear:hover{
+        background-color: #358bca !important;
+        color: white !important;
     }
     .button-secondary1:hover {
         background-color: #d2e3fc;
@@ -102,7 +133,7 @@
     }
 
     #instructions {
-        background-color: #fff;
+        background-color: #ffffff;
         border: 0;
         border-radius: 2px;
         box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
@@ -112,7 +143,8 @@
         overflow: hidden;
         padding: 1rem;
         font-size: medium;
-        display: none;
+        display: none !important;
+
     }
 
     /*.search{*/
@@ -124,6 +156,32 @@
     /*    left: 439px;*/
     /*    top: 55px;*/
     /*}*/
+
+    /*모달창*/
+    #my_modal {
+        display: none;
+        width: 445px;
+        padding: 16px 30px;
+        background-color: #fefefe;
+        border: 1px solid #888;
+        border-radius: 3px;
+    }
+
+    #my_modal .modal_close_btn {
+        position: relative;
+        margin-left: 170px;
+    }
+
+    .box {
+        border-color: #358bca;
+    }
+    .ulBox ul li::marker {
+        font-family: 'Font Awesome 5 Free';
+        content: "\f138";
+        position: absolute;
+        left : 1em;
+        color: #358bca;
+    }
 </style>
 <body class="is-preload">
 
@@ -131,40 +189,7 @@
 <div id="wrapper">
 
     <!-- Header -->
-    <header id="header">
-
-        <!-- Logo -->
-        <div class="logo">
-            <a href="index"><strong>Hypothesis</strong> <span class="extra">by Pixelarity</span></a>
-        </div>
-
-        <!-- Nav -->
-        <nav id="nav">
-            <ul>
-                <li><a href="index">Home</a></li>
-                <li>
-                    <a href="#" class="icon solid fa-angle-down">Dropdown</a>
-                    <ul>
-                        <li><a href="#">Option One</a></li>
-                        <li><a href="#">Option Two</a></li>
-                        <li><a href="#">Option Three</a></li>
-                        <li>
-                            <a href="#">Submenu</a>
-                            <ul>
-                                <li><a href="#">Option One</a></li>
-                                <li><a href="#">Option Two</a></li>
-                                <li><a href="#">Option Three</a></li>
-                                <li><a href="#">Option Four</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="current"><a href="generic">Generic</a></li>
-                <li><a href="elements">Elements</a></li>
-            </ul>
-        </nav>
-
-    </header>
+    <header id="header"></header>
 
     <!-- Section -->
     <section id="one" class="main alt">
@@ -207,7 +232,6 @@
                                     <input type="text" name="pay_address_detail"
                                            id="pay_address_detail" class="postcodify_details" value="" />
                                     <br>
-
                                 </div>
                             </div>
 
@@ -266,7 +290,7 @@
                             <div class="col-12">
                                 <ul class="actions">
                                     <li id="join" style="margin: auto;"><input type="button" value="가입하기"
-                                                                               class="button primary large" onclick="" style="width: 10em; border-radius:0;"/></li>
+                                     id="popup_open_btn" class="button primary large" onclick="" style="width: 10em; border-radius:0;"/></li>
                                 </ul>
                             </div>
                         </div>
@@ -274,55 +298,64 @@
                 </section>
             </div>
         </div>
+        <div id="my_modal">
+            <div style="font-size: 11px; margin-bottom: 20px;">
+                ※ 기본회원(BASIC)은 아래의 서비스를 제공합니다. 회원권을 구매하시면 더 많은 서비스를 이용하실 수 있습니다.</div>
+            <div class="poc_cont">
+                <table>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="poc">기능</th>
+                        <th scope="col" class="poc_type1">BASIC</th>
+                        <th scope="col" class="poc_type1">STANDARD</th>
+                        <th scope="col" class="poc_type3">PREMIUM</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row" class="poc">이름(진료과목)</th>
+                        <td class="poc_type1">○</td>
+                        <td class="poc_type2">○</td>
+                        <td class="poc_type3">○</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="poc">병원주소</th>
+                        <td class="poc_type1">○</td>
+                        <td class="poc_type2">○</td>
+                        <td class="poc_type3">○</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="poc">약력</th>
+                        <td class="poc_type1">○</td>
+                        <td class="poc_type2">○</td>
+                        <td class="poc_type3">○</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="poc point_c">진료예약</th>
+                        <td class="poc_type1">5회</td>
+                        <td class="poc_type2">20회</td>
+                        <td class="poc_type3">무제한</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="poc poc">답변개수</th>
+                        <td class="poc_type1">10회</td>
+                        <td class="poc_type2">50회</td>
+                        <td class="poc_type3">무제한</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div><a class="modal_close_btn">닫기</a><div>
+            </div>
     </section>
 
     <!-- Footer -->
-    <footer id="footer">
-        <div class="inner">
-            <section>
-                <h3>Nullam sed gravida</h3>
-                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus sed magna gravida non.</p>
-                <ul class="icons">
-                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-                </ul>
-            </section>
-            <section class="narrow">
-                <h4>Lorem aliquam</h4>
-                <ul class="links">
-                    <li><a href="#">Ultrices nulla</a></li>
-                    <li><a href="#">Quis lectus donec</a></li>
-                    <li><a href="#">Magna ligula</a></li>
-                    <li><a href="#">Sed etiam tristique</a></li>
-                    <li><a href="#">Cursus magna</a></li>
-                    <li><a href="#">Gravida dolore</a></li>
-                </ul>
-            </section>
-            <section class="narrow">
-                <h4>Magna tempus</h4>
-                <ul class="links">
-                    <li><a href="#">Feugiat ligula</a></li>
-                    <li><a href="#">Vulputate tristique</a></li>
-                    <li><a href="#">Ultrices nulla</a></li>
-                    <li><a href="#">Cursus sed magna</a></li>
-                    <li><a href="#">Sed lectus donec</a></li>
-                </ul>
-            </section>
-            <section>
-                <h3>Morbi sed volutpat</h3>
-                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.<p>
-                <p><a href="#" class="major">(000) 000-0000</a></p>
-            </section>
-        </div>
-        <div class="copyright">
-            <p>&copy; Untitled. All rights reserved.</p>
-        </div>
-    </footer>
+    <footer id="footer"></footer>
 
 </div>
 
 <!-- Scripts -->
+<script src="/js/fix.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/jquery.selectorr.min.js"></script>
@@ -461,7 +494,59 @@
                 alert("Geocode was not successful for the following reason: " + e);
             });
     }
+    /*기본회원권 설명 모달창*/
+    function modal(id) {
+        var zIndex = 9999;
+        var modal = document.getElementById(id);
 
+        // 모달 div 뒤에 희끄무레한 레이어
+        var bg = document.createElement('div');
+        bg.setStyle({
+            position: 'fixed',
+            zIndex: zIndex,
+            left: '0px',
+            top: '0px',
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            // 레이어 색갈은 여기서 바꾸면 됨
+            backgroundColor: 'rgba(0,0,0,0.4)'
+        });
+        document.body.append(bg);
+
+        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+        modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+            bg.remove();
+            modal.style.display = 'none';
+        });
+
+        modal.setStyle({
+            position: 'fixed',
+            display: 'block',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+            // 시꺼먼 레이어 보다 한칸 위에 보이기
+            zIndex: zIndex + 1,
+
+            // div center 정렬
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            msTransform: 'translate(-50%, -50%)',
+            webkitTransform: 'translate(-50%, -50%)'
+        });
+    }
+
+    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+    Element.prototype.setStyle = function(styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+    };
+
+    document.getElementById('popup_open_btn').addEventListener('click', function() {
+        // 모달창 띄우기
+        modal('my_modal');
+    });
 </script>
 </body>
 </html>
