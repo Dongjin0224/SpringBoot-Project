@@ -30,4 +30,42 @@ public class WebController {
 
     @GetMapping("copy")
     public String copy(){return "copy";}
+
+    @GetMapping("guide")
+    public String guide(){return "guide";}
+
+    @GetMapping("detail")
+    public String detail(){return "detail";}
+
+    @GetMapping("report")
+    public String report(){return "report";}
+
+    @GetMapping("write")
+    public String write(){return "write";}
+
+    public String volunteer_register(){return "volunterr_register";}
+
+    @GetMapping("appointment")
+    public String appointment(){return "appointment";}
+
+    @GetMapping("membership")
+    public String membership(){return "membership";}
+
+    @GetMapping("myPageDoc")
+    public String myPageDoc(){return "myPageDoc";}
+
+    @GetMapping("login")
+    public String login(){return "login";}
+
+    @GetMapping("memberSignUp")
+    public String memberSignUp(){return "memberSignUp";}
+
+    @GetMapping("doctorSignUp")
+    public String doctorSignUp(){return "doctorSignUp";}
+
+    @GetMapping("medicalService")
+    public String medicalService(){return "medicalService";}
+
+    @GetMapping("msRead")
+    public String msRead(){return "msRead";}
 }
