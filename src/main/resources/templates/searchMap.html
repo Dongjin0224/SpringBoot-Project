@@ -14,7 +14,7 @@
 </head>
 <style>
     .content.main {
-        width: 90%;
+        width: 74%;
         border-radius: 25px;
         padding: 2%;
         margin: auto;
@@ -57,10 +57,10 @@
     <!-- Section -->
     <section id="one" class="main alt" style="display: flex">
         <div style="width: 25%;padding: 35px;">
-            <h2 style="text-align: center">병원찾기</h2>
+            <h2 style="text-align: center">병원 찾기</h2>
             <form action="" name="searchForm">
-                <input type="text" id="search" name="search" style="display: inline;width:74%; border-radius: 0px; "/>
-                <input type="button" value="검색" onclick="search()" style="border-radius: 0px;">
+                <input type="text" id="search" name="search" style="display: inline;width:73%; border-radius: 0px; "/>
+                <input type="button" value="검색" onclick="search()" style="border-radius: 0px;position: relative; right: 4px;top: -2px;">
             </form>
 
             <div class="hos_wrap">
@@ -233,7 +233,8 @@
     ];
     positions.push({title: '아주대학교', latlng: new kakao.maps.LatLng(33.250542, 126.436748), href: "https://www.google.com/"});
     // 마커 이미지의 이미지 주소입니다
-    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+    // var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+    var imageSrc = "/img/hospit.png";
 
     for (var i = 0; i < positions.length; i++) {
 
