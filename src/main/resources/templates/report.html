@@ -10,6 +10,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/css/main.css"/>
+    <script src="/js/fix.js"></script>
 </head>
 <style>
     .content.main {
@@ -31,15 +32,16 @@
     }
 
     .report_detail_wrap {
-        border: 1px solid #358bca;
-        padding: 45px;
-        border-radius: 25px;
+        border-top: 1px solid #358bca;
+        padding: 45px 45px 14px 45px;
     }
 
     .detail_title input[type='text'] {
         width: 78%;
         display: inline;
         border: none;
+        font-size: 14px;
+        height: 31px;
     }
 
     .radio_report {
@@ -55,8 +57,18 @@
     }
 
     input[type="submit"].fit, input[type="reset"].fit, input[type="button"].fit, button.fit, .button.fit {
-        width: 48%;
-        border-radius: 25px;
+        border-radius: 0px;
+        width: 43%;
+
+    }
+    input[type="checkbox"] + label, input[type="radio"] + label {
+        color: #3b3b3b;
+        font-size: 14px;
+    }
+
+    input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, button:hover, .button:hover {
+        background-color: rgba(35, 177, 236, 0.1);
+        border-radius: 0px;
     }
 </style>
 <body class="is-preload">
@@ -65,40 +77,7 @@
 <div id="wrapper">
 
     <!-- Header -->
-    <header id="header">
-
-        <!-- Logo -->
-        <div class="logo">
-            <a href="index"><strong>Hypothesis</strong> <span class="extra">by Pixelarity</span></a>
-        </div>
-
-        <!-- Nav -->
-        <nav id="nav">
-            <ul>
-                <li><a href="index">Home</a></li>
-                <li>
-                    <a href="#" class="icon solid fa-angle-down">Dropdown</a>
-                    <ul>
-                        <li><a href="#">Option One</a></li>
-                        <li><a href="#">Option Two</a></li>
-                        <li><a href="#">Option Three</a></li>
-                        <li>
-                            <a href="#">Submenu</a>
-                            <ul>
-                                <li><a href="#">Option One</a></li>
-                                <li><a href="#">Option Two</a></li>
-                                <li><a href="#">Option Three</a></li>
-                                <li><a href="#">Option Four</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="current"><a href="generic">Generic</a></li>
-                <li><a href="elements">Elements</a></li>
-            </ul>
-        </nav>
-
-    </header>
+    <header id="header"></header>
 
     <!-- Section -->
     <section id="one" class="main alt">
@@ -166,12 +145,12 @@
                                     <textarea name="" id="" cols="30" rows="4" style="resize: none"></textarea>
 
                                 </div>
-                                <div style="margin: 25px 0;">
+                                <div style="margin: 25px 0;text-align: center;font-size: 14px;">
                                     권리 침해/저작권 위반 등은 권리침해 신고센터를 통해 문의해주세요.
                                 </div>
-                                <div>
-                                    <a href="" class="button fit">취소</a>
-                                    <input type="button" class="button primary fit" value="신고하기">
+                                <div style="text-align: center">
+                                    <a href="" class="button" style="margin-bottom: 5px;box-shadow: none;font-size: 20px;">취소</a>
+                                    <input type="button" class="button" value="신고하기" style="box-shadow: none;font-size: 20px">
                                 </div>
                             </form>
                         </div>
@@ -182,50 +161,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="footer">
-        <div class="inner">
-            <section>
-                <h3>Nullam sed gravida</h3>
-                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem
-                    tristique cursus sed magna gravida non.</p>
-                <ul class="icons">
-                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-                </ul>
-            </section>
-            <section class="narrow">
-                <h4>Lorem aliquam</h4>
-                <ul class="links">
-                    <li><a href="#">Ultrices nulla</a></li>
-                    <li><a href="#">Quis lectus donec</a></li>
-                    <li><a href="#">Magna ligula</a></li>
-                    <li><a href="#">Sed etiam tristique</a></li>
-                    <li><a href="#">Cursus magna</a></li>
-                    <li><a href="#">Gravida dolore</a></li>
-                </ul>
-            </section>
-            <section class="narrow">
-                <h4>Magna tempus</h4>
-                <ul class="links">
-                    <li><a href="#">Feugiat ligula</a></li>
-                    <li><a href="#">Vulputate tristique</a></li>
-                    <li><a href="#">Ultrices nulla</a></li>
-                    <li><a href="#">Cursus sed magna</a></li>
-                    <li><a href="#">Sed lectus donec</a></li>
-                </ul>
-            </section>
-            <section>
-                <h3>Morbi sed volutpat</h3>
-                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.
-                <p>
-                <p><a href="#" class="major">(000) 000-0000</a></p>
-            </section>
-        </div>
-        <div class="copyright">
-            <p>&copy; Untitled. All rights reserved.</p>
-        </div>
-    </footer>
+    <footer id="footer"></footer>
 
 </div>
 
