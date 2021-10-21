@@ -33,7 +33,7 @@ public class WebController {
     public String write(){return "write";}
     //  vanny
     @GetMapping("header")
-    public String header(){return "headerTest";}
+    public String header(){return "header";}
     //  vanny
     @GetMapping("term")
     public String term(){return "term";}
@@ -91,11 +91,20 @@ public class WebController {
     //  jin
     @GetMapping("msRead")
     public String msRead(){return "msRead";}
+    //  jin
+    @GetMapping("explanation")
+    public String explanation(){return "explanation";}
+    //  jin
+    @GetMapping("notice")
+    public String notice(){return "notice";}
     //  dong
     @GetMapping("footer")
     public String footer(){return "footer";}
     //  dong
     @GetMapping("category")
     public String category(){return "category";}
+    //  young
+    @GetMapping("guide")
+    public String guide(){return "guide";}
 
 }
