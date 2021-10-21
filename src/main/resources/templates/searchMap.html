@@ -284,9 +284,23 @@
             let target = document.getElementsByClassName("title_wrap");
             target[i].parentElement.parentElement.style.display='block';
         });
+
+
+        // setTimeout(function(){
+        //     let target = document.getElementsByClassName("title_wrap");
+        //     target[i].parentElement.parentElement.style.display='none';
+        // },3000);
+
+        // target[i].parentElement.parentElement.addEventListener(' mouseout',function() {
+        //         let target = document.getElementsByClassName("title_wrap");
+        //         target[i].parentElement.parentElement.style.display='none';
+        //     });
+
         pinImg[pinImg.length-1-positions.length+i].addEventListener('mouseout',function() {
-            let target = document.getElementsByClassName("title_wrap");
-            target[i].parentElement.parentElement.style.display='none';
+            setTimeout(function(){
+                let target = document.getElementsByClassName("title_wrap");
+                target[i].parentElement.parentElement.style.display='none';
+            },3000);
         });
     }
 
