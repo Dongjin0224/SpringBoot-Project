@@ -3,7 +3,6 @@ package com.example.test.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
@@ -29,17 +28,12 @@ public class WebController {
     @GetMapping("mainBoard")
     public String mainBoard(){ return "mainBoard"; }
 
-    @GetMapping("copy")
-    public String copy(){return "copy";}
-
-
-
     //  vanny
     @GetMapping("write")
     public String write(){return "write";}
     //  vanny
     @GetMapping("header")
-    public String header(){return "headerTest";}
+    public String header(){return "header";}
     //  vanny
     @GetMapping("term")
     public String term(){return "term";}
@@ -82,9 +76,6 @@ public class WebController {
     //  lim
     @GetMapping("myPageDoc")
     public String myPageDoc(){return "myPageDoc";}
-    //  lim
-    @GetMapping("test2")
-    public String test2(){return "test2";}
     //  jin
     @GetMapping("login")
     public String login(){return "login";}
@@ -100,20 +91,19 @@ public class WebController {
     //  jin
     @GetMapping("msRead")
     public String msRead(){return "msRead";}
+    //  jin
+    @GetMapping("explanation")
+    public String explanation(){return "explanation";}
+    //  jin
+    @GetMapping("notice")
+    public String notice(){return "notice";}
     //  dong
     @GetMapping("footer")
     public String footer(){return "footer";}
     //  dong
     @GetMapping("category")
     public String category(){return "category";}
-
-    @GetMapping("explanation")
-    public String explanation(){return "explanation";}
-
-    @GetMapping("notice")
-    public String notice(){return "notice";}
-
+    //  young
     @GetMapping("guide")
     public String guide(){return "guide";}
-
 }
