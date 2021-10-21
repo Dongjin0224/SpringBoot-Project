@@ -13,7 +13,7 @@
 </head>
 <style>
     .content.main {
-        width: 74%;
+        width: 90%;
         border-radius: 25px;
         padding: 2%;
         margin: auto;
@@ -28,7 +28,10 @@
         padding: 17px 0;
 
     }
-
+    .hos_wrap:hover {
+        background: lightgray;
+        cursor: pointer;
+    }
     .hos_info {
 
     }
@@ -47,40 +50,7 @@
 <div id="wrapper">
 
     <!-- Header -->
-    <header id="header">
-
-        <!-- Logo -->
-        <div class="logo">
-            <a href="index"><strong>Hypothesis</strong> <span class="extra">by Pixelarity</span></a>
-        </div>
-
-        <!-- Nav -->
-        <nav id="nav">
-            <ul>
-                <li><a href="index">Home</a></li>
-                <li>
-                    <a href="#" class="icon solid fa-angle-down">Dropdown</a>
-                    <ul>
-                        <li><a href="#">Option One</a></li>
-                        <li><a href="#">Option Two</a></li>
-                        <li><a href="#">Option Three</a></li>
-                        <li>
-                            <a href="#">Submenu</a>
-                            <ul>
-                                <li><a href="#">Option One</a></li>
-                                <li><a href="#">Option Two</a></li>
-                                <li><a href="#">Option Three</a></li>
-                                <li><a href="#">Option Four</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="current"><a href="generic">Generic</a></li>
-                <li><a href="elements">Elements</a></li>
-            </ul>
-        </nav>
-
-    </header>
+    <header id="header"></header>
 
     <!-- Section -->
     <section id="one" class="main alt" style="display: flex">
@@ -197,50 +167,7 @@
 </section>
 -->
     <!-- Footer -->
-    <footer id="footer">
-        <div class="inner">
-            <section>
-                <h3>Nullam sed gravida</h3>
-                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem
-                    tristique cursus sed magna gravida non.</p>
-                <ul class="icons">
-                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-                </ul>
-            </section>
-            <section class="narrow">
-                <h4>Lorem aliquam</h4>
-                <ul class="links">
-                    <li><a href="#">Ultrices nulla</a></li>
-                    <li><a href="#">Quis lectus donec</a></li>
-                    <li><a href="#">Magna ligula</a></li>
-                    <li><a href="#">Sed etiam tristique</a></li>
-                    <li><a href="#">Cursus magna</a></li>
-                    <li><a href="#">Gravida dolore</a></li>
-                </ul>
-            </section>
-            <section class="narrow">
-                <h4>Magna tempus</h4>
-                <ul class="links">
-                    <li><a href="#">Feugiat ligula</a></li>
-                    <li><a href="#">Vulputate tristique</a></li>
-                    <li><a href="#">Ultrices nulla</a></li>
-                    <li><a href="#">Cursus sed magna</a></li>
-                    <li><a href="#">Sed lectus donec</a></li>
-                </ul>
-            </section>
-            <section>
-                <h3>Morbi sed volutpat</h3>
-                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.
-                <p>
-                <p><a href="#" class="major">(000) 000-0000</a></p>
-            </section>
-        </div>
-        <div class="copyright">
-            <p>&copy; Untitled. All rights reserved.</p>
-        </div>
-    </footer>
+    <footer id="footer"> </footer>
 
 </div>
 
@@ -313,6 +240,7 @@
             title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
             image: markerImage // 마커 이미지
         });
+
     }
 
 
@@ -333,6 +261,22 @@
 
     // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
     infowindow.open(map, marker);
+
+
+    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+    function makeOverListener(map, marker, infowindow) {
+        return function() {
+            infowindow.open(map, marker);
+        };
+    }
+
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+    function makeOutListener(infowindow) {
+        return function() {
+            infowindow.close();
+        };
+    }
+
 
 
     // 커스텀 오버레이에 표시할 컨텐츠 입니다

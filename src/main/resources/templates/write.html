@@ -10,6 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/header.css"/>
     <link rel="stylesheet"
           href="//img.echosting.cafe24.com/editors/froala/3.2.2/css/froala_editor.pkgd.min.css">
     <link rel="stylesheet"
@@ -17,6 +18,16 @@
 </head>
 <style>
     /*table tbody tr#tr tbody {border: 0 !important;}*/
+
+    a {border-bottom: none !important;}
+
+    a.addFile {color: #358bca; font-size: 90%;}
+
+    a.deleteFile {color: #7a7a7a !important; font-size: 80%;}
+
+    input#fileName {width: 75%; margin-top: 2%; margin-bottom: 2%; color: #7a7a7a; font-size: 80%;}
+
+    div#addFile {margin-top: 14%;margin-bottom: 4%;}
 
     select#city {width: 24%;float: left;}
 
@@ -30,29 +41,17 @@
 
     input#illness {float: left; width: 60%;}
 
-    input#file1 {width: 70%;}
-
-    input#file2 {width: 70%;}
-
-    input#file3 {width: 70%;}
-
-    input#file4 {width: 70%;}
-
-    input#file5 {width: 70%;}
-
     td {background-color: white !important;}
 
     th {background-color: white !important;}
 
-    #view_list {float: left !important;margin-left: 1% !important; width: 15% !important;}
+    #cancel_post {margin-left: 1% !important;}
 
-    #write_post {float: right !important;margin-left: 1% !important;width: 15% !important;}
+    /*input.input_button{float: right !important; width: 15%;font-size: 80%;padding: 10px 20px;margin:5px;border-radius:4px;background-color: #f5f5f5;border:none;color:#707070 !important;outline:none;box-shadow: none;line-height: inherit;}*/
 
-    #cancel_post {float: right !important;margin-left: 1%;margin-right: 1%;box-shadow: inset 0 0 0 3px #358bca;width: 15% !important;}
+    input.input_button{float: right !important; width: 15%;font-size: 80%;padding: 10px 20px;margin:5px;color:#358bca !important;outline:none;line-height: inherit;}
 
-    #view_list {float: left !important;}
-
-    input[type="submit"], input[type="reset"], input[type="button"], button, .button {box-shadow: none;}
+    input[type="submit"], input[type="reset"], input[type="button"], button, .button {box-shadow: none !important; border-radius: 0;}
 
     /*div#div_write {width: 50% !important;height: 50% !important;margin: 0 auto !important;}*/
 
@@ -63,23 +62,15 @@
     #wrapper>* {border-bottom: none !important;overflow: hidden !important;}
 
     .content.main{
-        width: 74%;
+        width: 90%;
         border-radius: 25px;
-        padding: 2%;
         margin: auto;
+        padding-left: 8% !important;
+        padding-right: 8% !important;
+        padding-bottom: 2% !important;
+        padding-top: 4% !important;
     }
 
-    /* Header */
-    .subject{
-        font-weight: bold;
-        font-size: 10px !important;
-        display: flex !important;
-        flex-direction: column;
-        text-align: center;
-    }
-    .subjectImg{
-        width: 48px;
-    }
 </style>
 <body class="is-preload">
 
@@ -87,77 +78,7 @@
 <div id="wrapper">
 
     <!-- Header -->
-    <header id="header">
-
-        <!-- Logo -->
-        <div class="logo">
-            <a href="index"><strong>Hello</strong> <span class="extra">Doctor</span></a>
-        </div>
-
-        <!-- Nav -->
-        <nav id="nav">
-            <ul>
-                <li>
-                    <a href="#" class="icon solid fa-angle-down">메뉴</a>
-                    <ul>
-                        <li>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/note.png" alt="" class="subjectImg">지식 iN</a>
-                            <a href="#" class="subject"><img src="/img/location.png" alt="" class="subjectImg">병원 찾기</a>
-                        </li>
-                        <li>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/megaphone.png" alt="" class="subjectImg">이용안내</a>
-                            <a href="#" class="subject"><img src="/img/electricity.png" alt="" class="subjectImg">의학상식</a>
-                        </li>
-                        <li>
-                            <!--<a href="#" class="subject" style="float: left;"><img src="/img/membership.png" alt="" class="subjectImg">멤버십</a>-->
-                            <a href="#" class="subject" style="float: left;"><img src="/img/volunteer.png" alt="" class="subjectImg">의료봉사</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="icon solid fa-angle-down">카테고리</a>
-                    <ul>
-                        <li>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/joints.png" alt="" class="subjectImg">정형외과</a>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/diamond.png" alt="" class="subjectImg">성형외과</a>
-                            <a href="#" class="subject"><img src="/img/lungs.png" alt="" class="subjectImg">내과</a>
-                        </li>
-                        <li>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/family_clinic.png" alt="" class="subjectImg">가정의학과</a>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/teen.png" alt="" class="subjectImg">소아과</a>
-                            <a href="#" class="subject"><img src="/img/pore.png" alt="" class="subjectImg">피부과</a>
-                        </li>
-                        <li>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/cognition.png" alt="" class="subjectImg">신경과</a>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/kidneys.png" alt="" class="subjectImg">비뇨의학과</a>
-                            <a href="#" class="subject"><img src="/img/ear.png" alt="" class="subjectImg">이비인후과</a>
-                        </li>
-                        <li>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/medicine.png" alt="" class="subjectImg">한방의학과</a>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/pregnant.png" alt="" class="subjectImg">산부인과</a>
-                            <a href="#" class="subject"><img src="/img/tooth.png" alt="" class="subjectImg">치과</a>
-                        </li>
-                        <li>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/neurology.png" alt="" class="subjectImg">신경외과</a>
-                            <a href="#" class="subject" style="float: left;"><img src="/img/ambulance.png" alt="" class="subjectImg">응급의학과</a>
-                            <!--<a href="#" class="subject" style="float: left;"><img src="/img/note.png" alt="" class="subjectImg">지식 iN</a>-->
-                        </li>
-                        <!--<li>
-                            <a href="#">Submenu</a>
-                            <ul>
-                                <li><a href="#">Option One</a></li>
-                                <li><a href="#">Option Two</a></li>
-                                <li><a href="#">Option Three</a></li>
-                                <li><a href="#">Option Four</a></li>
-                            </ul>
-                        </li>-->
-                    </ul>
-                </li>
-                <li><a href="#">로그인</a></li>
-                <!--<li><a href="#"></a></li>-->
-            </ul>
-        </nav>
-    </header>
+    <header id="header"></header>
 
     <!-- Section -->
     <section id="one" class="main alt">
@@ -171,7 +92,7 @@
                         <table id="div_table">
                             <tr id="tr tbody" style="border: 0 !important;">
                                 <td colspan="2" id="td_title"><input id="board_title" name="board_title"
-                                                                     type="text" placeholder="제목"></td>
+                                                                     type="text" placeholder="제목 입력"></td>
                             </tr>
                             <tr style="border: 0 !important;">
                                 <td colspan="4">
@@ -226,7 +147,7 @@
                             </colgroup>
                             <tbody>
                             <tr style="border-top: none; border-bottom: none;">
-                                <td colspan="2" class="clear"><textarea
+                                <td colspan="2" class="clear" style="padding-bottom: 3%;"><textarea
                                         style="width: 100%; display: none;" name="cs_board_content" id="content"
                                         class="ec-fr-never-be-duplicated"></textarea> <input
                                         type="hidden" id="content_hidden"
@@ -770,49 +691,21 @@
                             </tbody>
                             <tbody class="">
                             <tr>
-                                <th scope="row">첨부파일1</th>
-                                <td colspan="2">
-                                    <input id="file1" name="file1" type="file">
-                                    <input type="button" onclick="cancelFile('file1')" value="첨부 삭제">
+                                <th scope="row"><div id="addFile"><a href="#this" onclick="addFile()" class="addFile">파일추가</a></div></th>
+                                <td colspan="3">
+                                    <div class="form-group" id="file-list">
+                                        <div class="file-group">
+                                            <input type="file" name="file" id="fileName"><a href='#this' name='file-delete' class='deleteFile'>첨부 삭제</a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">첨부파일2</th>
-                                <td colspan="2">
-                                    <input id="file2" name="file2" type="file">
-                                    <input type="button" onclick="cancelFile('file2')" value="첨부 삭제">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">첨부파일3</th>
-                                <td colspan="2">
-                                    <input id="file3" name="file3" type="file">
-                                    <input type="button" onclick="cancelFile('file3')" value="첨부 삭제">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">첨부파일4</th>
-                                <td colspan="2">
-                                    <input id="file4" name="board_file4" type="file">
-                                    <input type="button" onclick="cancelFile('file4')" value="첨부 삭제">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">첨부파일5</th>
-                                <td colspan="2">
-                                    <input id="file5" name="file5" type="file">
-                                    <input type="button" onclick="cancelFile('file5')" value="첨부 삭제">
-                                </td>
-                            </tr>
-                            <tr style="border-bottom: 0px;">
+                            <tr style="border-bottom: 0px; border-top: 0px;">
                                 <td colspan="3" style="padding-top: 5%; padding-bottom: 0;">
-                                    <input id="view_list" type="button" value="목록"
-                                           class="primary"
-                                           onclick="location.href='${pageContext.request.contextPath}/customerService/CS_BoardList.bo'" /></li>
-                                    <input id="write_post" type="button" value="등록"
-                                           class="primary" onclick="send()" />
-                                    <input id="cancel_post" type="button" value="취소"
+                                    <input class="input_button" id="cancel_post" type="button" value="취소"
                                            onclick="history.back()"/>
+                                    <input class="input_button" id="write_post" type="button" value="등록"
+                                           onclick="send()"/>
                                 </td>
                             </tr>
                             </tbody>
@@ -826,31 +719,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="footer">
-        <div class="inner">
-            <section>
-                <p style="text-align: center; font-weight: bold;">
-                    <a style="border-bottom: none;" href="#">이용안내</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="border-bottom: none;" href="#">공지사항</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="border-bottom: none;" href="#">이용약관</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="border-bottom: none;" href="#">개인정보취급방침</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="border-bottom: none;" href="#">위치기반이용약관</a>
-                </p>
-                <p style="text-align: center; margin-bottom: 1%;">
-                    사업자번호&nbsp;&nbsp;210&nbsp;<span>-</span>10&nbsp;<span>-</span>212020&nbsp;&nbsp;&nbsp;&nbsp; <span><strong>|</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    서울특별시&nbsp;강남구&nbsp;역삼동&nbsp;125, &nbsp;20층&nbsp;2001호&nbsp;(역삼1동)
-                </p>
-                <p style="text-align: center;">
-                    헬로닥터 주식회사, 임재훈 대표&nbsp;&nbsp; <span><strong>/</strong></span>&nbsp;&nbsp;
-                    개인정보보호책임자 김동진 이사
-                </p>
-            </section>
-        </div>
-        <div class="copyright" style="color: #7a7a7a !important;">
-            <!--<p>Copyright &nbsp; &copy; &nbsp; Hello Doctor. &nbsp;&nbsp; All rights reserved</p>-->
-            <p>Copyright &copy; HelloDoctor Corp. All rights reserved.</p>
-        </div>
-    </footer>
+    <footer id="footer"></footer>
 
 </div>
 
@@ -864,6 +733,8 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/includeHTML.js"></script>
+<script src="/js/fix.js"></script>
 </body>
 <script>
     $('document').ready(function() {
@@ -912,8 +783,24 @@
 
     });
 
-    function cancelFile(fileTagName) {
-        $("input[name='" + fileTagName + "']").val("");
+    $(document).ready(function() {
+        $("a[name='file-delete']").on("click", function(e) {
+            e.preventDefault();
+            deleteFile($(this));
+        });
+    })
+
+    function addFile() {
+        let str = "<div class='file-group'><input type='file' name='file' id='fileName'><a href='#this' name='file-delete' class='deleteFile'>첨부 삭제</a></div>";
+        $("#file-list").append(str);
+        $("a[name='file-delete']").on("click", function(e) {
+            e.preventDefault();
+            deleteFile($(this));
+        });
+    }
+
+    function deleteFile(obj) {
+        obj.parent().remove();
     }
 </script>
 </html>

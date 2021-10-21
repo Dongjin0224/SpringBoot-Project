@@ -7,107 +7,202 @@
 -->
 <html>
 <head>
-	<title>Untitled</title>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<link rel="stylesheet" href="/css/main.css"/>
-	<link rel="stylesheet" href="/css/qna.css">
+    <title>Untitled</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/css/main.css"/>
 </head>
 <style>
 
-	.inner.alt {
-		display: flex;
-		justify-content: center;
-		margin: 0;
-		max-width: 100%;
-		width: 100%;
-	}
+    .inner.alt {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+    }
 
-	#subjectField {
-		border: solid 1px #358bca;
-		background: white;
-		padding: 10%;
-		border-radius: 25px;
-	}
+    .imgDiv {
+        margin-right: 2%;
+        width: 17%;
+        margin-left: 2%;
+    }
 
-	#subjectForm {
-		width: 22%;
-		margin-right: 2%;
-		margin-left: 2%;
-	}
+    .subject {
+        font-weight: bold;
+        font-size: 14px !important;
+        text-align: center;
+        font-weight: bold !important;
+    }
 
-	.imgDiv{
-		margin-right: 2%;
-		width: 22%;
-		margin-left: 2%;
-	}
+    .content.main {
+        width: 65%;
+        border-radius: 25px;
+        padding: 2%;
+    }
 
-	.subject {
-		font-weight: bold;
-		font-size: 12px !important;
-		display: flex !important;
-		flex-direction: column;
-		float: left;
-		text-align: center;
-		font-weight: bold !important;
-	}
-
-	.subjectImg {
-		width: 58px;
-	}
-
-	.content.main {
-		width: 54%;
-		border-radius: 25px;
-		padding: 2%;
-	}
-
-	th {
-		text-align: center;
-	}
+    th {
+        text-align: center;
+    }
 
 
-	input[type="checkbox"] + label, input[type="radio"] + label {
-		color: #3b3b3b;
-		padding: 3%;
-	}
+    input[type="radio"] + label {
+        color: #3b3b3b;
+        padding: 0 4% 0 4%;
+    }
 
-	input[type="checkbox"] + label:before, input[type="radio"] + label:before {
-		border-color: #eeeeee;
-		display: none;
-	}
+    input[type="checkbox"] + label:before, input[type="radio"] + label:before {
+        border-color: #eeeeee;
+        display: none;
+    }
 
-	[type=radio] + label {
-		cursor: pointer;
-	}
+    [type=radio] + label {
+        cursor: pointer;
+    }
 
-	[type=radio]:checked + label {
-		border-radius: 25%;
-		outline: 3px solid #00b0ff;
-	}
+    [type=radio]:checked + label {
+        outline: 3px solid #358bca;
+    }
 
-	#searchWrap{
-		display: flex;
-		width: 74%;
-		margin: auto;
-        float: left;
-        padding-right: 4%;
-	}
+    #questionWrap {
+        width: 20%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-	#searchForm{
-		margin: auto;
-		padding-bottom: 5%;
-	}
+    table {
+        margin: 0;
+        text-align: center;
+    }
 
-	.tiles{
-		margin: auto;
-	}
+    table td {
+        padding: 0;
+        width: 100px;
+    }
 
-	.pageWrap{
-		padding-bottom: 2%;
-	}
+    td a:hover {
+        color:white !important;
+    }
+
+    table tbody tr {
+        border-color: white;
+    }
+
+    #searchWrap {
+        display: flex;
+        width: 100%;
+        margin: auto;
+        margin-bottom: 4%;
+    }
+
+    #searchForm {
+        margin: auto;
+    }
+
+    .tiles {
+        margin: auto;
+        clear: both;
+    }
+
+    .pageWrap {
+        padding-bottom: 2%;
+    }
+
     a {
         border-bottom: none;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .basic1 dt {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .subject img {
+        display: none;
+    }
+
+    header.accent1 {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+    }
+    table tbody tr:nth-child(2n + 1) {
+        background-color: white;
+    }
+
+    /* 답변 추천 랭킹 스타일*/
+    div.rankingDiv{
+        margin-right: 2%;
+        width: 17%;
+        margin-left: 2%;
+        padding-top: 30px;
+    }
+
+    div.ranking{
+        height: 350px;
+        /*background: #ffffff;*/
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 25px;
+        background-image: url("/img/rankingTool.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        box-shadow: 10px 10px 5px #0066ff3b !important;
+    }
+
+    div.rankingWrap{
+        height: 300px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 11% 0 7% 0;
+    }
+
+    div.rankingWrap > ul{
+        text-align: left;
+        margin-top: 7%;
+    }
+
+    .blur {
+        /*backdrop-filter: blur(10px);*/
+        backdrop-filter: none;
+        text-align: left;
+        margin: 0 !important;
+        width: 36% !important;
+        padding-top: 3%;
+        padding-right: 3%;
+        padding-left: 3%;
+        background: radial-gradient(#3b3b3b6b, transparent);
+    }
+
+    i.one{
+        color: gold;
+    }
+
+    i.two{
+        color: silver;
+    }
+
+    i.three{
+        color: #CD7F32;
+    }
+    table.rankingTable{
+        margin-left: 7%;
+    }
+    table.rankingTable tr{
+        text-align: left;
+    }
+
+    table.rankingTable tr th{
+        padding: 0;
     }
 </style>
 <body class="is-preload">
@@ -115,218 +210,217 @@
 <!-- Wrapper -->
 <div id="wrapper">
 
-	<!-- Header -->
-	<header id="header">
+    <!-- Header -->
+    <header id="header"></header>
 
-		<!-- Logo -->
-		<div class="logo">
-			<a href="index"><strong>Hypothesis</strong> <span class="extra">by Pixelarity</span></a>
-		</div>
+    <!-- Section -->
+    <section id="one" class="main alt">
+        <header class="accent1" style="background-image: url('/img/mainBanner.jpg')">
+            <div class="blur">
+                    <h1 style="color: white">지식 IN</h1>
+                    <p style="color: white">궁금한 병명에 대해서 질문하고 검색하세요.</p>
+            </div>
+        </header>
 
-		<!-- Nav -->
-		<nav id="nav">
-			<ul>
-				<li><a href="index">Home</a></li>
-				<li>
-					<a href="#" class="icon solid fa-angle-down">Dropdown</a>
-					<ul>
-						<li><a href="#">Option One</a></li>
-						<li><a href="#">Option Two</a></li>
-						<li><a href="#">Option Three</a></li>
-						<li>
-							<a href="#">Submenu</a>
-							<ul>
-								<li><a href="#">Option One</a></li>
-								<li><a href="#">Option Two</a></li>
-								<li><a href="#">Option Three</a></li>
-								<li><a href="#">Option Four</a></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li class="current"><a href="generic">Generic</a></li>
-				<li><a href="elements">Elements</a></li>
-			</ul>
-		</nav>
-
-	</header>
-
-	<!-- Section -->
-	<section id="one" class="main alt">
-		<header class="accent1">
-			<h1>메인게시판(이름미정)</h1>
-			<p>Ipsum dolor lorem feugiat magna neque egestas augue eu vulpu magna erat. Aliquam erat volutpat. Nam dui
-				mi tincidunt.</p>
-		</header>
-
-		<div class="inner alt">
-			<form action="" name="subjectForm" id="subjectForm">
-				<fieldset id="subjectField">
-					<h3 style="text-align: center">진료과목</h3>
-					<div class="category">
-						<input type="radio" id="joint" name="category">
-						<label for="joint" class="subject"><img src="/img/joints.png" alt=""
-																class="subjectImg">정형외과</label>
-						<input type="radio" id="plastic" name="category">
-						<label for="plastic" class="subject"><img src="/img/diamond.png" alt="" class="subjectImg">성형외과</label>
-						<input type="radio" id="internal" name="category">
-						<label for="internal" class="subject"><img src="/img/lungs.png" alt=""
-																   class="subjectImg">내과</label>
-						<input type="radio" id="family" name="category">
-						<label for="family" class="subject"><img src="/img/family_clinic.png" alt="" class="subjectImg">가정의학과</label>
-						<input type="radio" id="kids" name="category">
-						<label for="kids" class="subject"><img src="/img/teen.png" alt="" class="subjectImg">소아과</label>
-						<input type="radio" id="skin" name="category">
-						<label for="skin" class="subject"><img src="/img/pore.png" alt="" class="subjectImg">피부과</label>
-						<input type="radio" id="nerv" name="category">
-						<label for="nerv" class="subject"><img src="/img/cognition.png" alt=""
-															   class="subjectImg">신경과</label>
-						<input type="radio" id="urology" name="category">
-						<label for="urology" class="subject"><img src="/img/kidneys.png" alt="" class="subjectImg">비뇨의학과</label>
-						<input type="radio" id="earNoseThroat" name="category">
-						<label for="earNoseThroat" class="subject"><img src="/img/ear.png" alt="" class="subjectImg">이비인후과</label>
-						<input type="radio" id="oriental" name="category">
-						<label for="oriental" class="subject"><img src="/img/medicine.png" alt="" class="subjectImg">한방의학과</label>
-						<input type="radio" id="obstetrics" name="category">
-						<label for="obstetrics" class="subject"><img src="/img/pregnant.png" alt="" class="subjectImg">산부인과</label>
-						<input type="radio" id="dentist" name="category">
-						<label for="dentist" class="subject"><img src="/img/tooth.png" alt=""
-																  class="subjectImg">치과</label>
-						<input type="radio" id="neurosurgery" name="category">
-						<label for="neurosurgery" class="subject"><img src="/img/neurology.png" alt=""
-																	   class="subjectImg">신경외과</label>
-						<input type="radio" id="emergency" name="category">
-						<label for="emergency" class="subject"><img src="/img/ambulance.png" alt="" class="subjectImg">응급의학과</label>
-					</div>
-				</fieldset>
-			</form>
-			<div class="content main">
-				<div class="searchDiv">
-					<form action="" name="searchForm" id="searchForm">
-						<div class="field">
-							<div id="searchWrap">
-								<input id="keyword" type="text" name="keyword" style="border: 2px solid #358bca; border-radius: 0;">
-								<a href="javascript:void(0)" class="search button primary icon solid fa-search" style="border-radius: 0;">검색</a>
+        <div class="inner alt">
+            <div class="imgDiv">
+                <img src="/img/ad.png" alt="" style="width: 250px; border-radius: 25px;">
+            </div>
+            <div class="content main">
+                <div class="searchMain">
+                    <div class="category" style="display: flex">
+                        <table class="categoryChoice">
+                            <tr>
+                                <td><a href="joint" class="subject">정형외과</a></td>
+                                <td><a href="plastic" class="subject">성형외과</a></td>
+                                <td><a href="internal" class="subject">내과</a></td>
+                                <td><a href="family" class="subject">가정의학과</a></td>
+                                <td><a href="kids" class="subject">소아과</a></td>
+                                <td><a href="skin" class="subject">피부과</a></td>
+                                <td><a href="nerv" class="subject">신경과</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="urology" class="subject">비뇨의학과</a></td>
+                                <td><a href="earNoseThroat" class="subject">이비인후과</a></td>
+                                <td><a href="oriental" class="subject">한방의학과</a></td>
+                                <td><a href="obstetrics" class="subject">산부인과</a></td>
+                                <td><a href="dentist" class="subject">치과</a></td>
+                                <td><a href="neurosurgery" class="subject">신경외과</a></td>
+                                <td><a href="emergency" class="subject">응급의학과</a></td>
+                            </tr>
+                        </table>
+                        <div id="questionWrap" class="question button primary icon solid fa-question-circle"
+                             style="border-radius: 0;">
+                            질문하기
+                        </div>
+                    </div>
+                    <hr>
+                    <section class="tiles">
+                        <div class="searchDiv">
+                            <ul class="basic1">
+                                <li>
+                                    <dl>
+                                        <dt>
+                                            <a href="https://kin.naver.com/qna/detail.naver?d1id=6&amp;dirId=60213&amp;docId=401690868&amp;qb=6rCc67Cc&amp;enc=utf8&amp;section=kin&amp;rank=1&amp;search_sort=0&amp;spq=0"
+                                               target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor"><b>피부</b>타입
+                                                질문</a>
+                                            <sub>2021.10.04</sub>
+                                        </dt>
+                                        <dd>제가 작년까지만해도 세수하고 난후면 엄청 건조한 <b>피부</b>였어요 막 흰색각질?이... 건성피분가요 복합성 피분가요? 안녕하세요.
+                                            네이버 지식파트너 P&G SK-II 입니다. 피부 타입은...
+                                        </dd>
+                                        <dd class="tag_area">
+                                        </dd>
+                                        <dd class="txt_block">
+                                            <a href="/search/list.naver?query=%EA%B0%9C%EB%B0%9C&amp;section=qna"
+                                               class="txt_g1 _nclicks:kin.cat1">진료과목</a>
+                                            &gt; <a
+                                                href="/search/list.naver?query=%EA%B0%9C%EB%B0%9C&amp;section=qna&amp;dirId=60213"
+                                                class="txt_g1 _nclicks:kin.cat2">피부과</a>
+                                            <span class="bar">|</span>
+                                            <span class="hit">답변수 1</span>
+                                            &nbsp;추천수 0
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl>
+                                        <dt>
+                                            <a href="https://kin.naver.com/qna/detail.naver?d1id=7&amp;dirId=70119&amp;docId=395856112&amp;qb=7KCV7ZiV7Jm46rO8&amp;enc=utf8&amp;section=kin&amp;rank=1&amp;search_sort=0&amp;spq=0"
+                                               target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor">허리 <b>정형외과</b>
+                                                통증이 있어서</a>
+                                            <sub>2021.07.29</sub>
+                                        </dt>
+                                        <dd>허리 통증 때문에 집 근처에 있는 허리 <b>정형외과</b>를 가보려고 하거든요. 허리 <b>정형외과</b>에도 신경외과는 있겠죠? 근데
+                                            허리 <b>정형외과</b>에서도 치료는 다 비슷하게 진행하나요?...
+                                        </dd>
+                                        <dd class="tag_area">
+                                        </dd>
+                                        <dd class="txt_block">
+                                            <a href="/search/list.naver?query=%EC%A0%95%ED%98%95%EC%99%B8%EA%B3%BC&amp;section=qna"
+                                               class="txt_g1 _nclicks:kin.cat1">진료과목</a>
+                                            &gt; <a
+                                                href="/search/list.naver?query=%EC%A0%95%ED%98%95%EC%99%B8%EA%B3%BC&amp;section=qna&amp;dirId=70119"
+                                                class="txt_g1 _nclicks:kin.cat2">정형외과</a>
+                                            <span class="bar">|</span>
+                                            <span class="hit">답변수 1</span>
+                                            &nbsp;추천수 0
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    <div class="searchDiv">
+                        <form action="" name="searchForm" id="searchForm">
+                            <div class="field">
+                                <div id="searchWrap">
+                                    <input id="keyword" type="text" name="keyword"
+                                           style="border: 2px solid #358bca; border-radius: 0;">
+                                    <a href="javascript:void(0)" class="search button primary icon solid fa-search"
+                                       style="border-radius: 0;">검색</a>
+                                </div>
                             </div>
-                            <div id="questionWrap">
-								<a href="javascript:void(0)" class="question button primary icon solid fa-question-circle" style="width: 26%; border-radius: 0;">질문하기</a>
-                            </div>
-						</div>
-					</form>
-				</div>
-				<section class="tiles">
-					<table>
-						<thead>
-						<tr class="">
-							<th class="">번호</th>
-							<th class="">진료과목</th>
-							<th class="">제목</th>
-							<th class="">날짜</th>
-							<th class="">조회수</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr class="">
-							<td class="">1</td>
-							<td class="">[정형외과]</td>
-							<td class="" ><a>발목 삐었어요</a></td>
-							<td class="" >2222.2.22</td>
-							<td class="" >12345</td>
-						</tr>
-						</tbody>
-						<tfoot>
-						</tfoot>
-					</table>
-				</section>
-
-			</div>
-			<div class="imgDiv">
-				<img src="/img/ad.png" alt="" style="width: 360px; border-radius: 25px;">
-			</div>
-		</div>
-		<!--				<div th:object="${pageMaker}">-->
-		<!--					<div class="big-width" style="text-align: center">-->
-		<!--						<a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&lt;</code></a>-->
-		<!--						<th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">-->
-		<!--							<code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>-->
-		<!--							<a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>-->
-		<!--						</th:block>-->
-		<!--						<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><code>&gt;</code></a>-->
-		<!--					</div>-->
-		<!--					<div class="small-width" style="text-align: center">-->
-		<!--						<a class="changePage" th:if="*{criteria.pageNum > 1}" th:href="*{criteria.pageNum - 1}"><code>&lt;</code></a>-->
-		<!--						<code th:text="*{criteria.pageNum}"></code>-->
-		<!--						<a class="changePage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}"><code>&gt;</code></a>-->
-		<!--					</div>-->
-		<!--					<form action="/board/list" th:object="${criteria}" name="pageForm">-->
-		<!--						<input type="hidden" name="pageNum" th:field="*{pageNum}">-->
-		<!--						<input type="hidden" name="amount" th:field="*{amount}">-->
-		<!--						<input type="hidden" name="type" th:field="*{type}">-->
-		<!--						<input type="hidden" name="keyword" th:field="*{keyword}">-->
-		<!--					</form>-->
-		<!--				</div>-->
-		<div class="pageWrap">
-			<div class="big-width" style="text-align: center">
-				<a class="changePage"><code>&lt;</code></a>
-				<code>1</code>
-				<a class="changePage" href="javascript:void(0)"><code>2</code></a>
-				<a class="changePage" href="javascript:void(0)"><code>3</code></a>
-				<a class="changePage" href="javascript:void(0)"><code>4</code></a>
-				<a class="changePage" href="javascript:void(0)"><code>5</code></a>
-				<a class="changePage" href="javascript:void(0)"><code>6</code></a>
-				<a class="changePage" href="javascript:void(0)"><code>7</code></a>
-				<a class="changePage" href="javascript:void(0)"><code>8</code></a>
-				<a class="changePage" href="javascript:void(0)"><code>9</code></a>
-				<a class="changePage" href="javascript:void(0)"><code>10</code></a>
-				<a class="changePage"><code>&gt;</code></a>
-			</div>
-		</div>
-	</section>
-	<!-- Footer -->
-	<footer id="footer">
-		<div class="inner">
-			<section>
-				<h3>Nullam sed gravida</h3>
-				<p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem
-					tristique cursus sed magna gravida non.</p>
-				<ul class="icons">
-					<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-				</ul>
-			</section>
-			<section class="narrow">
-				<h4>Lorem aliquam</h4>
-				<ul class="links">
-					<li><a href="#">Ultrices nulla</a></li>
-					<li><a href="#">Quis lectus donec</a></li>
-					<li><a href="#">Magna ligula</a></li>
-					<li><a href="#">Sed etiam tristique</a></li>
-					<li><a href="#">Cursus magna</a></li>
-					<li><a href="#">Gravida dolore</a></li>
-				</ul>
-			</section>
-			<section class="narrow">
-				<h4>Magna tempus</h4>
-				<ul class="links">
-					<li><a href="#">Feugiat ligula</a></li>
-					<li><a href="#">Vulputate tristique</a></li>
-					<li><a href="#">Ultrices nulla</a></li>
-					<li><a href="#">Cursus sed magna</a></li>
-					<li><a href="#">Sed lectus donec</a></li>
-				</ul>
-			</section>
-			<section>
-				<h3>Morbi sed volutpat</h3>
-				<p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.
-				<p>
-				<p><a href="#" class="major">(000) 000-0000</a></p>
-			</section>
-		</div>
-		<div class="copyright">
-			<p>&copy; Untitled. All rights reserved.</p>
-		</div>
-	</footer>
+                        </form>
+                    </div>
+                    <div class="pageWrap">
+                        <div class="big-width" style="text-align: center">
+                            <a class="changePage"><code>&lt;</code></a>
+                            <code>1</code>
+                            <a class="changePage" href="javascript:void(0)"><code>2</code></a>
+                            <a class="changePage" href="javascript:void(0)"><code>3</code></a>
+                            <a class="changePage" href="javascript:void(0)"><code>4</code></a>
+                            <a class="changePage" href="javascript:void(0)"><code>5</code></a>
+                            <a class="changePage" href="javascript:void(0)"><code>6</code></a>
+                            <a class="changePage" href="javascript:void(0)"><code>7</code></a>
+                            <a class="changePage" href="javascript:void(0)"><code>8</code></a>
+                            <a class="changePage" href="javascript:void(0)"><code>9</code></a>
+                            <a class="changePage" href="javascript:void(0)"><code>10</code></a>
+                            <a class="changePage"><code>&gt;</code></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rankingDiv">
+                <div class="ranking">
+                    <div class="rankingWrap">
+                        <h4>주간 의사 답변 랭킹</h4>
+                        <table class="rankingTable">
+                            <tr>
+                                <th>랭킹</th>
+                                <th>이름</th>
+                                <th>답변 수</th>
+                            </tr>
+                            <tr>
+                                <td><i class="one icon solid fa-crown"></i></td>
+                                <td>가나다</td>
+                                <td>123</td>
+                            </tr>
+                            <tr>
+                                <td><i class="two icon solid fa-crown"></i></td>
+                                <td>라마바</td>
+                                <td>121</td>
+                            </tr>
+                            <tr>
+                                <td><i class="three icon solid fa-crown"></i></td>
+                                <td>사아자</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td><i class="three icon solid fa-crown"></i></td>
+                                <td>차카타</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td><i class="three icon solid fa-crown"></i></td>
+                                <td>파하</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="ranking">
+                    <div class="rankingWrap">
+                        <h4>주간 의사 추천 랭킹</h4>
+                        <table class="rankingTable">
+                            <tr>
+                                <th>랭킹</th>
+                                <th>이름</th>
+                                <th>추천 수</th>
+                            </tr>
+                            <tr>
+                                <td><i class="one icon solid fa-medal"></i></td>
+                                <td>가나다</td>
+                                <td>123</td>
+                            </tr>
+                            <tr>
+                                <td><i class="two icon solid fa-medal"></i></td>
+                                <td>라마바</td>
+                                <td>121</td>
+                            </tr>
+                            <tr>
+                                <td><i class="three icon solid fa-medal"></i></td>
+                                <td>사아자</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td><i class="three icon solid fa-medal"></i></td>
+                                <td>차카타</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td><i class="three icon solid fa-medal"></i></td>
+                                <td>파하</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer id="footer"></footer>
 
 </div>
 
@@ -340,7 +434,31 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-
+<script src="/js/fix.js"></script>
 </body>
+<script>
+    let check = false;
+
+    $("td a").on("click", function(e){
+        e.preventDefault();
+        if(check){return;}
+        $("h1").text($(this).text());
+        $("h1").hide();
+        $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
+        $("h1").fadeIn(500);
+        check = true;
+        setTimeout(function(){check = false;}, 500);
+    })
+
+    $("table.categoryChoice tr td").on("mouseover", function(){
+        $(this).css("background", "#49beef");
+        $($(this).children()[0]).css("color", "#fff");
+    });
+
+    $("table.categoryChoice tr td").on("mouseout", function(){
+        $(this).css("background", "#fff");
+        $($(this).children()[0]).css("color", "#3b3b3b");
+    });
+</script>
 </html>
 </html>
