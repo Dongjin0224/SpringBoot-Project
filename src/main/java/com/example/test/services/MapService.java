@@ -12,5 +12,6 @@ public interface MapService {
     public List<DocVO> getSearchList(String search);
 //    전체 목록
     public List<DocVO> getList();
-
+//      의사 찾기
+    public List<DocVO> getDocs(String docHospitalName);
 }

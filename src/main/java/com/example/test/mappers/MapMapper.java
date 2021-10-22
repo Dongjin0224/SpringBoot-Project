@@ -12,4 +12,6 @@ public interface MapMapper {
     public List<DocVO> getSearchList(String search);
 //    전체 결과
     public List<DocVO> getList();
+//    병원에 등록한 의사 찾기
+    public List<DocVO> getDocs(String docHospitalName);
 }

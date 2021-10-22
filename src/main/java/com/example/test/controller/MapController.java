@@ -19,7 +19,12 @@ public class MapController {
     private final MapService service;
 
     @GetMapping("searchDocs")
-    public String searchDocs(){
+    public String searchDocs(@RequestParam String docHospitalName, Model model){
+        model.addAttribute("docs",service.getDocs(docHospitalName));
+        model.addAttribute("hosName",docHospitalName);
+        log.info("---------------------");
+        log.info(docHospitalName);
+        log.info("---------------------");
         return "map/searchDocs";
     }
 

@@ -20,4 +20,7 @@ public class MapServiceImpl implements MapService{
 
     @Override
     public List<DocVO> getList() {return mapDAO.getList();}
+
+    @Override
+    public List<DocVO> getDocs(String docHospitalName) {return mapDAO.getDocs(docHospitalName); }
 }

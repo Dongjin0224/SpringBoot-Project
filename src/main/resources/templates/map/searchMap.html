@@ -207,7 +207,7 @@
         positions.push({
             title: allList[i].docHospitalName,
             latlng: new kakao.maps.LatLng(allList[i].docLat, allList[i].docLng),
-            href: "https://www.google.com/"
+            href: "/map/searchDocs?docHospitalName="+ allList[i].docHospitalName
         });
     }
 

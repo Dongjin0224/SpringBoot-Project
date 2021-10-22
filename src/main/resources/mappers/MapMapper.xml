@@ -9,4 +9,8 @@
     <select id="getList" resultType="com.example.test.user.vo.DocVO">
         SELECT * FROM TABLE_DOC
     </select>
+
+    <select id="getDocs" resultType="com.example.test.user.vo.DocVO">
+        SELECT * FROM TABLE_DOC WHERE docHospitalName = #{docHospitalName}
+    </select>
 </mapper>

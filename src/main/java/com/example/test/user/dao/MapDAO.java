@@ -19,5 +19,7 @@ public class MapDAO {
     public List<DocVO> getSearchList(String search){return mapMapper.getSearchList(search);}
 //전체결과
     public List<DocVO> getList(){return mapMapper.getList();}
+//    의사찾기
+    public List<DocVO> getDocs(String docHospitalName){return mapMapper.getDocs(docHospitalName);}
 
 }
