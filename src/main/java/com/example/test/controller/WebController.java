@@ -33,7 +33,7 @@ public class WebController {
     public String write(){return "write";}
     //  vanny
     @GetMapping("header")
-    public String header(){return "header";}
+    public String header(){return "fixed/header";}
     //  vanny
     @GetMapping("term")
     public String term(){return "term";}
@@ -43,9 +43,6 @@ public class WebController {
     //  vanny
     @GetMapping("location_policy")
     public String location_policy(){return "location_policy";}
-    //  vanny
-    @GetMapping("volunteer_register")
-    public String volunteer_register(){return "volunteer_register";}
     //  hong
     @GetMapping("detail")
     public String detail(){return "detail";}
@@ -99,7 +96,7 @@ public class WebController {
     public String notice(){return "notice";}
     //  dong
     @GetMapping("footer")
-    public String footer(){return "footer";}
+    public String footer(){return "fixed/footer";}
     //  dong
     @GetMapping("category")
     public String category(){return "category";}
