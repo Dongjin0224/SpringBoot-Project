@@ -9,5 +9,7 @@ import java.util.List;
 public interface MapMapper {
 
 //   검색 결과
-    public List<DocVO> getList(String search);
+    public List<DocVO> getSearchList(String search);
+//    전체 결과
+    public List<DocVO> getList();
 }

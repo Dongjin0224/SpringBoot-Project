@@ -15,6 +15,9 @@ public class MapDAO {
 
     private final MapMapper mapMapper;
 
-    public List<DocVO> getSearchList(String search){return mapMapper.getList(search);}
+//    검색결과
+    public List<DocVO> getSearchList(String search){return mapMapper.getSearchList(search);}
+//전체결과
+    public List<DocVO> getList(){return mapMapper.getList();}
 
 }

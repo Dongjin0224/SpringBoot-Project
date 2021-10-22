@@ -23,14 +23,21 @@ public class MapController {
         return "map/searchDocs";
     }
 
-    @PostMapping("searchMap")
-    public String map(){
+    @GetMapping("searchMap")
+    public String map(Model model){
+        log.info("들어옴---------------------");
+        log.info(String.valueOf(service.getSearchList("sdfdsf2ewf32rf23f").size()));
+        log.info("들어옴---------------------");
+        model.addAttribute("searchList", service.getSearchList(""));
+        model.addAttribute("allList",service.getList());
         return "map/searchMap";
+
     }
 
-    @GetMapping("searchMap")
+    @PostMapping("searchMap")
     public void searchMap(@RequestParam String search, Model model){
         model.addAttribute("searchList",service.getSearchList(search));
+        model.addAttribute("allList",service.getList());
     }
 
 

@@ -17,8 +17,8 @@ public class MapMapperTest {
 
     @Test
     public void getListTest(){
-        ArrayList<DocVO> vo = (ArrayList<DocVO>) mapMapper.getList("아주대");
-        mapMapper.getList("아주대").forEach(search->{
+        ArrayList<DocVO> vo = (ArrayList<DocVO>) mapMapper.getSearchList("아주대");
+        mapMapper.getSearchList("아주대").forEach(search->{
             log.info("----------------------------------------------");
             log.info("--------들어옴--------------------------------------");
             log.info(search.getDocHospitalName());

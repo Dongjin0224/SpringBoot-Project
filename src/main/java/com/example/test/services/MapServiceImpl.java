@@ -17,4 +17,7 @@ public class MapServiceImpl implements MapService{
     public List<DocVO> getSearchList(String search) {
         return mapDAO.getSearchList(search);
     }
+
+    @Override
+    public List<DocVO> getList() {return mapDAO.getList();}
 }
