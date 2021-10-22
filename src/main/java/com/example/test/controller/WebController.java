@@ -26,7 +26,7 @@ public class WebController {
     }
 
     @GetMapping("mainBoard")
-    public String mainBoard(){ return "mainBoard"; }
+    public String mainBoard(){ return "mainBoard/mainBoard"; }
 
     //  vanny
     @GetMapping("write")
@@ -99,7 +99,7 @@ public class WebController {
     public String notice(){return "notice";}
     //  dong
     @GetMapping("footer")
-    public String footer(){return "footer";}
+    public String footer(){return "fixed/footer";}
     //  dong
     @GetMapping("category")
     public String category(){return "category";}
