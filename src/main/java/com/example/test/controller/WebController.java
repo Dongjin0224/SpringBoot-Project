@@ -102,4 +102,8 @@ public class WebController {
     //  young
     @GetMapping("guide")
     public String guide(){return "guide";}
+
+    // index test
+    @GetMapping("index3")
+    public String index3(){return "index3";}
 }
