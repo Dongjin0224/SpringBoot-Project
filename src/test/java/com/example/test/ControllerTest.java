@@ -1,7 +1,6 @@
 package com.example.test;
 
-import com.example.test.beans.dao.Map;
-import com.example.test.controller.WebController;
+import com.example.test.user.beans.dao.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
