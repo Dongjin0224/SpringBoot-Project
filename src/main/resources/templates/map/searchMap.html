@@ -62,9 +62,21 @@
             <h2 style="text-align: center">병원 찾기</h2>
             <form action="" name="searchForm">
                 <input type="text" id="search" name="search" style="display: inline;width:73%; border-radius: 0px; "/>
-                <input type="button" value="검색" onclick="search()"
+                <input type="button" value="검색" onclick="searchMap();"
                        style="border-radius: 0px;position: relative; right: 4px;top: -2px;">
             </form>
+
+            <script>
+                function searchMap(){
+                    let form = document.searchForm;
+                    if(form.search.value==''){
+                        alert('검색어를 입력해주세요.');
+                        form.search.focus();
+                        return;
+                    }
+                    form.submit();
+                }
+            </script>
 
             <div class="hos_wrap">
                 <div class="hos_info">
