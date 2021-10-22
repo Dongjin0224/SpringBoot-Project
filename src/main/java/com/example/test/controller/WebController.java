@@ -26,80 +26,79 @@ public class WebController {
     }
 
     @GetMapping("mainBoard")
-    public String mainBoard(){ return "mainBoard"; }
+    public String mainBoard(){ return "mainBoard/mainBoard"; }
 
     //  vanny
     @GetMapping("write")
-    public String write(){return "write";}
+    public String write(){return "mainBoard/write";}
     //  vanny
     @GetMapping("header")
     public String header(){return "fixed/header";}
     //  vanny
     @GetMapping("term")
-    public String term(){return "term";}
+    public String term(){return "term/term";}
     //  vanny
     @GetMapping("privacy_policy")
-    public String privacy_policy(){return "privacy_policy";}
+    public String privacy_policy(){return "term/privacy_policy";}
     //  vanny
     @GetMapping("location_policy")
-    public String location_policy(){return "location_policy";}
+    public String location_policy(){return "term/location_policy";}
+    //  vanny
+    @GetMapping("volunteer_register")
+    public String volunteer_register(){return "volunteer/volunteer_register";}
     //  hong
     @GetMapping("detail")
-    public String detail(){return "detail";}
-    //  hong
-    @GetMapping("map")
-    public String map(){return "map";}
+    public String detail(){return "mainBoard/detail";}
+
     //  hong
     @GetMapping("search_map")
-    public String searchMap(){return "searchMap";}
+    public String searchMap(){return "map/searchMap";}
     //  hong
     @GetMapping("search_docs")
-    public String searchDocs(){return "searchDocs";}
+    public String searchDocs(){return "map/searchDocs";}
     //  hong
     @GetMapping("report")
-    public String report(){return "report";}
+    public String report(){return "mainBoard/report";}
     //  dong
     @GetMapping("appointment")
-    public String appointment(){return "appointment";}
+    public String appointment(){return "appointment/appointment";}
     //  dong
     @GetMapping("membership")
-    public String membership(){return "membership";}
+    public String membership(){return "payment/membership";}
     //  dong
     @GetMapping("payTerm")
-    public String payTerm(){return "payTerm";}
+    public String payTerm(){return "term/payTerm";}
     //  lim
     @GetMapping("myPageUser")
-    public String myPageUser(){return "myPageUser";}
+    public String myPageUser(){return "myPage/myPageUser";}
     //  lim
     @GetMapping("myPageDoc")
-    public String myPageDoc(){return "myPageDoc";}
+    public String myPageDoc(){return "myPage/myPageDoc";}
     //  jin
     @GetMapping("login")
-    public String login(){return "login";}
+    public String login(){return "user/login";}
     //  jin
     @GetMapping("memberSignUp")
-    public String memberSignUp(){return "memberSignUp";}
+    public String memberSignUp(){return "user/memberSignUp";}
     //  jin
     @GetMapping("doctorSignUp")
-    public String doctorSignUp(){return "doctorSignUp";}
+    public String doctorSignUp(){return "user/doctorSignUp";}
     //  jin
     @GetMapping("medicalService")
-    public String medicalService(){return "medicalService";}
+    public String medicalService(){return "volunteer/medicalService";}
     //  jin
     @GetMapping("msRead")
-    public String msRead(){return "msRead";}
+    public String msRead(){return "volunteer/msRead";}
     //  jin
     @GetMapping("explanation")
-    public String explanation(){return "explanation";}
+    public String explanation(){return "user/explanation";}
     //  jin
     @GetMapping("notice")
-    public String notice(){return "notice";}
+    public String notice(){return "notice/notice";}
     //  dong
     @GetMapping("footer")
     public String footer(){return "fixed/footer";}
-    //  dong
-    @GetMapping("category")
-    public String category(){return "category";}
+
     //  young
     @GetMapping("guide")
     public String guide(){return "guide";}
