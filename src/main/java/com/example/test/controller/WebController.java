@@ -26,14 +26,14 @@ public class WebController {
     }
 
     @GetMapping("mainBoard")
-    public String mainBoard(){ return "mainBoard"; }
+    public String mainBoard(){ return "mainBoard/mainBoard"; }
 
     //  vanny
     @GetMapping("write")
     public String write(){return "write";}
     //  vanny
     @GetMapping("header")
-    public String header(){return "header";}
+    public String header(){return "fixed/header";}
     //  vanny
     @GetMapping("term")
     public String term(){return "term";}
@@ -99,7 +99,7 @@ public class WebController {
     public String notice(){return "notice";}
     //  dong
     @GetMapping("footer")
-    public String footer(){return "footer";}
+    public String footer(){return "fixed/footer";}
     //  dong
     @GetMapping("category")
     public String category(){return "category";}
