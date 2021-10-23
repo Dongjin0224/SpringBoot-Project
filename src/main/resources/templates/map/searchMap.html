@@ -4,13 +4,13 @@
    pixelarity.com | hello@pixelarity.com
    License: pixelarity.com/license
 -->
-<html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Untitled</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="/static/css/main.css"/>
-    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/header.css">
 </head>
 <style>
     .content.main {
@@ -47,6 +47,14 @@
     .hos_img img {
         width: 100px;
     }
+    .hosTitle{
+        font-weight: bold;
+        width: 172px;
+        padding: 0px 0px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 </style>
 <body class="is-preload">
 
@@ -58,65 +66,40 @@
 
     <!-- Section -->
     <section id="one" class="main alt" style="display: flex">
-        <div style="width: 25%;padding: 35px;">
+        <div style="width: 25%;padding: 35px;  overflow: hidden; height: 888px;">
             <h2 style="text-align: center">병원 찾기</h2>
-            <form action="" name="searchForm">
+            <form action="" method="post" name="searchForm">
                 <input type="text" id="search" name="search" style="display: inline;width:73%; border-radius: 0px; "/>
-                <input type="button" value="검색" onclick="search()"
+                <input type="button" value="검색" onclick="searchMap();"
                        style="border-radius: 0px;position: relative; right: 4px;top: -2px;">
             </form>
 
-            <div class="hos_wrap">
-                <div class="hos_info">
-                    <div style="font-weight: bold">아주대학교 병원 <span style="font-size: 14px;color: darkgray;">부속 병원</span>
-                    </div>
-                    <div style="font-size: 16px;">4221-1123</div>
-                    <div style="font-size: 16px;">수원 영통구 영통동</div>
-                </div>
-                <div class="hos_img">
-                    <img src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_240%2F14410143078181stGq_JPEG%2F126981584748644_0.jpg"
-                         alt="">
-                </div>
-            </div>
 
-            <div class="hos_wrap">
-                <div class="hos_info">
-                    <div style="font-weight: bold">아주대학교 병원 <span style="font-size: 14px;color: darkgray;">부속 병원</span>
+            <th:block th:if="${#lists.size(searchList) > 0}">
+                <th:block th:each="searchList: ${searchList}">
+                    <div class="hos_wrap">
+                        <div class="hos_info" th:object="${searchList}">
+                            <div class="hosTitle" th:text="*{docHospitalName}"><!--아주대학교 병원 <span style="font-size: 14px;color: darkgray;">부속 병원</span>-->
+                            </div>
+                            <div style="font-size: 16px;">4221-1123</div>
+                            <div style="font-size: 16px;" th:text="*{docAddress}"></div>
+                        </div>
+                        <div class="hos_img">
+                            <img src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_240%2F14410143078181stGq_JPEG%2F126981584748644_0.jpg"
+                                 alt="">
+                        </div>
                     </div>
-                    <div style="font-size: 16px;">4221-1123</div>
-                    <div style="font-size: 16px;">수원 영통구 영통동</div>
-                </div>
-                <div class="hos_img">
-                    <img src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_240%2F14410143078181stGq_JPEG%2F126981584748644_0.jpg"
-                         alt="">
-                </div>
-            </div>
+                </th:block>
+            </th:block>
+            <th:block th:unless="${#lists.size(searchList) > 0}">
+                    <div class="hos_wrap">
+                        검색해주세요.
+                    </div>
+            </th:block>
 
-            <div class="hos_wrap">
-                <div class="hos_info">
-                    <div style="font-weight: bold">아주대학교 병원 <span style="font-size: 14px;color: darkgray;">부속 병원</span>
-                    </div>
-                    <div style="font-size: 16px;">4221-1123</div>
-                    <div style="font-size: 16px;">수원 영통구 영통동</div>
-                </div>
-                <div class="hos_img">
-                    <img src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_240%2F14410143078181stGq_JPEG%2F126981584748644_0.jpg"
-                         alt="">
-                </div>
-            </div>
 
-            <div class="hos_wrap">
-                <div class="hos_info">
-                    <div style="font-weight: bold">아주대학교 병원 <span style="font-size: 14px;color: darkgray;">부속 병원</span>
-                    </div>
-                    <div style="font-size: 16px;">4221-1123</div>
-                    <div style="font-size: 16px;">수원 영통구 영통동</div>
-                </div>
-                <div class="hos_img">
-                    <img src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_240%2F14410143078181stGq_JPEG%2F126981584748644_0.jpg"
-                         alt="">
-                </div>
-            </div>
+
+
         </div>
 
         <div style="width: 75%">
@@ -136,69 +119,105 @@
 </div>
 
 <!-- Scripts -->
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/jquery.dropotron.min.js"></script>
-<script src="/static/js/jquery.selectorr.min.js"></script>
-<script src="/static/js/jquery.scrollex.min.js"></script>
-<script src="/static/js/jquery.scrolly.min.js"></script>
-<script src="/static/js/browser.min.js"></script>
-<script src="/static/js/breakpoints.min.js"></script>
-<script src="/static/js/util.js"></script>
-<script src="/static/js/main.js"></script>
-<script src="/static/js/fix.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.selectorr.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/fix.js"></script>
 
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5501b085b4c545946aa146967adeff2"></script>
 <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
+    function searchMap(){
+        let form = document.searchForm;
+        if(form.search.value==''){
+            alert('검색어를 입력해주세요.');
+            form.search.focus();
+            return;
+        }
+        form.submit();
+    }
+</script>
+<script th:inline="javascript">
+    let allList = [[${allList}]];
+    let searchList = [[${searchList}]];
+
+    let lat = allList[0].docLat;
+    let lng = allList[0].docLng;
+
+    if(searchList.length!=0){
+        lat = searchList[0].docLat;
+        lng = searchList[0].docLng;
+    }
+    console.log(allList[0]);
+    console.log(lat+"-"+lng);
+    console.log(searchList);
+
+
     function search() {
-        var location = document.getElementById("search").value;
-        var form = document.searchForm;
+        let location = document.getElementById("search").value;
+        let form = document.searchForm;
         form.action = "/map?search=" + location;
         form.submit();
     }
 
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    let mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
-            center: new kakao.maps.LatLng(33.250542, 126.416746), // 지도의 중심좌표
+            center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
             level: 5 // 지도의 확대 레벨
         };
-
-    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
 
     // 마커를 표시할 위치와 title 객체 배열입니다
-    var positions = [
-        {
-            title: '제주여미지식물원',
-            latlng: new kakao.maps.LatLng(33.252596, 126.414348),
-            href: "https://www.naver.com/"
-        },
-        {
-            title: '중문색달해변',
-            latlng: new kakao.maps.LatLng(33.244993, 126.411661),
-            href: "https://www.naver.com/"
-        },
-        {
-            title: '퍼시픽랜드 수조관',
-            latlng: new kakao.maps.LatLng(33.244221, 126.417223),
-            href: "https://www.naver.com/"
-        },
-        {
-            title: '천재연폭포',
-            latlng: new kakao.maps.LatLng(33.250542, 126.416746),
-            href: "https://www.naver.com/"
+    let positions =[
+       /* {
+            title: "수학대학교",
+            latlng: new kakao.maps.LatLng(allList[0].docLat, allList[0].docLng),
+            href: "https://www.google.com/"
         }
+        ,{
+            title: "아주대학교",
+            latlng: new kakao.maps.LatLng(allList[1].docLat, allList[1].docLng),
+            href: "https://www.google.com/"
+        }
+        ,{
+            title: "서울대학교",
+            latlng: new kakao.maps.LatLng(allList[5].docLat, allList[5].docLng),
+            href: "https://www.google.com/"
+        }
+        ,{
+            title: "한강대학교",
+            latlng: new kakao.maps.LatLng(allList[3].docLat, allList[3].docLng),
+            href: "https://www.google.com/"
+        }*/
     ];
-    positions.push({
-        title: '아주대학교',
-        latlng: new kakao.maps.LatLng(33.250542, 126.436748),
-        href: "https://www.google.com/"
-    });
-    positions.push({
-        title: '동탄그레이스소아청소년과의원',
-        latlng: new kakao.maps.LatLng(33.252542, 126.433748),
-        href: "https://www.google.com/"
-    });
+        // title: "수학대학교",
+        // latLng: new kakao.maps.LatLng(allList[0].docLat, allList[1].docLng),
+        // href: "https://www.google.com/"
+
+
+
+    for (var i = 0; i<allList.length;i++){
+        positions.push({
+            title: allList[i].docHospitalName,
+            latlng: new kakao.maps.LatLng(allList[i].docLat, allList[i].docLng),
+            href: "/map/searchDocs?docHospitalName="+ allList[i].docHospitalName
+        });
+    }
+
+
+    console.log(positions[0].latLng);
+    // positions.push({
+    //     title: '동탄그레이스소아청소년과의원',
+    //     latlng: new kakao.maps.LatLng(33.252542, 126.433748),
+    //     href: "https://www.google.com/"
+    // });
     // 마커 이미지의 이미지 주소입니다
     // var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
     var imageSrc = "/img/hospit.png";
@@ -227,6 +246,8 @@
             title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
             image: markerImage, // 마커 이미지
         });
+
+
 
         var iwContent = '<div style="padding:5px;" class="title_wrap" >' +
             '<a href="' + positions[i].href + '" style="color:black;border-bottom: none;" target="_blank">' + positions[i].title + '</a> </div>'
@@ -266,9 +287,28 @@
     }
 
 
+
     // 마커가 지도 위에 표시되도록 설정합니다
     marker.setMap(map);
 
+
+    function setCenter() {
+        // 이동할 위도 경도 위치를 생성합니다
+        var moveLatLon = new kakao.maps.LatLng(lat, lng);
+
+        // 지도 중심을 이동 시킵니다
+        map.setCenter(moveLatLon);
+    }
+
+    function panTo() {
+        // 이동할 위도 경도 위치를 생성합니다
+        var moveLatLon = new kakao.maps.LatLng(lat, lng);
+
+        // 지도 중심을 부드럽게 이동시킵니다
+        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+        map.panTo(moveLatLon);
+    }
+    panTo();
 
 
     for(let i= 0;i<positions.length;i++){

@@ -4,13 +4,12 @@
 	pixelarity.com | hello@pixelarity.com
 	License: pixelarity.com/license
 -->
-<html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Untitled</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/static/css/main.css" />
-    <script src="/static/js/fix.js"></script>
+    <link rel="stylesheet" href="/css/main.css" />
 </head>
 <style>
     .content.main{
@@ -71,19 +70,24 @@
         <div class="inner alt">
             <div class="content main">
                 <section class="tiles">
-                    <h3 style="text-align: center;"><span>아주대학교 병원</span> 의료진</h3>
-                    <fieldset class="info">
+                    <h3 style="text-align: center;" ><span th:text="${hosName}"></span> 의료진</h3>
+
+
+                    <th:block th:each="docs:${docs}">
+
+
+                    <fieldset class="info" th:object="${docs}">
                         <div class="imgDiv">
-                            <img src="/static/img/ex.png" alt="no image" class="docPic">
+                            <img src="/img/ex.png" alt="no image" class="docPic">
                         </div>
                         <div>
                             <ul class="doctor">
-                                <li><strong><div class="docInfo">이름  :</div></strong> 김동진</li>
-                                <li><strong><div class="docInfo">병원 이름  :</div></strong>아주대학교</li>
-                                <li><strong><div class="docInfo">병원 주소  :</div></strong>수원 영통구 영통동</li>
-                                <li><strong><div class="docInfo">전공  :</div></strong> 소아과</li>
-                                <li><strong><div class="docInfo">전화번호  :</div></strong> 010-2988-5207</li>
-                                <li><strong><div class="docInfo">이메일  :</div></strong> alalal2234@gmail.com</li>
+                                <li><strong><div class="docInfo">이름  :</div></strong> <span th:text="*{docName}"></span></li>
+                                <li><strong><div class="docInfo">병원 이름  :</div></strong> <span th:text="*{docHospitalName}"></span></li>
+                                <li><strong><div class="docInfo">병원 주소  :</div></strong> <span th:text="*{docAddress}"></span></li>
+                                <li><strong><div class="docInfo">전공  :</div></strong>  <span th:text="*{docMajor}"></span></li>
+                                <li><strong><div class="docInfo">전화번호  :</div></strong>  <span th:text="*{docPhoneNum}"></span></li>
+                                <li><strong><div class="docInfo">이메일  :</div></strong>  <span th:text="*{docEmail}"></span></li>
                             </ul>
                         </div>
                         <div class="select">
@@ -92,66 +96,8 @@
                         </div>
                     </fieldset>
 
-                    <fieldset class="info">
-                        <div class="imgDiv">
-                            <img src="/static/img/ex.png" alt="no image" class="docPic">
-                        </div>
-                        <div>
-                            <ul class="doctor">
-                                <li><strong><div class="docInfo">이름  :</div></strong> 민석홍</li>
-                                <li><strong><div class="docInfo">병원 이름  :</div></strong>아주대학교</li>
-                                <li><strong><div class="docInfo">병원 주소  :</div></strong>서울 역삼동</li>
-                                <li><strong><div class="docInfo">전공  :</div></strong> 소아과</li>
-                                <li><strong><div class="docInfo">전화번호  :</div></strong> 010-2988-5207</li>
-                                <li><strong><div class="docInfo">이메일  :</div></strong> alalal2234@gmail.com</li>
-                            </ul>
-                        </div>
-                        <div class="select">
-                            <a href="javascript:void(0)" class="button  icon solid fa-medkit" style="box-shadow: none;">예약하기</a>
-                            <a href="javascript:void(0)" class="button icon solid fa-backspace" style="box-shadow: none;color: darkslategray !important;">돌아가기</a>
-                        </div>
-                    </fieldset>
 
-                    <fieldset class="info">
-                        <div class="imgDiv">
-                            <img src="/static/img/ex.png" alt="no image" class="docPic">
-                        </div>
-                        <div>
-                            <ul class="doctor">
-                                <li><strong><div class="docInfo">이름  :</div></strong> 김동진</li>
-                                <li><strong><div class="docInfo">병원 이름  :</div></strong>아주대학교</li>
-                                <li><strong><div class="docInfo">병원 주소  :</div></strong>수원 영통구 영통동</li>
-                                <li><strong><div class="docInfo">전공  :</div></strong> 소아과</li>
-                                <li><strong><div class="docInfo">전화번호  :</div></strong> 010-2988-5207</li>
-                                <li><strong><div class="docInfo">이메일  :</div></strong> alalal2234@gmail.com</li>
-                            </ul>
-                        </div>
-                        <div class="select">
-                            <a href="javascript:void(0)" class="button  icon solid fa-medkit" style="box-shadow: none;">예약하기</a>
-                            <a href="javascript:void(0)" class="button icon solid fa-backspace" style="box-shadow: none;color: darkslategray !important;">돌아가기</a>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="info">
-                        <div class="imgDiv">
-                            <img src="/static/img/ex.png" alt="no image" class="docPic">
-                        </div>
-                        <div>
-                            <ul class="doctor">
-                                <li><strong><div class="docInfo">이름  :</div></strong> 김동진</li>
-                                <li><strong><div class="docInfo">병원 이름  :</div></strong>아주대학교</li>
-                                <li><strong><div class="docInfo">병원 주소  :</div></strong>수원 영통구 영통동</li>
-                                <li><strong><div class="docInfo">전공  :</div></strong> 소아과</li>
-                                <li><strong><div class="docInfo">전화번호  :</div></strong> 010-2988-5207</li>
-                                <li><strong><div class="docInfo">이메일  :</div></strong> alalal2234@gmail.com</li>
-                            </ul>
-                        </div>
-                        <div class="select">
-                            <a href="javascript:void(0)" class="button  icon solid fa-medkit" style="box-shadow: none;">예약하기</a>
-                            <a href="javascript:void(0)" class="button icon solid fa-backspace" style="box-shadow: none;color: darkslategray !important;">돌아가기</a>
-                        </div>
-                    </fieldset>
-
+                    </th:block>
 
 
                 </section>
@@ -165,15 +111,15 @@
 </div>
 
 <!-- Scripts -->
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/jquery.dropotron.min.js"></script>
-<script src="/static/js/jquery.selectorr.min.js"></script>
-<script src="/static/js/jquery.scrollex.min.js"></script>
-<script src="/static/js/jquery.scrolly.min.js"></script>
-<script src="/static/js/browser.min.js"></script>
-<script src="/static/js/breakpoints.min.js"></script>
-<script src="/static/js/util.js"></script>
-<script src="/static/js/main.js"></script>
-
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.selectorr.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/fix.js"></script>
 </body>
 </html>
