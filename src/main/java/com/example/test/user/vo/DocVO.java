@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class DocVO {
-    private int docNo;
+    private Long docNo;
     private String docId;
     private String docPw;
     private String docName;
