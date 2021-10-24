@@ -16,5 +16,4 @@ public class AppointmentDAO_test {
     @Test
     public void testGet(){ log.info(appointmentDAO.get(1L).toString()); }
 
-
 }
