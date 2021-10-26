@@ -1,152 +1,136 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--
-   Hypothesis by Pixelarity
-   pixelarity.com | hello@pixelarity.com
-   License: pixelarity.com/license
-
+	Hypothesis by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
 -->
-
-
-
 <html>
 <head>
-	<title>Untitled</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/css/main.css">
-	<link rel="stylesheet" href="/css/header.css"/>
+    <title>Untitled</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/qna.css">
+    <link rel="stylesheet" href="/css/header.css"/>
 </head>
 <style>
+    .content.main{
+        width: 90%;
+        border-radius: 25px;
+        padding: 2%;
+        margin: auto;
+    }
 
-	.div_container{
-		margin: 0 auto;
-		width: auto;
-	}
+    input.searchbar {
+        height:45px;
+        border:none;
+        width: 89%;
+        font-size:16px;
+        padding-left: 5%;
+        margin-left: 5%
+    }
 
-	img { display: block; margin: 0px auto; }
+    .bar{
+        margin:0 auto;
+        width:55%;
+        border-radius:30px;
+        border:1px solid #dcdcdc;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .bar:hover{
+        box-shadow: 1px 1px 8px 1px #dcdcdc;
+    }
+    .bar:focus-within{
+        box-shadow: 1px 1px 8px 1px #dcdcdc;
+        outline:none;
+    }
 
-	input.searchbar {height:45px; border:none; width: 89%; font-size:16px; padding-left: 5%; margin-left: 5%}
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+        box-shadow: none;
+    }
 
-	.bar{
-		margin:0 auto;
-		width:40%;
-		border-radius:30px;
-		border:1px solid #dcdcdc;
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-	}
-	.bar:hover{
-		box-shadow: 1px 1px 8px 1px #dcdcdc;
-	}
-	.bar:focus-within{
-		box-shadow: 1px 1px 8px 1px #dcdcdc;
-		outline:none;
-	}
+    .buttons{
+        margin-top: 1%;
+        text-align: right;
+        padding-bottom: 20%;
+        margin-right: 0px;
+        width: 77%;
+    }
 
-	input[type="text"]:focus,
-	select:focus,
-	textarea:focus {
-		box-shadow: none;
-	}
+    .button{
+        background-color: #f5f5f5;
+        border:none;
+        color:#707070 !important;
+        font-size: 80%;
+        padding: 10px 20px;
+        margin:5px;
+        border-radius:4px;
+        outline:none;
+        box-shadow: none;
+        line-height: inherit;
+    }
+    .button:hover{
+        border: 1px solid #c8c8c8;
+        padding: 9px 19px;
+        color:#808080 !important;
+        background-color: #f5f5f5 !important;
+    }
+    .button:focus{
+        border:1px solid #4885ed;
+        padding: 9px 19px;
+    }
 
-	.buttons{
-		margin-top: 1%;
-		text-align: right;
-		padding-bottom: 20%;
-		margin-right: 0px;
-		width: 77%;
-	}
-
-	.button{
-		background-color: #f5f5f5;
-		border:none;
-		color:#707070 !important;
-		font-size: 80%;
-		padding: 10px 20px;
-		margin:5px;
-		border-radius:4px;
-		outline:none;
-		box-shadow: none;
-		line-height: inherit;
-	}
-	.button:hover{
-		border: 1px solid #c8c8c8;
-		padding: 9px 19px;
-		color:#808080 !important;
-		background-color: #f5f5f5 !important;
-	}
-	.button:focus{
-		border:1px solid #4885ed;
-		padding: 9px 19px;
-	}
-
-	a{
-		border-bottom: none;
-	}
-
-	@media all and (min-width:320px) {
-		#wrapper div{
-			width:100%;
-		}
-	}
-	@media all and (min-width:768px) {
-		#wrapper div{
-			width:50%;
-		}
-		#wrap div:nth-child(5){width:100%;}
-	}
-	@media all and (min-width:1024px) {
-		#wrapper div{
-			width:20%;
-		}
-		#wrapper div:nth-child(5){width:20%;}
-	}
-
+    a{
+        border-bottom: none;
+    }
 </style>
-<body class="is-preload" style="width: 100vw; height: 100vh;">
+<body class="is-preload">
 
 <!-- Wrapper -->
 <div id="wrapper">
 
-	<!-- Header -->
-	<header id="header"></header>
+    <!-- Header -->
+    <header id="header"></header>
 
-</div>
-<div class="content secondary">
-	<div class="div_container">
-	<div class="logo_title" style="margin-bottom: 1%;">
-		<img style="width: 28%; margin-top: 5%;" src="img/logo.png">
-	</div>
-	<div class="bar">
-		<input class="searchbar" type="text">
-		<div class="fa fa-search" aria-hidden="true" style="position:absolute; margin: 1.5%"></div>
-	</div>
-	<div class="inner">
-		<div class="buttons">
-			<button class="button" type="button">지식 iN으로 이동</button>
-			<button class="button" type="button">병원 찾기</button>
-		</div>
-	</div>
-	</div>
-</div>
-</section>
+    <!-- Section -->
+    <section id="one" class="main alt" style="background-color: white">
+        <div class="inner alt" style="height: 900px">
+            <div class="content main">
+                    <div style="height: 120px;"></div>
+                    <div style="display: flex;">
+                        <img style="width: 40%; margin: auto; margin-bottom: 60px;" src="img/logo.png">
+                    </div>
+                    <div class="bar">
+                        <input class="searchbar" type="text">
+                        <div class="fa fa-search" aria-hidden="true" style="position:absolute; margin: 1.5%"></div>
+                    </div>
+                    <div class="buttons">
+                        <button class="button" type="button">지식 iN으로 이동</button>
+                        <button class="button" type="button">병원 찾기</button>
+                    </div>
+                    <div></div>
+            </div>
+        </div>
+    </section>
 
-<!-- Footer -->
-<footer id="footer_index" style="padding: 0;">
-	<div class="inner">
-		<section>
-			<p style="font-size: 85%;text-align: center;font-weight: bold;margin-bottom: 0 !important;">
-				<a style="border-bottom: none;" href="#">이용안내</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a style="border-bottom: none;" href="#">공지사항</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a style="border-bottom: none;" href="#">이용약관</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a style="border-bottom: none;" href="#">개인정보취급방침</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a style="border-bottom: none;" href="#">위치기반이용약관</a>
-			</p>
-		</section>
-	</div>
-</footer>
+    <!-- Footer -->
+    <footer id="footer_index">
+        <div class="inner">
+            <section>
+                <p style="font-size: 85%; text-align: center; font-weight: bold; margin-bottom: 0 !important;">
+                    <a style="border-bottom: none;" href="#">이용안내</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">공지사항</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">이용약관</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">개인정보취급방침</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="#">위치기반이용약관</a>
+                </p>
+            </section>
+        </div>
+    </footer>
 
 </div>
 

@@ -50,12 +50,7 @@ public class WebController {
     @GetMapping("detail")
     public String detail(){return "mainBoard/detail";}
 
-    //  hong
-    @GetMapping("search_map")
-    public String searchMap(){return "map/searchMap";}
-    //  hong
-    @GetMapping("search_docs")
-    public String searchDocs(){return "map/searchDocs";}
+
     //  hong
     @GetMapping("report")
     public String report(){return "mainBoard/report";}
@@ -102,4 +97,8 @@ public class WebController {
     //  young
     @GetMapping("guide")
     public String guide(){return "guide";}
+
+    // index test
+    @GetMapping("index3")
+    public String index3(){return "index3";}
 }
