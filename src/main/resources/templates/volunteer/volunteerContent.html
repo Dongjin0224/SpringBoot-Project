@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<!--
+	Hypothesis by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Untitled</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+<style>
+    td.td_hTag { background-color: white; padding: 0; }
+
+    .td_hTag h3{ font-size: x-large; font-weight: bold; margin-bottom: 0; }
+
+    .td_hTag h4{ font-size: large; font-weight: bold; color: #f60; text-align: right; margin-bottom: 0; }
+
+    td.td_title { font-weight: bold; width: 18%; text-align: center; }
+
+    td.td_content { font-weight: initial; background-color: white; width: 32%; }
+
+    .content.main{
+        width: 90%;
+        border-radius: 25px;
+        padding: 2%;
+        margin: auto;
+    }
+    hr{
+        color: #bfb9b95c;
+        border-color: #bfb9b95c;
+        height: 2px;
+        background-color: #bfb9b95c;
+    }
+    input[type="button"], button, .button {
+        background-color: transparent;
+        box-shadow: none;
+        color: #358bca !important;
+    }
+</style>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+
+
+    </header>
+
+    <!-- Section -->
+    <section id="one" class="main alt">
+        <div class="inner alt">
+            <div class="content main">
+                <section class="tiles">
+                    <div class="inner">
+                        <div style="text-align: right;">
+                            <!--<input type="button" value="목록" style="font-size: large; border-radius: 0px; padding: 0;">-->
+                            <a class="button goWrite"  style="font-size: large; border-radius: 0px; padding: 0;">신청하기</a>
+                        </div>
+                        <hr style="margin: 0;">
+                        <div class="top" style="margin-top: 5%;margin-bottom: 8%;" th:object="${content}">
+                            <table>
+                                <tr style="border: none;">
+                                    <td class="td_hTag"><h3 th:text="*{volunteerBoardTitle}"></h3></td>
+                                    <td class="td_hTag"><h4 id="status">(모집중)</h4></td>
+                                </tr>
+                            </table>
+                            <hr style="margin-top: 0;">
+                            <table>
+                                <tr>
+                                    <td class="td_title">봉사기간</td>
+                                    <td class="td_content" th:text="*{volunteerPeriod}"></td>
+                                    <td class="td_title">모집기간</td>
+                                    <td class="td_content" th:text="*{volunteerRecruitmentPeriod}"></td>
+                                </tr>
+                                <tr>
+                                    <td class="td_title" style="background-color: rgba(144, 144, 144, 0.075);">모집인원</td>
+                                    <td class="td_content" th:text="*{volunteers}"></td>
+                                    <td class="td_title" style="background-color: rgba(144, 144, 144, 0.075);">신청인원</td>
+                                    <td class="td_content" th:text="*{volunteerApplicants}"></td>
+                                </tr>
+                                <tr>
+                                    <td class="td_title">봉사지역</td>
+                                    <td class="td_content" th:text="*{volunteerArea}"></td>
+                                    <td class="td_title">봉사장소</td>
+                                    <td class="td_content" th:text="*{volunteerLocation}"></td>
+                                </tr>
+                            </table>
+                            <!--<div class="name" style="font-size: 14px;">작성자 :전진주</div>
+                            <div style="font-size: 14px;">모집인원:15명</div>
+                            <div style="font-size: 14px;">현재 채용인원:5명</div>-->
+                            <h3 style="margin-top: 6%; margin-bottom: -3%;">모집내용</h3>
+                            <hr>
+                            <div>
+                                <img style="width: 100%;" src="/img/service.png"/>
+                            </div>
+                            <h3 style="margin-top: 6%; margin-bottom: -3%;">내용상세</h3>
+                            <hr>
+                            <div>
+                                <p th:text="*{volunteerBoardContent}"></p>
+                            </div>
+                            <div style="text-align: center;">
+                                <a href="/volunteer/volunteerBoard" class="button" style="font-size: large; border-radius: 0px; margin-right: 4%;">목록</a>
+                                <a  class="button goWrite" style="font-size: large; border-radius: 0px;">신청하기</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <script th:inline="javascript">
+        let volunteers = [[${content.getVolunteers()}]];
+        let volunteerApplicants = [[${content.getVolunteerApplicants()}]];
+        let bno = [[${content.getVolunteerBoardNo()}]];
+        let status = document.getElementById('status');
+        let goWrite = document.getElementsByClassName('goWrite');
+
+        if(volunteers-volunteerApplicants>0){
+            status.innerHTML='(모집중)';
+            goWrite[0].addEventListener('click',function(e){
+                location.href="/volunteer/volunteerForm?boardNo="+bno;
+            });
+            goWrite[1].addEventListener('click',function(e){
+                location.href="/volunteer/volunteerForm?boardNo="+bno;
+            });
+
+        }else{
+            status.innerHTML='(마감)';
+            goWrite[0].addEventListener('click',function(e){
+                e.preventDefault();
+                alert('마감된 공고입니다.');
+                return;
+            });
+            goWrite[1].addEventListener('click',function(e){
+                e.preventDefault();
+
+                alert('마감된 공고입니다.');
+                return;
+            });
+        }
+
+    </script>
+    <!-- Footer -->
+    <footer id="footer">
+
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.selectorr.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/fix.js"></script>
+</body>
+</html>

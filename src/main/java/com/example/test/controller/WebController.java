@@ -43,9 +43,6 @@ public class WebController {
     //  vanny
     @GetMapping("location_policy")
     public String location_policy(){return "term/location_policy";}
-    //  vanny
-    @GetMapping("volunteer_register")
-    public String volunteer_register(){return "volunteer/volunteer_register";}
     //  hong
     @GetMapping("detail")
     public String detail(){return "mainBoard/detail";}
@@ -78,12 +75,6 @@ public class WebController {
     //  jin
     @GetMapping("doctorSignUp")
     public String doctorSignUp(){return "user/doctorSignUp";}
-    //  jin
-    @GetMapping("medicalService")
-    public String medicalService(){return "volunteer/medicalService";}
-    //  jin
-    @GetMapping("msRead")
-    public String msRead(){return "volunteer/msRead";}
     //  jin
     @GetMapping("explanation")
     public String explanation(){return "user/explanation";}
