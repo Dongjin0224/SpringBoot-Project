@@ -23,5 +23,8 @@ public class DocVO {
     private int docServiceCnt;
     private int docReportCnt;
     private int docLikeCnt;
-
+    private String card_number;
+    private String expiry;
+    private String birth;
+    private String pwd_2digit;
 }

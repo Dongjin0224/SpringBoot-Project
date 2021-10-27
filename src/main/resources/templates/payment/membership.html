@@ -10,6 +10,8 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/css/main.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <style>
     .content.main {
@@ -250,7 +252,7 @@
                                     </dd>
                                 </dl>
                                 <div class="btn_buy_product">
-                                    <button type="button" title="BASIC 정기결제" data-prodid="400013">구매</button>
+                                    <button class="check_module" id="standard" type="button" title="BASIC 정기결제" value="49900" data-prodid="400013">구매</button>
                                 </div>
                             </div>
                         </div>
@@ -273,15 +275,28 @@
                                     </dd>
                                 </dl>
                                 <div class="btn_buy_product">
-                                    <button type="button" title="BASIC 정기결제" data-prodid="400013">구매</button>
+                                    <button class="check_module" id="premium" type="button" title="BASIC 정기결제" value="99900" data-prodid="400013">구매</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <form action="/payment/stopPay">
+                        <input type="submit" value="구독 취소">
+                    </form>
                 </div>
             </div>
     </section>
-
+<!--    <div class="module">-->
+<!--        <div class="module_poc">-->
+<!--            <div class="poc_top">-->
+<!--                <h1 class="poc_title">결제수단</h1>-->
+<!--            </div>-->
+<!--            <div class="poc_cont">-->
+<!--                <a href="#">일반 카드 결제</a>-->
+<!--                <a href="#">카카오페이</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="box_layer" data-index="0" style="display: none;">
         <div class="layer_poc" style="top: 373.5px;">
             <div class="poc_top">
@@ -354,6 +369,25 @@
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
 <script>
+    let standard = $("#standard").val();
+    let premium = $("#premium").val();
+
+    let payName = "";
+    let price = 0;
+
+    $($(".check_module")[0]).on("click", function(){
+        price = standard;
+        payName = "STANDARD 회원권 결제";
+    })
+
+    $($(".check_module")[1]).on("click", function(){
+        price = premium;
+        payName = "PREMIUM 회원권 결제";
+    })
+
+    console.log(($(".check_module")[0]));
+    console.log($(".check_module")[1]);
+
     $(document).ready(function(){
         $(".icon").on("click", function(){
             $(".box_layer").css("display", "block");
@@ -362,6 +396,35 @@
             $(".box_layer").css("display", "none");
         })
     })
+
+    $(".check_module").click(function () {
+        var IMP = window.IMP; // 생략가능
+        IMP.init('imp82864473');
+// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+        IMP.request_pay({
+            pg : 'nice',
+            pay_method : 'card',
+            merchant_uid: "order_no_0001", //상점에서 생성한 고유 주문번호
+            customer_uid: "20",
+            name : payName,
+            amount : 1000,
+            buyer_email : 'iamport@siot.do',
+            buyer_name : '구매자이름',
+            buyer_tel : '010-1234-5678',
+            buyer_addr : '서울특별시 강남구 삼성동',
+            buyer_postcode : '123-456',
+            m_redirect_url : '{모바일에서 결제 완료 후 리디렉션 될 URL}', // 예: https://www.my-service.com/payments/complete/mobile
+            niceMobileV2 : true // 신규 모바일 버전 적용 시 설정
+        },  function(rsp) {
+            if ( rsp.success ) {
+                alert('빌링키 발급 성공');
+            } else {
+                alert('빌링키 발급 실패');
+            }
+        });
+    });
+
 </script>
 </body>
 </html>
