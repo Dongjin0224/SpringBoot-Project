@@ -280,7 +280,8 @@
                             </div>
                         </div>
                     </div>
-                    <form action="/payment/stopPay">
+                    <form action="/payment/stopPay" method="post">
+                        <input type="hidden" value="users_0001_0002" name="customer_uid">
                         <input type="submit" value="구독 취소">
                     </form>
                 </div>

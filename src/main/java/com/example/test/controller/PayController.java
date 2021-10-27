@@ -27,7 +27,6 @@ public class PayController {
     private final ImportPay pay;
     static int code = 0;
 
-    @PostMapping("/pay")
     public String getToken(PayVO payVO, int price) throws UnsupportedEncodingException{
 
         String token = pay.getToken();
@@ -49,25 +48,19 @@ public class PayController {
 
         Map<String, Object> map = new HashMap<>();
         map.put("customer_uid", payVO.getCustomer_uid());
-        map.put("merchant_uid", "merchant_1" + new Date().getTime());
+        map.put("merchant_uid", "merchant_" + new Date().getTime());
         map.put("amount", price);
         map.put("name", payVO.getName());
-        log.info(payVO.getCard_number());
         map.put("card_number", payVO.getCard_number());
-        log.info(payVO.getExpiry());
         map.put("expiry", payVO.getExpiry());
-        log.info(String.valueOf(payVO.getBirth()));
         map.put("birth", payVO.getBirth());
-        log.info(String.valueOf(payVO.getPwd_2digit()));
         map.put("pwd_2digit", payVO.getPwd_2digit());
 
         Gson var = new Gson();
         String json = var.toJson(map);
         System.out.println(json);
-        log.info(json);
 
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
-
 
         return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/onetime", entity, String.class);
     }
@@ -117,24 +110,55 @@ public class PayController {
 
         int code = Integer.parseInt(restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class).split(",")[0].split(":")[1]);
 
+        log.info("---------------------");
+        log.info("예약 성공");
+        log.info("---------------------");
         return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class);
     }
 
+
+    public String unSchedule(PayVO payVO){
+        String token = pay.getToken();
+        Gson str = new Gson();
+        token = token.substring(token.indexOf("response") + 10);
+        token = token.substring(0, token.length() - 1);
+
+        GetTokenVO vo = str.fromJson(token, GetTokenVO.class);
+
+        String access_token = vo.getAccess_token();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(access_token);
+
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("customer_uid", payVO.getCustomer_uid());
+
+        Gson var = new Gson();
+        String json = var.toJson(map);
+        System.out.println(json);
+
+        HttpEntity<String> entity = new HttpEntity<>(json, headers);
+
+        log.info("---------------------");
+        log.info("예약 취소");
+        log.info("---------------------");
+        return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/unschedule", entity, String.class);
+    }
+
     @PostMapping("/startPay")
-    public void a(@RequestParam PayVO payVO,@RequestParam int price) throws UnsupportedEncodingException{
+    public void a(PayVO payVO,@RequestParam int price) throws UnsupportedEncodingException{
         code = 0;
         getToken(payVO, price);
-        try {
-            Thread.sleep(60000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         while(true){
-            schedulePay(payVO, price);
-//            int code = Integer.parseInt(entity.split(",")[0].split(":")[1]);
             if(code == 1){
                 break;
             }
+            schedulePay(payVO, price);
+//            int code = Integer.parseInt(entity.split(",")[0].split(":")[1]);
             try {
                 Thread.sleep(60000);
             } catch (InterruptedException e) {
@@ -144,7 +168,9 @@ public class PayController {
     }
 
     @PostMapping("/stopPay")
-    public void stopSchedulePay(){
+    public void stopSchedulePay(PayVO payVO){
+        int i =0;
+        unSchedule(payVO);
         code = 1;
     }
 }
