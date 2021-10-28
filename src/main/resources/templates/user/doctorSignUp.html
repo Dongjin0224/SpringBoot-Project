@@ -81,10 +81,10 @@
     .search {
         width: 18% !important;
         background-color: white !important;
-        left: 79.7% !important;
+        left: 61.7% !important;
         box-shadow: none !important;
         border-radius: 0 !important;
-        height: 40.33px !important;
+        height: 54.33px !important;
         border: 1px solid !important;
         border-color: #bfb9b95c !important;
         line-height: 40px !important;
@@ -95,13 +95,13 @@
         color: white !important;
     }
     .clear {
-        width: 18% !important;
+        width: 19% !important;
         background-color: white !important;
         color: #1a73e8;
-        left: 61.7% !important;
+        left: 79.7% !important;
         box-shadow: none !important;
         border-radius: 0 !important;
-        height: 40.33px !important;
+        height: 54.33px !important;
         border: 1px solid !important;
         border-color: #bfb9b95c !important;
         line-height: 40px !important;
@@ -245,76 +245,93 @@
 
     <!-- Section -->
     <section id="one" class="main alt">
+
         <div class="inner alt">
             <div class="content main">
                 <section class="tiles" style="flex-flow: column;
     width: 56%;
     margin-left: 21%;">
-                    <form>
+                    <form method="post" action="/user/doctorSignUp" id="doctorSignUpForm" name="doctorSignUpForm">
                         <div>
                             <header style="margin-top: 15%;">
                                 <h3><i class="fas fa-user-md">  의사 회원가입</i></h3>
                             </header>
-                            <label>아이디<input type="text" placeholder="4자 이상, 16자 이하로 입력해주세요."></label>
-                            <label>비밀번호<input type="password" placeholder="8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함"></label>
-                            <label>전공<select id="major_select" name='major_detail' style="border-radius: 0;">
+                            <label>아이디<input type="text" placeholder="4자 이상, 16자 이하로 입력해주세요." name="docId"></label>
+                            <label>비밀번호<input type="password" placeholder="8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함" name="docPw"></label>
+                            <label>전공<select id="major_select" name='docMajor1' style="border-radius: 0;">
                                 <option selected disabled>선택</option>
-                                <option value="">정형외과</option>
-                                <option value="">성형외과</option>
-                                <option value="">내과</option>
-                                <option value="">가정의학과</option>
-                                <option value="">소아과</option>
-                                <option value="">피부과</option>
-                                <option value="">신경과</option>
-                                <option value="">비뇨의학과</option>
-                                <option value="">이비인후과</option>
-                                <option value="">한방의학과</option>
-                                <option value="">산부인과</option>
-                                <option value="">치과</option>
-                                <option value="">신경외과</option>
-                                <option value="">응급의학과</option>
+                                <option value="정형외과">정형외과</option>
+                                <option value="성형외과">성형외과</option>
+                                <option value="내과">내과</option>
+                                <option value="가정의학과">가정의학과</option>
+                                <option value="소아과">소아과</option>
+                                <option value="피부과">피부과</option>
+                                <option value="신경과">신경과</option>
+                                <option value="비뇨의학과">비뇨의학과</option>
+                                <option value="이비인후과">이비인후과</option>
+                                <option value="한방의학과">한방의학과</option>
+                                <option value="산부인과">산부인과</option>
+                                <option value="치과">치과</option>
+                                <option value="신경외과">신경외과</option>
+                                <option value="응급의학과">응급의학과</option>
                             </select></label>
-                            <label>병원이름<input type="text" placeholder="병원이름을 입력해주세요"></label>
+                            <label>병원이름<input type="text" placeholder="병원이름을 입력해주세요" name="docHospitalName"></label>
+                            <lable style="font-size: 19px;">병원 전화번호<input type="text" name="docHosPhone" style="margin-bottom: 6%;"></lable>
                             <!-- 주소입력-->
                             <div id="map"></div>
                             <div class="col-6 col-12-small">
                                 <div style="width:100%;margin-top: 5%;margin-bottom: -6%;">
 
                                     <label style="margin: 0;">상세주소</label>
-                                    <input type="text" name="pay_address_detail"
+                                    <input type="text" name="docAddress"
                                            id="pay_address_detail" class="postcodify_details" value="" />
                                     <br>
                                 </div>
                             </div>
 
-                            <label style="margin-top: 6%;">이름<input type="text" placeholder="이름 입력"></label>
+                            <label style="margin-top: 6%;">이름<input type="text" placeholder="이름 입력" name="docName"></label>
                             <label>이메일</label>
                             <label style="display: inline-flex;width: 100%;">
-                                <input type="text" placeholder="">
-
+                                <input type="text" placeholder="" name="docEmail1" id="user_email" style="width: 56%;">
+                                <label>@</label>
+                                <span id="inputEmail">
                                 <select
-                                        id="email_select" name='email_detail' style="border-radius: 0;">
+                                        id="email_select" name='docEmail2' style="border-radius: 0;width: 140%;">
                                     <option selected disabled>선택</option>
-                                    <option value="naver.com">@naver.com</option>
-                                    <option value="daum.net">@daum.net</option>
-                                    <option value="gmail.com">@gmail.com</option>
-                                    <option value="nate.com">@nate.com</option>
-                                    <option value="hotmail.com">@hotmail.com</option>
-                                    <option value="icloud.com">@icloud.com</option>
-                                    <option value="outlook.com">@outlook.com</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="daum.net">daum.net</option>
+                                    <option value="gmail.com">gmail.com</option>
+                                    <option value="nate.com">nate.com</option>
+                                    <option value="hotmail.com">hotmail.com</option>
+                                    <option value="icloud.com">icloud.com</option>
+                                    <option value="outlook.com">outlook.com</option>
                                     <option value="_manual">직접입력</option>
-                                </select></label>
+                                </select></span></label>
 
                             <label>전화번호</label>
-                            <label style="display: inline-flex; width: 100%;"><input type="text" placeholder="휴대폰 번호(-제외)">
+                            <label style="display: inline-flex; width: 100%;"><input type="text" placeholder="휴대폰 번호(-제외)"name="docPhoneNum">
                                 <input type="button" value="인증번호 전송" class="button primary" onclick="" style="border-radius: 0;"></label>
+                            <!--첨부파일 추가-->
+                            <div>
+                                <h4>첨부파일</h4>
+                                <input type="file" name="uploadFiles" multiple>
+                            </div>
+                            <!--썸네일-->
+                           <div style="border:solid blue">
+                               <div class="uploadResult">
+                                <ul style="list-style: none;"></ul>
+                                   </div>
+                           </div>
+                                   <div class="bigPictureWrapper">
+                                       <div class="bigPicture"></div>
+                                   </div>
                             <!--이용약관-->
                             <label style="padding-top: 40px;">이용약관</label>
                             <fieldset>
                                 <div class="col-12">
                                     <input type="checkbox" id="agreeAll" name="agreeAll"
-                                           onclick="selectAll(this)"> <label for="agreeAll"style="margin-bottom: -2%;"><strong>전체
-                                    동의하기</strong></label>
+                                           onclick="selectAll(this)"> <label for="agreeAll"style="margin-bottom: -2%;">
+                                    <strong>전체 동의하기</strong></label>
                                 </div>
                                 <hr>
                                 <div class="col-12">
@@ -332,8 +349,8 @@
                                 <div class="col-12">
                                     <input type="checkbox" id="event" name="term" class="termSel"
                                            onclick="checkSelectAll()"> <label for="event"
-                                                                              style="padding-bottom: 5%;"><strong
-                                        style="color: #A4C2EF;">[선택]</strong>&nbsp;이벤트, 프로모션 알림 메일 및
+                                                                              style="padding-bottom: 5%;"><strong>
+                                       <!-- style="color: #A4C2EF;">-->[선택]</strong>&nbsp;이벤트, 프로모션 알림 메일 및
                                     SMS 수신</label>
                                 </div>
                             </fieldset>
@@ -342,74 +359,81 @@
                             <div class="col-12">
                                 <ul class="actions">
                                     <li id="join" style="margin: auto;"><input type="button" value="가입하기"
-                                     id="popup_open_btn" class="button primary large" onclick="" style="width: 10em; border-radius:0;"/></li>
+                                     id="popup_open_btn" class="button primary large"  style="width: 10em; border-radius:0;"/></li>
+                                    <input type="hidden" id="email" name="docEmail">
+                                    <input type="hidden" id="major" name="docMajor">
                                 </ul>
                             </div>
+                        </div>
+
+
+                        <div class="box_layer" data-index="0" style="display: none;">
+                            <div class="layer_poc" style="top: 1494.5px;">
+                                <div class="poc_top">
+                                    <h1 class="poc_title">회원권 안내</h1>
+                                    <p class="poc_text">기본으로 제공되는 회원권에 대한 정보입니다. 회원권을 구매하시면 더 많은 진료예약, 답변이 가능합니다.</p>
+                                </div>
+                                <div class="poc_cont">
+                                    <p class="table_title">회원권 별 정보</p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th scope="col" class="poc">기능</th>
+                                            <th scope="col" class="poc_type1">BASIC</th>
+                                            <th scope="col" class="poc_type1">STANDARD</th>
+                                            <th scope="col" class="poc_type3">PREMIUM</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row" class="poc">이름(진료과목)</th>
+                                            <td class="poc_type1">○</td>
+                                            <td class="poc_type2">○</td>
+                                            <td class="poc_type3">○</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="poc">병원주소</th>
+                                            <td class="poc_type1">○</td>
+                                            <td class="poc_type2">○</td>
+                                            <td class="poc_type3">○</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="poc">약력</th>
+                                            <td class="poc_type1">○</td>
+                                            <td class="poc_type2">○</td>
+                                            <td class="poc_type3">○</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="poc point_c">진료예약</th>
+                                            <td class="poc_type1">5회</td>
+                                            <td class="poc_type2">20회</td>
+                                            <td class="poc_type3">무제한</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="poc poc">답변개수</th>
+                                            <td class="poc_type1">10회</td>
+                                            <td class="poc_type2">50회</td>
+                                            <td class="poc_type3">무제한</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <input type="hidden" name="docLat">
+                                <input type="hidden" name="docLng">
+                                <!--                <a href="#" class="btn_close">확인</a>-->
+                                <input type="submit" class="btn_close" value="확인" onclick="formSubmit()" style="margin-left: 39%;">
+                                <!--<input type="hidden">-->
+                            </div>
+                            <div class="layer_bg"></div>
                         </div>
                     </form>
                 </section>
             </div>
         </div>
-        <!--<div id="my_modal">-->
-            <!--<div style="font-size: 14px; margin-bottom: 20px;">
-                ※ 기본회원(BASIC)은 아래의 서비스를 제공합니다. 회원권을 구매하시면 더 많은 서비스를 이용하실 수 있습니다.</div>-->
-        <div class="box_layer" data-index="0" style="display: none;">
-            <div class="layer_poc" style="top: 1494.5px;">
-                <div class="poc_top">
-                    <h1 class="poc_title">회원권 안내</h1>
-                    <p class="poc_text">기본으로 제공되는 회원권에 대한 정보입니다. 회원권을 구매하시면 더 많은 진료예약, 답변이 가능합니다.</p>
-                </div>
-                <div class="poc_cont">
-                    <p class="table_title">회원권 별 정보</p>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th scope="col" class="poc">기능</th>
-                            <th scope="col" class="poc_type1">BASIC</th>
-                            <th scope="col" class="poc_type1">STANDARD</th>
-                            <th scope="col" class="poc_type3">PREMIUM</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row" class="poc">이름(진료과목)</th>
-                            <td class="poc_type1">○</td>
-                            <td class="poc_type2">○</td>
-                            <td class="poc_type3">○</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="poc">병원주소</th>
-                            <td class="poc_type1">○</td>
-                            <td class="poc_type2">○</td>
-                            <td class="poc_type3">○</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="poc">약력</th>
-                            <td class="poc_type1">○</td>
-                            <td class="poc_type2">○</td>
-                            <td class="poc_type3">○</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="poc point_c">진료예약</th>
-                            <td class="poc_type1">5회</td>
-                            <td class="poc_type2">20회</td>
-                            <td class="poc_type3">무제한</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="poc poc">답변개수</th>
-                            <td class="poc_type1">10회</td>
-                            <td class="poc_type2">50회</td>
-                            <td class="poc_type3">무제한</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-<!--                <a href="#" class="btn_close">확인</a>-->
-                <input type="button" class="btn_close" value="확인" style="margin-left: 39%;">
-            </div>
-            <div class="layer_bg"></div>
-        </div>
+
     </section>
+
 
     <!-- Footer -->
     <footer id="footer"></footer>
@@ -430,6 +454,141 @@
 <script src="/js/fix.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script> $(function() { $("#postcodify_search_button").postcodifyPopUp();}); </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    /*첨부파일 ajax*/
+    let check1 = false;
+    function showImage(fileCallPath){
+        if(check1) {return;}
+        $(".bigPictureWrapper").css("display", "flex").show();
+        $(".bigPicture").html("<img src='/upload/display?fileName=" + encodeURIComponent(fileCallPath) + "'>")
+            .animate({width:"100%", height:"100%"}, 1000);
+        check1 = true;
+    }
+
+    $(".bigPictureWrapper").on("click", function(){
+        if(!check1){return;}
+        $(".bigPicture").animate({width: "0%", height: "0%"}, 1000);
+        setTimeout(function(){
+            check1 = false;
+            $(".bigPictureWrapper").hide();
+        }, 1000)
+    })
+
+    $(document).ready(function(){
+        let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+        let maxSize = 5242880;// 5MB
+        let inputFile = $(".uploadDiv input");
+        let uploadResult = $(".uploadResult ul");
+
+        //form태그에 input hidden 생성 실습
+        //서버 쪽으로 전달할 첨부파일의 데이터를 input type hidden으로 추가하기
+        //추가된 li태그를 모두 가져와서 data속성을 통해 알맞는 값을 설정한다.
+        //form.append("추가할 HTML") : HTML 추가
+        //submit을 눌렀을 때 click 이벤트를 발생하고, 기존 submit이벤트는 막아줘야 한다.
+        //input태그가 모두 추가된 후 submit()해준다.
+
+        $("input[type='submit']").on("click", function(e){
+            e.preventDefault();
+            let form = $("form#doctorSignUpForm");
+            let str = "";
+            $(".uploadResult ul li").each(function(i, obj){
+                str += "<input type='hidden' name='attachList[" + i + "].fileName' value='" + $(obj).data('name') + "'>"
+                str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + $(obj).data('uuid') + "'>"
+                str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + $(obj).data('path') + "'>"
+                str += "<input type='hidden' name='attachList[" + i + "].image' value='" + $(obj).data('type') + "'>"
+            });
+            form.append(str).submit();
+        })
+
+        function showUploadFile(uploadFiles){
+            let str = "";
+            $(uploadFiles).each(function(i, obj){
+                if(!obj.image){
+                    let fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.fileName);
+
+                    str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
+                    str += "<div>";
+                    str += "<a href='/upload/download?fileName=" + fileCallPath + "'>";
+                    str += "<img src='/img/attach.png' width='100px'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
+                    str += "</a>"
+                    str += "<span data-file='" + fileCallPath + "' data-type='file'>x</span>";
+                    str += "</div>";
+                    str += "</li>";
+                }else{
+                    let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.fileName);
+                    let originPath = encodeURIComponent(obj.uploadPath + "/" + obj.fileName);
+
+                    str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
+                    str += "<div>";
+                    str += "<a href=\"javascript:showImage(\'" + originPath + "\')\">";
+                    str += "<img src='/upload/display?fileName=" + fileCallPath + "'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
+                    str += "</a>";
+                    str += "<span data-file='" + fileCallPath + "' data-type='image'>x</span>";
+                    str += "</div>";
+                    str += "</li>";
+                }
+            });
+            uploadResult.append(str);
+        }
+
+        $(".uploadResult").on("click", "span", function(){
+            let targetFile = $(this).data("file");
+            let type = $(this).data("type");
+            let li = $(this).parents("li");
+
+            $.ajax({
+                url: "/upload/deleteFile",
+                type: "POST",
+                data: {fileName:targetFile, type:type},
+                dataType: "text",
+                success: function(result){
+                    alert(result);
+                    li.remove();
+                }
+            });
+
+        });
+
+        //확장자 별 업로드 제한, 특정 크기 이상의 파일은 업로드 제한
+        function checkExtension(fileName, fileSize){
+            if(regex.test(fileName)){
+                alert("업로드 할 수 없는 파일의 형식입니다.");
+                return false;
+            }
+            if(fileSize >= maxSize){
+                alert("파일 사이즈 초과");
+                return false;
+            }
+            return true;
+        }
+
+        $("input[type='file']").change(function(){
+            let formData = new FormData();
+            let inputFile = $("input[name='uploadFiles']");
+            let files = inputFile[0].files;
+
+            for(let i=0; i<files.length; i++){
+                if(!checkExtension(files[i].name, files[i].size)){ return; }
+                formData.append("uploadFiles", files[i]);
+            }
+
+            $.ajax({
+                url: "/upload/uploadAjaxAction",
+                type: "post",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(fileList){
+                    showUploadFile(fileList);
+                    inputFile.val("");
+                }
+            });
+        });
+    })
+    /*첨부파일ajax 끝*/
+
+</script>
 <script>
     function checkSelectAll()  {
 // 전체 체크박스
@@ -458,8 +617,74 @@
             checkbox.checked = selectAll.checked
         })
     }
+    /*이메일*/
+    $(document).ready(function(){
+        $('#email_select').change(function(){
+            var email = $('#email_select').val(); //id선택자로 email select box값 추출하여 저장
+            console.log(email);
+            if(email == '_manual'){ //selectbox value가 _manual이면
+                $("#email_select").replaceWith("<input type = 'text' id='input_email' placeholder='직접입력' style='margin: auto !important;'>");
+                //selectbox 태그를 input 태그로 변경
+                $("#inputEmail").append("<button id='reset' type='button' onclick='check()' style='position: absolute;left: 62%;top: 186%;box-shadow: none;'>✖</button>");
+            }
+        });
+    });
 
 
+    function check(){
+        var i = document.getElementById('inputEmail');
+        var j = document.getElementById('input_email');
+        j.value=null;
+        i.innerHTML = "<select id='email_select' name='email'style='font-size: 19px !important;border-radius: 0;width: 147%;'>"+
+            "<option selected disabled>선택</option>"+
+            "<option value='naver.com'>naver.com</option>"+
+            "<option value='daum.net'>daum.net</option>"+
+            "<option value='gmail.com'>gmail.com</option>"+
+            "<option value='nate.com'>nate.com</option>"+
+            "<option value='hotmail.com'>hotmail.com</option>"+
+            "<option value='icloud.com'>icloud.com</option>"+
+            "<option value='outlook.com'>outlook.com</option>"+
+            "<option value='_manual'>직접입력</option></select>";
+    };
+
+
+
+
+    function formSubmit() {
+        let form= document.doctorSignUpForm;
+        let email = document.getElementById("email");
+        var i = document.getElementById('user_email');
+        var j = document.getElementById('email_select');
+        email.value = i.value+"@"+ j.value;
+        console.log(email.value);
+        let major = document.getElementById("major");
+        var f = document.getElementById('major_select');
+        major.value = f.value;
+        form.submit();
+
+    }
+
+
+    /*전공선택*/
+    $(document).ready(function(){
+        $('#major_select').change(function(){
+            var major = $('#major_select').val(); //id선택자로 email select box값 추출하여 저장
+            /*if(email == '_manual'){ //selectbox value가 _manual이면
+                $("#email_select").replaceWith("<input type = 'text' id='input_email' placeholder='직접입력' style='margin: auto !important;'>");
+                //selectbox 태그를 input 태그로 변경
+                $("#inputEmail").append("<button id='reset' type='button' onclick='check()'>✖</button>");
+            }*/
+            console.log(major);
+        });
+    });
+
+   /* function formSubmit() {
+        let form= document.doctorSignUpForm;
+        let major = document.getElementById("major");
+        var f = document.getElementById('major_select');
+        major.value = f.value;
+        form.submit();
+    }*/
 </script>
 
 
@@ -474,6 +699,14 @@
     let geocoder;
     let responseDiv;
     let response;
+
+    function f1() {
+    const arr = map.location.split(",");
+    document.writeln(arr[0]);
+    document.writeln(arr[1]);
+
+    }
+
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
             zoom: 13,
@@ -551,7 +784,24 @@
 
                 var location = results[0].geometry.location;
                 alert(location);
+                /*const arr = map.location.split(",");*/
+                console.log(location);
+                var arr = location.toString().split(",");
+                console.log(arr[0].substring(1).trim());
+                console.log(arr[1].substring(0,11).trim());
+
+
+                let form= document.doctorSignUpForm;
+                form.docLat.value=arr[0].substring(1).trim();
+                form.docLng.value=arr[1].substring(0,11).trim();
+
                 return results;
+
+
+
+
+
+
             })
             .catch((e) => {
                 alert("Geocode was not successful for the following reason: " + e);

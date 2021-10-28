@@ -3,5 +3,8 @@
 
 <configuration>
     <typeAliases>
+        <typeAlias type="com.example.test.user.vo.UserVO" alias="UserVO"/>
+        <typeAlias type="com.example.test.user.vo.DocVO" alias="DocVO"/>
+        <typeAlias type="com.example.test.user.vo.DocAttachFileVO" alias="DocAttachFileVO"/>
     </typeAliases>
 </configuration>
