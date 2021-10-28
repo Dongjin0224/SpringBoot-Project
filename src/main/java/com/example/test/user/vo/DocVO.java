@@ -3,15 +3,18 @@ package com.example.test.user.vo;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Data
 public class DocVO {
-    private int docNo;
+    private long docNo;
     private String docId;
     private String docPw;
     private String docName;
     private String docMajor;
     private String docHospitalName;
+    private String docHosPhone;
     private double docLat;
     private double docLng;
     private String docAddress;
@@ -23,5 +26,7 @@ public class DocVO {
     private int docServiceCnt;
     private int docReportCnt;
     private int docLikeCnt;
+
+    private List<DocAttachFileVO> attachList;
 
 }

@@ -72,9 +72,9 @@ public class WebController {
     //  jin
     @GetMapping("login")
     public String login(){return "user/login";}
-    //  jin
+    /*//  jin
     @GetMapping("memberSignUp")
-    public String memberSignUp(){return "user/memberSignUp";}
+    public String memberSignUp(){return "user/memberSignUp";}*/
     //  jin
     @GetMapping("doctorSignUp")
     public String doctorSignUp(){return "user/doctorSignUp";}

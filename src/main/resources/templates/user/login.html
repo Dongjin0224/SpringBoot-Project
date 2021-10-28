@@ -64,35 +64,37 @@
                 </div>
                 <div id="join" class="tabcontent" style="width: 90%; margin: 5%;">
                     <section class="tiles" >
-                        <form>
+                        <form method="post" action="/user/login" name="memberSignUpForm">
                             <div>
                                 <header>
                                     <div style="float:left;"><h3><i class="fas fa-user">  회원가입</i></h3></div>
                                     <div style="margin-left: 23%;"> <input class="signup"type="button" value="의사회원가입" style="box-shadow: none;background-color:rgb(255 255 255 / 85%)!important;"></div>
                                     </header>
 
-                                <label style="margin-top: 10%;">아이디<input type="text" placeholder="4자 이상, 16자 이하로 입력해주세요."></label>
-                                <label>비밀번호<input type="password" placeholder="8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함"></label>
-                                <label>이름<input type="text" placeholder="이름 입력"></label>
+                                <label style="margin-top: 10%;">아이디<input type="text" placeholder="4자 이상, 16자 이하로 입력해주세요." name="userId"></label>
+                                <label>비밀번호<input type="password" placeholder="8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함" name="userPw"></label>
+                                <label>이름<input type="text" placeholder="이름 입력" name="userName"></label>
+
                                 <label>이메일</label>
                                 <label style="display: inline-flex;width: 100%;">
-                                    <input type="text" placeholder="">
-
+                                    <input type="text" placeholder="" name="userEmail1" id="user_email">
+                                    <span>@</span>
+                                        <span id="inputEmail">
                                     <select
-                                            id="email_select" name='email_detail' style="border-radius: 0;">
+                                            id="email_select" name='userEmail2' style="border-radius: 0;">
                                         <option selected disabled>선택</option>
-                                        <option value="naver.com">@naver.com</option>
-                                        <option value="daum.net">@daum.net</option>
-                                        <option value="gmail.com">@gmail.com</option>
-                                        <option value="nate.com">@nate.com</option>
-                                        <option value="hotmail.com">@hotmail.com</option>
-                                        <option value="icloud.com">@icloud.com</option>
-                                        <option value="outlook.com">@outlook.com</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="daum.net">daum.net</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="nate.com">nate.com</option>
+                                        <option value="hotmail.com">hotmail.com</option>
+                                        <option value="icloud.com">icloud.com</option>
+                                        <option value="outlook.com">outlook.com</option>
                                         <option value="_manual">직접입력</option>
-                                    </select></label>
+                                    </select> </span></label>
 
                                 <label>전화번호</label>
-                                <label style="display: inline-flex; width: 100%;"><input type="text" placeholder="휴대폰 번호(-제외)">
+                                <label style="display: inline-flex; width: 100%;"><input type="text" placeholder="휴대폰 번호(-제외)" name="userPhoneNum">
                                     <input type="button" value="인증번호 전송" class="button primary" onclick="" style="border-radius: 0;"></label>
                                 <!--이용약관-->
                                 <label style="padding-top: 40px;">이용약관</label>
@@ -128,9 +130,9 @@
                                 <div class="col-12">
                                     <ul class="actions">
                                         <li id="" style="margin: auto;"><input type="button"  value="가입하기"class="button primary large" onclick="formSubmit()" style="width: 10em;border-radius: 0;"/></li>
+                                        <input type="hidden" id="email" name="userEmail">
                                     </ul>
                                 </div>
-
                             </div>
                         </form>
                     </section>
@@ -160,6 +162,7 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
     function openLogin(evt, loginName) {
         // Declare all variables
@@ -210,6 +213,50 @@
         checkboxes.forEach((checkbox) => {
             checkbox.checked = selectAll.checked
         })
+    }
+
+
+    /*이메일*/
+
+    $(document).ready(function(){
+        $('#email_select').change(function(){
+            var email = $('#email_select').val(); //id선택자로 email select box값 추출하여 저장
+            if(email == '_manual'){ //selectbox value가 _manual이면
+                $("#email_select").replaceWith("<input type = 'text' id='input_email' placeholder='직접입력' style='margin: auto !important;'>");
+                //selectbox 태그를 input 태그로 변경
+                $("#inputEmail").append("<button id='reset' type='button' onclick='check()'>✖</button>");
+            }
+        });
+    });
+
+
+    function check(){
+        var i = document.getElementById('inputEmail');
+        var j = document.getElementById('input_email');
+        j.value=null;
+        i.innerHTML = "<select id='email_select' name='email'style='font-size: 10px !important;'>"+
+            "<option selected disabled>선택</option>"+
+            "<option value='naver.com'>naver.com</option>"+
+            "<option value='daum.net'>daum.net</option>"+
+            "<option value='gmail.com'>gmail.com</option>"+
+            "<option value='nate.com'>nate.com</option>"+
+            "<option value='hotmail.com'>hotmail.com</option>"+
+            "<option value='icloud.com'>icloud.com</option>"+
+            "<option value='outlook.com'>outlook.com</option>"+
+            "<option value='_manual'>직접입력</option></select>";
+    };
+
+
+
+
+    function formSubmit() {
+        let form= document.memberSignUpForm;
+        let email = document.getElementById("email");
+        var i = document.getElementById('user_email');
+        var j = document.getElementById('email_select');
+        email.value = i.value+"@"+ j.value;
+        console.log(email.value);
+        form.submit();
     }
 </script>
 </body>
