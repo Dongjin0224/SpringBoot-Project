@@ -1,8 +1,7 @@
-package com.example.test.user.dao;
+package com.example.test.model.user.dao;
 
 import com.example.test.mappers.DocAttachFileMapper;
-import com.example.test.user.vo.DocAttachFileVO;
-import lombok.RequiredArgsConstructor;
+import com.example.test.model.user.vo.DocAttachFileVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

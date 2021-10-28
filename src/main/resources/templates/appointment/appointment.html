@@ -68,10 +68,10 @@
             <div class="content main">
                 <fieldset class="info">
                     <h3 style="text-align: center;">의사﹒병원정보</h3>
-                    <div th:object="${appointment}">
+                    <div th:object="${file}">
                         <div class="imgDiv">
-                            <img th:src="@{/img/} + *{docPic}" alt="no image" class="docPic"><br>
-                            <!--<img src="/img/ex.png" alt="no image" class="docPic"><br>-->
+                            <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}" alt="no image" class="docPic"><br>
+
                         </div>
                     </div>
                     <div>

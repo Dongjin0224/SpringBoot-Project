@@ -1,9 +1,7 @@
 package com.example.test.services;
 
-import com.example.test.mappers.UserMapper;
-import com.example.test.user.dao.MapDAO;
-import com.example.test.user.dao.UserDAO;
-import com.example.test.user.vo.UserVO;
+import com.example.test.model.user.dao.UserDAO;
+import com.example.test.model.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

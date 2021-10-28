@@ -1,6 +1,6 @@
 package com.example.test.dao;
 
-import com.example.test.appointment.dao.AppointmentDAO;
+import com.example.test.model.appointment.dao.AppointmentDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,6 @@ public class AppointmentDAO_test {
     private AppointmentDAO appointmentDAO;
 
     @Test
-    public void testGet(){ log.info(appointmentDAO.get(1L).toString()); }
+    public void testGet(){ log.info(appointmentDAO.get(2L).toString()); }
 
 }

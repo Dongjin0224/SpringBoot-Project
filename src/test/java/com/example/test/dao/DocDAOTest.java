@@ -1,9 +1,7 @@
 package com.example.test.dao;
 
-import com.example.test.user.dao.DocDAO;
-import com.example.test.user.dao.UserDAO;
-import com.example.test.user.vo.DocVO;
-import com.example.test.user.vo.UserVO;
+import com.example.test.model.user.dao.DocDAO;
+import com.example.test.model.user.vo.DocVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

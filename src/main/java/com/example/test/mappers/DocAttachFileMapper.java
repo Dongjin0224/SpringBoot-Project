@@ -1,7 +1,6 @@
 package com.example.test.mappers;
 
-import com.example.test.user.vo.DocAttachFileVO;
-import org.apache.ibatis.annotations.Mapper;
+import com.example.test.model.user.vo.DocAttachFileVO;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.example.test.controller;
 
-import com.example.test.user.vo.DocAttachFileVO;
+import com.example.test.model.user.vo.DocAttachFileVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.core.io.FileSystemResource;
@@ -37,7 +37,7 @@ public class DocAttachFileController {
         log.info("upload ajax action...........");
         List<DocAttachFileVO> fileList = new ArrayList<>();
 
-        String uploadFolder = "C:/upload";
+        String uploadFolder = "C:/upload/";
         String uploadFolderPath = getFolder();
 
 //        년/월/일 폴더 생성

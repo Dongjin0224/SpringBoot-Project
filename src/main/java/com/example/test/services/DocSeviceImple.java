@@ -1,11 +1,9 @@
 package com.example.test.services;
 
-import com.example.test.user.dao.DocAttachFileDAO;
-import com.example.test.user.dao.DocDAO;
-import com.example.test.user.dao.UserDAO;
-import com.example.test.user.vo.DocAttachFileVO;
-import com.example.test.user.vo.DocVO;
-import com.example.test.user.vo.UserVO;
+import com.example.test.model.user.dao.DocAttachFileDAO;
+import com.example.test.model.user.dao.DocDAO;
+import com.example.test.model.user.vo.DocAttachFileVO;
+import com.example.test.model.user.vo.DocVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,17 +1,20 @@
 package com.example.test.controller;
 
+import com.example.test.model.user.vo.DocAttachFileVO;
 import com.example.test.services.DocService;
 
-import com.example.test.user.vo.DocVO;
+import com.example.test.model.user.vo.DocVO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -38,4 +41,10 @@ public class DocController {
         return "user/login";
     }
 
+    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<DocAttachFileVO> getAttachList(Long docNo){
+        log.info("getAttachList " + docNo);
+        return service.getAttachList(docNo);
+    }
 }

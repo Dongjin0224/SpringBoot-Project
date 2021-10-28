@@ -1,14 +1,10 @@
-package com.example.test.user.dao;
+package com.example.test.model.user.dao;
 
-import com.example.test.mappers.MapMapper;
 import com.example.test.mappers.UserMapper;
-import com.example.test.user.vo.DocVO;
-import com.example.test.user.vo.UserVO;
+import com.example.test.model.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 @Slf4j
