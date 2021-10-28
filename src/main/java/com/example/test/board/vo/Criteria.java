@@ -1,4 +1,4 @@
-package com.example.test.beans.vo;
+package com.example.test.board.vo;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
