@@ -1,6 +1,6 @@
 package com.example.test.notice.dao;
 
-import com.example.test.beans.vo.Criteria;
+import com.example.test.model.beans.vo.Criteria;
 import com.example.test.mappers.NoticeMapper;
 import com.example.test.notice.vo.NoticeVO;
 import lombok.RequiredArgsConstructor;

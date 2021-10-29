@@ -1,7 +1,7 @@
 package com.example.test.controller;
 
-import com.example.test.beans.vo.Criteria;
-import com.example.test.beans.vo.PageDTO;
+import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.beans.vo.PageDTO;
 import com.example.test.services.NoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
