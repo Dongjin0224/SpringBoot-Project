@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/css/manage.css">
+</head>
+<style>
+    body {
+        padding-top: 0rem;
+    }
+    .box1 {
+        margin-top: 20px;
+        background-color: rgb(216, 230, 241);
+        width: 400px;
+        height: 890px;
+        color: white;
+        padding: 0;
+    }
+    table tbody tr:nth-child(2n + 1) {
+        background-color: white;
+    }
+</style>
+<body>
+<div class="header">
+    <div class="head">
+        <div class="log">
+            <ul>
+                <li><a href=""> 로그아웃</a></li>
+                <li><a href="/admin">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="nav">
+    <div class="box1">
+        <div class="admin">
+            <div class="text">
+                관리자님<br>
+                접속시간 : <span id="timeResult"></span>
+                <br>
+                <button onclick="location.href='${pageContext.request.contextPath }/user/Logout.me'">로그아웃</button>
+            </div>
+
+        </div>
+        <div class="menu">
+            <div class="text1">
+                정보관리
+            </div>
+            <div class="menu1">
+                <div class="manage">
+                    <ul>
+                        <ul>
+                            <a href="/admin/adminUpdateUser"><li>일반회원관리</li></a>
+                            <a href="/admin/adminUpdateDOC"><li>의사회원관리</li></a>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="text1">
+                정보등록<br>
+            </div>
+            <br>
+            <div class="menu2">
+                <div class="manage">
+                    <ul>
+                        <a href=""><li>스토어 등록</li></a>
+                        <a href=""><li>이벤트 등록</li></a>
+                        <a href=""><li>공지사항 등록</li></a>
+                        <a href=""><li>시공사례 등록</li></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 830px; overflow: auto;">
+    <div class="container" style="text-align: center;margin-top: 23%;">
+        <div class="image">
+            <img src="img/logo.png" style="background: black; width: 60vh;">
+        </div>
+        <div class="text3">
+            <h1>관리자 사이트입니다.</h1>
+            해당하는 메뉴를 왼쪽에서 선택해주세요.
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+</body>
+<script>
+    let d = new Date();
+    let currentDate = d.getFullYear() + "년 " + (d.getMonth() + 1) + "월 " + d.getDate() + "일";
+    let currentTime = d.getHours() + "시 " + d.getMinutes() + "분 "/* + d.getSeconds() + "초"*/;
+    let result = document.getElementById("timeResult");
+    result.innerHTML = currentDate + "  " + currentTime;
+</script>
+</html>
