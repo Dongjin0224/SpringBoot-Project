@@ -35,14 +35,14 @@ public class WebController {
     @GetMapping("header")
     public String header(){return "fixed/header";}
     //  vanny
-    @GetMapping("term")
-    public String term(){return "term/term";}
+    @GetMapping("terms")
+    public String term(){return "term/terms";}
     //  vanny
-    @GetMapping("privacy_policy")
-    public String privacy_policy(){return "term/privacy_policy";}
+    @GetMapping("privacyPolicy")
+    public String privacy_policy(){return "term/privacyPolicy";}
     //  vanny
-    @GetMapping("location_policy")
-    public String location_policy(){return "term/location_policy";}
+    @GetMapping("locationPolicy")
+    public String location_policy(){return "term/locationPolicy";}
     //  hong
     @GetMapping("detail")
     public String detail(){return "mainBoard/detail";}

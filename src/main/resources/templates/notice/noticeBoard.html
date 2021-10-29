@@ -13,10 +13,12 @@
 </head>
 <style>
     .bno { width: 12%; text-align: center; }
-    .title { width: 42%; text-align: center; }
+    /*.title { width: 42%; text-align: center; }*/
+    .title { width: 54%; text-align: center; }
     .writer { width: 12%; text-align: center; }
     .noticeDate { width: 22%; text-align: center; }
     .noticeViews { width: 12%; text-align: center; }
+    table td a { display:block; width:100%; height:100%; }
 
     a { border-bottom: none; }
 
@@ -74,7 +76,7 @@
 
                         <!-- Elements -->
                         <header class="major" style="text-align: center;">
-                            <h3 style="margin-bottom: -3%;">공지사항</h3>
+                            <h3 style="margin-bottom: -3%; font-weight: bold; font-size: x-large;">공지사항</h3>
                             <hr>
                         </header>
                         <!--href에 알맞는 URL 설정-->
@@ -87,7 +89,7 @@
                                         <th class="title">제목</th>
                                         <th class="writer">작성자</th>
                                         <th class="noticeDate">작성일</th>
-                                        <th class="noticeViews">조회수</th>
+                                        <!--<th class="noticeViews">조회수</th>-->
                                     </tr>
                                     </thead>
                                     <tbody th:each="notice : ${list}" th:object="${notice}">
@@ -96,7 +98,7 @@
                                         <td class="title"><a id="goRead" th:href="*{noticeNo}" th:text="*{noticeTitle}"></a></td>
                                         <td class="writer">관리자</td>
                                         <td class="noticeDate" th:text="*{noticeDate}"></td>
-                                        <td class="noticeViews" th:text="*{noticeViews}"></td>
+                                        <!--<td class="noticeViews" th:text="*{noticeViews}"></td>-->
                                     </tr>
                                     </tbody>
                             </table>
