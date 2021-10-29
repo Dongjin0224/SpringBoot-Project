@@ -1,6 +1,6 @@
 package com.example.test.mappers;
 
-import com.example.test.beans.vo.Criteria;
+import com.example.test.model.beans.vo.Criteria;
 import com.example.test.notice.vo.NoticeVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.example.test.services;
 
-import com.example.test.beans.vo.Criteria;
+import com.example.test.model.beans.vo.Criteria;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
