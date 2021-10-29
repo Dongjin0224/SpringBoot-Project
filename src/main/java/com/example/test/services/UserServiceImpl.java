@@ -16,4 +16,15 @@ public class UserServiceImpl implements UserService{
           userDAO.memberSignUp(vo);
     }
 
+    @Override
+    public UserVO userLogin(UserVO vo) {
+        return userDAO.userLogin(vo);
+    }
+
+    @Override
+    public boolean checkId(String userId) {
+        return userDAO.checkId(userId);
+    }
+
+
 }

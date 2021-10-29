@@ -8,4 +8,8 @@ public interface UserMapper {
 
     /*회원가입*/
     public void memberSignUp(UserVO vo);
+
+    public UserVO userLogin(UserVO vo);
+
+    public int checkId(String userId);
 }

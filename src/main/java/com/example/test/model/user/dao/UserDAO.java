@@ -17,6 +17,10 @@ public class UserDAO {
         userMapper.memberSignUp(vo);
     }
 
-   /* public UserVO memberLogin*/
+   public UserVO userLogin(UserVO vo){return userMapper.userLogin(vo);}
+
+   public boolean checkId(String userId){
+        return userMapper.checkId(userId) == 0;
+   }
 
 }

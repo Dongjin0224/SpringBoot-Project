@@ -17,5 +17,7 @@ public class DocDAO {
         docMapper.insertSelectKey_bno(vo);
     }
 
+    public DocVO docLogin(DocVO vo){ return docMapper.docLogin(vo); }
+
 
 }

@@ -28,5 +28,6 @@ public class DocVO {
     private int docLikeCnt;
 
     private List<DocAttachFileVO> attachList;
+    private List<DocHosAttachFileVO> hosattachList;
 
 }

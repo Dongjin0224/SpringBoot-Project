@@ -7,4 +7,8 @@ import org.springframework.stereotype.Service;
 public interface UserService {
     /*회원가입*/
     public void memberSignUp(UserVO vo);
+
+    public UserVO userLogin(UserVO vo);
+
+    public boolean checkId(String userId);
 }

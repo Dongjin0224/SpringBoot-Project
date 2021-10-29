@@ -10,4 +10,6 @@ public interface DocMapper {
     public void DocSignUp(DocVO vo);
     /*docNo가져오기*/
     public void insertSelectKey_bno(DocVO vo);
+
+    public DocVO docLogin(DocVO vo);
 }

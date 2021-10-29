@@ -25,5 +25,9 @@
         VALUES(#{docNo} ,#{docId}, #{docPw}, #{docName}, #{docMajor}, #{docHospitalName}, #{docHosPhone}, #{docLat},
         #{docLng}, #{docAddress}, #{docEmail}, #{docPhoneNum})
     </insert>
+
+    <select id="docLogin" resultType="DocVO">
+        SELECT * FROM TABLE_DOC WHERE DOCID = #{docId} AND DOCPW =#{docPw}
+    </select>
 </mapper>
 
