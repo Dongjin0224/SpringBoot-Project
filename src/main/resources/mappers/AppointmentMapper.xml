@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.test.mappers.AppointmentMapper">
-     <select id="read" resultType="com.example.test.user.vo.DocVO">
+     <select id="read" resultType="com.example.test.model.user.vo.DocVO">
         SELECT * FROM TABLE_DOC WHERE docNo = #{docNo}
+    </select>
+
+    <select id="getFile" resultType="com.example.test.model.user.vo.DocAttachFileVO">
+        SELECT * FROM TABLE_DOC_ATTACH WHERE docNo = #{docNo}
     </select>
 </mapper>

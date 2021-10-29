@@ -1,8 +1,8 @@
 package com.example.test.mappers;
 
-import com.example.test.beans.vo.Criteria;
-import com.example.test.volunteer.vo.ApplicantsVO;
-import com.example.test.volunteer.vo.VolunteerBoardVO;
+import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.volunteer.vo.ApplicantsVO;
+import com.example.test.model.volunteer.vo.VolunteerBoardVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test.mappers.UserMapper">
+    <insert id="memberSignUp">
+      INSERT INTO TABLE_USER
+      (
+    	  userNo, userId, userPw, userName, userPhoneNum, userEmail
+      ) VALUES(
+         SEQ_USER.NEXTVAL, #{userId}, #{userPw}, #{userName}, #{userPhoneNum}, #{userEmail}
+      )
+   </insert>
+    <select id="userLogin" resultType="UserVO">
+        SELECT USERID, USERPW
+        FROM TABLE_USER WHERE USERID = #{userId} AND USERPW = #{userPw}
+    </select>
+</mapper>

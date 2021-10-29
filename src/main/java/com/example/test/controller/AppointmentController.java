@@ -1,6 +1,6 @@
 package com.example.test.controller;
 
-import com.example.test.beans.vo.Criteria;
+import com.example.test.model.beans.vo.Criteria;
 import com.example.test.services.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +28,7 @@ public class AppointmentController {
         */
 
         model.addAttribute("appointment", appointmentService.get(docNo));
+        model.addAttribute("file", appointmentService.getFile(docNo));
         /*  model.addAttribute("criteria", criteria);*/
     }
 }

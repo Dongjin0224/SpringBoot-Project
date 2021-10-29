@@ -1,7 +1,7 @@
 package com.example.test.dao;
 
-import com.example.test.beans.vo.Criteria;
-import com.example.test.volunteer.dao.VolunteerDAO;
+import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.volunteer.dao.VolunteerDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

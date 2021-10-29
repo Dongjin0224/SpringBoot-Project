@@ -1,9 +1,9 @@
 package com.example.test.services;
 
-import com.example.test.beans.vo.Criteria;
-import com.example.test.volunteer.dao.VolunteerDAO;
-import com.example.test.volunteer.vo.ApplicantsVO;
-import com.example.test.volunteer.vo.VolunteerBoardVO;
+import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.volunteer.dao.VolunteerDAO;
+import com.example.test.model.volunteer.vo.ApplicantsVO;
+import com.example.test.model.volunteer.vo.VolunteerBoardVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,8 @@
 package com.example.test.services;
 
-import com.example.test.appointment.dao.AppointmentDAO;
-import com.example.test.user.vo.DocVO;
+import com.example.test.model.appointment.dao.AppointmentDAO;
+import com.example.test.model.user.vo.DocAttachFileVO;
+import com.example.test.model.user.vo.DocVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,10 @@ public class AppointmentServiceImple implements AppointmentService {
     @Override
     public DocVO get(Long docNo) {
         return appointmentDAO.get(docNo);
+    }
+
+    @Override
+    public DocAttachFileVO getFile(Long docNo) {
+        return appointmentDAO.getFile(docNo);
     }
 }

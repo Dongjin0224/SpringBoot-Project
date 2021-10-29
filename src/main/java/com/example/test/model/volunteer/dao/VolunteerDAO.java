@@ -1,9 +1,9 @@
-package com.example.test.volunteer.dao;
+package com.example.test.model.volunteer.dao;
 
-import com.example.test.beans.vo.Criteria;
+import com.example.test.model.beans.vo.Criteria;
 import com.example.test.mappers.VolunteerMapper;
-import com.example.test.volunteer.vo.ApplicantsVO;
-import com.example.test.volunteer.vo.VolunteerBoardVO;
+import com.example.test.model.volunteer.vo.ApplicantsVO;
+import com.example.test.model.volunteer.vo.VolunteerBoardVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
