@@ -1,4 +1,4 @@
-package com.example.test.payment.vo;
+package com.example.test.model.payment.vo;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;

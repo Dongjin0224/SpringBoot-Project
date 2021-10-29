@@ -1,5 +1,9 @@
 package com.example.test.services;
 
+import com.example.test.model.payment.dao.PayDAO;
+import com.example.test.model.payment.vo.PayVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -12,7 +16,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class ImportPay {
+@Slf4j
+@RequiredArgsConstructor
+public class PayService {
+
+    private final PayDAO payDAO;
 
     public String getToken() {
 
@@ -32,6 +40,20 @@ public class ImportPay {
 
         HttpEntity<String> entity = new HttpEntity<>(json,headers);
         return restTemplate.postForObject("https://api.iamport.kr/users/getToken", entity, String.class);
+    }
 
+//    public void insertCustomer(PayVO payVO){
+//        log.info("insert customer_uid.........");
+//        payDAO.insertCustomer(payVO);
+//    }
+
+    public void updateCustomer(PayVO payVO){
+        log.info("update customer_uid.........");
+        payDAO.updateCustomer(payVO);
+    }
+
+    public void pay(PayVO payVO){
+        log.info("pay................");
+        payDAO.pay(payVO);
     }
 }

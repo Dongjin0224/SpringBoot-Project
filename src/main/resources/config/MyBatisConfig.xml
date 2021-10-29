@@ -3,5 +3,6 @@
 
 <configuration>
     <typeAliases>
+        <typeAlias type="com.example.test.model.payment.vo.PayVO" alias="payVO"></typeAlias>
     </typeAliases>
 </configuration>

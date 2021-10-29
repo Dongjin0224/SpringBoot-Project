@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<form action="/payment/startPay", method="post" name="testForm">
+<form action="/payment/getCustomer", method="post" name="testForm">
     <div>
         <label for="card_number">카드 번호 XXXX-XXXX-XXXX-XXXX</label>
         <input id="card_number" type="text" name="card_number">
@@ -25,15 +25,110 @@
         <label for="pwd_2digit">카드 비밀번호 앞 두자리 XX</label>
         <input id="pwd_2digit" type="text" name="pwd_2digit">
     </div>
-<!--    <p>테스트 결제 창~~~</p>-->
-    <input type="hidden" value="users_0001" name="customer_uid">
-    <input type="hidden" value="1001" name="price">
+    <input type="hidden" value="dongjin1234" name="customer_uid">
+    <input type="hidden" value="1001" name="amount">
     <input type="hidden" value="TestProduct" name="name">
-    <input id="check_module" type="submit" value="결제하기">
+    <input type="hidden" value=1 name="docNo">
+    <input type="submit" value="test" location.href="#">
+</form>
+
+<form action="/payment/schedule" method="post" name="scForm">
+    <input type="hidden" value="dongjin1234" name="customer_uid">
+    <input type="hidden" value=1000 name="price">
+    <input id="check_module" type="button" value="결제하기">
 </form>
 
 </body>
 <script>
+// let form = document.testForm;
 
+// const getToken =
+//     $.ajax({
+//         url: "https://api.iamport.kr/users/getToken",
+//         method: "post", // POST method
+//         headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*'}, // "Content-Type": "application/json"
+//         data: {
+//             imp_key: "7681399020268514", // REST API 키
+//             imp_secret: "fcff66b2ffa2c27be20812e9e502f68d88d23098829f2601a77253d946b8731a40171253b96b5714" // REST API Secret
+//         }
+//     });
+// const { access_token } = getToken.data.response; // 인증 토큰
+// console.log(access_token);
+
+
+// function click() {
+//     var getToken =
+//         $.ajax({
+//             url: "/payment/getToken",
+//             method: "post",
+//             data: {
+//                 "customer_uid": "asd12345",
+//                 "merchant_uid": "maerchant1234",
+//                 "name": "test11",
+//                 "card_number": "4854-8003-0494-8872",
+//                 "expiry": "2024-12",
+//                 "birth": "960224",
+//                 "pwd_2digit": "51",
+//                 "price" : 1000
+//             }
+//         });
+//     var access_token = getToken;
+//     console.log(access_token);
+// }
+
+let price = $("input[name='price']").val();
+let form = document.scForm;
+$("#check_module").click(function () {
+    var IMP = window.IMP; // 생략가능
+    IMP.init('imp82864473');
+    // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+    // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+    IMP.request_pay({
+        pg : 'nice',
+        pay_method : 'card',
+        merchant_uid: "merchant_" + new Date().getTime(), // 상점에서 관리하는 주문 번호
+        name : '주문명:결제테스트',
+        amount : price,
+        buyer_email : 'iamport@siot.do',
+        buyer_name : '구매자이름',
+        buyer_tel : '010-1234-5678',
+        buyer_addr : '서울특별시 강남구 삼성동',
+        buyer_postcode : '123-456'
+    }, function(rsp) {
+        if ( rsp.success ) {
+            // //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            // jQuery.ajax({
+            //     url: "/payments/token", //cross-domain error가 발생하지 않도록 주의해주세요
+            //     type: 'POST',
+            //     dataType: 'json',
+            //     data: {
+            //         access_token : rsp.access_token
+            //         //기타 필요한 데이터가 있으면 추가 전달
+            //     }
+            // }).done(function(data) {
+                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                // if ( everythings_fine ) {
+                    var msg = '결제가 완료되었습니다.';
+                    msg += '\n고유ID : ' + rsp.imp_uid;
+                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                    msg += '\n결제 금액 : ' + rsp.paid_amount;
+                    msg += '\n카드 승인번호 : ' + rsp.apply_num;
+
+                    alert(msg);
+                    form.submit();
+            //     } else {
+            //         //[3] 아직 제대로 결제가 되지 않았습니다.
+            //         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+            //     }
+            // });
+        } else {
+            var msg = '결제에 실패하였습니다.';
+            msg += '에러내용 : ' + rsp.error_msg;
+
+            alert(msg);
+        }
+    });
+
+});
 </script>
 </html>

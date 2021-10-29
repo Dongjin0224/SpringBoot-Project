@@ -1,6 +1,6 @@
 package com.example.test.mappers;
 
-import com.example.test.user.vo.DocVO;
+import com.example.test.model.user.vo.DocVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

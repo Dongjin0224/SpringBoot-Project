@@ -1,9 +1,9 @@
 package com.example.test.controller;
 
 
-import com.example.test.payment.vo.PayVO;
-import com.example.test.payment.vo.GetTokenVO;
-import com.example.test.services.ImportPay;
+import com.example.test.model.payment.vo.PayVO;
+import com.example.test.model.payment.vo.GetTokenVO;
+import com.example.test.services.PayService;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -24,10 +24,52 @@ import java.util.*;
 @RequestMapping("/payment/*")
 public class PayController {
 
-    private final ImportPay pay;
+
+    private final PayService pay;
     static int code = 0;
 
-    public String getToken(PayVO payVO, int price) throws UnsupportedEncodingException{
+    @PostMapping("/pay")
+    public String pay(PayVO payVO) throws UnsupportedEncodingException{
+        String token = pay.getToken();
+        Gson str = new Gson();
+        token = token.substring(token.indexOf("response") + 10);
+        token = token.substring(0, token.length() - 1);
+
+        GetTokenVO vo = str.fromJson(token, GetTokenVO.class);
+
+        String access_token = vo.getAccess_token();
+        log.info(access_token);
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(access_token);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("card_number", payVO.getCard_number());
+        map.put("merchant_uid", "merchant_" + new Date().getTime());
+        map.put("customer_uid", payVO.getCustomer_uid());
+        map.put("name", payVO.getName());
+        map.put("expiry", payVO.getExpiry());
+        map.put("birth", payVO.getBirth());
+        map.put("amount", payVO.getAmount());
+        map.put("pwd_2digit", payVO.getPwd_2digit());
+        map.put("docNo", payVO.getDocNo());
+
+        Gson var = new Gson();
+        String json = var.toJson(map);
+        System.out.println(json);
+
+        pay.pay(payVO);
+
+        HttpEntity<String> entity = new HttpEntity<>(json, headers);
+
+        return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/onetime", entity, String.class);
+    }
+
+    @PostMapping("/getCustomer")
+    public String getCustomer(PayVO payVO) throws UnsupportedEncodingException{
 
         String token = pay.getToken();
         Gson str = new Gson();
@@ -48,9 +90,6 @@ public class PayController {
 
         Map<String, Object> map = new HashMap<>();
         map.put("customer_uid", payVO.getCustomer_uid());
-        map.put("merchant_uid", "merchant_" + new Date().getTime());
-        map.put("amount", price);
-        map.put("name", payVO.getName());
         map.put("card_number", payVO.getCard_number());
         map.put("expiry", payVO.getExpiry());
         map.put("birth", payVO.getBirth());
@@ -62,11 +101,12 @@ public class PayController {
 
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
 
-        return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/onetime", entity, String.class);
+        pay.updateCustomer(payVO);
+        return restTemplate.postForObject("https://api.iamport.kr/subscribe/customers/" + payVO.getCustomer_uid(), entity, String.class);
     }
 
-
-    public String schedulePay(PayVO payVO, int price) {
+    @PostMapping("schedule")
+    public String schedulePay(PayVO payVO) {
         String token = pay.getToken();
         long timestamp = 0;
         Calendar cal = Calendar.getInstance();
@@ -96,7 +136,7 @@ public class PayController {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("merchant_uid", timestamp);
         jsonObject.addProperty("schedule_at", timestamp);
-        jsonObject.addProperty("amount", price);
+        jsonObject.addProperty("amount", payVO.getAmount());
 
         JsonArray jsonArr = new JsonArray();
 
@@ -150,14 +190,14 @@ public class PayController {
     }
 
     @PostMapping("/startPay")
-    public void a(PayVO payVO,@RequestParam int price) throws UnsupportedEncodingException{
+    public void a(PayVO payVO) throws UnsupportedEncodingException{
         code = 0;
-        getToken(payVO, price);
+        pay(payVO);
         while(true){
             if(code == 1){
                 break;
             }
-            schedulePay(payVO, price);
+            schedulePay(payVO);
 //            int code = Integer.parseInt(entity.split(",")[0].split(":")[1]);
             try {
                 Thread.sleep(60000);
@@ -173,4 +213,6 @@ public class PayController {
         unSchedule(payVO);
         code = 1;
     }
+
+
 }

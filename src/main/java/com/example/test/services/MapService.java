@@ -1,6 +1,6 @@
 package com.example.test.services;
 
-import com.example.test.user.vo.DocVO;
+import com.example.test.model.user.vo.DocVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
