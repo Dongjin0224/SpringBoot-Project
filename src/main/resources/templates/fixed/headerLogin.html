@@ -59,19 +59,12 @@
                 </li>
             </ul>
         </li>
-        <th:block th:each="user : ${session}" th:object="${user}">
-            <th:block th:if="*{user == null}">
-                <li>
-                    <a href="#">마이페이지</a>
-                    <a href="/user/logout">로그아웃</a>
-                </li>
-            </th:block>
-            <th:block th:unless="*{user == null}">
-                <li>
-                    <a href="/">로그인</a></th:unless>
-                </li>
-            </th:block>
-        </th:block>
+        <li>
+            <a href="#">마이페이지</a>
+        </li>
+        <li>
+            <a href="/user/logout">로그아웃</a>
+        </li>
     </ul>
 </nav>
 <script src="/js/jquery.min.js"></script>

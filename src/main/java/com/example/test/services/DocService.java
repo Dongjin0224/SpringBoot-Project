@@ -6,6 +6,7 @@ import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
@@ -20,4 +21,5 @@ public interface DocService {
 
     public List<DocHosAttachFileVO> getHosAttachList(Long docNo);
 
+    public void docLogout(HttpSession session);
 }

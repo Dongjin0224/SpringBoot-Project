@@ -18,4 +18,6 @@
     <select id="checkId" resultType="_int">
         SELECT COUNT(USERID) FROM TABLE_USER WHERE USERID=#{userId}
     </select>
+
+
 </mapper>

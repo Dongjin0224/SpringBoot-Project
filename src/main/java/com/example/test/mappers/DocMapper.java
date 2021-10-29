@@ -3,6 +3,8 @@ package com.example.test.mappers;
 import com.example.test.model.user.vo.DocVO;
 import org.apache.ibatis.annotations.Mapper;
 
+import javax.servlet.http.HttpSession;
+
 @Mapper
 public interface DocMapper {
 
@@ -12,4 +14,6 @@ public interface DocMapper {
     public void insertSelectKey_bno(DocVO vo);
 
     public DocVO docLogin(DocVO vo);
+
+    public void docLogout(HttpSession session);
 }

@@ -35,6 +35,9 @@ public class WebController {
     @GetMapping("header")
     public String header(){return "fixed/header";}
     //  vanny
+    @GetMapping("headerLogin")
+    public String headerLogin(){return "fixed/headerLogin";}
+    //  vanny
     @GetMapping("terms")
     public String term(){return "term/terms";}
     //  vanny

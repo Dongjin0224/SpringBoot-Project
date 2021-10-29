@@ -48,7 +48,7 @@ public class DocController {
         service.DocSignUp(vo);
 
 
-        return "user/login";
+        return "user/docLogin";
     }
 
     @PostMapping("docLogin")
@@ -63,6 +63,15 @@ public class DocController {
             session.setAttribute("doc", login);
         }
         return new RedirectView("/index");
+    }
+
+    @GetMapping("docLogout")
+    public String docLogout(HttpServletRequest req) {
+        HttpSession session = req.getSession(false);
+
+        if (session != null) {
+            session.invalidate();
+        } return "user/docLogin";
     }
 
 }

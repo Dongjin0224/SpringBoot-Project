@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class DocSeviceImple implements DocService{
+public class DocServiceImple implements DocService{
 
     private final DocDAO docDAO;
     private final DocAttachFileDAO docAttachFileDAO;
@@ -75,5 +75,7 @@ public class DocSeviceImple implements DocService{
         return docHosAttachFileDAO.findByBno(docNo);
     }
 
+    @Override
+    public void docLogout(HttpSession session) { docDAO.docLogout(session); }
 
 }

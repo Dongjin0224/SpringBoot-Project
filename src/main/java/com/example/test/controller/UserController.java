@@ -57,7 +57,14 @@ public class UserController {
         return new RedirectView("/index");
     }
 
+    @GetMapping("userLogout")
+    public String userLogout(HttpServletRequest req) {
+        HttpSession session = req.getSession(false);
 
+        if (session != null) {
+            session.invalidate();
+        } return "user/login";
+    }
 
     @GetMapping("checkId")
     public String checkId(String userId, Model model) throws IOException {
