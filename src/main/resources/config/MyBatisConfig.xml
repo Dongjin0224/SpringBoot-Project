@@ -8,5 +8,6 @@
         <typeAlias type="com.example.test.model.user.vo.UserVO" alias="UserVO"/>
         <typeAlias type="com.example.test.model.user.vo.DocVO" alias="DocVO"/>
         <typeAlias type="com.example.test.model.user.vo.DocAttachFileVO" alias="DocAttachFileVO"/>
+        <typeAlias type="com.example.test.notice.vo.NoticeVO" alias="NoticeVO"/>
     </typeAliases>
 </configuration>
