@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MyPageController {
     //  lim
     @GetMapping("user")
-    public String myPageUser(){return "myPage/user";}
+    public String myPageUser(){return "myPage/myPageUser";}
     //  lim
     @GetMapping("doc")
-    public String myPageDoc(){return "myPage/doc";}
+    public String myPageDoc(){return "myPage/myPageDoc";}
 }
