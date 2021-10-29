@@ -60,12 +60,6 @@ public class WebController {
     //  dong
     @GetMapping("payTerm")
     public String payTerm(){return "term/payTerm";}
-    //  lim
-    @GetMapping("myPageUser")
-    public String myPageUser(){return "myPage/myPageUser";}
-    //  lim
-    @GetMapping("myPageDoc")
-    public String myPageDoc(){return "myPage/myPageDoc";}
     //  jin
     @GetMapping("login")
     public String login(){return "user/login";}
