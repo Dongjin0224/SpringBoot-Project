@@ -78,9 +78,6 @@ public class WebController {
     //  jin
     @GetMapping("explanation")
     public String explanation(){return "user/explanation";}
-    //  jin
-    @GetMapping("notice")
-    public String notice(){return "notice/notice";}
     //  dong
     @GetMapping("footer")
     public String footer(){return "fixed/footer";}

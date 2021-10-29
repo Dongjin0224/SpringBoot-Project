@@ -57,20 +57,19 @@
             <div class="content main">
                 <section class="tiles">
                     <div class="inner">
-                        <div style="text-align: right;">
-                            <!--<input type="button" value="목록" style="font-size: large; border-radius: 0px; padding: 0;">-->
-                            <a class="button goWrite"  style="font-size: large; border-radius: 0px; padding: 0;">신청하기</a>
+                        <div style="text-align: left;">
+                            <input class="input_button" type="button" value="목록" style="font-size: large; border-radius: 0px; padding: 0;"
+                                   onclick="history.back()"/>
                         </div>
                         <hr style="margin: 0;">
                         <div class="top" style="margin-top: 5%;margin-bottom: 8%;" th:object="${content}">
                             <table>
                                 <tr style="border: none;">
-                                    <td class="td_hTag"><h3 th:text="*{volunteerBoardTitle}"></h3></td>
-                                    <td class="td_hTag"><h4 id="status">(모집중)</h4></td>
+                                    <td class="td_hTag"><h3 th:text="*{noticeTitle}"></h3></td>
                                 </tr>
                             </table>
                             <hr style="margin-top: 0;">
-                            <table>
+                            <!--<table>
                                 <tr>
                                     <td class="td_title">봉사기간</td>
                                     <td class="td_content" th:text="*{volunteerPeriod}"></td>
@@ -89,20 +88,14 @@
                                     <td class="td_title">봉사장소</td>
                                     <td class="td_content" th:text="*{volunteerLocation}"></td>
                                 </tr>
-                            </table>
-                            <h3 style="margin-top: 6%; margin-bottom: -3%;">모집내용</h3>
+                            </table>-->
+                            <h3 style="margin-top: 6%; margin-bottom: -3%;">상세내용</h3>
                             <hr>
                             <div>
-                                <img style="width: 100%;" src="/img/service.png"/>
-                            </div>
-                            <h3 style="margin-top: 6%; margin-bottom: -3%;">내용상세</h3>
-                            <hr>
-                            <div>
-                                <p th:text="*{volunteerBoardContent}"></p>
+                                <p th:text="*{noticeContent}"></p>
                             </div>
                             <div style="text-align: center;">
-                                <a href="/volunteer/volunteerBoard" class="button" style="font-size: large; border-radius: 0px; margin-right: 4%;">목록</a>
-                                <a  class="button goWrite" style="font-size: large; border-radius: 0px;">신청하기</a>
+                                <a href="/notice/noticeBoard" class="button" style="font-size: large; border-radius: 0px;">목록</a>
                             </div>
                         </div>
 
@@ -111,38 +104,7 @@
             </div>
         </div>
     </section>
-    <script th:inline="javascript">
-        let volunteers = [[${content.getVolunteers()}]];
-        let volunteerApplicants = [[${content.getVolunteerApplicants()}]];
-        let bno = [[${content.getVolunteerBoardNo()}]];
-        let status = document.getElementById('status');
-        let goWrite = document.getElementsByClassName('goWrite');
 
-        if(volunteers-volunteerApplicants>0){
-            status.innerHTML='(모집중)';
-            goWrite[0].addEventListener('click',function(e){
-                location.href="/volunteer/volunteerForm?boardNo="+bno;
-            });
-            goWrite[1].addEventListener('click',function(e){
-                location.href="/volunteer/volunteerForm?boardNo="+bno;
-            });
-
-        }else{
-            status.innerHTML='(마감)';
-            goWrite[0].addEventListener('click',function(e){
-                e.preventDefault();
-                alert('마감된 공고입니다.');
-                return;
-            });
-            goWrite[1].addEventListener('click',function(e){
-                e.preventDefault();
-
-                alert('마감된 공고입니다.');
-                return;
-            });
-        }
-
-    </script>
     <!-- Footer -->
     <footer id="footer">
 

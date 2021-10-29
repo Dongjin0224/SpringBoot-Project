@@ -27,7 +27,7 @@ public class VolunteerDAO {
     //게시글 등록
     public void insert(ApplicantsVO applicantsVO){ volunteerMapper.insert(applicantsVO); }
 
-//    게시글 제목가져오기
+    //게시글 제목가져오기
     public String getTitle(Long bno){return volunteerMapper.getTitle(bno);}
 
     public int countApplicants(Long bno){return volunteerMapper.countApplicants(bno);}
