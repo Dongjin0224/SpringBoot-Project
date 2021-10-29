@@ -1,7 +1,7 @@
-package com.example.test.user.dao;
+package com.example.test.model.user.dao;
 
 import com.example.test.mappers.DocAttachFileMapper;
-import com.example.test.user.vo.DocAttachFileVO;
+import com.example.test.model.user.vo.DocAttachFileVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class DocAttachFileDAO {
 
-    @Autowired
-    private DocAttachFileMapper docAttachFileMapper;
+
+    private final DocAttachFileMapper docAttachFileMapper;
 
     public void insert(DocAttachFileVO docAttachFileVO){
         docAttachFileMapper.insert(docAttachFileVO);

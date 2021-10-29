@@ -1,7 +1,7 @@
-package com.example.test.user.dao;
+package com.example.test.model.user.dao;
 
 import com.example.test.mappers.MapMapper;
-import com.example.test.user.vo.DocVO;
+import com.example.test.model.user.vo.DocVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -17,7 +17,7 @@ public class MapDAO {
 
 //    검색결과
     public List<DocVO> getSearchList(String search){return mapMapper.getSearchList(search);}
-//전체결과
+//      전체결과
     public List<DocVO> getList(){return mapMapper.getList();}
 //    의사찾기
     public List<DocVO> getDocs(String docHospitalName){return mapMapper.getDocs(docHospitalName);}

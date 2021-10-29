@@ -1,6 +1,6 @@
 package com.example.test.controller;
 
-import com.example.test.model.user.vo.DocAttachFileVO;
+import com.example.test.model.user.vo.DocHosAttachFileVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.core.io.FileSystemResource;
@@ -28,34 +28,39 @@ import java.util.UUID;
 
 @Controller
 @Slf4j
-@RequestMapping("/upload/*")
-public class DocAttachFileController {
+@RequestMapping("/hosupload/*")
+public class DocHosAttachFileController {
 
-    @PostMapping(value = "uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "hosuploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<DocAttachFileVO> uploadAjaxAction(MultipartFile[] uploadFiles){
-        log.info("upload ajax action...........");
-        List<DocAttachFileVO> fileList = new ArrayList<>();
+    public List<DocHosAttachFileVO> hosUploadAjaxAction(MultipartFile[] hosUploadFiles) {
+        log.info("hosupload ajax action...........");
+        List<DocHosAttachFileVO> hosFileList = new ArrayList<>();
 
-        String uploadFolder = "C:/upload";
-        String uploadFolderPath = getFolder();
-
+        log.info("----------hosFileList------------");
+        log.info(String.valueOf(hosFileList.size()));
+        log.info("---------------------------------");
         log.info("---------multipart length--------------");
-        log.info(String.valueOf(uploadFiles.length));
+        log.info(String.valueOf(hosUploadFiles.length));
         log.info("---------------------------------------");
+
+        String uploadFolder = "C:/hosupload";
+        String uploadFolderPath = getFolder();
 
 //        년/월/일 폴더 생성
         File uploadPath = new File(uploadFolder, uploadFolderPath);
-        if(!uploadPath.exists()) {uploadPath.mkdirs();}
-        log.info("upload path : " + uploadPath);
-
-        for(MultipartFile multipartFile : uploadFiles){
+        if (!uploadPath.exists()) {
+            uploadPath.mkdirs();
+        }
+        log.info("Hospital upload path : " + uploadPath);
+        for (MultipartFile multipartFile : hosUploadFiles) {
             log.info("-------------------------");
-            log.info("Upload File Name : " + multipartFile.getOriginalFilename());
-            log.info("Upload File Size : " + multipartFile.getSize());
+            log.info("Hospital Upload File Name : " + multipartFile.getOriginalFilename());
+            log.info("Hospital Upload File Size : " + multipartFile.getSize());
 
-            DocAttachFileVO docAttachFileVO = new DocAttachFileVO();
-            String uploadFileName = multipartFile.getOriginalFilename();
+            DocHosAttachFileVO docHosAttachFileVO = new DocHosAttachFileVO();
+
+            String hosuploadFileName = multipartFile.getOriginalFilename();
 
 //            UUID
 //            네트워크 상에서 각각의 개체들을 식별하기 위하여 사용되었다.
@@ -66,24 +71,24 @@ public class DocAttachFileController {
 //            10의 38승 : 만4, 억8, 조12, 경16, 해20, 자24, 양28, 구32, 간36
 //            340간
             UUID uuid = UUID.randomUUID();
-            uploadFileName = uuid.toString() + "_" + uploadFileName;
+            hosuploadFileName = uuid.toString() + "_" + hosuploadFileName;
             //IE에서는 파일 이름을 포함한 전체 경로가 나오기 때문에 잘라야한다.
-            uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
-            log.info("file name : " + uploadFileName);
+            hosuploadFileName = hosuploadFileName.substring(hosuploadFileName.lastIndexOf("\\") + 1);
+            log.info("file name : " + hosuploadFileName);
 
-            docAttachFileVO.setFileName(uploadFileName);
+            docHosAttachFileVO.setHosFileName(hosuploadFileName);
 
             try {
-                File saveFile = new File(uploadPath,uploadFileName);
+                File saveFile = new File(uploadPath, hosuploadFileName);
                 multipartFile.transferTo(saveFile);
                 InputStream in = new FileInputStream(saveFile);
 
-                docAttachFileVO.setUuid(uuid.toString());
-                docAttachFileVO.setUploadPath(uploadFolderPath);
+                docHosAttachFileVO.setHosUuid(uuid.toString());
+                docHosAttachFileVO.setHosUploadPath(uploadFolderPath);
 
-                if(checkImageType(saveFile)) {
-                    docAttachFileVO.setImage(true);
-                    FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
+                if (checkImageType(saveFile)) {
+                    docHosAttachFileVO.setHosImage(true);
+                    FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + hosuploadFileName));
                     Thumbnailator.createThumbnail(in, thumbnail, 100, 100);
                     thumbnail.close();
                 }
@@ -94,14 +99,17 @@ public class DocAttachFileController {
                 //가비지 컬렉터가 포착한 해제 필드들을 모두 즉시 해제
                 System.runFinalization();
 
-                fileList.add(docAttachFileVO);
+                hosFileList.add(docHosAttachFileVO);
+                log.info("---------------hosList------------------");
+                log.info(String.valueOf(hosFileList.size()));
+                log.info("---------------hosList end------------------");
             } catch (IOException e) {
                 log.error(e.getMessage());
-            } catch (ArrayIndexOutOfBoundsException e){
+            } catch (ArrayIndexOutOfBoundsException e) {
                 log.info("GIF 파일의 용량이 큽니다.");
             }
         }
-        return fileList;
+        return hosFileList;
     }
 
     private String getFolder(){
@@ -125,11 +133,11 @@ public class DocAttachFileController {
         return false;
     }
 
-    @GetMapping("display")
+    @GetMapping("hosdisplay")
     @ResponseBody
-    public ResponseEntity<byte[]> getFile(String fileName){
-        File file = new File("C:/upload/" + fileName);
-        log.info("file : " + file);
+    public ResponseEntity<byte[]> getFile(String hosFileName){
+        File file = new File("C:/hosupload/" + hosFileName);
+        log.info("Hospital file : " + file);
         HttpHeaders header = new HttpHeaders();
         ResponseEntity<byte[]> result = null;
         try {
@@ -146,7 +154,7 @@ public class DocAttachFileController {
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(String fileName){
         log.info("download file : " + fileName);
-        Resource resource = new FileSystemResource("C:/upload/" + fileName);
+        Resource resource = new FileSystemResource("C:/hosupload/" + fileName);
         log.info("resource : " + resource);
         String resourceName = resource.getFilename();
         HttpHeaders headers = new HttpHeaders();
@@ -160,13 +168,13 @@ public class DocAttachFileController {
         return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
     }
 
-    @PostMapping("deleteFile")
+    @PostMapping("hosdeleteFile")
     @ResponseBody
     public ResponseEntity<String> deleteFile(String fileName, String type){
-        log.info("deleteFile : " + fileName);
+        log.info("hosdeleteFile : " + fileName);
         try {
             fileName = URLDecoder.decode(fileName, "UTF-8");
-            File file = new File("C:/upload/" + fileName);
+            File file = new File("C:/hosupload/" + fileName);
             file.delete();
             if(type.equals("image")){
                 //원본 삭제

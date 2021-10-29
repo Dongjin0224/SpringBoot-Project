@@ -1,14 +1,10 @@
-package com.example.test.user.dao;
+package com.example.test.model.user.dao;
 
-import com.example.test.mappers.MapMapper;
 import com.example.test.mappers.UserMapper;
-import com.example.test.user.vo.DocVO;
-import com.example.test.user.vo.UserVO;
+import com.example.test.model.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 @Slf4j
@@ -21,6 +17,10 @@ public class UserDAO {
         userMapper.memberSignUp(vo);
     }
 
-   /* public UserVO memberLogin*/
+   public UserVO userLogin(UserVO vo){return userMapper.userLogin(vo);}
+
+   public boolean checkId(String userId){
+        return userMapper.checkId(userId) == 0;
+   }
 
 }

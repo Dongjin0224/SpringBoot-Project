@@ -1,6 +1,6 @@
 package com.example.test.dao;
 
-import com.example.test.user.dao.MapDAO;
+import com.example.test.model.user.dao.MapDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -69,9 +69,12 @@ public class WebController {
     //  lim
     @GetMapping("myPageDoc")
     public String myPageDoc(){return "myPage/myPageDoc";}
-    //  jin
-    @GetMapping("login")
-    public String login(){return "user/login";}
+//    //  jin
+//    @GetMapping("login")
+//    public String login(){return "user/login";}
+
+//    @GetMapping
+//    public String docLogin(){return "user/docLogin";}
     /*//  jin
     @GetMapping("memberSignUp")
     public String memberSignUp(){return "user/memberSignUp";}*/

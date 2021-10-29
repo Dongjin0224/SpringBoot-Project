@@ -1,4 +1,4 @@
-package com.example.test.user.vo;
+package com.example.test.model.user.vo;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;

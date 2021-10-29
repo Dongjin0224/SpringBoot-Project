@@ -1,6 +1,6 @@
 package com.example.test.mappers;
 
-import com.example.test.user.vo.UserVO;
+import com.example.test.model.user.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,13 @@ public class UserMapperTest {
         user.setUserPhoneNum("user01");
         user.setUserEmail("user01");
         mapper.memberSignUp(user);
+    }
+
+    @Test
+    public void testCheckId(){
+        log.info("----------------------------");
+        log.info(String.valueOf(mapper.checkId("jjj99")));
+        log.info("----------------------------");
     }
 
 }

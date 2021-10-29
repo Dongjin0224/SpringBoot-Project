@@ -1,8 +1,9 @@
 package com.example.test.controller;
 
+import com.example.test.model.user.vo.UserVO;
 import com.example.test.services.DocService;
 
-import com.example.test.user.vo.DocVO;
+import com.example.test.model.user.vo.DocVO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Slf4j
 @Controller
 @RequestMapping("/user/*")
@@ -20,6 +24,11 @@ import org.springframework.web.servlet.view.RedirectView;
 public class DocController {
 
     private final DocService service;
+
+    @GetMapping("docLogin")
+    public String docLogin(){
+        return "user/docLogin";
+    }
 
     @GetMapping("doctorSignUp")
     public String doctorSignUp(){return "user/doctorSignUp";}
@@ -31,11 +40,29 @@ public class DocController {
         if(vo.getAttachList() != null){
             vo.getAttachList().forEach(attach -> log.info(attach.toString()));
         }
+        if(vo.getHosattachList() != null){
+            vo.getHosattachList().forEach(hosattach -> log.info(hosattach.toString()));
+        }
+
 
         service.DocSignUp(vo);
 
 
         return "user/login";
+    }
+
+    @PostMapping("docLogin")
+    public RedirectView docLogin(DocVO vo, HttpServletRequest req, RedirectAttributes rttr) {
+        HttpSession session = req.getSession();
+        DocVO login = service.docLogin(vo);
+
+        if (login == null) {
+            session.setAttribute("doc", null);
+            /*rttr.addFlashAttribute("msg",false);*/
+        } else {
+            session.setAttribute("doc", login);
+        }
+        return new RedirectView("/index");
     }
 
 }
