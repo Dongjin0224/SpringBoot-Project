@@ -12,15 +12,9 @@
     <link rel="stylesheet" href="/css/main.css" />
 </head>
 <style>
-    td.td_hTag { background-color: white; padding: 0; }
-
     .td_hTag h3{ font-size: x-large; font-weight: bold; margin-bottom: 0; }
 
     .td_hTag h4{ font-size: large; font-weight: bold; color: #f60; text-align: right; margin-bottom: 0; }
-
-    td.td_title { font-weight: bold; width: 18%; text-align: center; }
-
-    td.td_content { font-weight: initial; background-color: white; width: 32%; }
 
     .content.main{
         width: 90%;
@@ -56,41 +50,12 @@
         <div class="inner alt">
             <div class="content main">
                 <section class="tiles">
-                    <div class="inner">
+                    <div class="inner" th:object="${content}">
                         <div style="text-align: left;">
-                            <input class="input_button" type="button" value="목록" style="font-size: large; border-radius: 0px; padding: 0;"
-                                   onclick="history.back()"/>
+                            <h3 th:text="*{noticeTitle}"></h3>
                         </div>
                         <hr style="margin: 0;">
-                        <div class="top" style="margin-top: 5%;margin-bottom: 8%;" th:object="${content}">
-                            <table>
-                                <tr style="border: none;">
-                                    <td class="td_hTag"><h3 th:text="*{noticeTitle}"></h3></td>
-                                </tr>
-                            </table>
-                            <hr style="margin-top: 0;">
-                            <!--<table>
-                                <tr>
-                                    <td class="td_title">봉사기간</td>
-                                    <td class="td_content" th:text="*{volunteerPeriod}"></td>
-                                    <td class="td_title">모집기간</td>
-                                    <td class="td_content" th:text="*{volunteerRecruitmentPeriod}"></td>
-                                </tr>
-                                <tr>
-                                    <td class="td_title" style="background-color: rgba(144, 144, 144, 0.075);">모집인원</td>
-                                    <td class="td_content" th:text="*{volunteers}"></td>
-                                    <td class="td_title" style="background-color: rgba(144, 144, 144, 0.075);">신청인원</td>
-                                    <td class="td_content" th:text="*{volunteerApplicants}"></td>
-                                </tr>
-                                <tr>
-                                    <td class="td_title">봉사지역</td>
-                                    <td class="td_content" th:text="*{volunteerArea}"></td>
-                                    <td class="td_title">봉사장소</td>
-                                    <td class="td_content" th:text="*{volunteerLocation}"></td>
-                                </tr>
-                            </table>-->
-                            <h3 style="margin-top: 6%; margin-bottom: -3%;">상세내용</h3>
-                            <hr>
+                        <div class="top" style="margin-top: 5%;margin-bottom: 8%;">
                             <div>
                                 <p th:text="*{noticeContent}"></p>
                             </div>
