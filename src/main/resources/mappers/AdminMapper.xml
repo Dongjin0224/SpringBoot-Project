@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test.mappers.AdminMapper">
+<!-- 일반 회원 -->
+    <!--회원 전체 가져오기-->
+    <select id="readUser" resultType="com.example.test.model.user.vo.UserVO">
+        SELECT * FROM TABLE_USER
+    </select>
+    <!-- 총 회원 수 -->
+    <select id="totalUser" resultType="int">
+        SELECT count(userNo) FROM TABLE_USER
+    </select>
+    <!-- 회원 status 변경 -->
+    <update id="updateUser">
+        UPDATE TABLE_USER SET userStatus = #{userStatus} WHERE userNo = #{userNo}
+    </update>
+
+
+<!-- 의사 회원 -->
+    <!-- 의사 회원 전체 가져오기 -->
+    <select id="readDoc" resultType="com.example.test.model.user.vo.DocVO">
+        SELECT * FROM TABLE_DOC
+    </select>
+    <!-- 총 의사 회원 수 -->
+    <select id="totalDoc" resultType="int">
+        SELECT count(docNo) FROM TABLE_DOC
+    </select>
+    <!-- 의사 회원 status 변경 -->
+    <update id="updateDoc">
+        UPDATE TABLE_DOC SET docStatus = #{docStatus} WHERE docNo = #{docNo}
+    </update>
+</mapper>
