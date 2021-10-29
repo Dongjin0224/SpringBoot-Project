@@ -31,8 +31,6 @@ public class DocSeviceImple implements DocService{
     public void DocSignUp(DocVO vo) {
         docDAO.doctorSignUp(vo);
 
-
-
         if(vo.getAttachList() ==null || vo.getAttachList().size() ==0){
             return;
         }
@@ -73,6 +71,12 @@ public class DocSeviceImple implements DocService{
     @Override
     public List<DocHosAttachFileVO> getHosAttachList(Long docNo) {
         return docHosAttachFileDAO.findByBno(docNo);
+    }
+
+    @Override
+    public int checkId(DocVO vo) {
+        int result =docDAO.checkId(vo);
+        return result;
     }
 
 

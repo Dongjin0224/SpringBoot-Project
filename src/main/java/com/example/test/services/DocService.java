@@ -20,4 +20,5 @@ public interface DocService {
 
     public List<DocHosAttachFileVO> getHosAttachList(Long docNo);
 
+    public int checkId(DocVO vo);
 }

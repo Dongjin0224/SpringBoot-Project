@@ -42,7 +42,12 @@ public class DocControllerTest {
                         .param("docAddress", "hds")
                         .param("docEmail", "hds")
                         .param("docPhoneNum", "hds1234")
-                        .param("docPic", "hds1234")
+                        .param("docHosPhone","1234")
+        /*
+        docAttachFileVO.setFileName("jjjja");
+        docAttachFileVO.setImage(true);
+        docAttachFileVO.setUploadPath("C:/upload");
+        docAttachFileVO.setUuid("j_j_jJ_");*/
 
         ).andReturn().getFlashMap().toString();
 

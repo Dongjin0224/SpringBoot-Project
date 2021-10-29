@@ -59,7 +59,7 @@ public class UserController {
 
 
 
-    @GetMapping("checkId")
+    /*@GetMapping("checkId")
     public String checkId(String userId, Model model) throws IOException {
 
         log.info("-----------------------------------");
@@ -77,7 +77,8 @@ public class UserController {
         }
 
         return "/user/login :: idCheck_text";
-    }
+    }*/
+
 
 
 }

@@ -12,4 +12,6 @@ public interface DocMapper {
     public void insertSelectKey_bno(DocVO vo);
 
     public DocVO docLogin(DocVO vo);
+
+    public int checkId(DocVO vo);
 }
