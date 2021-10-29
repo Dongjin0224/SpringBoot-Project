@@ -40,7 +40,7 @@
 <div class="nav">
     <div class="box1">
         <div class="admin">
-            <div class="text">
+            <div class="text" style="font-size: 15px;">
                 관리자님<br>
                 접속시간 : <span id="timeResult"></span>
                 <br>
@@ -52,10 +52,10 @@
                 정보관리
             </div>
             <div class="menu1">
-                <div class="manage">
+                <div class="manage" style="font-size: 15px;">
                     <ul>
                         <a href="/admin/adminUpdateUser"><li>일반회원관리</li></a>
-                        <a href="/admin/manageUpdateDOC"><li>의사회원관리</li></a>
+                        <a href="/admin/adminUpdateDoc"><li>의사회원관리</li></a>
                     </ul>
                 </div>
             </div><br>
@@ -63,7 +63,7 @@
                 정보등록<br>
             </div><br>
             <div class="menu2">
-                <div class="manage">
+                <div class="manage" style="font-size: 15px;">
                     <ul>
                         <a href=""><li>스토어 등록</li></a>
                         <a href=""><li>이벤트 등록</li></a>
@@ -76,18 +76,18 @@
     </div>
 </div>
 <div style="height: 830px; overflow: auto;">
-    <form method="post" action="/admin/adminUpdatedUser2" name="frm">
+    <form method="post" action="/admin/updateUser" name="frm">
         <table width="90%" class="selectCurMovie" >
             <tr height="100" >
                 <td align="center" colspan="7">
                     <font size="7" color="gray"> <a href="#">전체 회원보기</a> </font>
                 </td>
             </tr>
-            <tr bgcolor="pink">
+            <tr bgcolor="pink" style="font-size: 15px;">
                 <td>회원번호</td><td>아이디</td><td>비밀번호</td><td>이름</td><td>전화번호</td><td>이메일</td><td style="width: 100px;">상태</td><td>변경</td>
             </tr>
             <th:block th:each="user:${user}" th:object="${user}">
-            <tr>
+            <tr style="font-size: 15px;">
                 <td th:text="*{userNo}"></td>			<!-- 회원번호 -->
                 <td th:text="*{userId}"></td>		<!-- 아이디 -->
                 <td th:text="*{userPw}"></td>		<!-- 비밀번호 -->
@@ -99,8 +99,8 @@
                     <input type="button" value="변경하기" th:onclick="|javascript:updateForm(*{userNo})|"></td>
             </tr>
             </th:block>
-            <tr height="18px">
-                <td colspan="5"></td>
+            <tr height="18px" style="font-size: 15px;">
+                <td colspan="6"></td>
                 <td>총 회원수</td><td th:text="|${totalUser} 명|"></td>
             </tr>
         </table>
