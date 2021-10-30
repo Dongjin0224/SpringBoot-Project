@@ -20,7 +20,7 @@
         )
         VALUES
         (
-        SEQ_RESERVE.NEXTVAL, 1, #{docNo}, SYSDATE
+        SEQ_RESERVE.NEXTVAL, #{userNo}, #{docNo}, SYSDATE
         )
     </insert>
 

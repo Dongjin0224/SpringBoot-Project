@@ -68,6 +68,13 @@ public class CrawlingController {
             log.info("로그인 버튼 클릭 완료");
             Thread.sleep(2000);
 
+            WebElement parent4 = driver.findElement(By.className("wrap_inp"));
+            List<WebElement> button4 = parent4.findElements(By.className("lab_g"));
+            Thread.sleep(2000);
+            button4.get(1).click();
+            log.info("정보성 클릭 완료");
+            Thread.sleep(2000);
+
             String msg ="\n" + name[0] + "님의 예약이 접수되었습니다.";   /* 보낼 문자 내용 설정 */
             element = driver.findElement(By.cssSelector("textarea[name='messageWrite']"));
             Thread.sleep(2000);
