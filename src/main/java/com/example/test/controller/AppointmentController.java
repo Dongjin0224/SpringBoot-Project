@@ -49,17 +49,13 @@ public class AppointmentController {
         String userPhoneNum = user.getUserPhoneNum();
         String docPhoneNum = doc.getDocPhoneNum();
 
-        log.info("------------------------");
-        log.info(user.getUserName());
-        log.info(user.getUserPhoneNum());
-        log.info("------------------------");
-        log.info(doc.getDocName());
-        log.info(doc.getDocPhoneNum());
-        log.info("------------------------");
-
         String[] name = {userName, docName};
         String[] phoneNum = {userPhoneNum, docPhoneNum};
 
+
+
+        CrawlingController test = new CrawlingController();
+        test.open(name, phoneNum);
     }
 
 
