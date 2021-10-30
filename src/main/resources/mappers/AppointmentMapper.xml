@@ -2,11 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.test.mappers.AppointmentMapper">
+    <!-- 의사 정보 가져오기 -->
      <select id="read" resultType="com.example.test.model.user.vo.DocVO">
         SELECT * FROM TABLE_DOC WHERE docNo = #{docNo}
     </select>
 
+    <!-- 파일 가져오기 -->
     <select id="getFile" resultType="com.example.test.model.user.vo.DocAttachFileVO">
         SELECT * FROM TABLE_DOC_ATTACH WHERE docNo = #{docNo}
+    </select>
+
+    <!-- 진료 예약하기-->
+    <insert id="reserve">
+        INSERT INTO TABLE_RESERVE
+        (
+        reserveNo, userNo, docNo, reserveDate
+        )
+        VALUES
+        (
+        SEQ_RESERVE.NEXTVAL, #{userNo}, #{docNo}, SYSDATE
+        )
+    </insert>
+
+    <!-- 진료 예약 메세지를 받을 회원 번호 -->
+    <select id="getUserPhone" resultType="com.example.test.model.appointment.vo.ReserveUserVO">
+        SELECT userName, userPhoneNum FROM TABLE_USER WHERE userNo = #{userNo}
+    </select>
+
+    <!-- 진료 예약 메세지를 받을 의사 번호 -->
+    <select id="getDocPhone" resultType="com.example.test.model.appointment.vo.ReserveDocVO">
+        SELECT docName, docPhoneNum FROM TABLE_DOC WHERE docNo = #{docNo}
     </select>
 </mapper>

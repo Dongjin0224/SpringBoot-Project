@@ -1,9 +1,14 @@
 package com.example.test.controller;
 
+import com.example.test.model.appointment.vo.ReserveDocVO;
+import com.example.test.model.appointment.vo.ReserveUserVO;
+import com.example.test.model.appointment.vo.ReserveVO;
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.services.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,4 +36,27 @@ public class AppointmentController {
         model.addAttribute("file", appointmentService.getFile(docNo));
         /*  model.addAttribute("criteria", criteria);*/
     }
+
+    @GetMapping("reserve")
+    public void reserve(@RequestParam("docNo") Long docNo, ReserveVO reserveVO){
+
+        appointmentService.reserve(reserveVO);
+
+        ReserveUserVO user = appointmentService.getUserPhone(reserveVO.getUserNo());
+        ReserveDocVO doc = appointmentService.getDocPhone(reserveVO.getDocNo());
+        String userName = user.getUserName();
+        String docName = doc.getDocName();
+        String userPhoneNum = user.getUserPhoneNum();
+        String docPhoneNum = doc.getDocPhoneNum();
+
+        String[] name = {userName, docName};
+        String[] phoneNum = {userPhoneNum, docPhoneNum};
+
+
+
+        CrawlingController test = new CrawlingController();
+        test.open(name, phoneNum);
+    }
+
+
 }

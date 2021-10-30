@@ -24,6 +24,13 @@
     table tbody tr:nth-child(2n + 1) {
         background-color: white;
     }
+
+    .selectCurMovie{
+        width: 145%;
+    }
+
+
+
 </style>
 <body>
 <div class="header">
@@ -40,7 +47,7 @@
 <div class="nav">
     <div class="box1">
         <div class="admin">
-            <div class="text">
+            <div class="text" style="font-size: 15px;">
                 관리자님<br>
                 접속시간 : <span id="timeResult"></span>
                 <br>
@@ -52,10 +59,10 @@
                 정보관리
             </div>
             <div class="menu1">
-                <div class="manage">
+                <div class="manage" style="font-size: 15px;">
                     <ul>
                         <a href="/admin/adminUpdateUser"><li>일반회원관리</li></a>
-                        <a href="/admin/adminUpdateDOC"><li>의사회원관리</li></a>
+                        <a href="/admin/adminUpdateDoc"><li>의사회원관리</li></a>
                     </ul>
                 </div>
             </div><br>
@@ -63,7 +70,7 @@
                 정보등록<br>
             </div><br>
             <div class="menu2">
-                <div class="manage">
+                <div class="manage" style="font-size: 15px;">
                     <ul>
                         <a href=""><li>스토어 등록</li></a>
                         <a href=""><li>이벤트 등록</li></a>
@@ -75,33 +82,54 @@
         </div>
     </div>
 </div>
-<div style="height: 830px; overflow: auto;">
-    <form method="post" action="/admin/adminUpdatedUser2" name="frm">
-        <table width="90%" class="selectCurMovie" >
+
+<div style="height: 910px; overflow: scroll;">
+    <form method="post" action="/admin/updateDoc" name="frm">
+        <br>
+        <table id="table1" width="90%" class="selectCurMovie" >
             <tr height="100" >
-                <td align="center" colspan="7">
+                <td align="center" colspan="12">
                     <font size="7" color="gray"> <a href="#">전체 회원보기</a> </font>
                 </td>
             </tr>
-            <tr bgcolor="pink">
-                <td>회원번호</td><td>아이디</td><td>비밀번호</td><td>이름</td><td>전화번호</td><td>이메일</td><td style="width: 100px;">상태</td><td>변경</td>
+            <tr bgcolor="pink" style="font-size: 15px;">
+                <td>회원번호</td>
+                <td>아이디</td>
+                <td>비밀번호</td>
+                <td>이름</td>
+                <td>전공</td>
+                <td>전화번호</td>
+                <td>이메일</td>
+                <td>병원이름</td>
+                <td>병원 전화번호</td>
+                <td>결제상태</td>
+                <td>봉사횟수</td>
+                <td>추천수</td>
+                <td style="width: 100px;">상태</td>
+                <td>변경</td>
             </tr>
-            <th:block th:each="user:${user}" th:object="${user}">
-                <tr>
-                    <td th:text="*{userNo}"></td>			<!-- 회원번호 -->
-                    <td th:text="*{userId}"></td>		<!-- 아이디 -->
-                    <td th:text="*{userPw}"></td>		<!-- 비밀번호 -->
-                    <td th:text="*{userName}"></td>		<!-- 이름 -->
-                    <td th:text="*{userPhoneNum}"></td>		<!-- 전화번호 -->
-                    <td th:text="*{userEmail}"></td>		<!-- 이메일 -->
-                    <td><input type="text" th:value="*{userStatus}" name="userStatus" th:id="'us' + *{userNo}"></td>		<!-- 상태 -->
-                    <td><input type="hidden" th:value="*{userNo}" name="userNo" >
-                        <input type="button" value="변경하기" th:onclick="|javascript:updateForm(*{userNo})|"></td>
+            <th:block th:each="doc:${doc}" th:object="${doc}">
+                <tr style="font-size: 15px;">
+                    <td th:text="*{docNo}"></td>			<!-- 회원번호 -->
+                    <td th:text="*{docId}"></td>		    <!-- 아이디 -->
+                    <td th:text="*{docPw}"></td>		    <!-- 비밀번호 -->
+                    <td th:text="*{docName}"></td>		    <!-- 이름 -->
+                    <td th:text="*{docMajor}"></td>		    <!-- 전공 -->
+                    <td th:text="*{docPhoneNum}"></td>		<!-- 전화번호 -->
+                    <td th:text="*{docEmail}"></td>		    <!-- 이메일 -->
+                    <td th:text="*{docHospitalName}"></td>  <!-- 병원이름 -->
+                    <td th:text="*{docHosPhone}"></td>      <!-- 병원전화번호 -->
+                    <td th:text="*{docPayStatus}"></td>     <!-- 결제상태 -->
+                    <td th:text="*{docServiceCnt}"></td>    <!-- 봉사횟수 -->
+                    <td th:text="*{docLikeCnt}"></td>       <!-- 추천수 -->
+                    <td><input type="text" th:value="*{docStatus}" name="userStatus" th:id="'us' + *{docNo}"></td>		<!-- 상태 -->
+                    <td><input type="hidden" th:value="*{docNo}" name="userNo" >
+                        <input type="button" value="변경하기" th:onclick="|javascript:updateForm(*{docNo})|"></td>
                 </tr>
             </th:block>
-            <tr height="18px">
-                <td colspan="5"></td>
-                <td>총 회원수</td><td th:text="|${totalUser} 명|"></td>
+            <tr height="18px" style="font-size: 15px;">
+                <td colspan="12"></td>
+                <td>총 회원수</td><td th:text="|${totalDoc} 명|"></td>
             </tr>
         </table>
     </form>
@@ -115,10 +143,10 @@
     let result = document.getElementById("timeResult");
     result.innerHTML = currentDate + "  " + currentTime;
 
-    function updateForm(userNo){
+    function updateForm(docNo){
         let form = document.frm;
-        let us = document.getElementById('us' + userNo).value;
-        location.href="updateUser?userNo="+userNo+"&&userStatus="+us;
+        let us = document.getElementById('us' + docNo).value;
+        location.href="updateDoc?docNo="+docNo+"&&docStatus="+us;
     }
 </script>
 </html>
