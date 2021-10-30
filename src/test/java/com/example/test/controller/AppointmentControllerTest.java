@@ -44,6 +44,4 @@ public class AppointmentControllerTest {
         log.info(reserve);
     }
 
-
-
 }

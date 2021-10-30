@@ -68,7 +68,7 @@ public class CrawlingController {
             log.info("로그인 버튼 클릭 완료");
             Thread.sleep(2000);
 
-            String msg ="\n" + name[0] + "님의 예약이 접수되었습니다..";   /* 보낼 문자 내용 설정 */
+            String msg ="\n" + name[0] + "님의 예약이 접수되었습니다.";   /* 보낼 문자 내용 설정 */
             element = driver.findElement(By.cssSelector("textarea[name='messageWrite']"));
             Thread.sleep(2000);
             element.sendKeys(msg);
