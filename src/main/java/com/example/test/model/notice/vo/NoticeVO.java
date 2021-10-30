@@ -1,4 +1,4 @@
-package com.example.test.notice.vo;
+package com.example.test.model.notice.vo;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;

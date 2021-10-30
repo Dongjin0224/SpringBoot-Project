@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -11,10 +12,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/myPage/*")
 @RequiredArgsConstructor
 public class MyPageController {
-    //  lim
-    @GetMapping("user")
-    public String myPageUser(){return "myPage/myPageUser";}
-    //  lim
-    @GetMapping("doc")
-    public String myPageDoc(){return "myPage/myPageDoc";}
+
+    @GetMapping("myPageUser")
+    public String updateUserView(){
+        return "myPage/myPageUser";
+    }
+
+    @PostMapping("myPageUser")
+    public String updateUser(){
+        return "myPage/myPageUser";
+    }
+
+    @GetMapping("myPageDoc")
+    public String updateDocView(){
+        return "myPage/myPageDoc";
+    }
+
+    @PostMapping("myPageDoc")
+    public String updateDoc(){
+        return "myPage/myPageDoc";
+    }
+
 }

@@ -1,8 +1,8 @@
-package com.example.test.notice.dao;
+package com.example.test.model.notice.dao;
 
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.mappers.NoticeMapper;
-import com.example.test.notice.vo.NoticeVO;
+import com.example.test.model.notice.vo.NoticeVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;

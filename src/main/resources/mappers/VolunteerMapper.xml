@@ -47,13 +47,12 @@
     </select>
 
     <update id="update">
-    UPDATE TABLE_VOLUNTEER_BOARD b SET volunteerApplicants =
-    (SELECT NVL(sum(applicants),0) FROM TABLE_APPLICANTS  WHERE volunteerBoardNo=b.VOLUNTEERBOARDNO)
-    WHERE volunteerBoardNo=#{volunteerBoardNo}
-
-     </update>
+        UPDATE TABLE_VOLUNTEER_BOARD b SET volunteerApplicants =
+        (SELECT NVL(sum(applicants),0) FROM TABLE_APPLICANTS  WHERE volunteerBoardNo=b.VOLUNTEERBOARDNO)
+        WHERE volunteerBoardNo=#{volunteerBoardNo}
+    </update>
 
     <select id="getTotal" resultType="_int">
-    SELECT COUNT(VOLUNTEERBOARDNO) FROM TABLE_VOLUNTEER_BOARD
+        SELECT COUNT(VOLUNTEERBOARDNO) FROM TABLE_VOLUNTEER_BOARD
     </select>
 </mapper>

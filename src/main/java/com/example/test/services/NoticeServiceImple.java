@@ -1,8 +1,8 @@
 package com.example.test.services;
 
 import com.example.test.model.beans.vo.Criteria;
-import com.example.test.notice.dao.NoticeDAO;
-import com.example.test.notice.vo.NoticeVO;
+import com.example.test.model.notice.dao.NoticeDAO;
+import com.example.test.model.notice.vo.NoticeVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
