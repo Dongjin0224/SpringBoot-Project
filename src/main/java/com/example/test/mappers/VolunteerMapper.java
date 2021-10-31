@@ -23,4 +23,5 @@ public interface VolunteerMapper {
     public void update(Long volunteerBoardNo);
 
     public int getTotal(Criteria criteria);
+
 }

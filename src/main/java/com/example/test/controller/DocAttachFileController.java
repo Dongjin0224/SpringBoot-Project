@@ -40,6 +40,10 @@ public class DocAttachFileController {
         String uploadFolder = "C:/upload/";
         String uploadFolderPath = getFolder();
 
+        log.info("---------multipart length--------------");
+        log.info(String.valueOf(uploadFiles.length));
+        log.info("---------------------------------------");
+
 //        년/월/일 폴더 생성
         File uploadPath = new File(uploadFolder, uploadFolderPath);
         if(!uploadPath.exists()) {uploadPath.mkdirs();}
@@ -51,7 +55,6 @@ public class DocAttachFileController {
             log.info("Upload File Size : " + multipartFile.getSize());
 
             DocAttachFileVO docAttachFileVO = new DocAttachFileVO();
-
             String uploadFileName = multipartFile.getOriginalFilename();
 
 //            UUID

@@ -11,7 +11,13 @@
       )
    </insert>
     <select id="userLogin" resultType="UserVO">
-        SELECT USERID, USERPW
+        SELECT *
         FROM TABLE_USER WHERE USERID = #{userId} AND USERPW = #{userPw}
     </select>
+
+    <select id="checkId" resultType="_int">
+        SELECT COUNT(USERID) FROM TABLE_USER WHERE USERID=#{userId}
+    </select>
+
+
 </mapper>

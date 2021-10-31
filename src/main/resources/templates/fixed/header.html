@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,7 +8,7 @@
 <body>
 <!-- Logo -->
 <div class="logo">
-    <a href="index"><strong>QueU</strong><span class="extra"></span></a>
+    <a href="/index"><strong>QueU</strong><span class="extra"></span></a>
 </div>
 <!-- Nav -->
 <nav id="nav">
@@ -21,12 +21,12 @@
                     <a href="#" class="headerCategory"><img src="/img/location.png" alt="" class="categoryImg">병원 찾기</a>
                 </li>
                 <li>
-                    <a href="#" class="headerCategory" style="float: left;"><img src="/img/megaphone.png" alt="" class="categoryImg">이용안내</a>
+                    <a href="/guide" class="headerCategory" style="float: left;"><img src="/img/megaphone.png" alt="" class="categoryImg">이용안내</a>
                     <a href="#" class="headerCategory"><img src="/img/electricity.png" alt="" class="categoryImg">의학상식</a>
                 </li>
                 <li>
                     <!--<a href="#" class="headerCategory" style="float: left;"><img src="/img/membership.png" alt="" class="categoryImg">멤버십</a>-->
-                    <a href="#" class="headerCategory" style="float: left;"><img src="/img/volunteer.png" alt="" class="categoryImg">의료봉사</a>
+                    <a href="/volunteer/volunteerBoard" class="headerCategory" style="float: left;"><img src="/img/volunteer.png" alt="" class="categoryImg">의료봉사</a>
                 </li>
             </ul>
         </li>
@@ -59,7 +59,20 @@
                 </li>
             </ul>
         </li>
-        <li><a href="#">로그인</a></li>
+
+            <th:block th:if="${session.user == null && session.doc==null}">
+                <li><a href="/user/userLogin">로그인</a></li>
+            </th:block>
+            <th:block th:unless="${session.user == null && session.doc==null}">
+                <th:block th:if="${session.user} != null">
+                    <li><a href="">마이페이지</a></li>
+                    <li><a id="userLogout" href="" >로그아웃</a></li>
+                </th:block>
+                <th:block th:unless="${session.user} != null">
+                    <li><a href="">마이페이지</a></li>
+                    <li><a id="docLogout" href="" >로그아웃</a></li>
+                </th:block>
+            </th:block>
     </ul>
 </nav>
 <script src="/js/jquery.min.js"></script>
@@ -72,4 +85,14 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 </body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("a#userLogout").on("click", function(){
+            location.href="/user/userLogout";
+        })
+        $("a#docLogout").on("click", function(){
+            location.href="/user/docLogout";
+        })
+    });
+</script>
 </html>

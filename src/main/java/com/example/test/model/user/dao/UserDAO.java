@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import javax.servlet.http.HttpSession;
+
 @Repository
 @Slf4j
 @RequiredArgsConstructor
@@ -17,6 +19,11 @@ public class UserDAO {
         userMapper.memberSignUp(vo);
     }
 
-   /* public UserVO memberLogin*/
+   public UserVO userLogin(UserVO vo){return userMapper.userLogin(vo);}
 
+   public boolean checkId(String userId){
+        return userMapper.checkId(userId) == 0;
+   }
+
+   public void userLogout(HttpSession session) { userMapper.userLogout(session); };
 }

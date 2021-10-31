@@ -98,9 +98,8 @@
                             <table style="font-size: 11px;" th:each="volunteer : ${list}" th:object="${volunteer}">
                                 <thead>
                                 <tbody>
-                                <th:block>
                                     <tr class="tBody">
-                                        <th:block th:if="*{volunteers-volunteerApplicants}>0">
+                                        <th:block th:if="*{volunteers-accrue}>0">
                                             <ul>
                                             <td class="td_title">
                                                 <li>
@@ -119,7 +118,7 @@
                                             </td>
                                             </ul>
                                         </th:block>
-                                        <th:block th:unless="*{volunteers-volunteerApplicants}>0">
+                                        <th:block th:unless="*{volunteers-accrue}>0">
                                             <ul>
                                             <td class="td_title">
                                                 <li>
@@ -139,7 +138,6 @@
                                             </ul>
                                         </th:block>
                                     </tr>
-                                </th:block>
                                 </tbody>
                                 </thead>
                             </table>

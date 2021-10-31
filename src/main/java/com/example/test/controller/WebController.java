@@ -35,14 +35,17 @@ public class WebController {
     @GetMapping("header")
     public String header(){return "fixed/header";}
     //  vanny
-    @GetMapping("term")
-    public String term(){return "term/term";}
+    @GetMapping("headerLogin")
+    public String headerLogin(){return "fixed/headerLogin";}
     //  vanny
-    @GetMapping("privacy_policy")
-    public String privacy_policy(){return "term/privacy_policy";}
+    @GetMapping("terms")
+    public String term(){return "term/terms";}
     //  vanny
-    @GetMapping("location_policy")
-    public String location_policy(){return "term/location_policy";}
+    @GetMapping("privacyPolicy")
+    public String privacy_policy(){return "term/privacyPolicy";}
+    //  vanny
+    @GetMapping("locationPolicy")
+    public String location_policy(){return "term/locationPolicy";}
     //  hong
     @GetMapping("detail")
     public String detail(){return "mainBoard/detail";}
@@ -60,12 +63,6 @@ public class WebController {
     //  dong
     @GetMapping("payTerm")
     public String payTerm(){return "term/payTerm";}
-    //  lim
-    @GetMapping("myPageUser")
-    public String myPageUser(){return "myPage/myPageUser";}
-    //  lim
-    @GetMapping("myPageDoc")
-    public String myPageDoc(){return "myPage/myPageDoc";}
     //  jin
     @GetMapping("login")
     public String login(){return "user/login";}
@@ -78,9 +75,6 @@ public class WebController {
     //  jin
     @GetMapping("explanation")
     public String explanation(){return "user/explanation";}
-    //  jin
-    @GetMapping("notice")
-    public String notice(){return "notice/notice";}
     //  dong
     @GetMapping("footer")
     public String footer(){return "fixed/footer";}
