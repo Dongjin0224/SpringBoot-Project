@@ -1,13 +1,16 @@
 package com.example.test.controller;
 
+import com.example.test.model.notice.vo.NoticeVO;
 import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
+import com.example.test.model.volunteer.vo.VolunteerBoardVO;
 import com.example.test.services.AdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -22,6 +25,11 @@ public class AdminController {
 
     @GetMapping("admin")
     public String admin(){return "admin/adminHome";}
+    @GetMapping("adminNotice")
+    public String notice(){return "admin/adminNotice";}
+    @GetMapping("adminVolunteer")
+    public String volunteer(){return "admin/adminVolunteer";}
+
 
     /* 일반회원 관리 */
     @GetMapping("adminUpdateUser")
@@ -57,5 +65,26 @@ public class AdminController {
         adminService.updateDoc(doc);
 
         return new RedirectView("adminUpdateDoc");
+    }
+
+    /* 공지사항 등록 */
+    @PostMapping("notice")
+    public String insertNotice(NoticeVO noticeVO){
+        log.info("insertNotice 들어옴");
+        adminService.insertNotice(noticeVO);
+        log.info("공지사항 등록 성공");
+        return "admin/adminNotice";
+    }
+
+    /* 봉사공고 등록 */
+    @PostMapping("volunteer")
+    public String insertVolunteer(VolunteerBoardVO volunteerBoardVO){
+
+        adminService.insertVolunteer(volunteerBoardVO);
+        if(volunteerBoardVO.getAttachList() != null){
+            volunteerBoardVO.getAttachList().forEach(attach -> log.info(attach.toString()));
+        }
+
+        return "admin/adminVolunteer";
     }
 }

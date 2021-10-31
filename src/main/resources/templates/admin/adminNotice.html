@@ -84,13 +84,23 @@
 <div style="height: 87vh; overflow: auto;">
 
 
-    <div class="container" style="text-align: center; margin-top: 23vh;">
-        <div class="image">
-            <img src="img/logo.png" style="background: black; width: 60vh;">
-        </div>
-        <div class="text3">
-            <h1>관리자 사이트입니다.</h1>
-            해당하는 메뉴를 왼쪽에서 선택해주세요.
+    <div class="container" style="text-align: center;margin-top: 3%;">
+        <div class="movieInsert">
+            <h2>공지사항 등록</h2>
+            <form method="post" action="/admin/notice">
+                <table border="1" width="700">
+                    <tr>
+                        <td>제목</td>
+                        <td><input type="text" name="noticeTitle"></td>
+                    </tr>
+                    <tr>
+                        <td>내용</td>
+                        <td><textarea rows="20" cols="60" name="noticeContent"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" width="100px"><input type="submit" value="등록" ></td>
+                </table>
+            </form>
         </div>
     </div>
     <div style="clear: both;"></div>
@@ -104,5 +114,6 @@
     let currentTime = d.getHours() + "시 " + d.getMinutes() + "분 "/* + d.getSeconds() + "초"*/;
     let result = document.getElementById("timeResult");
     result.innerHTML = currentDate + "  " + currentTime;
+
 </script>
 </html>

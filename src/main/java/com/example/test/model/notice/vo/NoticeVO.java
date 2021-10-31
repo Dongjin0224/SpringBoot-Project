@@ -12,5 +12,4 @@ public class NoticeVO {
     private String noticeContent;
     private String noticeDate;
     private int noticeViews;
-
 }

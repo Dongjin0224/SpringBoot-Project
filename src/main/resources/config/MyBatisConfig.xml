@@ -5,6 +5,7 @@
     <typeAliases>
         <typeAlias type="com.example.test.model.volunteer.vo.VolunteerBoardVO" alias="VolunteerBoardVO"/>
         <typeAlias type="com.example.test.model.volunteer.vo.ApplicantsVO" alias="ApplicantsVO"/>
+        <typeAlias type="com.example.test.model.volunteer.vo.VolAttachFileVO" alias="VolAttachFileVO"/>
         <typeAlias type="com.example.test.model.user.vo.UserVO" alias="UserVO"/>
         <typeAlias type="com.example.test.model.user.vo.DocVO" alias="DocVO"/>
         <typeAlias type="com.example.test.model.user.vo.DocAttachFileVO" alias="DocAttachFileVO"/>
