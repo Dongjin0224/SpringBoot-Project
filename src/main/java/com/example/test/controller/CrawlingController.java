@@ -17,8 +17,6 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequestMapping("/crawling/*")
-
 public class CrawlingController {
 
 
@@ -41,6 +39,7 @@ public class CrawlingController {
         //Driver SetUp
         ChromeOptions options = new ChromeOptions();
         options.setCapability("ignoreProtectedModeSettings", true);
+        options.addArguments("headless");
         driver = new ChromeDriver(options);
     }
 
@@ -153,6 +152,7 @@ public class CrawlingController {
             e.printStackTrace();
         } finally {
             driver.close();
+            driver.quit();
         }
     }
 

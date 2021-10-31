@@ -14,10 +14,9 @@
         padding-top: 0rem;
     }
     .box1 {
-        margin-top: 20px;
         background-color: rgb(216, 230, 241);
         width: 400px;
-        height: 890px;
+        height: 87vh;
         color: white;
         padding: 0;
     }
@@ -40,7 +39,7 @@
 <div class="nav">
     <div class="box1">
         <div class="admin">
-            <div class="text">
+            <div class="text" style="font-size: 15px;">
                 관리자님<br>
                 접속시간 : <span id="timeResult"></span>
                 <br>
@@ -52,12 +51,13 @@
             <div class="text1">
                 정보관리
             </div>
-            <div class="menu1">
-                <div class="manage">
+            <div class="menu1" style="height: 165px;">
+                <div class="manage" style="font-size: 15px;">
                     <ul>
                         <ul>
-                            <a href="/admin/adminUpdateUser"><li>일반회원관리</li></a>
-                            <a href="/admin/adminUpdateDoc"><li>의사회원관리</li></a>
+                            <a href="/admin/adminUpdateUser"><li>일반회원 관리</li></a>
+                            <a href="/admin/adminUpdateDoc"><li>의사회원 관리</li></a>
+                            <a href=""><li>신고 관리</li></a>
                         </ul>
                     </ul>
                 </div>
@@ -67,21 +67,24 @@
                 정보등록<br>
             </div>
             <br>
-            <div class="menu2">
-                <div class="manage">
+            <div class="menu2" style="height: 165px;">
+                <div class="manage" style="font-size: 15px;">
                     <ul>
-                        <a href=""><li>스토어 등록</li></a>
-                        <a href=""><li>이벤트 등록</li></a>
-                        <a href=""><li>공지사항 등록</li></a>
-                        <a href=""><li>시공사례 등록</li></a>
+                        <ul>
+                            <a href=""><li>공지사항 등록</li></a>
+                            <a href=""><li>봉사공고 등록</li></a>
+                            <a href=""><li>의학상식 등록</li></a>
+                        </ul>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div style="height: 830px; overflow: auto;">
-    <div class="container" style="text-align: center;margin-top: 23%;">
+<div style="height: 87vh; overflow: auto;">
+
+
+    <div class="container" style="text-align: center; margin-top: 23vh;">
         <div class="image">
             <img src="img/logo.png" style="background: black; width: 60vh;">
         </div>
@@ -91,6 +94,8 @@
         </div>
     </div>
     <div style="clear: both;"></div>
+
+
 </div>
 </body>
 <script>

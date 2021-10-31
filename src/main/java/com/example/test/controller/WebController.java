@@ -96,4 +96,8 @@ public class WebController {
     // index test
     @GetMapping("admin")
     public String admin(){return "admin/adminHome";}
+
+    // index test
+    @GetMapping("admin/notice")
+    public String adminNotice(){return "admin/adminNotice";}
 }
