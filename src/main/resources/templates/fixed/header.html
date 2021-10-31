@@ -65,11 +65,11 @@
             </th:block>
             <th:block th:unless="${session.user == null && session.doc==null}">
                 <th:block th:if="${session.user} != null">
-                    <li><a href="">마이페이지</a></li>
+                    <li><a id="userMyPage" href="">마이페이지</a></li>
                     <li><a id="userLogout" href="" >로그아웃</a></li>
                 </th:block>
                 <th:block th:unless="${session.user} != null">
-                    <li><a href="">마이페이지</a></li>
+                    <li><a id="docMyPage" href="">마이페이지</a></li>
                     <li><a id="docLogout" href="" >로그아웃</a></li>
                 </th:block>
             </th:block>
@@ -92,6 +92,12 @@
         })
         $("a#docLogout").on("click", function(){
             location.href="/user/docLogout";
+        })
+        $("a#userMyPage").on("click", function(){
+            location.href="/myPage/myPageUser";
+        })
+        $("a#docMyPage").on("click", function(){
+            location.href="/myPage/myPageDoc";
         })
     });
 </script>

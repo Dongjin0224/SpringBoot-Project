@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface MyPageService {
 
-    public void updateUser(UserVO vo);
-    public void updateDoc(DocVO vo);
+    public UserVO viewUser(Long userNo);
+    public DocVO viewDoc(Long docNo);
+    public void updateUser(UserVO userVO);
+    public void updateDoc(DocVO docVO);
 
 }
