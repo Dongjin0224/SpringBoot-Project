@@ -3,17 +3,17 @@
 
 <mapper namespace="com.example.board.mappers.AttachFileMapper">
     <insert id="insert">
-        INSERT INTO TABLE_QNA (UUID, UPLOADPATH, FILENAME, IMAGE, qnaNo)
-        VALUES (#{uuid}, #{uploadPath}, #{fileName}, #{image}, #{bno})
+        INSERT INTO TABLE_DOC_ATTACH (UUID, UPLOADPATH, FILENAME, IMAGE, qnaNo)
+        VALUES (#{uuid}, #{uploadPath}, #{fileName}, #{image}, #{qnaNo})
     </insert>
 
     <delete id="delete">
-        DELETE FROM TABLE_QNA WHERE UUID = #{uuid}
+        DELETE FROM TABLE_DOC_ATTACH WHERE UUID = #{uuid}
     </delete>
 
     <select id="findByBno" resultType="attachFileVO">
         SELECT UUID, UPLOADPATH, FILENAME, IMAGE, qnaNo
-        FROM TABLE_QNA
+        FROM TABLE_DOC_ATTACH
         WHERE qnaNo = #{qnaNo}
     </select>
 

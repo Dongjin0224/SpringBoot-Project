@@ -270,17 +270,14 @@
                     <section class="tiles">
                         <div class="searchDiv">
                             <ul class="basic1">
-                                <li>
+                                <li th:each="list:${list}"  th:object="${list}">
                                     <dl>
                                         <dt>
                                             <a href="https://kin.naver.com/qna/detail.naver?d1id=6&amp;dirId=60213&amp;docId=401690868&amp;qb=6rCc67Cc&amp;enc=utf8&amp;section=kin&amp;rank=1&amp;search_sort=0&amp;spq=0"
-                                               target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor"><b>피부</b>타입
-                                                질문</a>
-                                            <sub>2021.10.04</sub>
+                                               target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor" ><span th:text="*{qnaTitle}"> </span></a>
+                                            <sub th:text="*{qnaDate}"> </sub>
                                         </dt>
-                                        <dd>제가 작년까지만해도 세수하고 난후면 엄청 건조한 <b>피부</b>였어요 막 흰색각질?이... 건성피분가요 복합성 피분가요? 안녕하세요.
-                                            네이버 지식파트너 P&G SK-II 입니다. 피부 타입은...
-                                        </dd>
+                                        <dd th:text="*{qnaContent}"> </dd>
                                         <dd class="tag_area">
                                         </dd>
                                         <dd class="txt_block">
@@ -288,32 +285,9 @@
                                                class="txt_g1 _nclicks:kin.cat1">진료과목</a>
                                             &gt; <a
                                                 href="/search/list.naver?query=%EA%B0%9C%EB%B0%9C&amp;section=qna&amp;dirId=60213"
-                                                class="txt_g1 _nclicks:kin.cat2">피부과</a>
-                                            <span class="bar">|</span>
-                                            <span class="hit">답변수 1</span>
-                                            &nbsp;추천수 0
-                                        </dd>
-                                    </dl>
-                                </li>
-                                <li>
-                                    <dl>
-                                        <dt>
-                                            <a href="https://kin.naver.com/qna/detail.naver?d1id=7&amp;dirId=70119&amp;docId=395856112&amp;qb=7KCV7ZiV7Jm46rO8&amp;enc=utf8&amp;section=kin&amp;rank=1&amp;search_sort=0&amp;spq=0"
-                                               target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor">허리 <b>정형외과</b>
-                                                통증이 있어서</a>
-                                            <sub>2021.07.29</sub>
-                                        </dt>
-                                        <dd>허리 통증 때문에 집 근처에 있는 허리 <b>정형외과</b>를 가보려고 하거든요. 허리 <b>정형외과</b>에도 신경외과는 있겠죠? 근데
-                                            허리 <b>정형외과</b>에서도 치료는 다 비슷하게 진행하나요?...
-                                        </dd>
-                                        <dd class="tag_area">
-                                        </dd>
-                                        <dd class="txt_block">
-                                            <a href="/search/list.naver?query=%EC%A0%95%ED%98%95%EC%99%B8%EA%B3%BC&amp;section=qna"
-                                               class="txt_g1 _nclicks:kin.cat1">진료과목</a>
-                                            &gt; <a
-                                                href="/search/list.naver?query=%EC%A0%95%ED%98%95%EC%99%B8%EA%B3%BC&amp;section=qna&amp;dirId=70119"
-                                                class="txt_g1 _nclicks:kin.cat2">정형외과</a>
+                                                c
+
+                                                lass="txt_g1 _nclicks:kin.cat2">피부과</a>
                                             <span class="bar">|</span>
                                             <span class="hit">답변수 1</span>
                                             &nbsp;추천수 0
@@ -344,19 +318,21 @@
                         </form>
                     </div>
                     <div class="pageWrap">
-                        <div class="big-width" style="text-align: center">
-                            <a class="changePage"><code>&lt;</code></a>
-                            <code>1</code>
-                            <a class="changePage" href="javascript:void(0)"><code>2</code></a>
-                            <a class="changePage" href="javascript:void(0)"><code>3</code></a>
-                            <a class="changePage" href="javascript:void(0)"><code>4</code></a>
-                            <a class="changePage" href="javascript:void(0)"><code>5</code></a>
-                            <a class="changePage" href="javascript:void(0)"><code>6</code></a>
-                            <a class="changePage" href="javascript:void(0)"><code>7</code></a>
-                            <a class="changePage" href="javascript:void(0)"><code>8</code></a>
-                            <a class="changePage" href="javascript:void(0)"><code>9</code></a>
-                            <a class="changePage" href="javascript:void(0)"><code>10</code></a>
-                            <a class="changePage"><code>&gt;</code></a>
+                        <div th:object="${pageMaker}">
+                            <div style="text-align: center">
+<!--                                <a class="changePage" th:if="*{prev}" th:href="|mainBoard?pageNum=*{criteria.getPageNum() - 1}&amount=10|"><code>&lt;</code></a>-->
+                                <th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+                                    <code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
+<!--                                    <code class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>-->
+<!--                                    <a class="changePage" th:if="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>-->
+                                    <a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="|mainBoard?pageNum=${num}&amount=10|"><code th:text="${num}"></code></a>
+                                </th:block>
+<!--                                <a class="changePage" th:if="*{next}" th:href="|mainBoard?pageNum=*{criteria.getPageNum() + 1}&amount=10|}"><code>&gt;</code></a>-->
+                            </div>
+                            <form  th:object="${criteria}" name="pageForm">
+                                <input type="hidden" name="pageNum" th:field="*{pageNum}">
+                                <input type="hidden" name="amount" th:field="*{amount}">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -481,7 +457,7 @@
     });
 
     $('document').ready(function() {
-        var area0 = ["서울특별시", "경기도"];
+        var area0 = ["시 / 도, 서울특별시", "경기도"];
         var area1 = ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"];
         var area2 = ["고양시", "과천시", "광명시", "광주시", "구리시", "군포시", "김포시", "남양주시", "동두천시", "부천시", "성남시", "수원시", "시흥시", "안산시", "안성시", "안양시", "양주시", "오산시", "용인시", "의왕시", "의정부시", "이천시", "파주시", "평택시", "포천시", "하남시", "화성시", "가평군", "양평군", "여주군", "연천군"];
 
@@ -510,6 +486,40 @@
         });
     });
 
+    // $(document).ready(function() {
+    //     $("a[name='file-delete']").on("click", function(e) {
+    //         e.preventDefault();
+    //         deleteFile($(this));
+    //     });
+    // })
+
+
+    let pageForm = $(document.pageForm);
+    let paging = [[${pageMaker.criteria.listLink}]];
+    let searchForm = $(document.searchForm);
+
+    $("a.changePage").click(function(e){
+        e.preventDefault();
+        pageForm.action="/mainBoard/mainBoard?pageNum="+pageForm.find("input[name='pageNum']").val()+"&amount="+10;
+        // pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+        pageForm.submit();
+    });
+
+    // $("code.changePage").click(function(e){
+    //     e.preventDefault();
+    //     pageForm.find("input[name='pageNum']").text($(this));
+    //     pageForm.action="/mainBoard/mainBoard?pageNum="+pageForm.find("input[name='pageNum']").val()+"&amount="+10;
+    //
+    //     pageForm.submit();
+    // });
+    // var i = document.querySelector('code.changePage');
+    // var form = document.pageForm;
+    // i.addEventListener('click',function(){
+    //     form.pageNum.value = i.innerHTML;
+    //     pageForm.action="/mainBoard/mainBoard?pageNum="+form.pageNume.value+"&amount="+10;
+    //
+    //     pageForm.submit();
+    // });
 
 </script>
 </html>

@@ -25,6 +25,8 @@
         </if>
     </sql>
 
+<!--    <include refid="search"></include>-->
+
     <select id="getList" resultType="boardVO">
         <![CDATA[
         SELECT qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt
@@ -35,7 +37,6 @@
             FROM TABLE_QNA
             WHERE
         ]]>
-        <include refid="search"></include>
         <![CDATA[
         ROWNUM <= #{pageNum} * #{amount}
         )

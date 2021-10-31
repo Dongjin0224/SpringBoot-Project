@@ -18,9 +18,9 @@ public class BoardMapperTest {
     @Test
     public void testGetList(){
         Criteria cri = new Criteria();
-        cri.setPageNum(2);
-        cri.setAmount(10);
+        log.info("-------------------------------------------------");
         mapper.getList(cri).forEach(board -> log.info(board.toString()));
+        log.info("-------------------------------------------------");
     }
 
     @Test

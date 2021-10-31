@@ -23,22 +23,37 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequestMapping("/board/*")
+@RequestMapping("/mainBoard/*")
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
 
-    @GetMapping("list")
+    @GetMapping("mainBoard")
     public String list(Criteria criteria, Model model){
         log.info("-------------------------------");
         log.info("list");
+        log.info(criteria.toString());
         log.info("-------------------------------");
+
         model.addAttribute("list", boardService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
-        return "board/list";
+        return "mainBoard/mainBoard";
     }
 
-    @PostMapping("register")
+//    @GetMapping("mainBoard")
+//    public String list(Criteria criteria, Model model, int pageNum, int amount){
+//        log.info("-------------------------------");
+//        log.info("list");
+//        log.info(criteria.toString());
+//        log.info(pageNum+"-----"+amount);
+//        log.info("-------------------------------");
+//
+//        model.addAttribute("list", boardService.getList(criteria));
+//        model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
+//        return "mainBoard/mainBoard?pageNum="+pageNum+"&amount="+amount;
+//    }
+
+    @PostMapping("write")
     public RedirectView register(BoardVO boardVO, RedirectAttributes rttr){
         log.info("-------------------------------");
         log.info("register : " + boardVO.toString());
@@ -55,9 +70,9 @@ public class BoardController {
 //        세션의 flash영역을 이용하여 전달
         rttr.addFlashAttribute("qnaNo", boardVO.getQnaNo());
 //        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
-        return new RedirectView("list");
+        return new RedirectView("write");
     }
-    @GetMapping({"read", "modify"})
+    @GetMapping({"detail", "modify"})
     public void read(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
@@ -78,7 +93,7 @@ public class BoardController {
 
         if(boardService.modify(boardVO)){
             rttr.addAttribute("result", "success");
-            rttr.addAttribute("bno", boardVO.getQnaNo());
+            rttr.addAttribute("qnaNo", boardVO.getQnaNo());
         }
         return new RedirectView("read");
     }
@@ -123,8 +138,8 @@ public class BoardController {
 
 
     }
-    @GetMapping("register")
-    public void register(){}
+    @GetMapping("write")
+    public String write(){return "mainBoard/write";}
 
     //    게시글 첨부파일
     @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
