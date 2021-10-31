@@ -94,6 +94,9 @@ public class WebController {
     //  dong
     @GetMapping("footer")
     public String footer(){return "fixed/footer";}
+    //  dong
+    @GetMapping("test")
+    public String test(){return "payment/test";}
 
     //  young
     @GetMapping("guide")

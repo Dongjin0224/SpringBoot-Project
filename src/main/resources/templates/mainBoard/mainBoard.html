@@ -83,7 +83,7 @@
     }
 
     td a:hover {
-        color:white !important;
+        color: white !important;
     }
 
     table tbody tr {
@@ -134,19 +134,20 @@
         background-repeat: no-repeat;
         display: flex;
     }
+
     table tbody tr:nth-child(2n + 1) {
         background-color: white;
     }
 
     /* 답변 추천 랭킹 스타일*/
-    div.rankingDiv{
+    div.rankingDiv {
         margin-right: 2%;
         width: 17%;
         margin-left: 2%;
         padding-top: 30px;
     }
 
-    div.ranking{
+    div.ranking {
         height: 350px;
         /*background: #ffffff;*/
         margin-bottom: 30px;
@@ -159,14 +160,14 @@
         box-shadow: 10px 10px 5px #0066ff3b !important;
     }
 
-    div.rankingWrap{
+    div.rankingWrap {
         height: 300px;
         border-radius: 25px;
         text-align: center;
         padding: 11% 0 7% 0;
     }
 
-    div.rankingWrap > ul{
+    div.rankingWrap > ul {
         text-align: left;
         margin-top: 7%;
     }
@@ -183,25 +184,27 @@
         background: radial-gradient(#3b3b3b6b, transparent);
     }
 
-    i.one{
+    i.one {
         color: gold;
     }
 
-    i.two{
+    i.two {
         color: silver;
     }
 
-    i.three{
+    i.three {
         color: #CD7F32;
     }
-    table.rankingTable{
+
+    table.rankingTable {
         margin-left: 7%;
     }
-    table.rankingTable tr{
+
+    table.rankingTable tr {
         text-align: left;
     }
 
-    table.rankingTable tr th{
+    table.rankingTable tr th {
         padding: 0;
     }
 </style>
@@ -217,8 +220,8 @@
     <section id="one" class="main alt">
         <header class="accent1" style="background-color: white; background-image: url('/img/mainBanner.jpg')">
             <div class="blur">
-                    <h1 style="color: white">지식 iN</h1>
-                    <p style="color: white">궁금한 병명에 대해서 질문하고 검색하세요.</p>
+                <h1 style="color: white">지식 iN</h1>
+                <p style="color: white">궁금한 병명에 대해서 질문하고 검색하세요.</p>
             </div>
         </header>
 
@@ -439,23 +442,27 @@
 <script>
     let check = false;
 
-    $("td a").on("click", function(e){
+    $("td a").on("click", function (e) {
         e.preventDefault();
-        if(check){return;}
+        if (check) {
+            return;
+        }
         $("h1").text($(this).text());
         $("h1").hide();
         $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
         $("h1").fadeIn(500);
         check = true;
-        setTimeout(function(){check = false;}, 500);
+        setTimeout(function () {
+            check = false;
+        }, 500);
     })
 
-    $("table.categoryChoice tr td").on("mouseover", function(){
+    $("table.categoryChoice tr td").on("mouseover", function () {
         $(this).css("background", "#49beef");
         $($(this).children()[0]).css("color", "#fff");
     });
 
-    $("table.categoryChoice tr td").on("mouseout", function(){
+    $("table.categoryChoice tr td").on("mouseout", function () {
         $(this).css("background", "#fff");
         $($(this).children()[0]).css("color", "#3b3b3b");
     });
