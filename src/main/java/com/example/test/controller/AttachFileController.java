@@ -1,7 +1,7 @@
 package com.example.test.controller;
 
 
-import com.example.test.board.vo.AttachFileVO;
+import com.example.test.model.vo.AttachFileVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.core.io.FileSystemResource;
@@ -30,10 +30,10 @@ import java.util.UUID;
 
 @Controller
 @Slf4j
-@RequestMapping("/upload/*")
+@RequestMapping("/fileUpload/*")
 public class AttachFileController {
 
-    @PostMapping(value = "uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "fileUploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<AttachFileVO> uploadAjaxAction(MultipartFile[] uploadFiles){
         log.info("upload ajax action...........");

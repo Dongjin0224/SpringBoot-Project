@@ -1,10 +1,10 @@
 package com.example.test.controller;
 
 
-import com.example.test.board.vo.AttachFileVO;
-import com.example.test.board.vo.BoardVO;
-import com.example.test.board.vo.Criteria;
-import com.example.test.board.vo.PageDTO;
+import com.example.test.model.beans.vo.PageDTO;
+import com.example.test.model.vo.AttachFileVO;
+import com.example.test.model.vo.BoardVO;
+import com.example.test.model.beans.vo.Criteria;
 import com.example.test.services.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

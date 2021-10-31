@@ -1,6 +1,6 @@
 package com.example.test.mappers;
 
-import com.example.test.board.vo.AttachFileVO;
+import com.example.test.model.vo.AttachFileVO;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package com.example.test.dao;
 
 
-import com.example.test.appointment.dao.ReplyDAO;
-import com.example.test.board.vo.Criteria;
-import com.example.test.board.vo.ReplyVO;
+import com.example.test.model.appointment.dao.ReplyDAO;
+import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.vo.ReplyVO;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

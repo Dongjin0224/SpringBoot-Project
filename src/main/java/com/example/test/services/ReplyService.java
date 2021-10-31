@@ -1,10 +1,10 @@
 package com.example.test.services;
 
 
-import com.example.test.appointment.dao.ReplyDAO;
-import com.example.test.board.vo.Criteria;
-import com.example.test.board.vo.ReplyPageDTO;
-import com.example.test.board.vo.ReplyVO;
+import com.example.test.model.appointment.dao.ReplyDAO;
+import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.vo.ReplyPageDTO;
+import com.example.test.model.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

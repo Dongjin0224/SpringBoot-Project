@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test.mappers.DocHosAttachFileMapper">
+    <insert id="insert">
+        INSERT INTO TABLE_HOSPITAL_ATTACH
+        (
+        HOSUUID, HOSUPLOADPATH, HOSFILENAME, HOSIMAGE, DOCNO
+        )
+        VALUES(
+        #{hosUuid}, #{hosUploadPath}, #{hosFileName}, #{hosImage}, #{docNo}
+        )
+    </insert>
+    <delete id="delete">
+        DELETE FROM TABLE_HOSPITAL_ATTACH WHERE UUID = #{uuid}
+    </delete>
+
+    <select id="findByBno" resultType="DocHosAttachFileVO">
+        SELECT HOSUUID, HOSUPLOADPATH, HOSFILENAME, HOSIMAGE, DOCNO
+        FROM TABLE_HOSPITAL_ATTACH
+        WHERE DOCNO = #{docNo}
+    </select>
+</mapper>
+

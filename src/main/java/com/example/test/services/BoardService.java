@@ -1,9 +1,9 @@
 package com.example.test.services;
 
 
-import com.example.test.board.vo.AttachFileVO;
-import com.example.test.board.vo.BoardVO;
-import com.example.test.board.vo.Criteria;
+import com.example.test.model.vo.AttachFileVO;
+import com.example.test.model.vo.BoardVO;
+import com.example.test.model.beans.vo.Criteria;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,11 +1,11 @@
 package com.example.test.services;
 
 
-import com.example.test.appointment.dao.AttachFileDAO;
-import com.example.test.appointment.dao.BoardDAO;
-import com.example.test.board.vo.AttachFileVO;
-import com.example.test.board.vo.BoardVO;
-import com.example.test.board.vo.Criteria;
+import com.example.test.model.appointment.dao.AttachFileDAO;
+import com.example.test.model.appointment.dao.BoardDAO;
+import com.example.test.model.vo.AttachFileVO;
+import com.example.test.model.vo.BoardVO;
+import com.example.test.model.beans.vo.Criteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

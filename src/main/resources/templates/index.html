@@ -87,6 +87,42 @@
     a{
         border-bottom: none;
     }
+
+    #wrapper > .main > .inner.alt {
+        padding: 2rem 0 !important;
+    }
+
+    #wrapper > .main > .inner > .content {
+        padding: 2.5rem 3rem 1rem 3rem;
+        background-color: #ffffff;
+    }
+/*
+    @media (max-width: 1680px) {
+        #div2{
+            margin-bottom: 15vh !important;
+        }
+        .div3{
+            margin-top: 13vh !important;
+        }
+    }
+
+    @media (max-width: 1280px) {
+        #div2{
+            margin-bottom: 22vh !important;
+        }
+        .div3{
+            margin-top: 15vh !important;
+        }
+    }
+
+    @media (max-width: 980px) {
+        .div3{
+            margin-top: 22vh !important;
+        }
+        #div2{
+            margin-bottom: 17vh !important;
+        }
+    }*/
 </style>
 <body class="is-preload">
 
@@ -97,11 +133,11 @@
     <header id="header"></header>
 
     <!-- Section -->
-    <section id="one" class="main alt" style="background-color: white">
-        <div class="inner alt" style="height: 900px">
+    <section id="one" class="main alt" style="background-color: white; height: 87vh;">
+        <div id="div2" class="inner alt">
             <div class="content main">
-                    <div style="height: 120px;"></div>
-                    <div style="display: flex;">
+                    <div class="div1"></div>
+                    <div class="div3" style="display: flex; margin-top:8vh">
                         <img style="width: 40%; margin: auto; margin-bottom: 60px;" src="img/logo.png">
                     </div>
                     <div class="bar">
@@ -122,11 +158,11 @@
         <div class="inner">
             <section>
                 <p style="font-size: 85%; text-align: center; font-weight: bold; margin-bottom: 0 !important;">
-                    <a style="border-bottom: none;" href="#">이용안내</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="border-bottom: none;" href="#">공지사항</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="border-bottom: none;" href="#">이용약관</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="border-bottom: none;" href="#">개인정보취급방침</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="border-bottom: none;" href="#">위치기반이용약관</a>
+                    <a style="border-bottom: none;" href="/guide">이용안내</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="/notice/noticeBoard">공지사항</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="/terms">이용약관</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="/privacyPolicy">개인정보취급방침</a>&nbsp;&nbsp;&nbsp;&nbsp; <span>|</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="border-bottom: none;" href="/locationPolicy">위치기반이용약관</a>
                 </p>
             </section>
         </div>
@@ -145,5 +181,47 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
+<!-- Channel Plugin Scripts -->
+<script>
+ (function() {
+        var w = window;
+        if (w.ChannelIO) {
+            return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+        }
+        var ch = function() {
+            ch.c(arguments);
+        };
+        ch.q = [];
+        ch.c = function(args) {
+            ch.q.push(args);
+        };
+        w.ChannelIO = ch;
+        function l() {
+            if (w.ChannelIOInitialized) {
+                return;
+            }
+            w.ChannelIOInitialized = true;
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+            s.charset = 'UTF-8';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+        }
+        if (document.readyState === 'complete') {
+            l();
+        } else if (window.attachEvent) {
+            window.attachEvent('onload', l);
+        } else {
+            window.addEventListener('DOMContentLoaded', l, false);
+            window.addEventListener('load', l, false);
+        }
+    })();
+    ChannelIO('boot', {
+        "pluginKey": "6f90a938-4c59-4662-ada4-7f78534d1e80"
+    });
+</script>
+<!-- End Channel Plugin -->
 </body>
 </html>

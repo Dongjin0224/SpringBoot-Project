@@ -1,9 +1,9 @@
 package com.example.test.controller;
 
 
-import com.example.test.board.vo.Criteria;
-import com.example.test.board.vo.ReplyPageDTO;
-import com.example.test.board.vo.ReplyVO;
+import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.vo.ReplyPageDTO;
+import com.example.test.model.vo.ReplyVO;
 import com.example.test.services.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
