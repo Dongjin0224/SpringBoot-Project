@@ -26,12 +26,6 @@ $("#doc").on("click", function(){
     let inputFile = $(".uploadDiv input");
     let uploadResult = $(".uploadResult ul");
 
-    //form태그에 input hidden 생성 실습
-    //서버 쪽으로 전달할 첨부파일의 데이터를 input type hidden으로 추가하기
-    //추가된 li태그를 모두 가져와서 data속성을 통해 알맞는 값을 설정한다.
-    //form.append("추가할 HTML") : HTML 추가
-    //submit을 눌렀을 때 click 이벤트를 발생하고, 기존 submit이벤트는 막아줘야 한다.
-    //input태그가 모두 추가된 후 submit()해준다.
 
     $("input[type='submit']").on("click", function(e){
         e.preventDefault();
@@ -319,6 +313,7 @@ function check() {
 
 
 function formSubmit() {
+    let check = false;
     let form = document.doctorSignUpForm;
     let email = document.getElementById("email");
     let i = document.getElementById('user_email');
@@ -328,16 +323,12 @@ function formSubmit() {
     let major = document.getElementById("major");
     let f = document.getElementById('major_select');
     major.value = f.value;
-    form.submit();
 
-    /*if(form.docId.value.length < 4 || form.docId.value.length > 16){
-        alert("아이디는 4자 이상, 16자 이하로 입력해주세요.");
+    if(form.docId.value==null){
+        alert("아이디를 확인해주세요");
         form.docId.focus();
-        return false;
-    }else{
-        check = true;
+        return;
     }
-
     if(!form.docPw.value){
         alert("비밀번호를 입력해주세요");
         form.docPw.focus();
@@ -359,8 +350,61 @@ function formSubmit() {
             form.docPw.focus();
             return;
         }
-
     }
+
+    if(!form.docMajor1.value){
+        alert("전공을 선책해주세요");
+        form.docName.focus();
+        return;
+    }
+    if(!form.docHospitalName.value){
+        alert("병원이름을 확인해주세요");
+        form.docHospitalName.focus();
+        return;
+    }
+    if(!form.docHosPhone.value){
+        alert("병원전회번호를 확인해주세요");
+        form.docHosPhone.focus();
+        return;
+    }
+    if(form.docLat.value==37.555946 && form.docLng.value==126.972317){
+        alert("지도에서 위치를 선택해주세요");
+       /* form.searchBar.focus();*/
+        return;
+    }
+    if(!form.docAddress.value){
+        alert("상세주소를 확인해주세요");
+        form.docAddress.focus();
+        return;
+    }
+    if(!form.docEmail1.value){
+        alert("이메일을 입력해주세요");
+        form.docEmail1.focus();
+        return;
+    }
+    if(form.docEmail2.value =="@선택"){
+        alert("이메일을 선택해주세요");
+        form.docEmail2.focus();
+        return;
+    }
+
+    if(!form.docPhoneNum.value){
+        alert("휴대폰번호를 입력해주세요");
+        form.docPhoneNum.focus();
+        return;
+    }
+    if(!form.uploadFiles.value){
+        alert("프로필을 첨부해주세요");
+        form.uploadFiles.focus();
+        return;
+    }
+    if(!form.hosUploadFiles.value){
+        alert("병원사진를 첨부해주세요");
+        form.hosUploadFiles.focus();
+        return;
+    }
+
+    /*약관동의 확인*/
     check = false;
 
     $.each($(".terms"), function(index, item){
@@ -371,12 +415,26 @@ function formSubmit() {
 
     if(check){
         alert("이용약관 동의가 필요합니다.");
-        form.term.fous();
+        /*form.term.focus();*/
         return;
     }
+    if(form.docId.value.length < 4 || form.docId.value.length > 16){
+        alert("아이디는 4자 이상, 16자 이하로 입력해주세요.");
+        form.docId.focus();
+        return false;
+    }else{
+        check = true;
+    }
 
+    $("#submit1").on("click", function(){
+        let idChkVal = $("#checkId").val();
+        if(idChkVal == "N"){
+            alert("중복확인 버튼을 눌러주세요.");
+            return;
+        }
+    });
     form.submit();
-*/
+
 }
 
 
@@ -417,6 +475,7 @@ function initMap() {
     geocoder = new google.maps.Geocoder();
 
     const inputText = document.createElement("input");
+
 
     inputText.type = "text";
     inputText.class = "searchBar";

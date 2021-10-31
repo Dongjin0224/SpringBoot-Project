@@ -10,5 +10,5 @@ public interface UserService {
 
     public UserVO userLogin(UserVO vo);
 
-    public boolean checkId(String userId);
+    public int checkId(UserVO vo);
 }
