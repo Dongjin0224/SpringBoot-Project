@@ -71,7 +71,7 @@
                 <div class="manage" style="font-size: 15px;">
                     <ul>
                         <ul>
-                            <a href=""><li>공지사항 등록</li></a>
+                            <a href="/admin/adminNotice"><li>공지사항 등록</li></a>
                             <a href=""><li>봉사공고 등록</li></a>
                             <a href=""><li>의학상식 등록</li></a>
                         </ul>
@@ -87,15 +87,15 @@
     <div class="container" style="text-align: center;margin-top: 3%;">
         <div class="movieInsert">
             <h2>공지사항 등록</h2>
-            <form enctype="multipart/form-data" method="post" action="${pageContext.request.contextPath }/manage/ManageInsertNoticeOk.mn">
+            <form method="post" action="/admin/notice">
                 <table border="1" width="700">
                     <tr>
                         <td>제목</td>
-                        <td><input type="text" name="notice_title"></td>
+                        <td><input type="text" name="noticeTitle"></td>
                     </tr>
                     <tr>
                         <td>내용</td>
-                        <td><textarea rows="20" cols="60" name="notice_content"></textarea></td>
+                        <td><textarea rows="20" cols="60" name="noticeContent"></textarea></td>
                     </tr>
                     <tr>
                         <td colspan="2" width="100px"><input type="submit" value="등록" ></td>

@@ -68,7 +68,7 @@
                 <div class="manage" style="font-size: 15px;">
                     <ul>
                         <ul>
-                            <a href=""><li>공지사항 등록</li></a>
+                            <a href="/admin/adminNotice"><li>공지사항 등록</li></a>
                             <a href=""><li>봉사공고 등록</li></a>
                             <a href=""><li>의학상식 등록</li></a>
                         </ul>
@@ -91,17 +91,17 @@
                 <td>회원번호</td><td>아이디</td><td>비밀번호</td><td>이름</td><td>전화번호</td><td>이메일</td><td style="width: 100px;">상태</td><td>변경</td>
             </tr>
             <th:block th:each="user:${user}" th:object="${user}">
-            <tr style="font-size: 15px;">
-                <td th:text="*{userNo}"></td>			<!-- 회원번호 -->
-                <td th:text="*{userId}"></td>		<!-- 아이디 -->
-                <td th:text="*{userPw}"></td>		<!-- 비밀번호 -->
-                <td th:text="*{userName}"></td>		<!-- 이름 -->
-                <td th:text="*{userPhoneNum}"></td>		<!-- 전화번호 -->
-                <td th:text="*{userEmail}"></td>		<!-- 이메일 -->
-                <td><input type="text" th:value="*{userStatus}" name="userStatus" th:id="'us' + *{userNo}"></td>		<!-- 상태 -->
-                <td><input type="hidden" th:value="*{userNo}" name="userNo" >
-                    <input type="button" value="변경하기" th:onclick="|javascript:updateForm(*{userNo})|"></td>
-            </tr>
+                <tr style="font-size: 15px;">
+                    <td th:text="*{userNo}"></td>			<!-- 회원번호 -->
+                    <td th:text="*{userId}"></td>		<!-- 아이디 -->
+                    <td th:text="*{userPw}"></td>		<!-- 비밀번호 -->
+                    <td th:text="*{userName}"></td>		<!-- 이름 -->
+                    <td th:text="*{userPhoneNum}"></td>		<!-- 전화번호 -->
+                    <td th:text="*{userEmail}"></td>		<!-- 이메일 -->
+                    <td><input type="text" th:value="*{userStatus}" name="userStatus" th:id="'us' + *{userNo}"></td>		<!-- 상태 -->
+                    <td><input type="hidden" th:value="*{userNo}" name="userNo" >
+                        <input type="button" value="변경하기" th:onclick="|javascript:updateForm(*{userNo})|"></td>
+                </tr>
             </th:block>
             <tr height="18px" style="font-size: 15px;">
                 <td colspan="6"></td>
@@ -119,10 +119,10 @@
     let result = document.getElementById("timeResult");
     result.innerHTML = currentDate + "  " + currentTime;
 
-    function updateForm(docNo){
+    function updateForm(userNo){
         let form = document.frm;
-        let us = document.getElementById('us' + docNo).value;
-        location.href="updateDoc?docNo="+docNo+"&&userStatus="+us;
+        let us = document.getElementById('us' + userNo).value;
+        location.href="updateUser?userNo="+userNo+"&&userStatus="+us;
     }
 </script>
 </html>

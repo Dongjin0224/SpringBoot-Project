@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test.mappers.VolAttachFileMapper">
+    <insert id="insert">
+        INSERT INTO TABLE_VOL_ATTACH
+        (
+        uuid, uploadpath, fileName, image, volunteerBoardNo
+        )
+        VALUES(
+        #{uuid}, #{uploadPath}, #{fileName}, #{image}, #{volunteerBoardNo}
+        )
+    </insert>
+    <delete id="delete">
+        DELETE FROM TABLE_VOL_ATTACH WHERE uuid = #{uuid}
+    </delete>
+
+    <select id="findByBno" resultType="VolAttachFileVO">
+        SELECT uuid, uploadpath, fileName, image, volunteerBoardNo
+        FROM TABLE_VOL_ATTACH
+        WHERE volunteerBoardNo = #{volunteerBoardNo}
+    </select>
+</mapper>
+

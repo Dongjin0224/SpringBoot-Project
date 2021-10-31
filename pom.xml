@@ -20,7 +20,7 @@
     </properties>
 
     <dependencies>
-        <!--원격 디비 전자지갑 -->
+       <!--원격 디비 전자지갑-->
         <dependency>
             <groupId>com.oracle.ojdbc</groupId>
             <artifactId>ucp</artifactId>
