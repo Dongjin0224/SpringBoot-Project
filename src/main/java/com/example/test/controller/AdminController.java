@@ -3,6 +3,7 @@ package com.example.test.controller;
 import com.example.test.model.notice.vo.NoticeVO;
 import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
+import com.example.test.model.volunteer.vo.VolAttachFileVO;
 import com.example.test.model.volunteer.vo.VolunteerBoardVO;
 import com.example.test.services.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -79,6 +80,7 @@ public class AdminController {
     /* 봉사공고 등록 */
     @PostMapping("volunteer")
     public String insertVolunteer(VolunteerBoardVO volunteerBoardVO){
+
 
         adminService.insertVolunteer(volunteerBoardVO);
         if(volunteerBoardVO.getAttachList() != null){
