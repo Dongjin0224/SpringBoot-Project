@@ -82,7 +82,7 @@ function formSubmit(){
         return;
     }
 
-    /*약관동의 확인*/
+    /!*약관동의 확인*!/
     check = false;
 
     $.each($(".terms"), function(index, item){
@@ -93,7 +93,7 @@ function formSubmit(){
 
     if(check){
         alert("이용약관 동의가 필요합니다.");
-        /*form.term.focus();*/
+        /!*form.term.focus();*!/
         return;
     }
     if(form.userId.value.length < 4 || form.userId.value.length > 16){

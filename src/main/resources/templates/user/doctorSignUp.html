@@ -155,39 +155,6 @@
 
     }
 
-    /*.search{*/
-    /*    left: 385px;*/
-    /*    top: 55px;*/
-    /*    color: white !important;*/
-    /*}*/
-    /*.clear{*/
-    /*    left: 439px;*/
-    /*    top: 55px;*/
-    /*}*/
-
-    /*모달창*/
-    /* #my_modal {
-         display: none;
-         width: 604px;
-         padding: 15px 34px;
-         background-color: #fefefe;
-         border: 1px solid #888;
-         border-radius: 3px;
-     }
-     #my_modal .modal_close_btn {
-         position: relative;
-         margin-left: 253px;
-     }
-     .box {
-         border-color: #358bca;
-     }
-     .ulBox ul li::marker {
-         font-family: 'Font Awesome 5 Free';
-         content: "\f138";
-         position: absolute;
-         left : 1em;
-         color: #358bca;
-     }*/
 
     .box_layer .layer_bg {
         position: fixed;
@@ -244,6 +211,41 @@
 
     a {
         border-bottom: none;
+    }
+
+
+    .filebox label {
+        display: inline-block;
+        padding: .5em .75em;
+        color: #fff;
+        font-size: inherit;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #358bca;
+        cursor: pointer;
+        border: 1px solid #358bca;
+        border-radius: .25em;
+        -webkit-transition: background-color 0.2s;
+        transition: background-color 0.2s;
+    }
+
+    .filebox label:hover {
+        background-color: #358bca80;
+    }
+
+    .filebox label:active {
+        background-color: #358bca80;
+    }
+
+    .filebox input[type="file"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
     }
 </style>
 <body class="is-preload">
@@ -336,32 +338,35 @@
 
                             <!--coolSms끝-->
                             <!--첨부파일 추가-->
-                            <div>
-                                <h4>의사 프로필</h4>
+                            <h4>의사 프로필</h4>
+                            <div class="filebox">
+                                <label for="doc">+</label>
                                 <input type="file" id="doc" name="uploadFiles" multiple>
-                            </div>
-                            <!--썸네일-->
-                            <div style="border:solid blue">
-                                <div class="uploadResult">
-                                    <ul style="list-style: none;"></ul>
+                                <div style="border:solid #eeeeee">
+                                    <div class="uploadResult" >
+                                        <ul style="list-style: none;" ></ul>
+                                    </div>
                                 </div>
                             </div>
+                            <!--썸네일-->
+
                             <div class="bigPictureWrapper">
                                 <div class="bigPicture"></div>
                             </div>
 
 
                             <!--첨부파일 추가2-->
-                            <div>
+                            <div class="filebox">
                                 <h4>병원사진</h4>
+                                <label for="hos">+</label>
                                 <input type="file" id="hos" name="hosUploadFiles" multiple>
-                            </div>
-                            <!--썸네일2-->
-                            <div style="border:solid blue">
-                                <div class="uploadResult1">
-                                    <ul style="list-style: none;"></ul>
+                                <div style="border:solid #eeeeee">
+                                    <div class="uploadResult1">
+                                        <ul style="list-style: none;"></ul>
+                                    </div>
                                 </div>
                             </div>
+                            <!--썸네일2-->
                             <div class="bigPictureWrapper1">
                                 <div class="bigPicture1"></div>
                             </div>
@@ -465,9 +470,8 @@
                                 <input type="hidden" name="docLat">
                                 <input type="hidden" name="docLng">
                                 <!--                <a href="#" class="btn_close">확인</a>-->
-                                <input type="button" class="btn_close" value="확인" onclick="formSubmit()"
+                                <input type="submit" class="btn_close" value="확인" onclick="formSubmit()"
                                        style="margin-left: 39%;" id="submit1">
-
                             </div>
                             <div class="layer_bg"></div>
                         </div>
@@ -503,8 +507,14 @@
 ></script>
 <script src="/js/docSignUp.js"></script>
 <script>
+
+   /* $(document).ready(function () {*/
+
+   /* });*/
+
+
     /*휴대폰 인증*/
-    $(document).on('click','#checkNum',function(e){
+    $("#checkNum").on('click',function(){
         $.ajax({
             url : "/user/sendSms",
             type: "post",

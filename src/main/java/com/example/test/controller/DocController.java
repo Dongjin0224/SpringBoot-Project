@@ -40,6 +40,9 @@ public class DocController {
     public String doctorSignUp(DocVO vo){
         log.info("---------------DocController...들어옴------------------");
 
+        int result =service.checkId(vo);
+
+        log.info("docNo : " + String.valueOf(vo.getDocNo()));
         log.info("-----------------------------------------");
         log.info(String.valueOf(vo.getAttachList().size()));
         log.info(String.valueOf(vo.getHosattachList().size()));
@@ -51,7 +54,7 @@ public class DocController {
             vo.getHosattachList().forEach(hosattach -> log.info(hosattach.toString()));
         }
 
-        int result =service.checkId(vo);
+
         if(result == 1) {
             return "user/doctorSignUp";
         }else if(result == 0) {

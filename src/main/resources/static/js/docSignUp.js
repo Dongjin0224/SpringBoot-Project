@@ -284,7 +284,7 @@ function selectAll(selectAll) {
 /*이메일*/
 $(document).ready(function () {
     $('#email_select').change(function () {
-        var email = $('#email_select').val(); //id선택자로 email select box값 추출하여 저장
+        let email = $('#email_select').val(); //id선택자로 email select box값 추출하여 저장
         console.log(email);
         if (email == '_manual') { //selectbox value가 _manual이면
             $("#email_select").replaceWith("<input type = 'text' id='input_email' placeholder='직접입력' style='margin: auto !important;'>");
@@ -313,7 +313,6 @@ function check() {
 
 
 function formSubmit() {
-    let check = false;
     let form = document.doctorSignUpForm;
     let email = document.getElementById("email");
     let i = document.getElementById('user_email');
@@ -324,118 +323,133 @@ function formSubmit() {
     let f = document.getElementById('major_select');
     major.value = f.value;
 
-    if(form.docId.value==null){
-        alert("아이디를 확인해주세요");
-        form.docId.focus();
-        return;
-    }
-    if(!form.docPw.value){
-        alert("비밀번호를 입력해주세요");
-        form.docPw.focus();
-        return;
-    }else{
-        //8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함되어 있는 지 검사
-        var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-        var hangleCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-
-        if(!reg.test(form.docPw.value)){
-            alert("비밀번호는 8자리 이상이어야 하며, 대문자/소문자/숫자/특수문자 모두 포함해야 합니다.");
-            form.docPw.focus();
-            return;
-        }
-
-        //비밀번호에 공백을 포함할 수 없다.
-        if(form.docPw.value.search(/\s/) != -1){
-            alert("비밀번호에 공백 없이 입력해주세요.");
-            form.docPw.focus();
-            return;
-        }
-    }
-
-    if(!form.docMajor1.value){
-        alert("전공을 선책해주세요");
-        form.docName.focus();
-        return;
-    }
-    if(!form.docHospitalName.value){
-        alert("병원이름을 확인해주세요");
-        form.docHospitalName.focus();
-        return;
-    }
-    if(!form.docHosPhone.value){
-        alert("병원전회번호를 확인해주세요");
-        form.docHosPhone.focus();
-        return;
-    }
-    if(form.docLat.value==37.555946 && form.docLng.value==126.972317){
-        alert("지도에서 위치를 선택해주세요");
-       /* form.searchBar.focus();*/
-        return;
-    }
-    if(!form.docAddress.value){
-        alert("상세주소를 확인해주세요");
-        form.docAddress.focus();
-        return;
-    }
-    if(!form.docEmail1.value){
-        alert("이메일을 입력해주세요");
-        form.docEmail1.focus();
-        return;
-    }
-    if(form.docEmail2.value =="@선택"){
-        alert("이메일을 선택해주세요");
-        form.docEmail2.focus();
-        return;
-    }
-
-    if(!form.docPhoneNum.value){
-        alert("휴대폰번호를 입력해주세요");
-        form.docPhoneNum.focus();
-        return;
-    }
-    if(!form.uploadFiles.value){
-        alert("프로필을 첨부해주세요");
-        form.uploadFiles.focus();
-        return;
-    }
-    if(!form.hosUploadFiles.value){
-        alert("병원사진를 첨부해주세요");
-        form.hosUploadFiles.focus();
-        return;
-    }
-
-    /*약관동의 확인*/
-    check = false;
-
-    $.each($(".terms"), function(index, item){
-        if(!$(item).is(":checked")){
-            check = true;
-        }
-    });
-
-    if(check){
-        alert("이용약관 동의가 필요합니다.");
-        /*form.term.focus();*/
-        return;
-    }
-    if(form.docId.value.length < 4 || form.docId.value.length > 16){
-        alert("아이디는 4자 이상, 16자 이하로 입력해주세요.");
-        form.docId.focus();
-        return false;
-    }else{
-        check = true;
-    }
-
-    $("#submit1").on("click", function(){
-        let idChkVal = $("#checkId").val();
-        if(idChkVal == "N"){
-            alert("중복확인 버튼을 눌러주세요.");
-            return;
-        }
-    });
     form.submit();
 
 }
+
+$(document).ready(function () {
+    $("#popup_open_btn").on("click", function () {
+        let check = false;
+        let form = document.doctorSignUpForm;
+        if (form.docId.value == "") {
+            alert("아이디를 확인해주세요");
+            form.docId.focus();
+            return;
+        }
+        if (!form.docPw.value) {
+            alert("비밀번호를 입력해주세요");
+            form.docPw.focus();
+            return;
+        } else {
+            //8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함되어 있는 지 검사
+            let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+            let hangleCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+            if (!reg.test(form.docPw.value)) {
+                alert("비밀번호는 8자리 이상이어야 하며, 대문자/소문자/숫자/특수문자 모두 포함해야 합니다.");
+                form.docPw.focus();
+                return;
+            }
+
+            //비밀번호에 공백을 포함할 수 없다.
+            if (form.docPw.value.search(/\s/) != -1) {
+                alert("비밀번호에 공백 없이 입력해주세요.");
+                form.docPw.focus();
+                return;
+            }
+        }
+
+        if (!form.docMajor1.value) {
+            alert("전공을 선책해주세요");
+            form.docName.focus();
+            return;
+        }
+        if (!form.docHospitalName.value) {
+            alert("병원이름을 확인해주세요");
+            form.docHospitalName.focus();
+            return;
+        }
+        if (!form.docHosPhone.value) {
+            alert("병원전회번호를 확인해주세요");
+            form.docHosPhone.focus();
+            return;
+        }
+        if (form.docLat.value == 37.555946 && form.docLng.value == 126.972317) {
+            alert("지도에서 위치를 선택해주세요");
+           /* /!* form.searchBar.focus();*!/*/
+            return;
+        }
+        if (!form.docAddress.value) {
+            alert("상세주소를 확인해주세요");
+            form.docAddress.focus();
+            return;
+        }
+        if (!form.docName.value) {
+            alert("이름을 확인해주세요");
+            form.docName.focus();
+            return;
+        }
+        if (!form.docEmail1.value) {
+            alert("이메일을 입력해주세요");
+            form.docEmail1.focus();
+            return;
+        }
+        if (form.docEmail2.value == "@선택") {
+            alert("이메일을 선택해주세요");
+            form.docEmail2.focus();
+            return;
+        }
+
+        if (!form.docPhoneNum.value) {
+            alert("휴대폰번호를 입력해주세요");
+            form.docPhoneNum.focus();
+            return;
+        }
+        if (!form.numStr.value) {
+            alert("인증번호를 입력해주세요");
+            form.numStr.focus();
+            return;
+        }
+
+
+        /*/!*약관동의 확인*!/*/
+        check = false;
+
+        $.each($(".terms"), function (index, item) {
+            if (!$(item).is(":checked")) {
+                check = true;
+            }
+        });
+
+        if (check) {
+            alert("이용약관 동의가 필요합니다.");
+           /* /!*form.term.focus();*!/*/
+            return;
+        }
+        if (form.docId.value.length < 4 || form.docId.value.length > 16) {
+            alert("아이디는 4자 이상, 16자 이하로 입력해주세요.");
+            form.docId.focus();
+            return false;
+        } else {
+            check = true;
+        }
+
+        $("#submit1").on("click", function () {
+            let idChkVal = $("#checkId").val();
+            if (idChkVal == "N") {
+                alert("중복확인 버튼을 눌러주세요.");
+                return;
+            }
+
+        });
+        setTimeout(() => {
+                $("#popup_open_btn").on("click", function () {
+                    $(".box_layer").css("display", "block");
+                });
+            }
+        );
+    });
+});
 
 
 /*전공선택*/
@@ -565,14 +579,13 @@ function geocode(request) {
 }
 
 
-$(document).ready(function () {
-    $("#popup_open_btn").on("click", function () {
-        $(".box_layer").css("display", "block");
-    })
-    $(".btn_close").on("click", function () {
-        $(".box_layer").css("display", "none");
-    })
+/*$(document).ready(function () {*/
+
+$(".btn_close").on("click", function () {
+    $(".box_layer").css("display", "none");
 })
+
+/*})*/
 
 
 
