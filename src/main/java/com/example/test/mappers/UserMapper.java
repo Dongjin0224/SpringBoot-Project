@@ -21,6 +21,5 @@ public interface UserMapper {
 
     public void updatePassword(UserVO vo);
 
-
     public void userLogout(HttpSession session);
 }

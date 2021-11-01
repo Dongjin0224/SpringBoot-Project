@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void userLogout(HttpSession session) { userDAO.userLogout(session); }
+
     @Override
     public UserVO findId(UserVO vo) {
         return userDAO.findId(vo);

@@ -49,4 +49,11 @@ public class PayMapperTest {
         payVO.setDocNo(2L);
         payMapper.pay(payVO);
     }
+
+    @Test
+    public void getPayList(){
+        log.info("----------------------------------");
+        log.info(String.valueOf(payMapper.getPayList(1L)));
+        log.info("----------------------------------");
+    }
 }

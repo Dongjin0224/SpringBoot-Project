@@ -24,4 +24,8 @@ public class PayDAO {
     public void pay(PayVO payVO){
         payMapper.pay(payVO);
     }
+
+    public PayVO getPayList(Long docNo){
+        return payMapper.getPayList(docNo);
+    }
 }

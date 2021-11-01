@@ -11,7 +11,7 @@
 
     <update id="updateCustomer">
         UPDATE TABLE_PAYMENT
-        SET CARD_NUMBER = #{card_number}, EXPIRY = #{expiry}, BIRTH = #{birth}, PWD_2DIGIT = #{pwd_2digit}, CUSTOMER_UID = #{customer_uid}
+        SET CARD_NUMBER = #{card_number}, EXPIRY = #{expiry}, BIRTH = #{birth}, PWD_2DIGIT = #{pwd_2digit}, CUSTOMER_UID = #{customer_uid}, AMOUNT = #{amount}
         WHERE DOCNO = #{docNo}
     </update>
 
@@ -20,5 +20,23 @@
         SET PAYSTATUS = 1, AMOUNT = #{amount}, PAYDATE = SYSDATE, "NAME" = #{name}
         WHERE DOCNO = #{docNo}
     </update>
+
+    <select id="getPayList" resultMap="result">
+        SELECT PAYNO, AMOUNT, CARD_NUMBER, EXPIRY, BIRTH, PWD_2DIGIT, CUSTOMER_UID, "NAME"
+        FROM TABLE_PAYMENT
+        WHERE DOCNO = #{docNo}
+    </select>
+
+    <resultMap type="payVO" id="result">
+        <result property="payNo" column="PAYNO"/>
+        <result property="docNo" column="DOCNO"/>
+        <result property="amount" column="AMOUNT"/>
+        <result property="card_number" column="CARD_NUMBER"/>
+        <result property="expiry" column="EXPIRY"/>
+        <result property="birth" column="BIRTH"/>
+        <result property="pwd_2digit" column="PWD_2DIGIT"/>
+        <result property="customer_uid" column="CUSTOMER_UID"/>
+        <result property="name" column="NAME"/>
+    </resultMap>
 
 </mapper>
