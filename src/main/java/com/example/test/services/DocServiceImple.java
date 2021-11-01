@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class DocSeviceImple implements DocService{
+public class DocServiceImple implements DocService{
 
     private final DocDAO docDAO;
     private final DocAttachFileDAO docAttachFileDAO;
