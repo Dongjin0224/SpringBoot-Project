@@ -73,5 +73,12 @@ public class DocServiceTest {
         });
     }
 
+   /* @Test
+    public void checkId(){
+        log.info("--------------------");
+        log.info(docService.checkId("재훈"));
+        log.info("--------------------");
+    }*/
+
 
 }

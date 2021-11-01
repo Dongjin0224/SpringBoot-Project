@@ -13,7 +13,7 @@ public interface UserMapper {
 
     public UserVO userLogin(UserVO vo);
 
-    public int checkId(String userId);
+    public int checkId(UserVO vo);
 
     public void userLogout(HttpSession session);
 }

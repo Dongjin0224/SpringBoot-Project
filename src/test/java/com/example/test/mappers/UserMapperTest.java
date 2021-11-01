@@ -24,11 +24,11 @@ public class UserMapperTest {
         mapper.memberSignUp(user);
     }
 
-    @Test
+   /* @Test
     public void testCheckId(){
         log.info("----------------------------");
         log.info(String.valueOf(mapper.checkId("jjj99")));
         log.info("----------------------------");
-    }
+    }*/
 
 }

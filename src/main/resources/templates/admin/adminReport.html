@@ -25,7 +25,7 @@
     }
 
     .selectCurMovie{
-        width: 150%;
+        width: 100%;
     }
 
 
@@ -97,43 +97,25 @@
             </tr>
             <tr bgcolor="pink" style="font-size: 15px;">
                 <td>회원번호</td>
-                <td>아이디</td>
-                <td>비밀번호</td>
                 <td>이름</td>
                 <td>전공</td>
-                <td>전화번호</td>
-                <td>이메일</td>
                 <td>병원이름</td>
-                <td>병원 전화번호</td>
-                <td>결제상태</td>
-                <td>봉사횟수</td>
-                <td>추천수</td>
+                <td>누적신고</td>
                 <td style="width: 100px;">상태</td>
                 <td>변경</td>
             </tr>
-            <th:block th:each="doc:${doc}" th:object="${doc}">
+            <th:block th:each="report:${report}" th:object="${report}">
                 <tr style="font-size: 15px;">
                     <td th:text="*{docNo}"></td>			<!-- 회원번호 -->
-                    <td th:text="*{docId}"></td>		    <!-- 아이디 -->
-                    <td th:text="*{docPw}"></td>		    <!-- 비밀번호 -->
                     <td th:text="*{docName}"></td>		    <!-- 이름 -->
                     <td th:text="*{docMajor}"></td>		    <!-- 전공 -->
-                    <td th:text="*{docPhoneNum}"></td>		<!-- 전화번호 -->
-                    <td th:text="*{docEmail}"></td>		    <!-- 이메일 -->
                     <td th:text="*{docHospitalName}"></td>  <!-- 병원이름 -->
-                    <td th:text="*{docHosPhone}"></td>      <!-- 병원전화번호 -->
-                    <td th:text="*{docPayStatus}"></td>     <!-- 결제상태 -->
-                    <td th:text="*{docServiceCnt}"></td>    <!-- 봉사횟수 -->
-                    <td th:text="*{docLikeCnt}"></td>       <!-- 추천수 -->
+                    <td th:text="*{docReportCnt}"></td>	    <!-- 누적 신고 수 -->
                     <td><input type="text" th:value="*{docStatus}" name="userStatus" th:id="'us' + *{docNo}"></td>		<!-- 상태 -->
                     <td><input type="hidden" th:value="*{docNo}" name="userNo" >
                         <input type="button" value="변경하기" th:onclick="|javascript:updateForm(*{docNo})|"></td>
                 </tr>
             </th:block>
-            <tr height="18px" style="font-size: 15px;">
-                <td colspan="12"></td>
-                <td>총 회원수</td><td th:text="|${totalDoc} 명|"></td>
-            </tr>
         </table>
     </form>
 </div>
@@ -149,7 +131,7 @@
     function updateForm(docNo){
         let form = document.frm;
         let us = document.getElementById('us' + docNo).value;
-        location.href="updateDoc?docNo="+docNo+"&&docStatus="+us;
+        location.href="reportDoc?docNo="+docNo+"&&docStatus="+us;
     }
 </script>
 </html>

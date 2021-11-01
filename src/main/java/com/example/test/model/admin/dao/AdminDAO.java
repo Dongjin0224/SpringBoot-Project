@@ -31,4 +31,7 @@ public class AdminDAO {
 
     /*봉사공고 등록*/
     public void insertVolunteer(VolunteerBoardVO volunteerBoardVO) { adminMapper.insertVolunteer(volunteerBoardVO);}
+
+    /*신고 관리*/
+    public List<DocVO> report(){ return adminMapper.report(); }
 }

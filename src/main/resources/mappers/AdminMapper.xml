@@ -66,4 +66,8 @@
         )
     </insert>
 
+<!-- 신고 관리 -->
+    <select id="report" resultType="com.example.test.model.user.vo.DocVO">
+        SELECT * FROM TABLE_DOC WHERE docReportCnt >= 5 ORDER BY docReportCnt DESC
+    </select>
 </mapper>

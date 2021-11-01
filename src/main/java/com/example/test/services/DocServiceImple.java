@@ -31,8 +31,6 @@ public class DocServiceImple implements DocService{
     public void DocSignUp(DocVO vo) {
         docDAO.doctorSignUp(vo);
 
-
-
         if(vo.getAttachList() ==null || vo.getAttachList().size() ==0){
             return;
         }
@@ -76,6 +74,10 @@ public class DocServiceImple implements DocService{
     }
 
     @Override
-    public void docLogout(HttpSession session) { docDAO.docLogout(session); }
+    public int checkId(DocVO vo) {
+        int result =docDAO.checkId(vo);
+        return result;
+    }
+
 
 }
