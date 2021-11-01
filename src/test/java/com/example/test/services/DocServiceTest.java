@@ -33,7 +33,7 @@ public class DocServiceTest {
         doc.setDocHosPhone("1234");
         doc.setDocEmail("hds1204");
         doc.setDocPhoneNum("hds1204");
-        doc.setDocPic("hds1204");
+
 
         avo.setDocNo(6L);
         avo.setFileName("jjjja");

@@ -24,4 +24,15 @@ public class UserDAO {
         return userMapper.checkId(vo);
     }
 
+    public UserVO findId(UserVO vo){
+        return userMapper.findId(vo);
+    }
+    public UserVO findPw(UserVO vo){
+        return userMapper.findPw(vo);
+    }
+
+    public void updatePassword(UserVO vo){
+        userMapper.updatePassword(vo);
+    }
+
 }

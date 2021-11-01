@@ -82,7 +82,6 @@ $("#doc").on("click", function(){
             data: {fileName:targetFile, type:type},
             dataType: "text",
             success: function(result){
-                alert(result);
                 li.remove();
             }
         });
@@ -208,7 +207,6 @@ $("#hos").on("click", function(){
             data: {hosFileName:targetFile, type:type},
             dataType: "text",
             success: function(result){
-                alert(result);
                 li.remove();
             }
         });

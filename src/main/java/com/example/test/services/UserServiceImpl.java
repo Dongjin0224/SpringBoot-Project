@@ -27,5 +27,20 @@ public class UserServiceImpl implements UserService{
         return result;
     }
 
+    @Override
+    public UserVO findId(UserVO vo) {
+        return userDAO.findId(vo);
+    }
+
+    @Override
+    public UserVO findPw(UserVO vo) {
+        return userDAO.findPw(vo);
+    }
+
+    @Override
+    public void updatePassword(UserVO vo) {
+        userDAO.updatePassword(vo);
+    }
+
 
 }

@@ -11,4 +11,10 @@ public interface UserService {
     public UserVO userLogin(UserVO vo);
 
     public int checkId(UserVO vo);
+
+    public UserVO findId(UserVO vo);
+
+    public UserVO findPw(UserVO vo);
+
+    public void updatePassword(UserVO vo);
 }

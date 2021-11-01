@@ -121,4 +121,19 @@ public class UserController {
         return numStr;
     }
 
+
+    @GetMapping("findAccount")
+    public String findAccount() {
+        return "user/findAccount";
+    }
+
+   /* @PostMapping("findAccount")
+    public String findId(UserVO vo){
+        UserVO userVO = service.findId(vo);
+
+        if(userVO == null){
+
+        }
+    }
+*/
 }
