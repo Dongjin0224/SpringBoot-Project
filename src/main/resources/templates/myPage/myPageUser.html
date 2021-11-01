@@ -208,7 +208,7 @@
 
                     <!-- Tab content -->
                     <div id="myOne" class="tabcontent">
-                        <div>
+                        <div th:object="${user}">
                             <fieldset class="first">
                                 <div class='area'>
                                     <h3 style="margin-bottom: 1%;">회원정보</h3>
@@ -222,12 +222,11 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class='info' th:object="${user}">
+                                    <div class='info'>
                                         <hr class='dark'>
                                         <div>
                                             <label class="profile">이름</label>
-                                            <div th:text="*{userName}">
-                                            </div>
+                                            <div th:text="*{userName}"></div>
                                         </div>
                                         <hr>
                                         <div>
@@ -262,21 +261,16 @@
                                         <hr class='dark'>
                                         <div>
                                             <label class="profile">이름</label>
-                                            <div>
-                                                홍길동
-                                            </div>
+                                            <div th:text="*{userName}"></div>
                                         </div>
                                         <hr>
                                         <div>
                                             <label for="docPhoneNum" class="profile">휴대폰 번호<span
                                                     style='color:red; font-size:1em;'> *</span></label>
                                             <div>
-                                                <input class='phone' type='text' id='docPhoneNum' name='docPhoneNum'
-                                                       readonly>
-                                                - <input class='phone' type='text' id='docPhoneNum2' name='docPhoneNum2'
-                                                         readonly>
-                                                - <input class='phone' type='text' id='docPhoneNum3' name='docPhoneNum3'
-                                                         readonly>
+                                                <input class='phone' type='text' id='docPhoneNum' name='docPhoneNum'>
+                                                - <input class='phone' type='text' id='docPhoneNum2' name='docPhoneNum2'>
+                                                - <input class='phone' type='text' id='docPhoneNum3' name='docPhoneNum3'>
                                             </div>
                                         </div>
                                         <div>
@@ -292,10 +286,10 @@
                                         </div>
                                         <hr>
                                         <div>
-                                            <label for="docEmail" class="profile">e-mail<span
+                                            <label for="userEmail" class="profile">e-mail<span
                                                     style='color:red; font-size:1em;'> *</span></label>
                                             <div>
-                                                <input type='text' id='docEmail' name='docEmail'>
+                                                <input type='text' th:value="*{userEmail}" id='userEmail' name='userEmail'>
                                             </div>
                                         </div>
                                         <hr class='dark'>

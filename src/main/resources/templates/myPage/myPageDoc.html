@@ -122,6 +122,10 @@
         border-radius: 0;
     }
 
+    input[type="password"] {
+        border-radius: 0;
+    }
+
     .box {
         border-color: #358bca;
     }
@@ -340,7 +344,7 @@
 
                     <!-- Tab content -->
                     <div id="myOne" class="tabcontent">
-                        <div>
+                        <div th:object="${doc}">
                             <fieldset class="first">
                                 <div class='area'>
                                     <h3 style="margin-bottom: 1%;">회원정보</h3>
@@ -357,46 +361,32 @@
                                         <hr class='dark'>
                                         <div>
                                             <label class="profile">이름</label>
-                                            <div>
-                                                홍길동
-                                            </div>
+                                            <div th:text="*{docName}"></div>
                                         </div>
                                         <hr>
                                         <div>
                                             <label class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
-                                            <div>
-                                                010
-                                                - 1234
-                                                - 5678
-                                            </div>
+                                            <div th:text="*{docPhoneNum}"></div>
                                         </div>
                                         <hr>
                                         <div>
                                             <label class="profile">e-mail<span style='color:red; font-size:1em;'> *</span></label>
-                                            <div>
-                                                abcd123@gmail.com
-                                            </div>
+                                            <div th:text="*{docEmail}"></div>
                                         </div>
                                         <hr>
                                         <div>
                                             <label class="profile">전공</label>
-                                            <div>
-                                                이비인후과
-                                            </div>
+                                            <div th:text="*{docMajor}"></div>
                                         </div>
                                         <hr>
                                         <div>
                                             <label class="profile">소속기관<span style='color:red; font-size:1em;'> *</span></label>
-                                            <div>
-                                                소속기관 정보 들어갈 자리
-                                            </div>
+                                            <div th:text="*{docHospitalName}"></div>
                                         </div>
                                         <hr>
                                         <div>
                                             <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
-                                            <div>
-                                                약력 들어갈 자리
-                                            </div>
+                                            <div th:text="*{docHistory}"></div>
                                         </div>
                                         <hr>
                                         <hr class='dark'>
@@ -405,91 +395,101 @@
                             </fieldset>
                             <!-- 수정 버튼 누르면 나오는 곳 -->
                             <fieldset class="first" style="display: none;">
-                                <!--<form method="post" action="#">-->
-                                <div class='area'>
-                                    <h3 style="margin-bottom: 1%;">회원정보</h3>
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <p style='font-size: 0.6em; margin-bottom: 1%; padding-top: 2%;'>
-                                            <span style='color:red;'>*</span>
-                                            표시는 필수입력 항목 이오니 반드시 입력해 주세요.
-                                        </p>
-                                    </div>
-                                    <div class='info'>
-                                        <hr class='dark'>
-                                        <div>
-                                            <label class="profile">이름</label>
-                                            <div></div>
+                                <form method="post" action="/myPage/updateDoc" id="updateDoc" name="updateDoc">
+                                    <div class='area'>
+                                        <h3 style="margin-bottom: 1%;">회원정보</h3>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <p style='font-size: 0.6em; margin-bottom: 1%; padding-top: 2%;'>
+                                                <span style='color:red;'>*</span>
+                                                표시는 필수입력 항목 이오니 반드시 입력해 주세요.
+                                            </p>
                                         </div>
-                                        <hr>
-                                        <div>
-                                            <label for="docPhoneNum" class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
+                                        <div class='info'>
+                                            <hr class='dark'>
                                             <div>
-                                                <input class='phone' type='text' id='docPhoneNum' name='docPhoneNum' readonly>
-                                                - <input class='phone' type='text' id='docPhoneNum2' name='docPhoneNum2' readonly>
-                                                - <input class='phone' type='text' id='docPhoneNum3' name='docPhoneNum3' readonly>
+                                                <label class="profile">이름</label>
+                                                <div th:text="*{docName}"></div>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <label for="code" class="profile">인증번호<span style='color:red; font-size:1em;'> *</span></label>
-                                            <div class="td6" style="padding: 0;">
-                                                <div class="div2">
-                                                    <input type="text" id="code" name="code" placeholder="인증번호">
-                                                    <a class="button small" onclick=""
-                                                       style="width: 80px; margin: auto;">전송</a>
+                                            <hr>
+                                            <div>
+                                                <label for="docPhoneNum" class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div>
+                                                    <input class='phone' type='text' id='docPhoneNum' name='docPhoneNum'>
+                                                    - <input class='phone' type='text' id='docPhoneNum2' name='docPhoneNum2'>
+                                                    - <input class='phone' type='text' id='docPhoneNum3' name='docPhoneNum3'>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <hr>
-                                        <div>
-                                            <label for="docEmail" class="profile">e-mail<span style='color:red; font-size:1em;'> *</span></label>
                                             <div>
-                                                <input type='text' id='docEmail' name='docEmail'>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div>
-                                            <label class="profile">전공</label>
-                                            <div>
-                                                이비인후과
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div>
-                                            <label for="docAddress" class="profile">소속기관<span style='color:red; font-size:1em;'> *</span></label>
-                                            <div>
-                                                <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 0%;'>
-                                                    <span style='color:red;'>*</span>
-                                                    기관명
-                                                </p>
-                                                <input type='text' id='docAddress' name='docAddress' placeholder="소속기관">
-                                                <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 5%;'>
-                                                    <span style='color:red;'>*</span>
-                                                    원하는 위치를 클릭시 해당 지점으로 좌표가 등록됩니다.
-                                                </p>
-                                                <div id="map" style="width: 435px"></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div>
-                                            <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
-                                            <div class="td6">
-                                                <div class="div2">
-                                                    <input type="text" name="" value="" placeholder="약력">
-                                                    <a class="button small" onclick="addInput()"
-                                                       style="width: 80px; margin: auto;">추가</a>
+                                                <label for="code" class="profile">인증번호<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div class="td6" style="padding: 0;">
+                                                    <div class="div2">
+                                                        <input type="text" id="code" name="code" placeholder="인증번호">
+                                                        <a class="button small" onclick=""
+                                                           style="width: 80px; margin: auto;">전송</a>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <hr>
+                                            <div>
+                                                <label for="docEmail" class="profile">e-mail<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div>
+                                                    <input type='text' th:value="*{docEmail}" id='docEmail' name='docEmail'>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div>
+                                                <label class="profile">전공</label>
+                                                <div th:text="*{docMajor}">
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div>
+                                                <label for="docAddress" class="profile">소속기관<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div>
+                                                    <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 0%;'>
+                                                        <span style='color:red;'>*</span>
+                                                        기관명
+                                                    </p>
+                                                    <div>
+                                                        <input type='text' th:value="*{docHospitalName}" id='docAddress' name='docAddress'>
+                                                    </div>
+                                                    <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 5%;'>
+                                                        <span style='color:red;'>*</span>
+                                                        원하는 위치를 클릭시 해당 지점으로 좌표가 등록됩니다.
+                                                    </p>
+                                                    <div id="map" style="width: 435px"></div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div>
+                                                <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div class="td7">
+                                                    <div class="div3" style="display: flex;">
+                                                        <input id="history" type="text" th:value="*{docHistory}" name="" value="" placeholder="약력">
+                                                        <a class="button small" onclick="addInput()"
+                                                           style="width: 80px; margin: auto;">추가</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div>
+                                                <label for="password" class="profile">비밀번호<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div><input type='password' id='password' name='password'></div>
+                                            </div>
+                                            <div>
+                                                <label for="password" class="profile">비밀번호 확인<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div><input type='password' id='password1' name='password'></div>
+                                            </div>
+                                            <hr class='dark'>
                                         </div>
-                                        <hr>
-                                        <hr class='dark'>
                                     </div>
-                                </div>
-                                <div style="display: flex; justify-content: center">
-                                    <a href="#" class="button small" style="margin-right: 5%; width: 80px; padding: initial;">변경하기</a>
-                                    <button id="back" class="button small" style="margin-right: 5%; width: 80px;">취소</button>
-                                </div>
+                                    <div style="display: flex; justify-content: center">
+                                        <!--<a href="#" onclick="" class="button small" style="margin-right: 5%; width: 80px; padding: initial;">변경하기</a>-->
+                                        <button type="button" id="update" class="button small" style="margin-right: 5%; width: 80px;">수정</button>
+                                        <button id="back" class="button small" style="margin-right: 5%; width: 80px;">취소</button>
+                                    </div>
 
-                                <!--</form>-->
+                                </form>
                             </fieldset>
                         </div>
                     </div>
@@ -530,7 +530,7 @@
                         </div>
                     </div>
 
-                    <div id="myThree" class="tabcontent">
+                    <div id="myThree" class="tabcontent" th:object="${appointment}">
                         <h3 style="text-align: center">진료 예약</h3>
                         <table>
                             <thead>
@@ -560,7 +560,7 @@
 
                     <div id="myFour" class="tabcontent">
                         <h3 style="text-align: center">봉사 신청</h3>
-                        <table>
+                        <table th:object="${content}">
                             <thead>
                             <tr class="">
                                 <th class="th1"><strong>전공분야</strong></th>
@@ -571,7 +571,7 @@
                             </thead>
                             <tbody>
                             <tr class="">
-                                <td class="">[외과]</td>
+                                <td class="" >[외과]</td>
                                 <td class="">강원도 노인 돌봄</td>
                                 <td class="">5</td>
                                 <td class="">2222.12.22</td>
@@ -664,6 +664,20 @@
 <script src="/js/fix.js"></script>
 </body>
 <script>
+    $("#update").on("click", function(){
+        let updateForm = document.updateDoc;
+
+        $("#docPhoneNum").val();
+        $("#docPhoneNum2").val();
+        $("#docPhoneNum3").val();
+        $("#docEmail").val();
+        $("#docAddress").val();
+        $("#map").val();
+        $("#history").val();
+
+        updateForm.submit();
+    })
+
     document.getElementById("defaultOpen").click();
 
     function openCity(evt, cityName) {
@@ -705,7 +719,7 @@
     let i = 0;
     function addInput(){
 
-        document.getElementsByClassName('td6')[0].innerHTML+="<div class='div2' id='text"+i+"'>" +
+        document.getElementsByClassName('td7')[0].innerHTML+="<div class='div3' style='display: flex;' id='text"+i+"'>" +
             "            <input type='text' name='' value='' placeholder='약력'>" +
             "            <a class='button small' onclick='fn1(" + i + ")'" +
             "                style='width: 80px; margin: auto;'>삭제</a>" +
