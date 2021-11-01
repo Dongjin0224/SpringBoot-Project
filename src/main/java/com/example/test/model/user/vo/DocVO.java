@@ -21,7 +21,6 @@ public class DocVO {
     private String docAddress;
     private String docEmail;
     private String docPhoneNum;
-    private String docPic;
     private int docStatus;
     private int docPayStatus;
     private int docServiceCnt;

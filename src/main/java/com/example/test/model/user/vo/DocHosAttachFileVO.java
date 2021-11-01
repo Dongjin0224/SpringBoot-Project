@@ -11,7 +11,7 @@ public class DocHosAttachFileVO {
     private String hosUploadPath;
     private String hosFileName;
     private boolean hosImage;
-    private long docNo;
+    private Long docNo;
 
 
 }

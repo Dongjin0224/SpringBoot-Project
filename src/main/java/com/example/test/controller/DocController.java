@@ -86,7 +86,14 @@ public class DocController {
         return result;
         }
 
+    @GetMapping("docLogout")
+    public String docLogout(HttpServletRequest req) {
+        HttpSession session = req.getSession(false);
 
+        if (session != null) {
+            session.invalidate();
+        } return "user/docLogin";
+    }
 
     @PostMapping("sendSms")
     @ResponseBody

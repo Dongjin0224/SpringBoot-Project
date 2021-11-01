@@ -79,5 +79,7 @@ public class DocServiceImple implements DocService{
         return result;
     }
 
+    @Override
+    public void docLogout(HttpSession session) { docDAO.docLogout(session); }
 
 }
