@@ -29,7 +29,16 @@ public class DocVO {
 
     private int c;
 
+
+    private String uuid;
+    private String uploadPath;
+    private String fileName;
+    private boolean image;
+
     private List<DocAttachFileVO> attachList;
     private List<DocHosAttachFileVO> hosattachList;
+
+    private String docPic;
+    private String hosPic;
 
 }

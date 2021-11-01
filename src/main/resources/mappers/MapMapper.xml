@@ -11,6 +11,14 @@
     </select>
 
     <select id="getDocs" resultType="com.example.test.model.user.vo.DocVO">
-        SELECT * FROM TABLE_DOC WHERE docHospitalName = #{docHospitalName}
+        SELECT * FROM TABLE_DOC A, TABLE_DOC_ATTACH B WHERE A.DOCnO=B.DOCNO AND docHospitalName = #{docHospitalName}
+    </select>
+
+    <select id="docPic" resultType="com.example.test.model.user.vo.DocVO">
+        SELECT * FROM TABLE_DOC A, TABLE_DOC_ATTACH B WHERE A.DOCnO=B.DOCNO AND A.DOCNO=${docNo}
+    </select>
+
+    <select id="hosPic" resultType="DocHosAttachFileVO">
+        SELECT * FROM TABLE_DOC A, TABLE_HOSPITAL_ATTACH B WHERE A.DOCnO=B.DOCNO AND A.DOCNO=${docNo}
     </select>
 </mapper>

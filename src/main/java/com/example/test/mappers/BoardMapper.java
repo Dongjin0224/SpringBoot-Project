@@ -3,7 +3,6 @@ package com.example.test.mappers;
 
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
-import com.example.test.model.user.vo.DocVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -26,6 +25,10 @@ public interface BoardMapper {
     public int getTotal(Criteria criteria);
 //    검색한 게시글 목록
     public List<BoardVO> getSearchList(Criteria criteria);
+//    조회수 검색
+    public Long viewCnt(Long qnaNo);
+//    조회수 업데이트
+    public void updateViewCnt(Long qnaNo);
 
     public List<DocVO> getLikeCnt();
 

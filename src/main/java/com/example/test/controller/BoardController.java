@@ -2,12 +2,13 @@ package com.example.test.controller;
 
 
 import com.example.test.model.beans.vo.PageDTO;
-import com.example.test.model.mainBoard.vo.AttachFileVO;
+import com.example.test.model.vo.AttachFileVO;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.services.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,7 @@ public class BoardController {
 
         model.addAttribute("like",boardService.getLikeCnt());
         model.addAttribute("reply",boardService.getReplyCnt());
-        log.info(" " + boardService.getReplyCnt());
+
         model.addAttribute("list", boardService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
         return "mainBoard/mainBoard";
@@ -70,7 +71,9 @@ public class BoardController {
             log.info("첨부파일 null아님, 들어간다.");
             boardVO.getAttachList().forEach(attach -> log.info("파일 : " + attach.toString()));
         }
+
         boardService.register(boardVO);
+
 //        쿼리 스트링으로 전달
 //        rttr.addAttribute("bno", boardVO.getBno());
 //        세션의 flash영역을 이용하여 전달
@@ -78,9 +81,23 @@ public class BoardController {
 //        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
         return new RedirectView("mainBoard");
     }
-
-    @GetMapping({"detail", "modify"})
+    @GetMapping("detail")
     public void read(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
+        String reqURI = request.getRequestURI();
+        String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
+        //read 요청 시 read 출력
+        //modify 요청 시 modify 출력
+        log.info("-------------------------------");
+        log.info(reqType + " : " + qnaNo);
+        log.info("-------------------------------");
+
+        boardService.updateView(qnaNo);
+        model.addAttribute("board", boardService.get(qnaNo));
+        model.addAttribute("criteria", criteria);
+    }
+
+    @GetMapping("modify")
+    public void modify(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
         //read 요청 시 read 출력
@@ -92,7 +109,6 @@ public class BoardController {
         model.addAttribute("board", boardService.get(qnaNo));
         model.addAttribute("criteria", criteria);
     }
-
     @PostMapping("modify")
     public RedirectView modify(BoardVO boardVO, RedirectAttributes rttr){
         log.info("-------------------------------");
@@ -105,7 +121,6 @@ public class BoardController {
         }
         return new RedirectView("read");
     }
-
     @PostMapping("remove")
     public RedirectView remove(@RequestParam("qnaNo") Long qnaNo, RedirectAttributes rttr) {
         log.info("-------------------------------");
@@ -147,7 +162,6 @@ public class BoardController {
 
 
     }
-
     @GetMapping("write")
     public String write(Model model){
         return "mainBoard/write";
@@ -156,7 +170,7 @@ public class BoardController {
     //    게시글 첨부파일
 //    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
 //    @ResponseBody
-//    public List<BoardAttachFileVO> getAttachList(Long qnaNo){
+//    public List<AttachFileVO> getAttachList(Long qnaNo){
 //        log.info("getAttachList " + qnaNo);
 //        return boardService.getAttachList(qnaNo);
 //    }

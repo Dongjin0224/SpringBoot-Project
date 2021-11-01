@@ -71,35 +71,27 @@
             <div class="content main">
                 <section class="tiles">
                     <h3 style="text-align: center;" ><span th:text="${hosName}"></span> 의료진</h3>
-
-
                     <th:block th:each="docs:${docs}">
-
-
-                    <fieldset class="info" th:object="${docs}">
-                        <div class="imgDiv">
-                            <img src="/img/ex.png" alt="no image" class="docPic">
-                        </div>
+                    <fieldset class="info" th:object="${docs}" >
                         <div>
-                            <ul class="doctor">
-                                <li><strong><div class="docInfo">이름  :</div></strong> <span th:text="*{docName}"></span></li>
-                                <li><strong><div class="docInfo">병원 이름  :</div></strong> <span th:text="*{docHospitalName}"></span></li>
-                                <li><strong><div class="docInfo">병원 주소  :</div></strong> <span th:text="*{docAddress}"></span></li>
-                                <li><strong><div class="docInfo">전공  :</div></strong>  <span th:text="*{docMajor}"></span></li>
-                                <li><strong><div class="docInfo">전화번호  :</div></strong>  <span th:text="*{docPhoneNum}"></span></li>
-                                <li><strong><div class="docInfo">이메일  :</div></strong>  <span th:text="*{docEmail}"></span></li>
-                            </ul>
+                            <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}" alt="no image" class="docPic">
+                            <div>
+                                <ul class="doctor">
+                                    <li><strong><div class="docInfo">이름  :</div></strong> <span th:text="*{docName}"></span></li>
+                                    <li><strong><div class="docInfo">병원 이름  :</div></strong> <span th:text="*{docHospitalName}"></span></li>
+                                    <li><strong><div class="docInfo">병원 주소  :</div></strong> <span th:text="*{docAddress}"></span></li>
+                                    <li><strong><div class="docInfo">전공  :</div></strong>  <span th:text="*{docMajor}"></span></li>
+                                    <li><strong><div class="docInfo">전화번호  :</div></strong>  <span th:text="*{docPhoneNum}"></span></li>
+                                    <li><strong><div class="docInfo">이메일  :</div></strong>  <span th:text="*{docEmail}"></span></li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="select">
                             <a href="javascript:void(0)" class="button  icon solid fa-medkit" style="box-shadow: none;">예약하기</a>
                             <a href="javascript:void(0)" class="button icon solid fa-backspace" style="box-shadow: none;color: darkslategray !important;">돌아가기</a>
                         </div>
                     </fieldset>
-
-
                     </th:block>
-
-
                 </section>
             </div>
         </div>

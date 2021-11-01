@@ -1,42 +1,36 @@
 package com.example.test.services;
 
 
-import com.example.test.model.mainBoard.dao.BoardAttachFileDAO;
+import com.example.test.model.appointment.dao.AttachFileDAO;
 import com.example.test.model.mainBoard.dao.BoardDAO;
-import com.example.test.model.mainBoard.vo.AttachFileVO;
+import com.example.test.model.vo.AttachFileVO;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
-import com.example.test.model.user.vo.DocVO;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class BoardServicieImple implements BoardService {
     private final BoardDAO boardDAO;
     private final BoardAttachFileDAO boardAttachFileDAO;
 
+    @Transactional
     @Override
     public void register(BoardVO board) {
         boardDAO.register(board);
-        System.out.println(board.getAttachList());
-
         if(board.getAttachList() == null || board.getAttachList().size() == 0){
-            System.out.println("imple 첨부파일 null");
             return;
         }
-
         board.getAttachList().forEach(attach -> {
             attach.setQnaNo(board.getQnaNo());
             log.info("첨부파일 insert");
             boardAttachFileDAO.insert(attach);
         });
     }
-
     @Override
     public BoardVO get(Long qnaNo) {
         return boardDAO.get(qnaNo);
@@ -73,5 +67,11 @@ public class BoardServicieImple implements BoardService {
 
     @Override
     public List<DocVO> getReplyCnt() { return boardDAO.getReplyCnt(); }
+
+
+    @Override
+    public void updateView(Long qnaNo) {
+       boardDAO.updateViewCnt(qnaNo);
+    }
 
 }

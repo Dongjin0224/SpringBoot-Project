@@ -282,7 +282,7 @@
                                 <li th:each="list:${list}"  th:object="${list}">
                                     <dl>
                                         <dt>
-                                            <a href="https://kin.naver.com/qna/detail.naver?d1id=6&amp;dirId=60213&amp;docId=401690868&amp;qb=6rCc67Cc&amp;enc=utf8&amp;section=kin&amp;rank=1&amp;search_sort=0&amp;spq=0"
+                                            <a th:href="|/mainBoard/detail?qnaNo=*{qnaNo}|"
                                                target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor" ><span th:text="*{qnaTitle}"> </span></a>
                                             <sub th:text="*{qnaDate}"> </sub>
                                         </dt>

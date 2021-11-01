@@ -1,10 +1,9 @@
 package com.example.test.services;
 
 
-import com.example.test.model.mainBoard.vo.AttachFileVO;
+import com.example.test.model.vo.AttachFileVO;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
-import com.example.test.model.user.vo.DocVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,4 +20,5 @@ public interface BoardService {
     public List<BoardVO> getSearchList(Criteria criteria);
     public List<DocVO> getLikeCnt();
     public List<DocVO> getReplyCnt();
+    public void updateView(Long qnaNo);
 }
