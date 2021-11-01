@@ -1,7 +1,7 @@
 package com.example.test.mappers;
 
 
-import com.example.test.model.vo.BoardVO;
+import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,4 +23,6 @@ public interface BoardMapper {
     public int delete(Long qnaNo);
     //    게시글 전체 개수
     public int getTotal(Criteria criteria);
+//    검색한 게시글 목록
+    public List<BoardVO> getSearchList(Criteria criteria);
 }

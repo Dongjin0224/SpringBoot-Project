@@ -1,7 +1,7 @@
-package com.example.test.model.appointment.dao;
+package com.example.test.model.mainBoard.dao;
 
 
-import com.example.test.model.vo.BoardVO;
+import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.mappers.BoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ public class BoardDAO {
     private final BoardMapper mapper;
 
     public void register(BoardVO board){
-        mapper.insertSelectKey_bno(board);
+        mapper.insert(board);
     }
 
     public BoardVO get(Long bno){
@@ -35,4 +35,6 @@ public class BoardDAO {
     }
 
     public int getTotal(Criteria criteria){ return mapper.getTotal(criteria); }
+
+    public List<BoardVO> getSearchList(Criteria criteria){return mapper.getSearchList(criteria);}
 }

@@ -2,7 +2,7 @@ package com.example.test.services;
 
 
 import com.example.test.model.vo.AttachFileVO;
-import com.example.test.model.vo.BoardVO;
+import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +17,5 @@ public interface BoardService {
     public List<BoardVO> getList(Criteria criteria);
     public int getTotal(Criteria criteria);
     public List<AttachFileVO> getAttachList(Long qnaNo);
+    public List<BoardVO> getSearchList(Criteria criteria);
 }

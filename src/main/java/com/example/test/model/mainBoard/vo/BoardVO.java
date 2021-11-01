@@ -1,6 +1,7 @@
-package com.example.test.model.vo;
+package com.example.test.model.mainBoard.vo;
 
 
+import com.example.test.model.vo.AttachFileVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 

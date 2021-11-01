@@ -1,7 +1,7 @@
 package com.example.test.mappers;
 
 
-import com.example.test.model.vo.BoardVO;
+import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

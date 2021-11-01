@@ -2,9 +2,9 @@ package com.example.test.services;
 
 
 import com.example.test.model.appointment.dao.AttachFileDAO;
-import com.example.test.model.appointment.dao.BoardDAO;
+import com.example.test.model.mainBoard.dao.BoardDAO;
 import com.example.test.model.vo.AttachFileVO;
-import com.example.test.model.vo.BoardVO;
+import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -54,6 +54,11 @@ public class BoardServicieImple implements BoardService {
     @Override
     public List<AttachFileVO> getAttachList(Long qnaNo) {
         return attachFileDAO.findByBno(qnaNo);
+    }
+
+    @Override
+    public List<BoardVO> getSearchList(Criteria criteria) {
+        return boardDAO.getSearchList(criteria);
     }
 
 }

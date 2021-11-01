@@ -3,7 +3,7 @@ package com.example.test.controller;
 
 import com.example.test.model.beans.vo.PageDTO;
 import com.example.test.model.vo.AttachFileVO;
-import com.example.test.model.vo.BoardVO;
+import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.services.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,16 +30,59 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("mainBoard")
-    public String list(Criteria criteria, Model model){
+    public String list(Criteria criteria,HttpServletRequest req, Model model){
         log.info("-------------------------------");
         log.info("list");
         log.info(criteria.toString());
         log.info("-------------------------------");
 
+
+
+        HttpSession session = req.getSession();
+        if(session.getAttribute("user")==null) {
+            model.addAttribute("loginCheck", 0);
+        }else{
+            model.addAttribute("loginCheck",1);
+        }
+
+
         model.addAttribute("list", boardService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
         return "mainBoard/mainBoard";
     }
+
+//    @GetMapping("mainBoard")
+//    public String list(Criteria criteria,HttpServletRequest req, Model model, String keyword, String town){
+//        log.info("-------------------------------");
+//        log.info("list");
+//        log.info(criteria.toString());
+//        log.info("-------------------------------");
+//
+//
+//
+//        HttpSession session = req.getSession();
+//        if(session.getAttribute("user")==null) {
+//            model.addAttribute("loginCheck", 0);
+//        }else{
+//            model.addAttribute("loginCheck",1);
+//        }
+//
+//        if(keyword==null){
+//            keyword="";
+//        }
+//        if(town.equals("구 / 군")){
+//            town="";
+//        }
+//        criteria.setKeyword(keyword);
+//        criteria.setType(town);
+//        log.info(keyword+"-----------"+town);
+//
+//
+//
+//        model.addAttribute("list", boardService.getSearchList(criteria));
+//        model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
+//        return "mainBoard/mainBoard";
+//    }
 
 //    @GetMapping("mainBoard")
 //    public String list(Criteria criteria, Model model, int pageNum, int amount){
@@ -54,11 +98,13 @@ public class BoardController {
 //    }
 
     @PostMapping("write")
-    public RedirectView register(BoardVO boardVO, RedirectAttributes rttr){
+    public RedirectView register(BoardVO boardVO,HttpServletRequest req, RedirectAttributes rttr){
         log.info("-------------------------------");
         log.info("register : " + boardVO.toString());
         log.info("-------------------------------");
-
+        HttpSession session = req.getSession();
+        boardVO.setUserNo(Long.parseLong(session.getAttribute("user").toString()));
+        log.info(boardVO.toString());
         if(boardVO.getAttachList() != null){
             boardVO.getAttachList().forEach(attach -> log.info(attach.toString()));
         }
@@ -68,9 +114,9 @@ public class BoardController {
 //        쿼리 스트링으로 전달
 //        rttr.addAttribute("bno", boardVO.getBno());
 //        세션의 flash영역을 이용하여 전달
-        rttr.addFlashAttribute("qnaNo", boardVO.getQnaNo());
+//        rttr.addFlashAttribute("qnaNo", boardVO.getQnaNo());
 //        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
-        return new RedirectView("write");
+        return new RedirectView("mainBoard");
     }
     @GetMapping({"detail", "modify"})
     public void read(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
@@ -139,7 +185,9 @@ public class BoardController {
 
     }
     @GetMapping("write")
-    public String write(){return "mainBoard/write";}
+    public String write(Model model){
+        return "mainBoard/write";
+    }
 
     //    게시글 첨부파일
     @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)

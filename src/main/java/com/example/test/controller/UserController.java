@@ -52,7 +52,7 @@ public class UserController {
             session.setAttribute("user", null);
             /*rttr.addFlashAttribute("msg",false);*/
         } else {
-            session.setAttribute("user", login);
+            session.setAttribute("user", login.getUserNo());
         }
         return new RedirectView("/index");
     }
