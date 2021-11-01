@@ -8,7 +8,7 @@ import java.util.List;
 @Component
 @Data
 public class DocVO {
-    private long docNo;
+    private Long docNo;
     private String docId;
     private String docPw;
     private String docName;
@@ -21,7 +21,6 @@ public class DocVO {
     private String docAddress;
     private String docEmail;
     private String docPhoneNum;
-    private String docPic;
     private int docStatus;
     private int docPayStatus;
     private int docServiceCnt;

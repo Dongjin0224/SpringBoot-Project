@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Data
 public class UserVO {
 
-    private long userNo;
+    private Long userNo;
     private String userId;
     private String userPw;
     private String userName;

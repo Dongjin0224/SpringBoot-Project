@@ -410,8 +410,6 @@ $(document).ready(function () {
             form.numStr.focus();
             return;
         }
-
-
         /*/!*약관동의 확인*!/*/
         check = false;
 
