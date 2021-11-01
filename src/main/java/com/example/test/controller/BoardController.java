@@ -39,7 +39,7 @@ public class BoardController {
 
 
         HttpSession session = req.getSession();
-        if(session.getAttribute("user")==null) {
+        if(session.getAttribute("userNo")==null) {
             model.addAttribute("loginCheck", 0);
         }else{
             model.addAttribute("loginCheck",1);
