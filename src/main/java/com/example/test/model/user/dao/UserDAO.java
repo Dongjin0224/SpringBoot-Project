@@ -26,5 +26,16 @@ public class UserDAO {
         return userMapper.checkId(vo);
     }
 
-   public void userLogout(HttpSession session) { userMapper.userLogout(session); };
+    public UserVO findId(UserVO vo){
+        return userMapper.findId(vo);
+    }
+    public UserVO findPw(UserVO vo){
+        return userMapper.findPw(vo);
+    }
+
+    public void updatePassword(UserVO vo){
+        userMapper.updatePassword(vo);
+    }
+
+    public void userLogout(HttpSession session) { userMapper.userLogout(session); }
 }
