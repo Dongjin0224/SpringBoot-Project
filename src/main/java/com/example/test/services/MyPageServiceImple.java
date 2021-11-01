@@ -13,8 +13,15 @@ public class MyPageServiceImple implements MyPageService {
     private final MyPageDAO myPageDAO;
 
     @Override
-    public void updateUser(UserVO vo) { myPageDAO.updateUser(vo); }
+    public UserVO viewUser(Long userNo) { return myPageDAO.viewUser(userNo); }
 
     @Override
-    public void updateDoc(DocVO vo) { }
+    public DocVO viewDoc(Long docNo) { return myPageDAO.viewDoc(docNo); }
+
+    @Override
+    public void updateUser(UserVO userVO) { myPageDAO.updateUser(userVO); }
+
+    @Override
+    public void updateDoc(DocVO docVO) { myPageDAO.updateDoc(docVO); }
+
 }
