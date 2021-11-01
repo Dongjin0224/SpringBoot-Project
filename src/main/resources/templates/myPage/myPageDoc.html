@@ -122,6 +122,10 @@
         border-radius: 0;
     }
 
+    input[type="password"] {
+        border-radius: 0;
+    }
+
     .box {
         border-color: #358bca;
     }
@@ -446,7 +450,9 @@
                                                         <span style='color:red;'>*</span>
                                                         기관명
                                                     </p>
-                                                    <input type='text' id='docAddress' name='docAddress' placeholder="소속기관">
+                                                    <div>
+                                                        <input type='text' th:value="*{docHospitalName}" id='docAddress' name='docAddress'>
+                                                    </div>
                                                     <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 5%;'>
                                                         <span style='color:red;'>*</span>
                                                         원하는 위치를 클릭시 해당 지점으로 좌표가 등록됩니다.
@@ -458,20 +464,28 @@
                                             <div>
                                                 <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
                                                 <div class="td7">
-                                                    <div class="div3">
-                                                        <input type="text" name="" value="" placeholder="약력">
+                                                    <div class="div3" style="display: flex;">
+                                                        <input id="history" type="text" th:value="*{docHistory}" name="" value="" placeholder="약력">
                                                         <a class="button small" onclick="addInput()"
                                                            style="width: 80px; margin: auto;">추가</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <hr>
+                                            <div>
+                                                <label for="password" class="profile">비밀번호<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div><input type='password' id='password' name='password'></div>
+                                            </div>
+                                            <div>
+                                                <label for="password" class="profile">비밀번호 확인<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div><input type='password' id='password1' name='password'></div>
+                                            </div>
                                             <hr class='dark'>
                                         </div>
                                     </div>
                                     <div style="display: flex; justify-content: center">
-                                        <!--<input type="button" class="button small" style="margin-right: 5%; width: 80px; padding: initial;">변경하기</input>-->
-                                        <a href="#" onclick="" class="button small" style="margin-right: 5%; width: 80px; padding: initial;">변경하기</a>
+                                        <!--<a href="#" onclick="" class="button small" style="margin-right: 5%; width: 80px; padding: initial;">변경하기</a>-->
+                                        <button type="button" id="update" class="button small" style="margin-right: 5%; width: 80px;">수정</button>
                                         <button id="back" class="button small" style="margin-right: 5%; width: 80px;">취소</button>
                                     </div>
 
@@ -516,7 +530,7 @@
                         </div>
                     </div>
 
-                    <div id="myThree" class="tabcontent">
+                    <div id="myThree" class="tabcontent" th:object="${appointment}">
                         <h3 style="text-align: center">진료 예약</h3>
                         <table>
                             <thead>
@@ -546,7 +560,7 @@
 
                     <div id="myFour" class="tabcontent">
                         <h3 style="text-align: center">봉사 신청</h3>
-                        <table>
+                        <table th:object="${content}">
                             <thead>
                             <tr class="">
                                 <th class="th1"><strong>전공분야</strong></th>
@@ -650,8 +664,18 @@
 <script src="/js/fix.js"></script>
 </body>
 <script>
-    $("#updateDoc").on("click", function(){
+    $("#update").on("click", function(){
+        let updateForm = document.updateDoc;
 
+        $("#docPhoneNum").val();
+        $("#docPhoneNum2").val();
+        $("#docPhoneNum3").val();
+        $("#docEmail").val();
+        $("#docAddress").val();
+        $("#map").val();
+        $("#history").val();
+
+        updateForm.submit();
     })
 
     document.getElementById("defaultOpen").click();
@@ -695,7 +719,7 @@
     let i = 0;
     function addInput(){
 
-        document.getElementsByClassName('td7')[0].innerHTML+="<div class='div3' id='text"+i+"'>" +
+        document.getElementsByClassName('td7')[0].innerHTML+="<div class='div3' style='display: flex;' id='text"+i+"'>" +
             "            <input type='text' name='' value='' placeholder='약력'>" +
             "            <a class='button small' onclick='fn1(" + i + ")'" +
             "                style='width: 80px; margin: auto;'>삭제</a>" +
