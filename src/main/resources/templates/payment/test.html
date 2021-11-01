@@ -80,13 +80,13 @@ let docNo = $("#docNo").val();
             docNo: docNo
         };
 
-        $.ajax({
-            url: "/payment/getCustomer",
-            method: "post",
-            contentType:"application/json; charset=utf-8",
-            data: JSON.stringify(arr),
-            success:function () {
-                alert("됐다");
+        // $.ajax({
+        //     url: "/payment/getCustomer",
+        //     method: "post",
+        //     contentType:"application/json; charset=utf-8",
+        //     data: JSON.stringify(arr),
+        //     success:function () {
+        //         alert("됐다");
                 $.ajax({
                     url: "/payment/customerTest",
                     method: "post",
@@ -99,8 +99,8 @@ let docNo = $("#docNo").val();
                             alert("등록 실패")
                         }
                     }
-                });
-            }
+            //     });
+            // }
         });
     });
 

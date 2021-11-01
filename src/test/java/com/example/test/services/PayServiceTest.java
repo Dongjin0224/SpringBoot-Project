@@ -21,19 +21,19 @@ public class PayServiceTest {
         log.info("---------------------");
     }
 
-    @Test
-    public void updateCustomer(){
-        PayVO payVO = new PayVO();
-        payVO.setDocNo(1L);
-        payVO.setCard_number("2245-2345-2345-2345");
-        payVO.setExpiry("2022-11");
-        payVO.setBirth("000101");
-        payVO.setPwd_2digit("12");
-        payVO.setCustomer_uid("queu_2345");
-        log.info("===============================");
-        pay.updateCustomer(payVO);
-        log.info("===============================");
-    }
+//    @Test
+//    public void updateCustomer(){
+//        PayVO payVO = new PayVO();
+//        payVO.setDocNo(1L);
+//        payVO.setCard_number("2245-2345-2345-2345");
+//        payVO.setExpiry("2022-11");
+//        payVO.setBirth("000101");
+//        payVO.setPwd_2digit("12");
+//        payVO.setCustomer_uid("queu_2345");
+//        log.info("===============================");
+//        pay.updateCustomer(payVO);
+//        log.info("===============================");
+//    }
 
     @Test
     public void payTest(){
@@ -49,4 +49,9 @@ public class PayServiceTest {
         log.info("===============================");
     }
 
+
+    @Test
+    public void insertTest(){
+        pay.insertCustomer(2L);
+    }
 }

@@ -68,53 +68,53 @@ public class PayController {
         return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/onetime", entity, String.class);
     }
 
-    @PostMapping("/getCustomer")
-    public String getCustomer(@RequestBody PayVO payVO) throws UnsupportedEncodingException{
-        String token = pay.getToken();
-        Gson str = new Gson();
-        token = token.substring(token.indexOf("response") + 10);
-        token = token.substring(0, token.length() - 1);
-
-        GetTokenVO vo = str.fromJson(token, GetTokenVO.class);
-
-        String access_token = vo.getAccess_token();
-        log.info(access_token);
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(access_token);
-
-        Map<String, Object> map = new HashMap<>();
-        payVO.setCustomer_uid("queu_" + payVO.getCard_number().split("-")[3]);
-        map.put("card_number", payVO.getCard_number());
-        map.put("expiry", payVO.getExpiry());
-        map.put("birth", payVO.getBirth());
-        map.put("pwd_2digit", payVO.getPwd_2digit());
-        map.put("amount", payVO.getAmount());
-
-        Gson var = new Gson();
-        String json = var.toJson(map);
-        System.out.println(json);
-        log.info("---------------------");
-        System.out.println(payVO);
-        log.info("---------------------");
-
-
-        HttpEntity<String> entity = new HttpEntity<>(json, headers);
-
-        pay.updateCustomer(payVO);
-        return restTemplate.postForObject("https://api.iamport.kr/subscribe/customers/" + payVO.getCustomer_uid(), entity, String.class);
-    }
+//    @PostMapping("/getCustomer")
+//    public String getCustomer(@RequestBody PayVO payVO) throws UnsupportedEncodingException{
+//        String token = pay.getToken();
+//        Gson str = new Gson();
+//        token = token.substring(token.indexOf("response") + 10);
+//        token = token.substring(0, token.length() - 1);
+//
+//        GetTokenVO vo = str.fromJson(token, GetTokenVO.class);
+//
+//        String access_token = vo.getAccess_token();
+//        log.info(access_token);
+//
+//        RestTemplate restTemplate = new RestTemplate();
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        headers.setBearerAuth(access_token);
+//
+//        Map<String, Object> map = new HashMap<>();
+//        payVO.setCustomer_uid("queu_" + payVO.getCard_number().split("-")[3]);
+//        map.put("card_number", payVO.getCard_number());
+//        map.put("expiry", payVO.getExpiry());
+//        map.put("birth", payVO.getBirth());
+//        map.put("pwd_2digit", payVO.getPwd_2digit());
+//        map.put("amount", payVO.getAmount());
+//
+//        Gson var = new Gson();
+//        String json = var.toJson(map);
+//        System.out.println(json);
+//        log.info("---------------------");
+//        System.out.println(payVO);
+//        log.info("---------------------");
+//
+//
+//        HttpEntity<String> entity = new HttpEntity<>(json, headers);
+//
+//        pay.updateCustomer(payVO);
+//        return restTemplate.postForObject("https://api.iamport.kr/subscribe/customers/" + payVO.getCustomer_uid(), entity, String.class);
+//    }
 
     @ResponseBody
     @PostMapping("customerTest")
     public String test(@RequestBody PayVO payVO) throws UnsupportedEncodingException {
-        int result = Integer.parseInt(getCustomer(payVO).split(":")[1].split(",")[0]);
+        int result = Integer.parseInt(pay.getCustomer(payVO).split(":")[1].split(",")[0]);
         log.info("-----------------------------------");
         System.out.println(payVO);
-        System.out.println("code : " + getCustomer(payVO).split(":")[1].split(",")[0]);
+        System.out.println("code : " + pay.getCustomer(payVO).split(":")[1].split(",")[0]);
         log.info("-----------------------------------");
         if(result == 0){
             log.info("customer 등록 성공");
@@ -128,7 +128,7 @@ public class PayController {
     @PostMapping("updateCard")
     public String updateCard(PayVO payVO) throws UnsupportedEncodingException {
         unSchedule(payVO);
-        getCustomer(payVO);
+        pay.getCustomer(payVO);
 
 
         return "";
