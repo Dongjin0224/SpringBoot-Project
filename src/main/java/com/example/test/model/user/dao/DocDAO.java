@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import javax.servlet.http.HttpSession;
+
 @Repository
 @Slf4j
 @RequiredArgsConstructor
@@ -24,4 +26,6 @@ public class DocDAO {
     public int checkId(DocVO vo){
         return docMapper.checkId(vo);
     }
+
+    public void docLogout(HttpSession session) { docMapper.docLogout(session); }
 }

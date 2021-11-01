@@ -37,5 +37,5 @@ public class UserDAO {
         userMapper.updatePassword(vo);
     }
 
-   public void userLogout(HttpSession session) { userMapper.userLogout(session); };
+    public void userLogout(HttpSession session) { userMapper.userLogout(session); }
 }

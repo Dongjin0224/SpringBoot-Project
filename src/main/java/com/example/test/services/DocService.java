@@ -9,6 +9,7 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public interface DocService {
     public List<DocHosAttachFileVO> getHosAttachList(Long docNo);
 
     public int checkId(DocVO vo);
+
+    public void docLogout(HttpSession session);
 
 /*
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
