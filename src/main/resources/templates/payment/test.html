@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<form action="/payment/getCustomer", method="post" name="testForm">
+<!--<form action="/payment/customerTest" method="post" name="testForm">-->
     <div>
         <label for="card_number">카드 번호 XXXX-XXXX-XXXX-XXXX</label>
         <input id="card_number" type="text" name="card_number">
@@ -25,60 +25,72 @@
         <label for="pwd_2digit">카드 비밀번호 앞 두자리 XX</label>
         <input id="pwd_2digit" type="text" name="pwd_2digit">
     </div>
-    <input type="hidden" value="dongjin1234" name="customer_uid">
-    <input type="hidden" value="1001" name="amount">
-    <input type="hidden" value="TestProduct" name="name">
-    <input type="hidden" value=1 name="docNo">
-    <input type="submit" value="test" location.href="#">
-</form>
+    <input type="hidden" id="amount" value="1001" name="amount">
+    <input type="hidden" id="name" value="TestProduct" name="name">
+    <input type="hidden" id="docNo" value=1 name="docNo">
+    <input type="submit" id="a" value="test">
+<!--</form>-->
 
-<form action="/payment/schedule" method="post" name="scForm">
-    <input type="hidden" value="dongjin1234" name="customer_uid">
-    <input type="hidden" value=1000 name="price">
+<!--<form action="/payment/schedule" method="post" name="scForm">-->
+<!--    <input type="hidden" value="dongjin1234" name="customer_uid">-->
+<!--    <input type="hidden" id="amount" value=1000 name="amount">-->
     <input id="check_module" type="button" value="결제하기">
-</form>
+<input type="button" id="cancel" value="예약 취소">
+<!--</form>-->
 
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-// let form = document.testForm;
+    // let form = document.testForm;
+    // form.serialize();
 
-// const getToken =
-//     $.ajax({
-//         url: "https://api.iamport.kr/users/getToken",
-//         method: "post", // POST method
-//         headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*'}, // "Content-Type": "application/json"
-//         data: {
-//             imp_key: "7681399020268514", // REST API 키
-//             imp_secret: "fcff66b2ffa2c27be20812e9e502f68d88d23098829f2601a77253d946b8731a40171253b96b5714" // REST API Secret
-//         }
-//     });
-// const { access_token } = getToken.data.response; // 인증 토큰
-// console.log(access_token);
+    // $("#b").on("click", function(){
+    //     $.ajax({
+    //         url: "/payment/customerTest",
+    //         method: "post",
+    //         contentType:"application/json; charset=utf-8",
+    //         success:function (result) {
+    //             alert(result)
+    //         }
+    //     });
+    // })
 
 
-// function click() {
-//     var getToken =
-//         $.ajax({
-//             url: "/payment/getToken",
-//             method: "post",
-//             data: {
-//                 "customer_uid": "asd12345",
-//                 "merchant_uid": "maerchant1234",
-//                 "name": "test11",
-//                 "card_number": "4854-8003-0494-8872",
-//                 "expiry": "2024-12",
-//                 "birth": "960224",
-//                 "pwd_2digit": "51",
-//                 "price" : 1000
-//             }
-//         });
-//     var access_token = getToken;
-//     console.log(access_token);
-// }
+//    customer_uid 값 등록
+let amount = $("#amount").val();
+let name = $("#name").val();
+let docNo = $("#docNo").val();
 
-let price = $("input[name='price']").val();
-let form = document.scForm;
+    $("#a").on("click", function(){
+        let card_number = $("#card_number").val();
+        let expiry = $("#expiry").val();
+        let birth = $("#birth").val();
+        let pwd_2digit = $("#pwd_2digit").val();
+
+        let arr = {
+            card_number: card_number,
+            expiry: expiry,
+            birth: birth,
+            pwd_2digit: pwd_2digit,
+            amount: amount,
+            docNo: docNo
+        };
+
+        $.ajax({
+            url: "/payment/getCustomer",
+            method: "post",
+            contentType:"application/json; charset=utf-8",
+            data: JSON.stringify(arr),
+            success:function () {
+                alert("됐다");
+            }
+        });
+    });
+
+
+//    결제와 동시에 예약등록
 $("#check_module").click(function () {
+
     var IMP = window.IMP; // 생략가능
     IMP.init('imp82864473');
     // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -87,13 +99,14 @@ $("#check_module").click(function () {
         pg : 'nice',
         pay_method : 'card',
         merchant_uid: "merchant_" + new Date().getTime(), // 상점에서 관리하는 주문 번호
-        name : '주문명:결제테스트',
-        amount : price,
+        name : name,
+        amount : amount,
         buyer_email : 'iamport@siot.do',
         buyer_name : '구매자이름',
         buyer_tel : '010-1234-5678',
         buyer_addr : '서울특별시 강남구 삼성동',
         buyer_postcode : '123-456'
+
     }, function(rsp) {
         if ( rsp.success ) {
             // //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -115,7 +128,6 @@ $("#check_module").click(function () {
                     msg += '\n카드 승인번호 : ' + rsp.apply_num;
 
                     alert(msg);
-                    form.submit();
             //     } else {
             //         //[3] 아직 제대로 결제가 되지 않았습니다.
             //         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
@@ -127,8 +139,38 @@ $("#check_module").click(function () {
 
             alert(msg);
         }
-    });
 
+        $.ajax({
+            url: "/payment/schedule",
+            method: "post",
+            contentType:"application/json; charset=utf-8",
+            data: JSON.stringify({
+                name: name
+            }),
+            success:function () {
+                alert("예약 됐다");
+                setTimeout(function(){
+                    $.ajax({
+                        url: "/payment/startPay",
+                        method: "post",
+                        contentType: "application/json; charset=utf-8"
+                    })
+                }, 60000);
+            }
+        });
+    });
 });
+
+$("#cancel").on("click", function(){
+    $.ajax({
+        url: "/payment/stopPay",
+        method: "post",
+        contentType: "application/json; charset=utf-8",
+        success:function () {
+            alert("예약 취소");
+        }
+    })
+})
+
 </script>
 </html>
