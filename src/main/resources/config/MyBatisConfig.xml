@@ -8,6 +8,7 @@
         <typeAlias type="com.example.test.model.volunteer.vo.VolAttachFileVO" alias="VolAttachFileVO"/>
         <typeAlias type="com.example.test.model.user.vo.UserVO" alias="UserVO"/>
         <typeAlias type="com.example.test.model.user.vo.DocVO" alias="DocVO"/>
+        <typeAlias type="com.example.test.model.payment.vo.PayVO" alias="PayVO"/>
         <typeAlias type="com.example.test.model.user.vo.DocAttachFileVO" alias="DocAttachFileVO"/>
         <typeAlias type="com.example.test.model.user.vo.DocHosAttachFileVO" alias="DocHosAttachFileVO"/>
         <typeAlias type="com.example.test.model.notice.vo.NoticeVO" alias="NoticeVO"/>

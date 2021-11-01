@@ -110,8 +110,7 @@ public class PayController {
 
     @ResponseBody
     @PostMapping("customerTest")
-    public String test(PayVO payVO) throws UnsupportedEncodingException {
-        getCustomer(payVO);
+    public String test(@RequestBody PayVO payVO) throws UnsupportedEncodingException {
         int result = Integer.parseInt(getCustomer(payVO).split(":")[1].split(",")[0]);
         log.info("-----------------------------------");
         System.out.println(payVO);
@@ -119,10 +118,10 @@ public class PayController {
         log.info("-----------------------------------");
         if(result == 0){
             log.info("customer 등록 성공");
-            return "";
+            return "success";
         }else{
             log.info("customer 등록 실패");
-            return "";
+            return "fail";
         }
     }
 

@@ -44,16 +44,20 @@
     // let form = document.testForm;
     // form.serialize();
 
-    // $("#b").on("click", function(){
-    //     $.ajax({
-    //         url: "/payment/customerTest",
-    //         method: "post",
-    //         contentType:"application/json; charset=utf-8",
-    //         success:function (result) {
-    //             alert(result)
-    //         }
-    //     });
-    // })
+    $("#b").on("click", function(){
+        $.ajax({
+            url: "/payment/customerTest",
+            method: "post",
+            contentType:"application/json; charset=utf-8",
+            success:function (result) {
+                if(result == "success"){
+                    alert("등록 성공")
+                }else if(result == "fail"){
+                    alert("등록 실패")
+                }
+            }
+        });
+    })
 
 
 //    customer_uid 값 등록
@@ -83,6 +87,19 @@ let docNo = $("#docNo").val();
             data: JSON.stringify(arr),
             success:function () {
                 alert("됐다");
+                $.ajax({
+                    url: "/payment/customerTest",
+                    method: "post",
+                    contentType:"application/json; charset=utf-8",
+                    data: JSON.stringify(arr),
+                    success:function (result) {
+                        if(result == "success"){
+                            alert("등록 성공")
+                        }else if(result == "fail"){
+                            alert("등록 실패")
+                        }
+                    }
+                });
             }
         });
     });
