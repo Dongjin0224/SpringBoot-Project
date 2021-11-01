@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test.mappers.VolunteerMapper">
+
+    <select id="getList" resultType="VolunteerBoardVO">
+        <![CDATA[
+        SELECT VOLUNTEERBOARDNO, VOLUNTEERBOARDTITLE, VOLUNTEERBOARDCONTENT, VOLUNTEERDOCMAJOR, VOLUNTEERS, VOLUNTEERBOARDIMAGE,
+        VOLUNTEERAREA, VOLUNTEERLOCATION, VOLUNTEERPERIOD, VOLUNTEERRECRUITMENTPERIOD, RECRUITMENTSTATUS, accrue
+        FROM
+        (
+            SELECT
+            ROWNUM R, VOLUNTEERBOARDNO, VOLUNTEERBOARDTITLE, VOLUNTEERBOARDCONTENT, VOLUNTEERDOCMAJOR, VOLUNTEERS, VOLUNTEERBOARDIMAGE,
+            VOLUNTEERAREA, VOLUNTEERLOCATION, VOLUNTEERPERIOD, VOLUNTEERRECRUITMENTPERIOD, RECRUITMENTSTATUS, accrue
+            FROM
+            (
+                SELECT b.*, (SELECT NVL(sum(applicants),0) FROM TABLE_APPLICANTS  WHERE volunteerBoardNo=b.VOLUNTEERBOARDNO) accrue FROM TABLE_VOLUNTEER_BOARD b)
+
+            WHERE
+        ]]>
+        <![CDATA[
+        ROWNUM <= #{pageNum} * #{amount} ORDER BY VOLUNTEERBOARDNO DESC
+        )
+        WHERE R > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="get" resultType="VolunteerBoardVO">
+        SELECT VOLUNTEERBOARDNO, VOLUNTEERBOARDTITLE, VOLUNTEERBOARDCONTENT, VOLUNTEERDOCMAJOR, VOLUNTEERS, volunteerApplicants,
+        VOLUNTEERBOARDIMAGE,
+        VOLUNTEERAREA, VOLUNTEERLOCATION, VOLUNTEERPERIOD, VOLUNTEERRECRUITMENTPERIOD, RECRUITMENTSTATUS
+        FROM TABLE_VOLUNTEER_BOARD WHERE VOLUNTEERBOARDNO = #{volunteerBoardNo}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO TABLE_APPLICANTS
+        (APPLICANTSNO, VOLUNTEERBOARDNO, DOCNO, DOCNAME, DOCPHONENUM, APPLICANTS, APPLICATIONCONTENT)
+        VALUES(SEQ_APPLICANTS.NEXTVAL, #{volunteerBoardNo},1,  #{docName}, #{docPhoneNum}, #{applicants}, #{applicationContent})
+    </insert>
+
+    <select id="getTitle" resultType="string">
+        SELECT volunteerBoardTitle FROM TABLE_VOLUNTEER_BOARD WHERE volunteerBoardNo = #{volunteerBoardNo}
+    </select>
+
+    <select id="countApplicants" resultType="_int">
+        SELECT SUM(applicants) FROM TABLE_APPLICANTS WHERE volunteerBoardNo= #{volunteerBoardNo}
+    </select>
+
+    <update id="update">
+        UPDATE TABLE_VOLUNTEER_BOARD b SET volunteerApplicants =
+        (SELECT NVL(sum(applicants),0) FROM TABLE_APPLICANTS  WHERE volunteerBoardNo=b.VOLUNTEERBOARDNO)
+        WHERE volunteerBoardNo=#{volunteerBoardNo}
+    </update>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(VOLUNTEERBOARDNO) FROM TABLE_VOLUNTEER_BOARD
+    </select>
+</mapper>

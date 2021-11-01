@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test.mappers.AdminMapper">
+<!-- 일반 회원 -->
+    <!--회원 전체 가져오기-->
+    <select id="readUser" resultType="com.example.test.model.user.vo.UserVO">
+        SELECT * FROM TABLE_USER
+    </select>
+    <!-- 총 회원 수 -->
+    <select id="totalUser" resultType="int">
+        SELECT count(userNo) FROM TABLE_USER
+    </select>
+    <!-- 회원 status 변경 -->
+    <update id="updateUser">
+        UPDATE TABLE_USER SET userStatus = #{userStatus} WHERE userNo = #{userNo}
+    </update>
+
+
+<!-- 의사 회원 -->
+    <!-- 의사 회원 전체 가져오기 -->
+    <select id="readDoc" resultType="com.example.test.model.user.vo.DocVO">
+        SELECT * FROM TABLE_DOC
+    </select>
+    <!-- 총 의사 회원 수 -->
+    <select id="totalDoc" resultType="int">
+        SELECT count(docNo) FROM TABLE_DOC
+    </select>
+    <!-- 의사 회원 status 변경 -->
+    <update id="updateDoc">
+        UPDATE TABLE_DOC SET docStatus = #{docStatus} WHERE docNo = #{docNo}
+    </update>
+    
+    
+<!-- 공지사항 등록 -->
+    <insert id="insertNotice">
+        INSERT INTO TABLE_NOTICE
+        (
+        noticeNo, userNo, noticeTitle, noticeContent, noticeDate
+        )
+        VALUES
+        (
+        SEQ_NOTICE.NEXTVAL, 1, #{noticeTitle}, #{noticeContent}, SYSDATE
+        )
+    </insert>
+
+<!-- 봉사 공고 등록 -->
+    <insert id="insertVolunteer">
+        /*태그 안에서는 이와 같은 주석으로 사용해야 한다.*/
+        /*게시글 등록 전 다음 시퀀스를 가져와서 insertSelectKey_bno메소드의 매개변수로 매핑후 전달한다.*/
+        <selectKey keyProperty="volunteerBoardNo" order="BEFORE" resultType="long">
+            SELECT SEQ_VOLUNTEER.NEXTVAL FROM DUAL
+        </selectKey>
+        /*위에서 전달받은 bno를 사용한다.*/
+        INSERT INTO TABLE_VOLUNTEER_BOARD
+        (
+        volunteerBoardNo, volunteerBoardTitle, volunteerBoardContent, volunteerDocMajor,
+        volunteers, volunteerBoardImage, volunteerArea, volunteerLocation,
+        volunteerPeriod, volunteerRecruitmentPeriod
+        )
+        VALUES
+        (
+        #{volunteerBoardNo}, #{volunteerBoardTitle}, #{volunteerBoardContent}, #{volunteerDocMajor},
+        #{volunteers}, 'default', #{volunteerArea}, #{volunteerLocation},
+        #{volunteerPeriod}, #{volunteerRecruitmentPeriod}
+        )
+    </insert>
+
+<!-- 신고 관리 -->
+    <select id="report" resultType="com.example.test.model.user.vo.DocVO">
+        SELECT * FROM TABLE_DOC WHERE docReportCnt >= 5 ORDER BY docReportCnt DESC
+    </select>
+</mapper>

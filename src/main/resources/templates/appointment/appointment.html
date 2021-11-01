@@ -4,12 +4,14 @@
 	pixelarity.com | hello@pixelarity.com
 	License: pixelarity.com/license
 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
     <title>Untitled</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/header.css">
 </head>
 <style>
     .content.main{
@@ -66,22 +68,25 @@
             <div class="content main">
                 <fieldset class="info">
                     <h3 style="text-align: center;">의사﹒병원정보</h3>
-                    <div class="imgDiv">
-                        <img src="/img/ex.png" alt="no image" class="docPic">
+                    <div th:object="${file}">
+                        <div class="imgDiv">
+                            <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}" alt="no image" class="docPic"><br>
+
+                        </div>
                     </div>
                     <div>
-                        <ul class="doctor">
-                            <li><strong><div class="docInfo">이름  :</div></strong> 김동진</li>
-                            <li><strong><div class="docInfo">전공  :</div></strong> 소아과</li>
-                            <li><strong><div class="docInfo">전화번호  :</div></strong> 010-2988-5207</li>
-                            <li><strong><div class="docInfo">병원  :</div></strong> 벅벅병원</li>
-                            <li><strong><div class="docInfo">상세주소  :</div></strong> 경기도 하남시 신장동 미사대로 750</li>
-                            <li><strong><div class="docInfo">이메일  :</div></strong> alalal2234@gmail.com</li>
+                        <ul class="doctor" th:object="${appointment}">
+                            <li><strong><div class="docInfo">이름  : </div></strong><span th:text="*{docName}"></span></li>
+                            <li><strong><div class="docInfo">전공  : </div></strong><span th:text="*{docMajor}"></span></li>
+                            <li><strong><div class="docInfo">전화번호  : </div></strong><span th:text="*{docPhoneNum}"></span></li>
+                            <li><strong><div class="docInfo">병원  : </div></strong><span th:text="*{docHospitalName}"></span></li>
+                            <li><strong><div class="docInfo">상세주소  : </div></strong><span th:text="*{docAddress}"></span></li>
+                            <li><strong><div class="docInfo">이메일  : </div></strong><span th:text="*{docEmail}"></span></li>
                         </ul>
                     </div>
                 </fieldset>
                 <div class="select">
-                    <a href="javascript:void(0)" class="button  icon solid fa-medkit" style="box-shadow: none;">예약하기</a>
+                    <a href="/appointment/reserve" class="button  icon solid fa-medkit" style="box-shadow: none;">예약하기</a>
                     <a href="javascript:void(0)" class="button icon solid fa-backspace" style="box-shadow: none;color: darkslategray !important;">돌아가기</a>
                 </div>
             </div>
