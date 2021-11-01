@@ -1,12 +1,15 @@
 package com.example.test.services;
 
 
-import com.example.test.model.appointment.dao.AttachFileDAO;
+
+import com.example.test.model.mainBoard.dao.BoardAttachFileDAO;
 import com.example.test.model.mainBoard.dao.BoardDAO;
-import com.example.test.model.vo.AttachFileVO;
+import com.example.test.model.mainBoard.vo.AttachFileVO;
+import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BoardServicieImple implements BoardService {
     private final BoardDAO boardDAO;
     private final BoardAttachFileDAO boardAttachFileDAO;

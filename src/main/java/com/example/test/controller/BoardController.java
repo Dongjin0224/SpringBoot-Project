@@ -2,7 +2,7 @@ package com.example.test.controller;
 
 
 import com.example.test.model.beans.vo.PageDTO;
-import com.example.test.model.vo.AttachFileVO;
+import com.example.test.model.mainBoard.vo.AttachFileVO;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.services.BoardService;

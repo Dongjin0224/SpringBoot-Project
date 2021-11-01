@@ -4,6 +4,7 @@ package com.example.test.model.mainBoard.dao;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.mappers.BoardMapper;
+import com.example.test.model.user.vo.DocVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
