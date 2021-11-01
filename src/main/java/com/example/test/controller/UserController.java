@@ -136,13 +136,41 @@ public class UserController {
         return "user/findAccount";
     }
 
-   /* @PostMapping("findAccount")
-    public String findId(UserVO vo){
+    @PostMapping("findAccount")
+    public String findId(UserVO vo,Model model){
         UserVO userVO = service.findId(vo);
 
         if(userVO == null){
-
+                model.addAttribute("check",1);
+        }else{
+            model.addAttribute("check",0);
+            model.addAttribute("id",userVO.getUserId());
         }
+        return "user/login";
     }
-*/
+    /*아이디 찾기*/
+    @GetMapping("findAccount")
+    public String findPw(UserVO vo){
+        return "user/login";
+    }
+    /*비밀번호 찾기*/
+    @PostMapping("findAccount")
+    public String findPw(UserVO vo,Model model){
+        UserVO userVO = service.findPw(vo);
+
+        if(userVO == null){
+            model.addAttribute("check",1);
+        }else{
+            model.addAttribute("check",0);
+            model.addAttribute("updateid",userVO.getUserId());
+        }
+        return "user/findAccount";
+    }
+    /*비밀번호 변경*/
+   /* @PostMapping("updatePassword")
+    public String updatePassword(String id,UserVO vo){
+        vo.setUserId(id);
+        service.updatePassword(vo);
+        return "user/"
+    }*/
 }
