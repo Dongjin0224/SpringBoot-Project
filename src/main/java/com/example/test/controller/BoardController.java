@@ -2,13 +2,12 @@ package com.example.test.controller;
 
 
 import com.example.test.model.beans.vo.PageDTO;
-import com.example.test.model.vo.AttachFileVO;
+import com.example.test.model.mainBoard.vo.AttachFileVO;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.services.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,54 +50,24 @@ public class BoardController {
         return "mainBoard/mainBoard";
     }
 
-//    @GetMapping("mainBoard")
-//    public String list(Criteria criteria,HttpServletRequest req, Model model, String keyword, String town){
-//        log.info("-------------------------------");
-//        log.info("list");
-//        log.info(criteria.toString());
-//        log.info("-------------------------------");
-//
-//
-//
-//        HttpSession session = req.getSession();
-//        if(session.getAttribute("user")==null) {
-//            model.addAttribute("loginCheck", 0);
-//        }else{
-//            model.addAttribute("loginCheck",1);
-//        }
-//
-//        if(keyword==null){
-//            keyword="";
-//        }
-//        if(town.equals("구 / 군")){
-//            town="";
-//        }
-//        criteria.setKeyword(keyword);
-//        criteria.setType(town);
-//        log.info(keyword+"-----------"+town);
-//
-//
-//
-//        model.addAttribute("list", boardService.getSearchList(criteria));
-//        model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
-//        return "mainBoard/mainBoard";
-//    }
-
-
-    @PostMapping("write")
+    @PostMapping("write2")
     public RedirectView register(BoardVO boardVO,HttpServletRequest req, RedirectAttributes rttr){
+
+        HttpSession session = req.getSession();
+        boardVO.setUserNo(Long.parseLong(session.getAttribute("userNo").toString()));
+        System.out.println("AttachList : " + boardVO.getAttachList());
+
+
+        /*log.info(boardVO.toString());*/
         log.info("-------------------------------");
         log.info("register : " + boardVO.toString());
         log.info("-------------------------------");
-        HttpSession session = req.getSession();
-        boardVO.setUserNo(Long.parseLong(session.getAttribute("user").toString()));
-        log.info(boardVO.toString());
+
         if(boardVO.getAttachList() != null){
-            boardVO.getAttachList().forEach(attach -> log.info(attach.toString()));
+            log.info("첨부파일 null아님, 들어간다.");
+            boardVO.getAttachList().forEach(attach -> log.info("파일 : " + attach.toString()));
         }
-
         boardService.register(boardVO);
-
 //        쿼리 스트링으로 전달
 //        rttr.addAttribute("bno", boardVO.getBno());
 //        세션의 flash영역을 이용하여 전달
@@ -106,6 +75,7 @@ public class BoardController {
 //        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
         return new RedirectView("mainBoard");
     }
+
     @GetMapping({"detail", "modify"})
     public void read(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
         String reqURI = request.getRequestURI();
@@ -119,6 +89,7 @@ public class BoardController {
         model.addAttribute("board", boardService.get(qnaNo));
         model.addAttribute("criteria", criteria);
     }
+
     @PostMapping("modify")
     public RedirectView modify(BoardVO boardVO, RedirectAttributes rttr){
         log.info("-------------------------------");
@@ -131,6 +102,7 @@ public class BoardController {
         }
         return new RedirectView("read");
     }
+
     @PostMapping("remove")
     public RedirectView remove(@RequestParam("qnaNo") Long qnaNo, RedirectAttributes rttr) {
         log.info("-------------------------------");
@@ -172,16 +144,17 @@ public class BoardController {
 
 
     }
+
     @GetMapping("write")
     public String write(Model model){
         return "mainBoard/write";
     }
 
     //    게시글 첨부파일
-    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<AttachFileVO> getAttachList(Long qnaNo){
-        log.info("getAttachList " + qnaNo);
-        return boardService.getAttachList(qnaNo);
-    }
+//    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public List<BoardAttachFileVO> getAttachList(Long qnaNo){
+//        log.info("getAttachList " + qnaNo);
+//        return boardService.getAttachList(qnaNo);
+//    }
 }

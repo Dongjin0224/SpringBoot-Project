@@ -1,7 +1,7 @@
 package com.example.test.controller;
 
 
-import com.example.test.model.vo.AttachFileVO;
+import com.example.test.model.mainBoard.vo.AttachFileVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.core.io.FileSystemResource;
@@ -30,10 +30,10 @@ import java.util.UUID;
 
 @Controller
 @Slf4j
-@RequestMapping("/fileUpload/*")
-public class AttachFileController {
+@RequestMapping("/boardUpload/*")
+public class BoardAttachFileController {
 
-    @PostMapping(value = "fileUploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<AttachFileVO> uploadAjaxAction(MultipartFile[] uploadFiles){
         log.info("upload ajax action...........");
@@ -41,6 +41,10 @@ public class AttachFileController {
 
         String uploadFolder = "C:/upload";
         String uploadFolderPath = getFolder();
+
+        log.info("---------multipart length--------------");
+        log.info(String.valueOf(uploadFiles.length));
+        log.info("---------------------------------------");
 
 //        년/월/일 폴더 생성
         File uploadPath = new File(uploadFolder, uploadFolderPath);
@@ -84,8 +88,10 @@ public class AttachFileController {
                 System.gc();
                 //가비지 컬렉터가 포착한 해제 필드들을 모두 즉시 해제
                 System.runFinalization();
-
+                log.info("fileList에 add가 되냐?1");
                 fileList.add(attachFileVO);
+
+                log.info("fileList에 add가 되냐?2");
             } catch (IOException e) {
                 log.error(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e){

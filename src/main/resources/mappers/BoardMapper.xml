@@ -62,17 +62,17 @@
         ]]>
     </select>
 
-    <insert id="insert">
+<!--    <insert id="insert">
         INSERT INTO TABLE_QNA (QNANO, USERNO, QNATITLE, QNAADDRESS, QNAAGE, QNAGENDER, QNADISEASE, QNAMAJOR, QNACONTENT)
         VALUES(SEQ_QNA.NEXTVAL, #{userNo}, #{qnaTitle}, #{qnaAddress},#{qnaAge},#{qnaGender}, #{qnaDisease}, #{qnaMajor}, #{qnaContent})
-    </insert>
+    </insert>-->
 
     <insert id="insertSelectKey_bno">
-        <selectKey keyProperty="bno" order="BEFORE" resultType="long">
+        <selectKey keyProperty="qnaNo" order="BEFORE" resultType="long">
             SELECT SEQ_QNA.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO TABLE_QNA (qnaNo, userNo, qnaTitle, qnaContent)
-        VALUES(#{qnaNo}, #{qnaTitle}, , #{userNo}#{qnaContent})
+        INSERT INTO TABLE_QNA (QNANO, USERNO, QNATITLE, QNAADDRESS, QNAAGE, QNAGENDER, QNADISEASE, QNAMAJOR, QNACONTENT)
+        VALUES(#{qnaNo}, #{userNo}, #{qnaTitle}, #{qnaAddress},#{qnaAge},#{qnaGender}, #{qnaDisease}, #{qnaMajor}, #{qnaContent})
     </insert>
 
     <select id="read" resultType="boardVO">

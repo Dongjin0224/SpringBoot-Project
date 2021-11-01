@@ -15,7 +15,7 @@ public class BoardDAO {
     private final BoardMapper mapper;
 
     public void register(BoardVO board){
-        mapper.insert(board);
+        mapper.insertSelectKey_bno(board);
     }
 
     public BoardVO get(Long bno){

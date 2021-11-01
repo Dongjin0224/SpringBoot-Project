@@ -23,14 +23,14 @@ public class BoardMapperTest {
         log.info("-------------------------------------------------");
     }
 
-    @Test
-    public void testInsert(){
-        BoardVO board = new BoardVO();
-        board.setQnaTitle("새로 작성한 글 제목");
-        board.setQnaContent("새로 작성한 글 내용");
-        board.setQnaAge("30대");
-        mapper.insert(board);
-    }
+//    @Test
+//    public void testInsert(){
+//        BoardVO board = new BoardVO();
+//        board.setQnaTitle("새로 작성한 글 제목");
+//        board.setQnaContent("새로 작성한 글 내용");
+//        board.setQnaAge("30대");
+//        mapper.insert(board);
+//    }
 
     @Test
     public void testInsertSelectKey_bno(){

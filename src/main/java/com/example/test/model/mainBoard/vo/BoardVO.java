@@ -1,7 +1,6 @@
 package com.example.test.model.mainBoard.vo;
 
 
-import com.example.test.model.vo.AttachFileVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -21,5 +20,6 @@ public class BoardVO {
     private String qnaContent;
     private String qnaDate;
     private Long qnaViewCnt;
+
     private List<AttachFileVO> attachList;
 }

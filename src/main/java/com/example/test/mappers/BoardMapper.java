@@ -11,8 +11,8 @@ import java.util.List;
 public interface BoardMapper {
     //    게시글 목록
     public List<BoardVO> getList(Criteria criteria);
-    //    게시글 추가
-    public void insert(BoardVO board);
+   /* //    게시글 추가
+    public void insert(BoardVO board);*/
     //    게시글 추가(PK가져오기)
     public void insertSelectKey_bno(BoardVO board);
     //    게시글 상세보기(특정 게시글 정보)
