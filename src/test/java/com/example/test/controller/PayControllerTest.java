@@ -51,5 +51,19 @@ public class PayControllerTest {
         log.info("-----------------------------");
     }
 
+    @Test
+    public void test() throws UnsupportedEncodingException {
+        PayVO payVO = new PayVO();
+        payVO.setCustomer_uid("asd1234");
+        payVO.setCard_number("1234-1234-1234-1234");
+        payVO.setExpiry("2024-12");
+        payVO.setBirth("960224");
+        payVO.setPwd_2digit("51");
+        payVO.setAmount(1000);
+        payVO.setDocNo(1L);
+
+        log.info("code : " + payController.getCustomer(payVO).split(":")[1].split(",")[0]);
+    }
+
 
 }

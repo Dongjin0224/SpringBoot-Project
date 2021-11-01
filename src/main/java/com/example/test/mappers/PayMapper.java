@@ -15,4 +15,6 @@ public interface PayMapper {
     //결제 확인
     public void pay(PayVO payVO);
 
+    //회원 한 명의 결제 정보
+    public PayVO getPayList(Long docNo);
 }
