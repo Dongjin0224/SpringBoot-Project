@@ -44,20 +44,22 @@ public class AppointmentController {
         HttpSession session = (HttpSession)request.getSession();
         UserVO userVO = (UserVO)session.getAttribute("user");
         Long userNo = userVO.getUserNo();
-        System.out.println(" 회원번호 = " + userNo);
+        System.out.println("회원번호 = " + userNo);
         /* 해당 의사 번호 가져오기*/
         Long docNo = (Long) session.getAttribute("docNo");
-        System.out.println(" 의사번호 = " + docNo);
+        System.out.println("의사번호 = " + docNo);
         /* 유저 회원번호와 의사 회원번호를 reserveVO에 담기 */
         reserveVO.setUserNo(userNo);
         reserveVO.setDocNo(docNo);
-        System.out.println(" reservVO = " + reserveVO);
+        System.out.println("reservVO = " + reserveVO);
 
         /* DB에 예약 정보 넘기기 */
         appointmentService.reserve(reserveVO);
 
         /* 세션에 담긴 의사 번호 초기화 */
         session.setAttribute("docNo", null);
+        docNo = (Long) session.getAttribute("docNo");
+        System.out.println("초기화 된 의사번호 = " + docNo);
 
         /* 크롤링으로 문자 보내기 */
         ReserveUserVO user = appointmentService.getUserPhone(reserveVO.getUserNo());
