@@ -25,6 +25,5 @@ public class MapMapperTest {
             log.info(search.getDocAddress());
             log.info("----------------------------------------------");
         });
-
     }
 }

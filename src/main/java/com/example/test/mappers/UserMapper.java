@@ -3,6 +3,8 @@ package com.example.test.mappers;
 import com.example.test.model.user.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
+import javax.servlet.http.HttpSession;
+
 @Mapper
 public interface UserMapper {
 
@@ -19,4 +21,6 @@ public interface UserMapper {
 
     public void updatePassword(UserVO vo);
 
+
+    public void userLogout(HttpSession session);
 }

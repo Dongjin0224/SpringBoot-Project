@@ -5,6 +5,8 @@ import com.example.test.model.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
@@ -27,6 +29,8 @@ public class UserServiceImpl implements UserService{
         return result;
     }
 
+    @Override
+    public void userLogout(HttpSession session) { userDAO.userLogout(session); }
     @Override
     public UserVO findId(UserVO vo) {
         return userDAO.findId(vo);

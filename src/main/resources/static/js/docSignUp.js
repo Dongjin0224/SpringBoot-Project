@@ -374,7 +374,7 @@ $(document).ready(function () {
         }
         if (form.docLat.value == 37.555946 && form.docLng.value == 126.972317) {
             alert("지도에서 위치를 선택해주세요");
-           /* /!* form.searchBar.focus();*!/*/
+            /* /!* form.searchBar.focus();*!/*/
             return;
         }
         if (!form.docAddress.value) {
@@ -419,7 +419,7 @@ $(document).ready(function () {
 
         if (check) {
             alert("이용약관 동의가 필요합니다.");
-           /* /!*form.term.focus();*!/*/
+            /* /!*form.term.focus();*!/*/
             return;
         }
         if (form.docId.value.length < 4 || form.docId.value.length > 16) {
@@ -582,7 +582,6 @@ $(".btn_close").on("click", function () {
 })
 
 /*})*/
-
 
 
 

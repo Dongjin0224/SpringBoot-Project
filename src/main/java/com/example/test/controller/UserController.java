@@ -58,10 +58,19 @@ public class UserController {
             /*rttr.addFlashAttribute("msg",false);*/
         } else {
             session.setAttribute("user", login);
+            session.setAttribute("userNo", login.getUserNo());
         }
         return new RedirectView("/index");
     }
 
+    @GetMapping("userLogout")
+    public String userLogout(HttpServletRequest req) {
+        HttpSession session = req.getSession(false);
+
+        if (session != null) {
+            session.invalidate();
+        } return "user/login";
+    }
 
     @PostMapping("checkUserId")
     @ResponseBody

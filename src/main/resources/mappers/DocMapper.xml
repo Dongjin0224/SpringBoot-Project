@@ -34,4 +34,3 @@
         SELECT COUNT(DOCID) FROM TABLE_DOC WHERE DOCID=#{docId}
     </select>
 </mapper>
-

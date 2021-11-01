@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import javax.servlet.http.HttpSession;
+
 @Repository
 @Slf4j
 @RequiredArgsConstructor
@@ -35,4 +37,5 @@ public class UserDAO {
         userMapper.updatePassword(vo);
     }
 
+   public void userLogout(HttpSession session) { userMapper.userLogout(session); };
 }

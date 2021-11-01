@@ -512,9 +512,9 @@
 <script src="/js/docSignUp.js"></script>
 <script>
 
-   /* $(document).ready(function () {*/
+    /* $(document).ready(function () {*/
 
-   /* });*/
+    /* });*/
 
 
     /*휴대폰 인증*/
@@ -526,11 +526,11 @@
             data: {"docPhoneNum":$("#docPhoneNum").val()},
             success : function(numStr){
                 $('#checkNumStr').click(function(){
-                if($.trim(numStr)==$('#numStr').val()){
-                    alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
-                }else{
-                    alert("인증 실패. 인증번호를 다시 확인해 주세요.");
-                }
+                    if($.trim(numStr)==$('#numStr').val()){
+                        alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
+                    }else{
+                        alert("인증 실패. 인증번호를 다시 확인해 주세요.");
+                    }
                 });
             }
         });
