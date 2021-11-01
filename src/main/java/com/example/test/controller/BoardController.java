@@ -84,18 +84,6 @@ public class BoardController {
 //        return "mainBoard/mainBoard";
 //    }
 
-//    @GetMapping("mainBoard")
-//    public String list(Criteria criteria, Model model, int pageNum, int amount){
-//        log.info("-------------------------------");
-//        log.info("list");
-//        log.info(criteria.toString());
-//        log.info(pageNum+"-----"+amount);
-//        log.info("-------------------------------");
-//
-//        model.addAttribute("list", boardService.getList(criteria));
-//        model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
-//        return "mainBoard/mainBoard?pageNum="+pageNum+"&amount="+amount;
-//    }
 
     @PostMapping("write")
     public RedirectView register(BoardVO boardVO,HttpServletRequest req, RedirectAttributes rttr){
