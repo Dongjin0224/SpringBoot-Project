@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class DocServiceImple implements DocService{
+public class DocSeviceImple implements DocService{
 
     private final DocDAO docDAO;
     private final DocAttachFileDAO docAttachFileDAO;
@@ -30,8 +30,6 @@ public class DocServiceImple implements DocService{
     @Override
     public void DocSignUp(DocVO vo) {
         docDAO.doctorSignUp(vo);
-
-
 
         if(vo.getAttachList() ==null || vo.getAttachList().size() ==0){
             return;
@@ -76,6 +74,10 @@ public class DocServiceImple implements DocService{
     }
 
     @Override
-    public void docLogout(HttpSession session) { docDAO.docLogout(session); }
+    public int checkId(DocVO vo) {
+        int result =docDAO.checkId(vo);
+        return result;
+    }
+
 
 }

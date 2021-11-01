@@ -1,6 +1,7 @@
 package com.example.test.controller;
 
 import com.example.test.model.user.vo.DocHosAttachFileVO;
+import com.example.test.model.user.vo.DocVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.core.io.FileSystemResource;
@@ -37,9 +38,6 @@ public class DocHosAttachFileController {
         log.info("hosupload ajax action...........");
         List<DocHosAttachFileVO> hosFileList = new ArrayList<>();
 
-        log.info("----------hosFileList------------");
-        log.info(String.valueOf(hosFileList.size()));
-        log.info("---------------------------------");
         log.info("---------multipart length--------------");
         log.info(String.valueOf(hosUploadFiles.length));
         log.info("---------------------------------------");
@@ -100,9 +98,7 @@ public class DocHosAttachFileController {
                 System.runFinalization();
 
                 hosFileList.add(docHosAttachFileVO);
-                log.info("---------------hosList------------------");
-                log.info(String.valueOf(hosFileList.size()));
-                log.info("---------------hosList end------------------");
+                log.info("hosFileList : " + String.valueOf(hosFileList));
             } catch (IOException e) {
                 log.error(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e) {

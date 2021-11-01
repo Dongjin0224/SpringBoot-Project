@@ -15,6 +15,7 @@ public class DocVO {
     private String docMajor;
     private String docHospitalName;
     private String docHosPhone;
+    private String docHistory;
     private double docLat;
     private double docLng;
     private String docAddress;

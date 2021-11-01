@@ -29,5 +29,9 @@
     <select id="docLogin" resultType="DocVO">
         SELECT * FROM TABLE_DOC WHERE DOCID = #{docId} AND DOCPW =#{docPw}
     </select>
+
+    <select id="checkId" resultType="_int">
+        SELECT COUNT(DOCID) FROM TABLE_DOC WHERE DOCID=#{docId}
+    </select>
 </mapper>
 

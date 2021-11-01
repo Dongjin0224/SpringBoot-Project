@@ -20,13 +20,13 @@ public class DocMapperTest {
         doc.setDocPw("새로 작성하는 내용3");
         doc.setDocName("전진주");
         doc.setDocMajor("hds1204");
+        doc.setDocHosPhone("1234");
         doc.setDocHospitalName("hds1204");
         doc.setDocLat(1.1);
         doc.setDocLng(2.3);
         doc.setDocAddress("hds1204");
         doc.setDocEmail("hds1204");
         doc.setDocPhoneNum("hds1204");
-        doc.setDocPic("hds1204");
-        mapper.DocSignUp(doc);
+        mapper.insertSelectKey_bno(doc);
     }
 }
