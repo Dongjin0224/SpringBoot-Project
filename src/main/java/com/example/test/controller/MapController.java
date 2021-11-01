@@ -37,8 +37,7 @@ public class MapController {
         model.addAttribute("allList",service.getList());
         return "map/searchMap";
 
-    }
-
+}
     @PostMapping("searchMap")
     public void searchMap(@RequestParam String search, Model model){
         model.addAttribute("searchList",service.getSearchList(search));

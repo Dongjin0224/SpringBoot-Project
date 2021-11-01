@@ -33,13 +33,13 @@
 
     select#town {width: 24%;float: left;margin-left: 1%;}
 
-    select#age {width: 24%;float: left;margin-left: 2%;}
+    select#qnaAge {width: 24%;float: left;margin-left: 2%;}
 
-    select#sex {width: 24%;float: left;margin-left: 1%;}
+    select#qnaGender {width: 24%;float: left;margin-left: 1%;}
 
-    select#select_category {margin-right: 1%;width: 39%;float: left;}
+    select#qnaMajor {margin-right: 1%;width: 39%;float: left;}
 
-    input#illness {float: left; width: 60%;}
+    input#qnaDisease {float: left; width: 60%;}
 
     td {background-color: white !important;}
 
@@ -89,19 +89,19 @@
                     <form action="" name="writeForm" method="post" enctype="multipart/form-data">
                         <table id="div_table">
                             <tr id="tr tbody" style="border: 0 !important;">
-                                <td colspan="2" id="td_title"><input id="board_title" name="board_title"
+                                <td colspan="2" id="td_title"><input id="qnaTitle" name="qnaTitle"
                                                                      type="text" placeholder="제목 입력"></td>
                             </tr>
                             <tr style="border: 0 !important;">
                                 <td colspan="4">
                                     <select name="city" id="city"></select>
                                     <select name="town" id="town"></select>
-                                    <select name="sex" id="sex">
+                                    <select name="qnaGender" id="qnaGender">
                                         <option value="">성별</option>
                                         <option value="여자">여자</option>
                                         <option value="남자">남자</option>
                                     </select>
-                                    <select name="age" id="age">
+                                    <select name="qnaAge" id="qnaAge">
                                         <option value="">연령대</option>
                                         <option value="0">소아 (신생아, 영아, 어린이)</option>
                                         <option value="10">10대 (청소년)</option>
@@ -115,7 +115,7 @@
                             </tr>
                             <tr style="border: 0 !important;">
                                 <td colspan="2">
-                                    <select id="select_category" name="select_category" fw-filter="isFill"
+                                    <select id="qnaMajor" name="qnaMajor" fw-filter="isFill"
                                             fw-label="제목" fw-msg="" onchange="changeTitle()">
                                         <option selected disabled>진료과목</option>
                                         <option value="정형외과">정형외과</option>
@@ -133,7 +133,7 @@
                                         <option value="신경외과">신경외과</option>
                                         <option value="응급의학과">응급의학과</option>
                                     </select>
-                                    <input id="illness" name="illness" type="text" placeholder="병명 입력">
+                                    <input id="qnaDisease" name="qnaDisease" type="text" placeholder="병명 입력">
                                 </td>
                             </tr>
 
@@ -146,7 +146,7 @@
                             <tbody>
                             <tr style="border-top: none; border-bottom: none;">
                                 <td colspan="2" class="clear" style="padding-bottom: 3%;"><textarea
-                                        style="width: 100%; display: none;" name="cs_board_content" id="content"
+                                        style="width: 100%; display: none;" name="qnaContent" id="content"
                                         class="ec-fr-never-be-duplicated"></textarea> <input
                                         type="hidden" id="content_hidden"
                                         fw-filter="isSimplexEditorFill" fw-label="내용"
@@ -700,8 +700,9 @@
                             </tr>
                             <tr style="border-bottom: 0px; border-top: 0px;">
                                 <td colspan="3" style="padding-top: 5%; padding-bottom: 0;">
+                                    <input type="hidden" name="qnaAddress">
                                     <input class="input_button" id="cancel_post" type="button" value="취소"
-                                           onclick="history.back()"/>
+                                           onclick="location.href='/mainBoard/mainBoard'"/>
                                     <input class="input_button" id="write_post" type="button" value="등록"
                                            onclick="send()"/>
                                 </td>
@@ -798,6 +799,32 @@
 
     function deleteFile(obj) {
         obj.parent().remove();
+    }
+
+
+
+    function send() {
+        let form = document.writeForm;
+        form.qnaAddress.value = form.town.value;
+        console.log(form.qnaAddress.value);
+        if(form.qnaTitle.value==''){
+            alert('제목을 입력해주세요.');
+            form.qnaTitle.focus();
+            return;
+        }
+        if(form.qnaAddress.value==''){
+            alert('주소를 입력해주세요.');
+            return;
+        }
+        if(form.qnaDisease==''){
+            alert('질병을 입력해주세요.');
+            form.qnaDisease.focus();
+            return;
+        }
+        form.submit();
+        // if(form.qna){
+        //
+        // }
     }
 </script>
 </html>
