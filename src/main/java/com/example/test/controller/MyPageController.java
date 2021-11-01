@@ -12,6 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -22,10 +23,10 @@ public class MyPageController {
     public final MyPageService myPageService;
 
     @GetMapping("myPageUser")
-    public String myPageUser(@RequestParam("userNo") Long userNo, Model model, HttpServletRequest request) {
+    public String myPageUser(Model model, HttpServletRequest request) {
         HttpSession session = (HttpSession)request.getSession();
         UserVO user = (UserVO) session.getAttribute("user");
-        userNo = user.getUserNo();
+        Long userNo = user.getUserNo();
         model.addAttribute("user", myPageService.viewUser(userNo));
         return "myPage/myPageUser";
     }
@@ -50,8 +51,12 @@ public class MyPageController {
         return new RedirectView("redirect:/");
     }
 
+
     @GetMapping("myPageDoc")
-    public String myPageDoc(@RequestParam("docNo") Long docNo, Model model){
+    public String myPageDoc(Model model, HttpServletRequest request){
+        HttpSession session = (HttpSession)request.getSession();
+        DocVO doc = (DocVO) session.getAttribute("doc");
+        Long docNo = doc.getDocNo();
         model.addAttribute("doc", myPageService.viewDoc(docNo));
         return "myPage/myPageDoc";
     }

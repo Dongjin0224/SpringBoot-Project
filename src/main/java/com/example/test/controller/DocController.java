@@ -61,6 +61,7 @@ public class DocController {
             /*rttr.addFlashAttribute("msg",false);*/
         } else {
             session.setAttribute("doc", login);
+            session.setAttribute("docNo", login.getDocNo());
         }
         return new RedirectView("/index");
     }
