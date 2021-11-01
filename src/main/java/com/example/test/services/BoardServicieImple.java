@@ -61,4 +61,10 @@ public class BoardServicieImple implements BoardService {
         return boardDAO.getSearchList(criteria);
     }
 
+
+    @Override
+    public void updateView(Long qnaNo) {
+       boardDAO.updateViewCnt(qnaNo);
+    }
+
 }

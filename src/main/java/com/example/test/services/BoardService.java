@@ -18,4 +18,5 @@ public interface BoardService {
     public int getTotal(Criteria criteria);
     public List<AttachFileVO> getAttachList(Long qnaNo);
     public List<BoardVO> getSearchList(Criteria criteria);
+    public void updateView(Long qnaNo);
 }

@@ -106,8 +106,23 @@ public class BoardController {
 //        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
         return new RedirectView("mainBoard");
     }
-    @GetMapping({"detail", "modify"})
+    @GetMapping("detail")
     public void read(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
+        String reqURI = request.getRequestURI();
+        String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
+        //read 요청 시 read 출력
+        //modify 요청 시 modify 출력
+        log.info("-------------------------------");
+        log.info(reqType + " : " + qnaNo);
+        log.info("-------------------------------");
+
+        boardService.updateView(qnaNo);
+        model.addAttribute("board", boardService.get(qnaNo));
+        model.addAttribute("criteria", criteria);
+    }
+
+    @GetMapping("modify")
+    public void modify(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
         //read 요청 시 read 출력
@@ -119,6 +134,7 @@ public class BoardController {
         model.addAttribute("board", boardService.get(qnaNo));
         model.addAttribute("criteria", criteria);
     }
+
     @PostMapping("modify")
     public RedirectView modify(BoardVO boardVO, RedirectAttributes rttr){
         log.info("-------------------------------");

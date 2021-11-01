@@ -37,4 +37,7 @@ public class BoardDAO {
     public int getTotal(Criteria criteria){ return mapper.getTotal(criteria); }
 
     public List<BoardVO> getSearchList(Criteria criteria){return mapper.getSearchList(criteria);}
+
+    public Long viewCnt(Long qnaNo){return mapper.viewCnt(qnaNo);}
+    public void updateViewCnt(Long qnaNo){mapper.updateViewCnt(qnaNo);}
 }

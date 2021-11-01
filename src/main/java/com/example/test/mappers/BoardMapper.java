@@ -25,4 +25,8 @@ public interface BoardMapper {
     public int getTotal(Criteria criteria);
 //    검색한 게시글 목록
     public List<BoardVO> getSearchList(Criteria criteria);
+//    조회수 검색
+    public Long viewCnt(Long qnaNo);
+//    조회수 업데이트
+    public void updateViewCnt(Long qnaNo);
 }

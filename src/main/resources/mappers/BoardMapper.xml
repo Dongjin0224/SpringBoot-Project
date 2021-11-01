@@ -76,7 +76,7 @@
     </insert>
 
     <select id="read" resultType="boardVO">
-        SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE FROM TABLE_QNA
+        SELECT * FROM TABLE_QNA
         WHERE qnaNo = #{qnaNo}
     </select>
 
@@ -84,6 +84,14 @@
         UPDATE TABLE_QNA
         SET TITLE = #{title}, CONTENT = #{content}, UPDATEDATE = SYSDATE
         WHERE qnaNo = #{qnaNo}
+    </update>
+
+    <select id="viewCnt" resultType="long">
+
+    </select>
+
+    <update id="updateViewCnt">
+        UPDATE TABLE_QNA SET QNAVIEWCNT = (SELECT QNAVIEWCNT FROM TABLE_QNA WHERE QNANO=#{qnaNo}) +1 WHERE QNANO=#{qnaNo}
     </update>
 
     <delete id="delete">
