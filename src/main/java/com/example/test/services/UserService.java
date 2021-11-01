@@ -12,7 +12,13 @@ public interface UserService {
 
     public UserVO userLogin(UserVO vo);
 
-    public boolean checkId(String userId);
+    public int checkId(UserVO vo);
+
+    public UserVO findId(UserVO vo);
+
+    public UserVO findPw(UserVO vo);
+
+    public void updatePassword(UserVO vo);
 
     public void userLogout(HttpSession session);
 }

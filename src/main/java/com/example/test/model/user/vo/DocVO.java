@@ -15,12 +15,12 @@ public class DocVO {
     private String docMajor;
     private String docHospitalName;
     private String docHosPhone;
+    private String docHistory;
     private double docLat;
     private double docLng;
     private String docAddress;
     private String docEmail;
     private String docPhoneNum;
-    private String docPic;
     private int docStatus;
     private int docPayStatus;
     private int docServiceCnt;

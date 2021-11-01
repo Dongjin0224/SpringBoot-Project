@@ -15,5 +15,7 @@ public interface DocMapper {
 
     public DocVO docLogin(DocVO vo);
 
+    public int checkId(DocVO vo);
+
     public void docLogout(HttpSession session);
 }

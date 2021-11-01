@@ -38,7 +38,8 @@ public class DocAttachFileController {
         log.info("upload ajax action...........");
         List<DocAttachFileVO> fileList = new ArrayList<>();
 
-        String uploadFolder = "C:/upload/";
+
+        String uploadFolder = "C:/upload";
         String uploadFolderPath = getFolder();
 
         log.info("---------multipart length--------------");
@@ -96,6 +97,7 @@ public class DocAttachFileController {
                 System.runFinalization();
 
                 fileList.add(docAttachFileVO);
+                log.info("fileList : " + String.valueOf(fileList));
             } catch (IOException e) {
                 log.error(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e){

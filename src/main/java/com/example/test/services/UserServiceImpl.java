@@ -24,11 +24,28 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean checkId(String userId) {
-        return userDAO.checkId(userId);
+    public int checkId(UserVO vo) {
+        int result =userDAO.checkId(vo);
+        return result;
     }
 
     @Override
     public void userLogout(HttpSession session) { userDAO.userLogout(session); }
+
+    @Override
+    public UserVO findId(UserVO vo) {
+        return userDAO.findId(vo);
+    }
+
+    @Override
+    public UserVO findPw(UserVO vo) {
+        return userDAO.findPw(vo);
+    }
+
+    @Override
+    public void updatePassword(UserVO vo) {
+        userDAO.updatePassword(vo);
+    }
+
 
 }

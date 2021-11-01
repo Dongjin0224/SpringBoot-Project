@@ -1,6 +1,7 @@
 package com.example.test.model.user.dao;
 
 import com.example.test.mappers.UserMapper;
+import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +22,20 @@ public class UserDAO {
 
    public UserVO userLogin(UserVO vo){return userMapper.userLogin(vo);}
 
-   public boolean checkId(String userId){
-        return userMapper.checkId(userId) == 0;
-   }
+    public int checkId(UserVO vo){
+        return userMapper.checkId(vo);
+    }
 
-   public void userLogout(HttpSession session) { userMapper.userLogout(session); };
+    public UserVO findId(UserVO vo){
+        return userMapper.findId(vo);
+    }
+    public UserVO findPw(UserVO vo){
+        return userMapper.findPw(vo);
+    }
+
+    public void updatePassword(UserVO vo){
+        userMapper.updatePassword(vo);
+    }
+
+    public void userLogout(HttpSession session) { userMapper.userLogout(session); }
 }

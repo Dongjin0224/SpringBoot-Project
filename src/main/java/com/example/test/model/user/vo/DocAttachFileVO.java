@@ -11,7 +11,8 @@ public class DocAttachFileVO {
     private String uploadPath;
     private String fileName;
     private boolean image;
-    private long docNo;
+    private Long docNo;
+
 
 
 }

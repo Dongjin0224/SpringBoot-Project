@@ -2,11 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.test.mappers.MyPageMapper">
-    <update id="updateUser">
+	<select id="viewUser" resultType="UserVO">
+		SELECT USERID, USERNAME, USERPHONENUM, USEREMAIL
+		FROM TABLE_USER WHERE USERNO = #{userNo}
+	</select>
+
+	<select id="viewDoc" resultType="DocVO">
+		SELECT DOCID, DOCNAME,DOCMAJOR, DOCHOSPITALNAME, DOCHOSPHONE, DOCHISTORY, DOCLAT, DOCLNG,
+		DOCADDRESS, DOCEMAIL, DOCPHONENUM, DOCSTATUS, DOCPAYSTATUS, DOCSERVICECNT, DOCREPORTCNT, DOCLIKECNT
+		FROM TABLE_DOC WHERE DOCNO = #{docNo}
+	</select>
+
+	<update id="updateUser">
    	    UPDATE TABLE_USER SET
-   	    USERNO = #{userNo}, USERID = #{userId}, USERPW = #{userPw}, USERNAME = #{userName},
-   	    USERPHONENUM = #{userPhoneNum}, USEREMAIL = #{userEmail}, USERSTATUS = #{userStatus}
+   	    USERPW = #{userPw}, USERPHONENUM = #{userPhoneNum}, USEREMAIL = #{userEmail}
    	    WHERE USERNO = #{userNo}
     </update>
 
+	<update id="updateDoc">
+		UPDATE TABLE_DOC SET
+		DOCPW  = #{docPw}, DOCHOSPITALNAME = #{docHospitalName}, DOCHOSPHONE = #{docHosPhone},
+		DOCHISTORY = #{docHistory}, DOCLAT = #{docLat}, DOCLNG = #{docLng}, DOCADDRESS = #{docAddress},
+		DOCEMAIL = #{docEmail}, DOCPHONENUM = #{docPhoneNum}, DOCSERVICECNT = #{docServiceCnt},
+		DOCREPORTCNT = #{docReportCnt}, DOCLIKECNT = #{docLikeCnt}
+		WHERE DOCNO = #{docNo}
+	</update>
+
+	<delete id="deleteUser">
+        DELETE FROM TABLE_USER WHERE USERNO = #{userNo}
+    </delete>
+
+	<delete id="deleteDoc">
+		DELETE FROM TABLE_DOC WHERE DOCNO = #{docNo}
+	</delete>
 </mapper>

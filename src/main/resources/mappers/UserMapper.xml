@@ -19,5 +19,14 @@
         SELECT COUNT(USERID) FROM TABLE_USER WHERE USERID=#{userId}
     </select>
 
+    <select id="findId" resultType="UserVO">
+        SELECT * FROM TABLE_USER WHERE USERNAME= #{userName} AND USERPHONENUM= #{userPhoneNum}
+    </select>
 
+    <select id="findPw" resultType="UserVO">
+        SELECT * FROM TABLE_USER WHERE USERiD= #{userId} AND USERNAME= #{userName} AND USERPHONENUM= #{userPhoneNum}
+    </select>
+    <update id="updatePassword">
+        UPDATE TABLE_USER SET USERPW=#{userPw} WHERE USERID=#{userId}
+    </update>
 </mapper>

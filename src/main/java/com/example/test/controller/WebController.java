@@ -1,19 +1,31 @@
 package com.example.test.controller;
 
+import com.example.test.model.user.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Slf4j
 @Controller
 @RequestMapping("")
 public class WebController {
-
+    public static HttpSession session = null;
     @GetMapping("index")
-    public String index(){
-        return "index";
+    public String index(HttpSession session) {
+        if (null == session || this.session == null) {
+            return "index";
+        } else {
+            UserVO user = (UserVO) session.getAttribute("user");
+            Long userNo = user.getUserNo();
+            System.out.println(userNo);
+            return "index";
+        }
     }
+
+
 
     @GetMapping("elements")
     public String elements(){
@@ -78,6 +90,9 @@ public class WebController {
     //  dong
     @GetMapping("footer")
     public String footer(){return "fixed/footer";}
+    //  dong
+    @GetMapping("test")
+    public String test(){return "payment/test";}
 
     //  young
     @GetMapping("guide")

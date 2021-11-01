@@ -5,11 +5,11 @@
     <insert id="DocSignUp">
       INSERT INTO TABLE_DOC
     (
-    docNo, docId, docPw, docName, docMajor, docHospitalName, docHosPhone, docLat, docLng, docAddress, docEmail,
+    docNo, docId, docPw, docName, docMajor, docHospitalName, docHosPhone, docHistory, docLat, docLng, docAddress, docEmail,
     docPhoneNum
     )
     VALUES(
-    SEQ_USER.NEXTVAL, #{docId}, #{docPw}, #{docName}, #{docMajor}, #{docHospitalName}, #{docHosPhone}, #{docLat},
+    SEQ_USER.NEXTVAL, #{docId}, #{docPw}, #{docName}, #{docMajor}, #{docHospitalName}, #{docHosPhone},#{docHistory}, #{docLat},
     #{docLng}, #{docAddress}, #{docEmail}, #{docPhoneNum}
     )
    </insert>
@@ -20,14 +20,17 @@
             SELECT SEQ_DOC.NEXTVAL FROM DUAL
         </selectKey>
         /*위에서 전달받은 bno를 사용한다.*/
-        INSERT INTO TABLE_DOC (docNo, docId, docPw, docName, docMajor, docHospitalName, docHosPhone, docLat, docLng, docAddress, docEmail,
+        INSERT INTO TABLE_DOC (docNo, docId, docPw, docName, docMajor, docHospitalName, docHosPhone, docHistory, docLat, docLng, docAddress, docEmail,
         docPhoneNum)
-        VALUES(#{docNo} ,#{docId}, #{docPw}, #{docName}, #{docMajor}, #{docHospitalName}, #{docHosPhone}, #{docLat},
+        VALUES(#{docNo} ,#{docId}, #{docPw}, #{docName}, #{docMajor}, #{docHospitalName}, #{docHosPhone}, #{docHistory}, #{docLat},
         #{docLng}, #{docAddress}, #{docEmail}, #{docPhoneNum})
     </insert>
 
     <select id="docLogin" resultType="DocVO">
         SELECT * FROM TABLE_DOC WHERE DOCID = #{docId} AND DOCPW =#{docPw}
     </select>
-</mapper>
 
+    <select id="checkId" resultType="_int">
+        SELECT COUNT(DOCID) FROM TABLE_DOC WHERE DOCID=#{docId}
+    </select>
+</mapper>

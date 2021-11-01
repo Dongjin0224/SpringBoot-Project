@@ -14,12 +14,18 @@ import javax.servlet.http.HttpSession;
 public class DocDAO {
 
     private final DocMapper docMapper;
-
+    /*의사 회원가입*/
     public void doctorSignUp(DocVO vo){
         docMapper.insertSelectKey_bno(vo);
     }
 
+    /*의사 로그인*/
     public DocVO docLogin(DocVO vo){ return docMapper.docLogin(vo); }
+
+    /*회원중복체크*/
+    public int checkId(DocVO vo){
+        return docMapper.checkId(vo);
+    }
 
     public void docLogout(HttpSession session) { docMapper.docLogout(session); }
 }
