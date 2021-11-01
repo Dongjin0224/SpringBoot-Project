@@ -76,6 +76,9 @@ public class AdminServiceImple implements AdminService {
     }
 
     @Override
+    public List<DocVO> report() { return adminDAO.report(); }
+
+    @Override
     public List<VolAttachFileVO> getAttachList(Long volunteerBoardNo) {
         return volAttachFileDAO.findByBno(volunteerBoardNo);
     }
