@@ -357,67 +357,39 @@
                                 <th>이름</th>
                                 <th>답변 수</th>
                             </tr>
+                            <tr th:each="reply, j:${reply}" th:object="${reply}">
+                                <td><span th:switch="${j.index}">
+                                    <i th:case="0" class="one icon solid fa-crown"></i>
+                                    <i th:case="1" class="two icon solid fa-crown"></i>
+                                    <i th:case="2" class="three icon solid fa-crown"></i>
+                                    <i th:case="3" class="three icon solid fa-crown"></i>
+                                    <i th:case="4" class="three icon solid fa-crown"></i>
+                                </span></td>
+                                <td th:text="*{docName}"></td>
+                                <td th:text="*{c}"></td>
                             <tr>
-                                <td><i class="one icon solid fa-crown"></i></td>
-                                <td>가나다</td>
-                                <td>123</td>
-                            </tr>
-                            <tr>
-                                <td><i class="two icon solid fa-crown"></i></td>
-                                <td>라마바</td>
-                                <td>121</td>
-                            </tr>
-                            <tr>
-                                <td><i class="three icon solid fa-crown"></i></td>
-                                <td>사아자</td>
-                                <td>12</td>
-                            </tr>
-                            <tr>
-                                <td><i class="three icon solid fa-crown"></i></td>
-                                <td>차카타</td>
-                                <td>11</td>
-                            </tr>
-                            <tr>
-                                <td><i class="three icon solid fa-crown"></i></td>
-                                <td>파하</td>
-                                <td>1</td>
-                            </tr>
                         </table>
                     </div>
                 </div>
                 <div class="ranking">
                     <div class="rankingWrap">
                         <h4>주간 의사 추천 랭킹</h4>
-                        <table class="rankingTable">
+                        <table class="rankingTable" >
                             <tr>
                                 <th>랭킹</th>
                                 <th>이름</th>
                                 <th>추천 수</th>
                             </tr>
-                            <tr>
-                                <td><i class="one icon solid fa-medal"></i></td>
-                                <td>가나다</td>
-                                <td>123</td>
-                            </tr>
-                            <tr>
-                                <td><i class="two icon solid fa-medal"></i></td>
-                                <td>라마바</td>
-                                <td>121</td>
-                            </tr>
-                            <tr>
-                                <td><i class="three icon solid fa-medal"></i></td>
-                                <td>사아자</td>
-                                <td>12</td>
-                            </tr>
-                            <tr>
-                                <td><i class="three icon solid fa-medal"></i></td>
-                                <td>차카타</td>
-                                <td>11</td>
-                            </tr>
-                            <tr>
-                                <td><i class="three icon solid fa-medal"></i></td>
-                                <td>파하</td>
-                                <td>1</td>
+                            <tr th:each="like, i:${like}" th:object="${like}">
+                                <td><span th:switch="${i.index}">
+                                    <i th:case="0" class="one icon solid fa-medal"></i>
+                                    <i th:case="1" class="two icon solid fa-medal"></i>
+                                    <i th:case="2" class="three icon solid fa-medal"></i>
+                                    <i th:case="3" class="three icon solid fa-medal"></i>
+                                    <i th:case="4" class="three icon solid fa-medal"></i>
+                                </span></td>
+                                <td th:text="*{docName}"></td>
+                                <td th:text="*{docLikeCnt}"></td>
                             </tr>
                         </table>
                     </div>

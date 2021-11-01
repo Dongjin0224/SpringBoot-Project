@@ -4,6 +4,7 @@ package com.example.test.model.mainBoard.dao;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.mappers.BoardMapper;
+import com.example.test.model.user.vo.DocVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -36,5 +37,9 @@ public class BoardDAO {
 
     public int getTotal(Criteria criteria){ return mapper.getTotal(criteria); }
 
-    public List<BoardVO> getSearchList(Criteria criteria){return mapper.getSearchList(criteria);}
+    public List<BoardVO> getSearchList(Criteria criteria){ return mapper.getSearchList(criteria);}
+
+    public List<DocVO> getLikeCnt() { return mapper.getLikeCnt(); }
+
+    public List<DocVO> getReplyCnt() { return  mapper.getReplyCnt(); }
 }

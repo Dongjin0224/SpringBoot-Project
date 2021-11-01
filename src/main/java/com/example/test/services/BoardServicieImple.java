@@ -6,6 +6,7 @@ import com.example.test.model.mainBoard.dao.BoardDAO;
 import com.example.test.model.mainBoard.vo.AttachFileVO;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.user.vo.DocVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -66,5 +67,11 @@ public class BoardServicieImple implements BoardService {
     public List<BoardVO> getSearchList(Criteria criteria) {
         return boardDAO.getSearchList(criteria);
     }
+
+    @Override
+    public List<DocVO> getLikeCnt() { return boardDAO.getLikeCnt(); }
+
+    @Override
+    public List<DocVO> getReplyCnt() { return boardDAO.getReplyCnt(); }
 
 }

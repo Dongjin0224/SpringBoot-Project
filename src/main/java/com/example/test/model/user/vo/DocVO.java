@@ -27,6 +27,8 @@ public class DocVO {
     private int docReportCnt;
     private int docLikeCnt;
 
+    private int c;
+
     private List<DocAttachFileVO> attachList;
     private List<DocHosAttachFileVO> hosattachList;
 

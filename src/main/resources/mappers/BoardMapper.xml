@@ -98,4 +98,37 @@
             </trim>
         </where>
     </select>
+
+    <select id="getLikeCnt" resultType="DocVO">
+        SELECT * FROM (SELECT ROWNUM R, D.* FROM (SELECT * FROM TABLE_DOC ORDER BY docLikeCnt DESC) D) WHERE <![CDATA[ (R < 6) ]]>
+    </select>
+
+    <select id="getReplyCnt" resultType="DocVO">
+SELECT
+*
+FROM
+TABLE_DOC W,
+(
+	SELECT *
+	FROM
+	(
+		SELECT ROWNUM R,
+		B.*
+		FROM
+			(
+				(
+				SELECT COUNT(docNo) C,
+				DOCNO
+				FROM
+				TABLE_QNA_REPLY
+				GROUP BY
+				DOCNO
+				)
+			ORDER BY C DESC) B
+	)
+ <![CDATA[	WHERE  R < 6) E  ]]>
+WHERE
+W.DOCNO = E.DOCNO
+ORDER BY R
+    </select>
 </mapper>

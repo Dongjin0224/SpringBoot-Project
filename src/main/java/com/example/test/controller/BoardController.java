@@ -45,6 +45,9 @@ public class BoardController {
         }
 
 
+        model.addAttribute("like",boardService.getLikeCnt());
+        model.addAttribute("reply",boardService.getReplyCnt());
+        log.info(" " + boardService.getReplyCnt());
         model.addAttribute("list", boardService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
         return "mainBoard/mainBoard";
