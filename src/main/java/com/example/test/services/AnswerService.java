@@ -24,5 +24,4 @@ public class AnswerService {
         return answerDAO.answerList(qnaNo);
     }
 
-    public AnswerVO selectList(AnswerVO answerVO){return answerDAO.selectList(answerVO);}
 }
