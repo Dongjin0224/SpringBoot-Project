@@ -31,10 +31,7 @@ public class BoardController {
 
     @GetMapping("mainBoard")
     public String list(Criteria criteria,HttpServletRequest req, Model model){
-        log.info("-------------------------------");
-        log.info("list");
-        log.info(criteria.toString());
-        log.info("-------------------------------");
+
 
         if (criteria.getKeyword() == null){
             criteria.setKeyword("");
@@ -45,6 +42,11 @@ public class BoardController {
         if (criteria.getQnaMajor() == null){
             criteria.setQnaMajor("");
         }
+
+        log.info("-------------------------------");
+        log.info("list");
+        log.info("Criteria 출력" + criteria.toString());
+        log.info("-------------------------------");
 
         HttpSession session = req.getSession();
         if(session.getAttribute("userNo")==null) {
