@@ -26,5 +26,7 @@ public class MyPageDAO {
     public void updateDoc(DocVO docVO){ myPageMapper.updateDoc(docVO); }
     public List<ApplicantsVO> getVolList(Long docNo) { return myPageMapper.getVolList(docNo); }
     public List<AppointmentVO> getAppList(Long docNo) { return myPageMapper.getAppList(docNo); }
+    public List<AppointmentVO> getResList(Long userNo) { return myPageMapper.getResList(userNo); }
+    public List<ApplicantsVO> getAppContent(Long docNo) { return myPageMapper.getAppContent(docNo); }
 
 }

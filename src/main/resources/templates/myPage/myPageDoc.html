@@ -610,7 +610,8 @@
                             <th:block th:each="list:${getVolList}">
                             <tr class="" th:object="${list}">
                                 <td class="" th:text="*{volunteerArea}"></td>
-                                <td class="" th:text="*{volunteerBoardTitle}"></td>
+                                <!--<td class="" th:text="*{volunteerBoardTitle}"></td>-->
+                                <td class=""><a id="goRead" th:href="*{applicantsNo}" th:text="*{volunteerBoardTitle}"></a></td>
                                 <td class="" th:text="*{applicants}"></td>
                                 <td class="" th:text="*{#strings.substring(applicationDate, 0, 10)}"></td>
                             </tr>
@@ -711,6 +712,12 @@
 <script src="/js/fix.js"></script>
 </body>
 <script th:inline="javascript">
+
+    $("a#goRead").on("click", function(e){
+        e.preventDefault();
+        location.href = "/myPage/applicationForm" + "?applicationForm&applicantsNo=" + $(this).attr("href");
+    })
+
 
     $("#map").on("click", function () {
         console.log()
