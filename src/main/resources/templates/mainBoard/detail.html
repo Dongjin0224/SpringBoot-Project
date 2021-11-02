@@ -365,10 +365,10 @@
                         </colgroup>
                         <tbody>
                         <tr style="border-top: none; border-bottom: none;">
-                            <td colspan="2" class="clear" style="padding-bottom: 3%;border-radius: 25px;"><textarea
-                                    style="width: 100%; display: none;" name="reQnaContent" id="content"
+                            <td colspan="2" class="clear"><textarea
+                                    style="width: 100%; display: none;" name="applicationContent" id="content"
                                     class="ec-fr-never-be-duplicated"></textarea> <input
-                                    type="hidden" id="content_hidden" name="reQnaContent"
+                                    type="hidden" id="content_hidden"
                                     fw-filter="isSimplexEditorFill" fw-label="내용"
                                     value="EC_FROALA_INSTANCE">
                                 <script
@@ -397,7 +397,7 @@
                                                 "iframe": true,
                                                 "iframeStyle": ".fr-view{font-size: 12px;}",
                                                 "iframeStyleFiles": ["\/\/img.echosting.cafe24.com\/editors\/froala\/css\/froala_style.min.css"],
-                                                "heightMin": 200,
+                                                "heightMin": 400,
                                                 "language": "ko_KR",
                                                 "paragraphFormatSelection": true,
                                                 "fontFamilySelection": true,
@@ -641,7 +641,6 @@
                                                     "#CCCCCC", "#E1E1E1",
                                                     "#EBEBEB", "#FFFFFF",
                                                     "#E97D81", "#E19B73",
-
                                                     "#D1B274", "#CFCCA2",
                                                     "#61B977", "#53AEA8",
                                                     "#518FBB", "#6A65BB",
@@ -917,7 +916,7 @@
                                 <input class="input_button" id="cancel_post" type="button" value="취소"
                                        style="font-size: 20px;"
                                        onclick="closeForm()"/>
-                                <input class="input_button" id="write_post" type="submit" value="등록"
+                                <input class="input_button" id="write_post" type="button" value="등록" onclick="send()"
                                        style="font-size: 20px;"
                                 />
                             </td>
@@ -1013,8 +1012,9 @@
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
 <!-- Scripts -->
-<script>
+<script th:inline="javascript">
 
+    let loginCheck = [[${loginCheck}]];
 
     let btnReply = document.getElementById('btn_reply');
     let divWrite = document.getElementById('div_write');
@@ -1023,6 +1023,10 @@
     divWrite.style.display = 'none';
 
     function openForm() {
+        if(loginCheck==0){
+            alert('의사 회원만 답변을 달 수 있습니다.');
+            return;
+        }
         btnReply.style.visibility = 'hidden';
         divWrite.style.display = 'block';
     }
@@ -1030,6 +1034,21 @@
     function closeForm() {
         btnReply.style.visibility = 'visible';
         divWrite.style.display = 'none';
+    }
+
+
+    function  send() {
+        let content1 = document.getElementById("content").value;
+        // let content1 ={"content1":$('#content').val()};
+        $.ajax({
+            url:"/detail/answer",
+            contentType:"application/json; charset=utf-8",
+            data: content1,
+            type:'post',
+            success:function(result){
+                alert(result);
+            }
+        });
     }
 
 </script>

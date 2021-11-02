@@ -130,8 +130,13 @@ public class BoardController {
         log.info(reqType + " : " + qnaNo);
         log.info("-------------------------------");
 
-        model.addAttribute("answerList",answerService.answerList(qnaNo));
+        if(session.getAttribute("docNo")==null) {
+            model.addAttribute("loginCheck", 0);
+        }else{
+            model.addAttribute("loginCheck",1);
+        }
 
+        model.addAttribute("answerList",answerService.answerList(qnaNo));
         boardService.updateView(qnaNo);
         model.addAttribute("board", boardService.get(qnaNo));
         model.addAttribute("criteria", criteria);
