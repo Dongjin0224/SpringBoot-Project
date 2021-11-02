@@ -1,5 +1,7 @@
 package com.example.test.services;
 
+import com.example.test.model.user.vo.DocAttachFileVO;
+import com.example.test.model.user.vo.DocHosAttachFileVO;
 import com.example.test.model.user.vo.DocVO;
 import org.springframework.stereotype.Service;
 
@@ -14,4 +16,7 @@ public interface MapService {
     public List<DocVO> getList();
 //      의사 찾기
     public List<DocVO> getDocs(String docHospitalName);
+
+    public DocVO docPic(Long docNo);
+    public DocHosAttachFileVO hosPic(Long docNo);
 }

@@ -1,6 +1,8 @@
 package com.example.test.model.user.dao;
 
 import com.example.test.mappers.MapMapper;
+import com.example.test.model.user.vo.DocAttachFileVO;
+import com.example.test.model.user.vo.DocHosAttachFileVO;
 import com.example.test.model.user.vo.DocVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,4 +24,6 @@ public class MapDAO {
 //    의사찾기
     public List<DocVO> getDocs(String docHospitalName){return mapMapper.getDocs(docHospitalName);}
 
+    public DocHosAttachFileVO hosPic(Long docNo){return mapMapper.hosPic(docNo);}
+    public DocVO docPic(Long docNo){return mapMapper.docPic(docNo);}
 }
