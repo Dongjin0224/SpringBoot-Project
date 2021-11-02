@@ -543,17 +543,23 @@
                             </tr>
                             </tbody>
                         </table>
-                        <div class="pageWrap">
-                            <div class="big-width" style="text-align: center">
-                                <a class="changePage"><code>&lt;</code></a>
-                                <code>1</code>
-                                <a class="changePage" href="javascript:void(0)"><code>2</code></a>
-                                <a class="changePage"><code>&gt;</code></a>
+                        <!--<div th:object="${pageMaker}">
+                            <div style="text-align: center">
+                                <a class="changePage" th:if="*{prev}" th:href="*{criteria.getPageNum() - 1}"><code>&lt;</code></a>
+                                <th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+                                    <code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
+                                    <a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
+                                </th:block>
+                                <a class="changePage" th:if="*{next}" th:href="*{criteria.getPageNum() + 1}"><code>&gt;</code></a>
                             </div>
-                        </div>
+                            <form action="/volunteer/volunteerBoard" th:object="${criteria}" name="pageForm">
+                                <input type="hidden" name="pageNum" th:field="*{pageNum}">
+                                <input type="hidden" name="amount" th:field="*{amount}">
+                            </form>
+                        </div>-->
                     </div>
 
-                    <div id="myThree" class="tabcontent" th:object="${appointment}">
+                    <div id="myThree" class="tabcontent" th:each="getAppList:${getAppList}" th:object="${getAppList}">
                         <h3 style="text-align: center">진료 예약</h3>
                         <table>
                             <thead>
@@ -566,19 +572,27 @@
                             </thead>
                             <tbody>
                             <tr class="">
-                                <td class="">신짱구</td>
-                                <td class="">010-1234-5678</td>
-                                <td class="">피부과</td>
-                                <td class="">2222.12.22</td>
+                                <td class="" th:text="*{userName}"></td>
+                                <td class="" th:text="*{userPhoneNum}"></td>
+                                <td class="" th:text="*{docMajor}">피부과</td>
+                                <td class="" th:text="*{#strings.substring(reserveDate, 0, 10)}"></td>
                             </tr>
                             </tbody>
                         </table>
-                        <div class="big-width" style="text-align: center">
-                            <a class="changePage"><code>&lt;</code></a>
-                            <code>1</code>
-                            <a class="changePage" href="javascript:void(0)"><code>2</code></a>
-                            <a class="changePage"><code>&gt;</code></a>
-                        </div>
+                        <!--<div th:object="${pageMaker}">
+                            <div style="text-align: center">
+                                <a class="changePage" th:if="*{prev}" th:href="*{criteria.getPageNum() - 1}"><code>&lt;</code></a>
+                                <th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+                                    <code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
+                                    <a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
+                                </th:block>
+                                <a class="changePage" th:if="*{next}" th:href="*{criteria.getPageNum() + 1}"><code>&gt;</code></a>
+                            </div>
+                            <form action="/volunteer/volunteerBoard" th:object="${criteria}" name="pageForm">
+                                <input type="hidden" name="pageNum" th:field="*{pageNum}">
+                                <input type="hidden" name="amount" th:field="*{amount}">
+                            </form>
+                        </div>-->
                     </div>
 
                     <div id="myFour" class="tabcontent">
@@ -586,27 +600,37 @@
                         <table>
                             <thead>
                             <tr class="">
-                                <th class="th1"><strong>전공분야</strong></th>
+                                <th class="th1"><strong>지역</strong></th>
                                 <th class="th2"><strong>제목</strong></th>
                                 <th class="th4"><strong>인원수</strong></th>
                                 <th class="th3"><strong>날짜</strong></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="">
-                                <td class="" >[외과]</td>
-                                <td class="">강원도 노인 돌봄</td>
-                                <td class="">5</td>
-                                <td class="">2222.12.22</td>
+                            <th:block th:each="list:${getVolList}">
+                            <tr class="" th:object="${list}">
+                                <td class="" th:text="*{volunteerArea}"></td>
+                                <td class="" th:text="*{volunteerBoardTitle}"></td>
+                                <td class="" th:text="*{applicants}"></td>
+                                <td class="" th:text="*{#strings.substring(applicationDate, 0, 10)}"></td>
                             </tr>
+                            </th:block>
                             </tbody>
                         </table>
-                        <div class="big-width" style="text-align: center">
-                            <a class="changePage"><code>&lt;</code></a>
-                            <code>1</code>
-                            <a class="changePage" href="javascript:void(0)"><code>2</code></a>
-                            <a class="changePage"><code>&gt;</code></a>
-                        </div>
+                        <!--<div th:object="${pageMaker}">
+                            <div style="text-align: center">
+                                <a class="changePage" th:if="*{prev}" th:href="*{criteria.getPageNum() - 1}"><code>&lt;</code></a>
+                                <th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+                                    <code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
+                                    <a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
+                                </th:block>
+                                <a class="changePage" th:if="*{next}" th:href="*{criteria.getPageNum() + 1}"><code>&gt;</code></a>
+                            </div>
+                            <form action="/volunteer/volunteerBoard" th:object="${criteria}" name="pageForm">
+                                <input type="hidden" name="pageNum" th:field="*{pageNum}">
+                                <input type="hidden" name="amount" th:field="*{amount}">
+                            </form>
+                        </div>-->
                     </div>
 
                     <div id="myFive" class="tabcontent">
@@ -850,20 +874,18 @@
             docHosPhone: docHosPhone
         }
 
-        //질문리스트
-        //docHistory
-        //docAddress
-        //docLat, docLng 값을 가져오는 법
-
         $.ajax({
             url: "/myPage/updateDoc",
             method: "post",
             contentType:"application/json; charset=utf-8",
             data: JSON.stringify(arr),
-            success:function(){
-                alert("수정 완료")
+            success:function(result){
+                if(result == "수정완료"){
+                    alert("수정 완료");
+                }
             }
         })
+        location.href="/myPage/myPageDoc";
     })
 
     document.getElementById("defaultOpen").click();

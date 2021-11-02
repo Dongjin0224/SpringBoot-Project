@@ -1,19 +1,22 @@
 package com.example.test.controller;
 
+import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.beans.vo.PageDTO;
 import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
+import com.example.test.model.volunteer.vo.ApplicantsVO;
 import com.example.test.services.MyPageService;
+import com.example.test.services.VolunteerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -22,6 +25,7 @@ import java.util.Map;
 public class MyPageController {
 
     public final MyPageService myPageService;
+    public final VolunteerService volunteerService;
 
     @GetMapping("myPageUser")
     public String myPageUser(Model model, HttpServletRequest request) {
@@ -33,22 +37,12 @@ public class MyPageController {
     }
 
 
-    public int userNo(HttpServletRequest request){
-        HttpSession session = (HttpSession)request.getSession();
-        UserVO user = (UserVO) session.getAttribute("user");
-        Long userNo = user.getUserNo();
-
-        int result = Integer.parseInt(String.valueOf(userNo));
-
-        return result;
-    }
-
-
     @PostMapping("updateUser")
     @ResponseBody
     public String updateUser(@RequestBody UserVO userVO, HttpServletRequest request){
 
-        int userNo = userNo(request);
+        HttpSession session = (HttpSession)request.getSession();
+        Long userNo = (Long) session.getAttribute("userNo");
 
         userVO.setUserNo(Long.parseLong(String.valueOf(userNo)));
 
@@ -62,17 +56,19 @@ public class MyPageController {
 
         myPageService.updateUser(userVO);
 
-        return "redirect:/";
+        return "수정완료";
     }
 
 
     @GetMapping("myPageDoc")
-    public String myPageDoc(Model model, HttpServletRequest request){
+    public String myPageDoc(Model model, HttpServletRequest request, Criteria criteria){
         HttpSession session = (HttpSession)request.getSession();
-        DocVO doc = (DocVO) session.getAttribute("doc");
-        Long docNo = doc.getDocNo();
-        model.addAttribute("doc", myPageService.viewDoc(docNo));
+        Long docNo = (Long) session.getAttribute("docNo");
 
+        model.addAttribute("doc", myPageService.viewDoc(docNo));
+        model.addAttribute("getVolList", myPageService.getVolList(docNo));
+        model.addAttribute("getAppList", myPageService.getAppList(docNo));
+        model.addAttribute("pageMaker", new PageDTO(volunteerService.getTotal(criteria), 10, criteria));
         log.info("------------------------------------");
         log.info("docNo" + String.valueOf(docNo));
         log.info("------------------------------------");
@@ -80,21 +76,13 @@ public class MyPageController {
         return "myPage/myPageDoc";
     }
 
-    public int docNo(HttpServletRequest request){
-        HttpSession session = (HttpSession)request.getSession();
-        DocVO doc = (DocVO) session.getAttribute("doc");
-        Long docNo = doc.getDocNo();
-
-        int result = Integer.parseInt(String.valueOf(docNo));
-
-        return result;
-    }
 
     @PostMapping("updateDoc")
     @ResponseBody
     public String updateDoc(@RequestBody DocVO docVO, HttpServletRequest request){
 
-        int docNo = docNo(request);
+        HttpSession session = (HttpSession)request.getSession();
+        Long docNo = (Long) session.getAttribute("docNo");
 
         docVO.setDocNo(Long.parseLong(String.valueOf(docNo)));
 
@@ -108,6 +96,6 @@ public class MyPageController {
 
         myPageService.updateDoc(docVO);
 
-        return "myPage/myPageDoc";
+        return "수정완료";
     }
 }

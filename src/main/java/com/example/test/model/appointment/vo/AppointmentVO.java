@@ -5,11 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class ReserveVO {
+public class AppointmentVO {
 
-    private Long reserveNo;
-    private Long userNo;
-    private Long docNo;
+    private String userName;
+    private String userPhoneNum;
+    private String docMajor;
     private String reserveDate;
-
 }
