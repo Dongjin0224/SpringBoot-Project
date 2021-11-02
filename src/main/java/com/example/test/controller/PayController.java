@@ -28,8 +28,6 @@ public class PayController {
     private final PayService pay;
     static int code = 0;
 
-
-
     @PostMapping("/insertCustomer")
     public void insertCustomer(@RequestBody PayVO payVO) throws UnsupportedEncodingException {
         Long docNo = payVO.getDocNo();
