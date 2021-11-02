@@ -6,6 +6,8 @@ import com.example.test.model.payment.dao.PayDAO;
 import com.example.test.model.payment.vo.GetTokenVO;
 import com.example.test.model.payment.vo.PayVO;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
@@ -15,8 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -116,6 +119,58 @@ public class PayServiceImple implements PayService{
         log.info("예약 취소");
         log.info("---------------------");
         return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/unschedule", entity, String.class);
+    }
+
+    public String schedulePay(Long docNo) {
+        String token = getToken();
+
+        long timestamp = 0;
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.KOREA);
+        cal.add(Calendar.MINUTE, +1);
+        String date = sdf.format(cal.getTime());
+
+        try {
+            Date stp = sdf.parse(date);
+            timestamp = stp.getTime()/1000;
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        Gson str = new Gson();
+        token = token.substring(token.indexOf("response") +10);
+        token = token.substring(0, token.length() - 1);
+        GetTokenVO vo = str.fromJson(token, GetTokenVO.class);
+        String access_token = vo.getAccess_token();
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(access_token);
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("merchant_uid", "merchant_" + timestamp);
+        jsonObject.addProperty("schedule_at", timestamp);
+        jsonObject.addProperty("name", getPayList(docNo).getName());
+        jsonObject.addProperty("amount", getPayList(docNo).getAmount());
+
+        JsonArray jsonArr = new JsonArray();
+
+        jsonArr.add(jsonObject); JsonObject reqJson = new JsonObject();
+
+        reqJson.addProperty("customer_uid", getPayList(docNo).getCustomer_uid());
+        reqJson.add("schedules",jsonArr);
+        String json = str.toJson(reqJson);
+        System.out.println(json);
+        HttpEntity<String> entity = new HttpEntity<>(json, headers);
+
+        int code = Integer.parseInt(restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class).split(",")[0].split(":")[1]);
+
+        log.info("---------------------");
+        log.info("예약 성공");
+        log.info("---------------------");
+        return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class);
     }
 
     public void insertCustomer(Long docNo){

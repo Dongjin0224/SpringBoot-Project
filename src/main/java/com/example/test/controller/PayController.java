@@ -3,6 +3,7 @@ package com.example.test.controller;
 
 import com.example.test.model.payment.vo.PayVO;
 import com.example.test.model.payment.vo.GetTokenVO;
+import com.example.test.model.user.vo.DocVO;
 import com.example.test.services.PayService;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -13,6 +14,8 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,8 +32,8 @@ public class PayController {
     static int code = 0;
 
     @PostMapping("/insertCustomer")
-    public void insertCustomer(@RequestBody PayVO payVO) throws UnsupportedEncodingException {
-        Long docNo = payVO.getDocNo();
+    public void insertCustomer(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
+        Long docNo = docNo(request);
         log.info("insertCustomer...........");
         log.info("docNo : " + docNo);
         pay.insertCustomer(docNo);
@@ -56,7 +59,9 @@ public class PayController {
 
     @ResponseBody
     @PostMapping("/updateCard")
-    public String updateCard(@RequestBody PayVO payVO) throws UnsupportedEncodingException {
+    public String updateCard(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
+        Long docNo = docNo(request);
+
         pay.unSchedule(payVO);
         if(cardCheck(payVO) == "success"){
             log.info("카드 수정 성공");
@@ -73,7 +78,7 @@ public class PayController {
             if(code == 1){
                 break;
             }
-            schedulePay(payVO.getDocNo());
+            pay.schedulePay(docNo);
             try {
                 Thread.sleep(60000);
             } catch (InterruptedException e) {
@@ -83,68 +88,70 @@ public class PayController {
         return "success";
     }
 
-    @PostMapping("/schedule")
-    public String schedulePay(Long docNo) {
-        String token = pay.getToken();
-
-        long timestamp = 0;
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.KOREA);
-        cal.add(Calendar.MINUTE, +1);
-        String date = sdf.format(cal.getTime());
-
-        try {
-            Date stp = sdf.parse(date);
-            timestamp = stp.getTime()/1000;
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        Gson str = new Gson();
-        token = token.substring(token.indexOf("response") +10);
-        token = token.substring(0, token.length() - 1);
-        GetTokenVO vo = str.fromJson(token, GetTokenVO.class);
-        String access_token = vo.getAccess_token();
-
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(access_token);
-
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("merchant_uid", "merchant_" + timestamp);
-        jsonObject.addProperty("schedule_at", timestamp);
-        jsonObject.addProperty("name", pay.getPayList(docNo).getName());
-        jsonObject.addProperty("amount", pay.getPayList(docNo).getAmount());
-
-        JsonArray jsonArr = new JsonArray();
-
-        jsonArr.add(jsonObject); JsonObject reqJson = new JsonObject();
-
-        reqJson.addProperty("customer_uid", pay.getPayList(docNo).getCustomer_uid());
-        reqJson.add("schedules",jsonArr);
-        String json = str.toJson(reqJson);
-        System.out.println(json);
-        HttpEntity<String> entity = new HttpEntity<>(json, headers);
-
-        int code = Integer.parseInt(restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class).split(",")[0].split(":")[1]);
-
-        log.info("---------------------");
-        log.info("예약 성공");
-        log.info("---------------------");
-        return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class);
-    }
+//    @PostMapping("/schedule")
+//    public String schedulePay(Long docNo) {
+//        String token = pay.getToken();
+//
+//        long timestamp = 0;
+//        Calendar cal = Calendar.getInstance();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.KOREA);
+//        cal.add(Calendar.MINUTE, +1);
+//        String date = sdf.format(cal.getTime());
+//
+//        try {
+//            Date stp = sdf.parse(date);
+//            timestamp = stp.getTime()/1000;
+//        } catch (ParseException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//        Gson str = new Gson();
+//        token = token.substring(token.indexOf("response") +10);
+//        token = token.substring(0, token.length() - 1);
+//        GetTokenVO vo = str.fromJson(token, GetTokenVO.class);
+//        String access_token = vo.getAccess_token();
+//
+//        RestTemplate restTemplate = new RestTemplate();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        headers.setBearerAuth(access_token);
+//
+//        JsonObject jsonObject = new JsonObject();
+//        jsonObject.addProperty("merchant_uid", "merchant_" + timestamp);
+//        jsonObject.addProperty("schedule_at", timestamp);
+//        jsonObject.addProperty("name", pay.getPayList(docNo).getName());
+//        jsonObject.addProperty("amount", pay.getPayList(docNo).getAmount());
+//
+//        JsonArray jsonArr = new JsonArray();
+//
+//        jsonArr.add(jsonObject); JsonObject reqJson = new JsonObject();
+//
+//        reqJson.addProperty("customer_uid", pay.getPayList(docNo).getCustomer_uid());
+//        reqJson.add("schedules",jsonArr);
+//        String json = str.toJson(reqJson);
+//        System.out.println(json);
+//        HttpEntity<String> entity = new HttpEntity<>(json, headers);
+//
+//        int code = Integer.parseInt(restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class).split(",")[0].split(":")[1]);
+//
+//        log.info("---------------------");
+//        log.info("예약 성공");
+//        log.info("---------------------");
+//        return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class);
+//    }
 
     @PostMapping("/startPay")
-    public void startPay(@RequestBody PayVO payVO){
+    public void startPay(@RequestBody PayVO payVO, HttpServletRequest request){
+        Long docNo = docNo(request);
+
         pay.pay(payVO);
         code = 0;
         while(true){
             if(code == 1){
                 break;
             }
-            schedulePay(payVO.getDocNo());
+            pay.schedulePay(docNo);
             try {
                 Thread.sleep(60000);
             } catch (InterruptedException e) {
@@ -157,6 +164,14 @@ public class PayController {
     public void stopSchedulePay(@RequestBody PayVO payVO){
         pay.unSchedule(payVO);
         code = 1;
+    }
+
+    public Long docNo(HttpServletRequest request){
+        HttpSession session = (HttpSession)request.getSession();
+        DocVO doc = (DocVO) session.getAttribute("doc");
+        Long docNo = doc.getDocNo();
+
+        return docNo;
     }
 
 

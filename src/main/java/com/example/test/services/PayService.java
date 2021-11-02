@@ -33,4 +33,6 @@ public interface PayService {
     public PayVO getPayList(Long docNo);
 
     public String unSchedule(PayVO payVO);
+
+    public String schedulePay(Long docNo);
 }
