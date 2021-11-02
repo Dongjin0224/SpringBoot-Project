@@ -1,6 +1,7 @@
 package com.example.test.services;
 
 
+import com.example.test.controller.PayController;
 import com.example.test.model.payment.dao.PayDAO;
 import com.example.test.model.payment.vo.GetTokenVO;
 import com.example.test.model.payment.vo.PayVO;
@@ -67,20 +68,54 @@ public class PayServiceImple implements PayService{
         map.put("expiry", payVO.getExpiry());
         map.put("birth", payVO.getBirth());
         map.put("pwd_2digit", payVO.getPwd_2digit());
-        map.put("amount", payVO.getAmount());
+//        map.put("amount", payVO.getAmount());
 
         Gson var = new Gson();
         String json = var.toJson(map);
-        System.out.println(json);
         log.info("---------------------");
-        System.out.println(payVO);
+        System.out.println("map : " + json);
         log.info("---------------------");
-
+        System.out.println("payVO : " + payVO);
+        log.info("---------------------");
 
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
 
         payDAO.updateCustomer(payVO);
         return restTemplate.postForObject("https://api.iamport.kr/subscribe/customers/" + payVO.getCustomer_uid(), entity, String.class);
+    }
+
+    public String unSchedule(PayVO payVO){
+
+        Long docNo = payVO.getDocNo();
+
+        String token = getToken();
+        Gson str = new Gson();
+        token = token.substring(token.indexOf("response") + 10);
+        token = token.substring(0, token.length() - 1);
+
+        GetTokenVO vo = str.fromJson(token, GetTokenVO.class);
+
+        String access_token = vo.getAccess_token();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(access_token);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("customer_uid", getPayList(docNo).getCustomer_uid());
+
+        Gson var = new Gson();
+        String json = var.toJson(map);
+        System.out.println(json);
+
+        HttpEntity<String> entity = new HttpEntity<>(json, headers);
+
+        log.info("---------------------");
+        log.info("예약 취소");
+        log.info("---------------------");
+        return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/unschedule", entity, String.class);
     }
 
     public void insertCustomer(Long docNo){
