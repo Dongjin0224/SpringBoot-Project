@@ -95,15 +95,4 @@ public class AdminController {
     public void report(Model model){
         model.addAttribute("report", adminService.report());
     }
-
-    @GetMapping("reportDoc")
-    public RedirectView reportDoc(DocVO doc, RedirectAttributes rttr){
-        log.info("-------------------------------");
-        log.info("modify : " + doc.toString());
-        log.info("-------------------------------");
-
-        adminService.updateDoc(doc);
-
-        return new RedirectView("adminReport");
-    }
 }
