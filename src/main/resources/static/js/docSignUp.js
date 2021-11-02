@@ -322,6 +322,7 @@ function formSubmit() {
     major.value = f.value;
 
     form.submit();
+    alert("될까요??")
 
 }
 

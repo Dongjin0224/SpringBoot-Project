@@ -47,7 +47,7 @@ public class DocController {
         log.info(String.valueOf(vo.getAttachList().size()));
         log.info(String.valueOf(vo.getHosattachList().size()));
         log.info("-----------------------------------------");
-       if(vo.getAttachList() != null){
+        if(vo.getAttachList() != null){
             vo.getAttachList().forEach(attach -> log.info(attach.toString()));
         }
         if(vo.getHosattachList() != null){
