@@ -23,4 +23,6 @@ public class AnswerService {
     public List<AnswerVO> answerList(Long qnaNo){
         return answerDAO.answerList(qnaNo);
     }
+
+    public AnswerVO selectList(AnswerVO answerVO){return answerDAO.selectList(answerVO);}
 }

@@ -11,4 +11,6 @@ public interface AnswerMapper {
     public void insert(AnswerVO answerVO);
 
     public List<AnswerVO> answerList(Long qnaNo);
+
+    public AnswerVO selectList(AnswerVO answerVO);
 }
