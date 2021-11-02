@@ -20,5 +20,5 @@ public interface MyPageService {
     public List<ApplicantsVO> getVolList(Long docNo);
     public List<AppointmentVO> getAppList(Long docNo);
     public List<AppointmentVO> getResList(Long userNo);
-    public List<ApplicantsVO> getAppContent(Long docNo);
+    public ApplicantsVO getAppContent(Long docNo);
 }

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 @Slf4j
 @RequestMapping("/volunteer/*")
@@ -46,10 +49,14 @@ public class VolunteerController {
     }
 
     @PostMapping("volunteerBoard")
-    public String insert(Criteria criteria,ApplicantsVO applicantsVO, Model model){
+    public String insert(Criteria criteria,ApplicantsVO applicantsVO, Model model, HttpServletRequest request){
+        HttpSession session = (HttpSession)request.getSession();
+        applicantsVO.setDocNo(Long.parseLong(session.getAttribute("docNo").toString()));
+
         log.info("-----------------------------------------------------");
         log.info(applicantsVO.toString());
         log.info("-----------------------------------------------------");
+
         volunteerService.insert(applicantsVO);
         volunteerService.update(applicantsVO.getVolunteerBoardNo());
         model.addAttribute("list", volunteerService.getList(criteria));

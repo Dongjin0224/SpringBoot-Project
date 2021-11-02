@@ -28,6 +28,6 @@ public interface MyPageMapper {
 
     public List<AppointmentVO> getResList(Long userNo);
 
-    public List<ApplicantsVO> getAppContent(Long docNo);
+    public ApplicantsVO getAppContent(Long docNo);
 
 }

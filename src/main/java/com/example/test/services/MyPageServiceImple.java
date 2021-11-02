@@ -40,6 +40,6 @@ public class MyPageServiceImple implements MyPageService {
     public List<AppointmentVO> getResList(Long userNo) { return myPageDAO.getResList(userNo); }
 
     @Override
-    public List<ApplicantsVO> getAppContent(Long docNo) { return myPageDAO.getAppContent(docNo); }
+    public ApplicantsVO getAppContent(Long docNo) { return myPageDAO.getAppContent(docNo); }
 
 }
