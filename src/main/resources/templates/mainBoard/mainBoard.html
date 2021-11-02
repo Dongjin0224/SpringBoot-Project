@@ -238,8 +238,8 @@
     <section id="one" class="main alt">
         <header class="accent1" style="background-color: white; background-image: url('/img/mainBanner.jpg')">
             <div class="blur">
-                    <h1 style="color: white">지식 iN</h1>
-                    <p style="color: white">궁금한 병명에 대해서 질문하고 검색하세요.</p>
+                <h1 style="color: white">지식 iN</h1>
+                <p style="color: white">궁금한 병명에 대해서 질문하고 검색하세요.</p>
             </div>
         </header>
 
@@ -283,17 +283,19 @@
                                     <dl>
                                         <dt>
                                             <a th:href="|/mainBoard/detail?qnaNo=*{qnaNo}|"
-                                               target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor" ><span th:text="*{qnaTitle}"> </span></a>
-                                            <sub th:text="*{qnaDate}"> </sub>
+                                               target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor" >
+                                                <span class="qnaTitle3" th:text="*{qnaTitle}" style="font-weight: bolder;"></span></a>
+                                            <sub th:text="*{qnaDate}"></sub>
                                         </dt>
-<!--                                        <dd th:utext="*{qnaContent}"> </dd>-->
+                                        <div class="qnaContent3" th:utext="*{qnaContent}"></div>
+                                        <!--                                        <dd th:utext="*{qnaContent}"> </dd>-->
                                         <dd class="tag_area">
                                         </dd>
-                                        <dd class="txt_block">
+                                        <dd class="txt_block" style="margin-left: 0 !important;">
                                             <span
-                                               class="txt_g1 _nclicks:kin.cat1">진료과목</span>
+                                                    class="txt_g1 _nclicks:kin.cat1">진료과목</span>
                                             &gt; <span
-                                                class="txt_g1 _nclicks:kin.cat2" th:text="*{qnaMajor}"></span>
+                                                class="qnaMajor3 txt_g1 _nclicks:kin.cat2" th:text="*{qnaMajor}"></span>
                                             <span class="bar">|</span>
                                             <span class="hit">답변수 1</span>
                                             &nbsp;<span th:text="|조회수 *{qnaViewCnt}|"></span>
@@ -318,8 +320,9 @@
                                     <!--<input type="hidden" name="qnaAddress" id="qnaAddress">-->
                                     <input type="hidden" id="criteriaPageNum" name="pageNum">
                                     <input type="hidden" id="criteriaAmount" name="amount">
+                                    <input type="hidden" id="criteriaQnaMajor" name="qnaMajor">
                                     <input id="keyword" type="text" name="keyword" style="border: 2px solid #358bca; border-radius: 0;">
-                                    <input type="submit" value="검색" class="search button primary icon solid fa-search" style="border-radius: 0;">
+                                    <input type="button" onclick="search1()" value="검색" class="search button primary icon solid fa-search" style="border-radius: 0;">
                                 </div>
                             </div>
                         </form>
@@ -339,6 +342,7 @@
                                 <input type="hidden" name="amount" th:field="*{amount}">
                                 <input type="hidden" name="keyword" th:field="*{keyword}">
                                 <input type="hidden" name="town" th:field="*{town}">
+                                <input type="hidden" name="qnaMajor" th:field="*{qnaMajor}">
                             </form>
                         </div>
                     </div>
@@ -416,18 +420,53 @@
     let check = false;
 
     let loginCheck = [[${loginCheck}]];
+    let pageForm = $(document.pageForm);
+    let paing0 = [[${pageMaker.criteria.listLink}]];
+    let paing1 = [[${pageMaker.criteria.amount}]];
+    let paing2 = [[${pageMaker.criteria.pageNum}]];
+    let paing3 = [[${pageMaker.criteria.qnaMajor}]];
+    let searchForm = $(document.searchForm);
+    document.getElementById("criteriaPageNum").value = 1;
+    document.getElementById("criteriaAmount").value = paing1;
+    document.getElementById("criteriaQnaMajor").value = paing3;
 
-        $(".subject").on("click", function(e){
-            e.preventDefault();
-            if(check){return;}
-            $("h1").text($(this).text());
-            $("h1").hide();
-            $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
-            $("h1").fadeIn(500);
-            check = true;
-            setTimeout(function(){check = false;}, 500);
-        });
+    let qnaTitle3 = document.getElementById("qnaTitle3");
+    let qnaContent3 = document.getElementsByClassName("qnaContent3");
+    let qnaMajor3 = document.getElementsByClassName("qnaMajor3");
+    let keyword3 = [[${pageMaker.criteria.keyword}]];
 
+
+    for(let a = 0;a< qnaContent3.length;a++){
+        if (qnaContent3[a].innerText.indexOf(keyword3)!=-1){
+            let index3 = qnaContent3[a].innerText.indexOf(keyword3);
+            qnaContent3[a].innerHTML=qnaContent3[a].innerText.substring(0,index3)+'<span style="font-weight: bold">'+qnaContent3[a].innerText.substring(index3,keyword3.length+index3)+'</span>'+
+                qnaContent3[a].innerText.substring(keyword3.length+index3,qnaContent3[a].innerText.length);
+
+        }
+    }
+
+
+
+
+    $(".subject").on("click", function(e){
+        e.preventDefault();
+        if(check){return;}
+        $("h1").text($(this).text());
+        $("h1").hide();
+        $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
+        $("h1").fadeIn(500);
+        check = true;
+        $('#criteriaQnaMajor').val($(this).text());
+        document.getElementById("criteriaPageNum").value = 1;
+        document.getElementById("criteriaAmount").value = paing1;
+        setTimeout(function(){check = false;}, 500);
+        searchForm.submit();
+    });
+
+    function search1(){
+        document.getElementById("criteriaPageNum").value = 1;
+        searchForm.submit();
+    };
 
 
     $("table.categoryChoice tr td").on("mouseover", function(){
@@ -494,13 +533,6 @@
     // })
 
 
-    let pageForm = $(document.pageForm);
-    let paing0 = [[${pageMaker.criteria.listLink}]];
-    let paing1 = [[${pageMaker.criteria.amount}]];
-    let paing2 = [[${pageMaker.criteria.pageNum}]];
-    let searchForm = $(document.searchForm);
-    document.getElementById("criteriaPageNum").value = paing2;
-    document.getElementById("criteriaAmount").value = paing1;
 
     $("a.changePage").click(function(e){
         e.preventDefault();
@@ -530,7 +562,7 @@
             alert('로그인을 해주세요.');
             return;
         }
-       location.href='write';
+        location.href='write';
     });
 </script>
 </html>

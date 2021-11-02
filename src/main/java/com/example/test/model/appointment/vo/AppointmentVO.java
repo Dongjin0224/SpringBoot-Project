@@ -11,4 +11,8 @@ public class AppointmentVO {
     private String userPhoneNum;
     private String docMajor;
     private String reserveDate;
+
+    private String docName;
+    private String docHosPhone;
+
 }

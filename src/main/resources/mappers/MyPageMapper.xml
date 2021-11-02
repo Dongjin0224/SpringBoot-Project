@@ -42,4 +42,14 @@
 	<select id="getAppList" resultType="appointmentVO">
 		SELECT * FROM TABLE_USER C, TABLE_DOC A, TABLE_RESERVE B WHERE A.DOCNO = B.DOCNO AND A.DOCNO = ${docNo} AND C.USERNO = B.USERNO
 	</select>
+
+	<select id="getResList" resultType="appointmentVO">
+		SELECT * FROM TABLE_USER C, TABLE_DOC A, TABLE_RESERVE B WHERE C.USERNO = B.USERNO AND C.USERNO = ${userNo} AND B.DOCNO = A.DOCNO
+	</select>
+
+	<select id="getAppContent" resultType="ApplicantsVO">
+		SELECT * FROM TABLE_VOLUNTEER_BOARD C, TABLE_APPLICANTS B, TABLE_DOC A
+		WHERE A.DOCNO = B.DOCNO AND A.DOCNO = ${docNo} AND C.VOLUNTEERBOARDNO = B.VOLUNTEERBOARDNO
+	</select>
+
 </mapper>
