@@ -9,8 +9,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class Criteria {
     private int pageNum;
     private int amount;
-    private String type;
     private String keyword;
+    private String type;
 
     public Criteria(){
         this(1, 10);

@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @Slf4j
 @SpringBootTest
-public class DocAttachFileMapperTest {
+public class DocBoardAttachFileMapperTest {
 
     @Autowired
     DocAttachFileMapper docAttachFileMapper;
