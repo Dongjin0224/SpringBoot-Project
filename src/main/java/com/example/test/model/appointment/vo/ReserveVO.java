@@ -7,8 +7,9 @@ import org.springframework.stereotype.Component;
 @Data
 public class ReserveVO {
 
-    Long reserveNo;
-    Long userNo;
-    Long docNo;
-    String reserveDate;
+    private Long reserveNo;
+    private Long userNo;
+    private Long docNo;
+    private String reserveDate;
+
 }

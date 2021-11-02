@@ -23,8 +23,7 @@
 		UPDATE TABLE_DOC SET
 		DOCPW  = #{docPw}, DOCHOSPITALNAME = #{docHospitalName}, DOCHOSPHONE = #{docHosPhone},
 		DOCHISTORY = #{docHistory}, DOCLAT = #{docLat}, DOCLNG = #{docLng}, DOCADDRESS = #{docAddress},
-		DOCEMAIL = #{docEmail}, DOCPHONENUM = #{docPhoneNum}, DOCSERVICECNT = #{docServiceCnt},
-		DOCREPORTCNT = #{docReportCnt}, DOCLIKECNT = #{docLikeCnt}
+		DOCEMAIL = #{docEmail}, DOCPHONENUM = #{docPhoneNum}
 		WHERE DOCNO = #{docNo}
 	</update>
 
@@ -35,4 +34,12 @@
 	<delete id="deleteDoc">
 		DELETE FROM TABLE_DOC WHERE DOCNO = #{docNo}
 	</delete>
+
+	<select id="getVolList" resultType="ApplicantsVO">
+        SELECT * FROM TABLE_APPLICANTS A, TABLE_VOLUNTEER_BOARD B WHERE A.volunteerBoardNo = B.volunteerBoardNo AND A.DOCNO = ${docNo}
+    </select>
+
+	<select id="getAppList" resultType="appointmentVO">
+		SELECT * FROM TABLE_USER C, TABLE_DOC A, TABLE_RESERVE B WHERE A.DOCNO = B.DOCNO AND A.DOCNO = ${docNo} AND C.USERNO = B.USERNO
+	</select>
 </mapper>

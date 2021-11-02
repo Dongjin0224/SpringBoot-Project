@@ -13,8 +13,8 @@ public class PayDAO {
 
     private final PayMapper payMapper;
 
-    public void insertCustomer(PayVO payVO){
-        payMapper.insertCustomer(payVO);
+    public void insertCustomer(Long docNo){
+        payMapper.insertCustomer(docNo);
     }
 
     public void updateCustomer(PayVO payVO){
