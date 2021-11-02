@@ -47,12 +47,13 @@ public class DocController {
         log.info(String.valueOf(vo.getAttachList().size()));
         log.info(String.valueOf(vo.getHosattachList().size()));
         log.info("-----------------------------------------");
-       if(vo.getAttachList() != null){
+        if(vo.getAttachList() != null){
             vo.getAttachList().forEach(attach -> log.info(attach.toString()));
         }
         if(vo.getHosattachList() != null){
             vo.getHosattachList().forEach(hosattach -> log.info(hosattach.toString()));
         }
+
 
         if(result == 1) {
             return "user/doctorSignUp";
@@ -83,7 +84,7 @@ public class DocController {
     public int checkId(DocVO vo){
         int result= service.checkId(vo);
         return result;
-        }
+    }
 
     @GetMapping("docLogout")
     public String docLogout(HttpServletRequest req) {

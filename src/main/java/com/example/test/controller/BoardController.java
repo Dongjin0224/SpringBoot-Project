@@ -2,9 +2,11 @@ package com.example.test.controller;
 
 
 import com.example.test.model.beans.vo.PageDTO;
+import com.example.test.model.mainBoard.vo.AnswerVO;
 import com.example.test.model.mainBoard.vo.AttachFileVO;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
+import com.example.test.services.AnswerService;
 import com.example.test.services.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
+    private final AnswerService answerService;
 
     @GetMapping("mainBoard")
     public String list(Criteria criteria,HttpServletRequest req, Model model){
@@ -52,7 +55,6 @@ public class BoardController {
         }else{
             model.addAttribute("loginCheck",1);
         }
-
 
         model.addAttribute("like",boardService.getLikeCnt());
         model.addAttribute("reply",boardService.getReplyCnt());
@@ -116,6 +118,8 @@ public class BoardController {
     }
     @GetMapping("detail")
     public void read(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("qnaNo",qnaNo);
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
         //read 요청 시 read 출력
@@ -123,6 +127,8 @@ public class BoardController {
         log.info("-------------------------------");
         log.info(reqType + " : " + qnaNo);
         log.info("-------------------------------");
+
+        model.addAttribute("answerList",answerService.answerList(qnaNo));
 
         boardService.updateView(qnaNo);
         model.addAttribute("board", boardService.get(qnaNo));
@@ -207,4 +213,8 @@ public class BoardController {
 //        log.info("getAttachList " + qnaNo);
 //        return boardService.getAttachList(qnaNo);
 //    }
+
+
+
+
 }

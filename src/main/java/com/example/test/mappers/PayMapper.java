@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface PayMapper {
 
     //처음 회원가입 때 정보
-    public void insertCustomer(PayVO payVO);
+    public void insertCustomer(Long docNo);
 
     //customer_uid 등록(결제 정보 등록)
     public void updateCustomer(PayVO payVO);
