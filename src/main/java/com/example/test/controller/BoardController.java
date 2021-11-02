@@ -36,7 +36,15 @@ public class BoardController {
         log.info(criteria.toString());
         log.info("-------------------------------");
 
-
+        if (criteria.getKeyword() == null){
+            criteria.setKeyword("");
+        }
+        if (criteria.getTown() == null){
+            criteria.setTown("");
+        }
+        if (criteria.getQnaMajor() == null){
+            criteria.setQnaMajor("");
+        }
 
         HttpSession session = req.getSession();
         if(session.getAttribute("userNo")==null) {
@@ -49,10 +57,35 @@ public class BoardController {
         model.addAttribute("like",boardService.getLikeCnt());
         model.addAttribute("reply",boardService.getReplyCnt());
 
-        model.addAttribute("list", boardService.getList(criteria));
+        model.addAttribute("list", boardService.getSearchList(criteria));
         model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
         return "mainBoard/mainBoard";
     }
+
+//    @GetMapping("mainBoard2")
+//    public String list2(Criteria criteria,HttpServletRequest req, Model model){
+//        log.info("-------------------------------");
+//        log.info("list");
+//        log.info(criteria.toString());
+//        log.info("-------------------------------");
+//
+//
+//
+//        HttpSession session = req.getSession();
+//        if(session.getAttribute("userNo")==null) {
+//            model.addAttribute("loginCheck", 0);
+//        }else{
+//            model.addAttribute("loginCheck",1);
+//        }
+//
+//
+//        model.addAttribute("like",boardService.getLikeCnt());
+//        model.addAttribute("reply",boardService.getReplyCnt());
+//
+//        model.addAttribute("list", boardService.getSearchList(criteria));
+//        model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
+//        return "mainBoard/mainBoard";
+//    }
 
     @PostMapping("write2")
     public RedirectView register(BoardVO boardVO,HttpServletRequest req, RedirectAttributes rttr){

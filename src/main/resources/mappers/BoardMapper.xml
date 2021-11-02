@@ -98,14 +98,9 @@
         DELETE FROM TABLE_QNA WHERE qnaNo = #{qnaNo}
     </delete>
 
-    <select id="getTotal" resultType="_int">
-        SELECT COUNT(qnaNo) FROM TABLE_QNA
-        <where>
-            <trim suffixOverrides="AND">
-                <include refid="search"></include>
-            </trim>
-        </where>
-    </select>
+<!--    <select id="getTotal" resultType="_int">-->
+<!--        SELECT COUNT(qnaNo) FROM TABLE_QNA-->
+<!--    </select>-->
 
     <select id="getLikeCnt" resultType="DocVO">
         SELECT * FROM (SELECT ROWNUM R, D.* FROM (SELECT * FROM TABLE_DOC ORDER BY docLikeCnt DESC) D) WHERE <![CDATA[ (R < 6) ]]>
@@ -146,12 +141,14 @@ ORDER BY R
         SELECT qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt
         FROM
         (
-            SELECT /*+ INDEX_DESC(TABLE_QNA PK_QNA) */
+            SELECT
             ROWNUM R, qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt
             FROM
             (
-            SELECT * FROM TABLE_QNA WHERE (qnaTitle LIKE '%'||#{keyword}||'%' OR QNACONTENT LIKE '%'||#{keyword}||'%' OR QNADISEASE LIKE '%'||#{keyword}||'%' OR QNAMAJOR LIKE '%'||#{keyword}||'%')
-            AND QNAADDRESS LIKE '%'||#{qnaAddress}||'%' AND QNAMAJOR LIKE '%'||#{qnaMajor}||'%'
+            SELECT /*+ INDEX_DESC(TABLE_QNA PK_QNA) */
+            *
+            FROM TABLE_QNA WHERE (qnaTitle LIKE '%'||#{keyword}||'%' OR QNACONTENT LIKE '%'||#{keyword}||'%' OR QNADISEASE LIKE '%'||#{keyword}||'%' OR QNAMAJOR LIKE '%'||#{keyword}||'%' OR QNAADDRESS LIKE '%'||#{keyword}||'%')
+            AND QNAADDRESS LIKE '%'||#{town}||'%'
             )
             WHERE
         ]]>
@@ -162,4 +159,19 @@ ORDER BY R
         ]]>
     </select>
 
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(qnaNo)
+        FROM
+        (
+            SELECT
+            ROWNUM R, qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt
+            FROM
+            (
+            SELECT /*+ INDEX_DESC(TABLE_QNA PK_QNA) */
+            *
+            FROM TABLE_QNA WHERE (qnaTitle LIKE '%'||#{keyword}||'%' OR QNACONTENT LIKE '%'||#{keyword}||'%' OR QNADISEASE LIKE '%'||#{keyword}||'%' OR QNAMAJOR LIKE '%'||#{keyword}||'%' OR QNAADDRESS LIKE '%'||#{keyword}||'%')
+            AND QNAADDRESS LIKE '%'||#{town}||'%'
+            )
+        )
+    </select>
 </mapper>
