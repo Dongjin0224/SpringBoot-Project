@@ -4,7 +4,7 @@
 	pixelarity.com | hello@pixelarity.com
 	License: pixelarity.com/license
 -->
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Untitled</title>
     <meta charset="utf-8" />
@@ -33,7 +33,7 @@
         <div class="inner alt">
             <div class="content main">
                 <section class="tiles">
-                    <form method="post" action="">
+                    <form method="post" action="/user/findAccount" name="findAccountForm">
                         <div class="col-12" style="text-align: center;">
                             <h3 style="font-size: 14px">id</h3>
                         </div>
@@ -42,21 +42,25 @@
                             <!-- 이름 -->
                             <div class="col-12">
                                 <label style="margin-top: 5%;">이름</label>
-                                <input type="text" name="user_name" id="user_name" placeholder="이름" style="font-size: 12px; width: 100%;">
+                                <input type="text" name="userName" id="userName" placeholder="이름" style="font-size: 12px; width: 100%;">
                             </div>
 
-                            <!-- 이메일 -->
+                            <!-- 휴대폰번호 -->
                             <div class="col-6 col-12-small">
                                 <label>휴대폰 번호</label>
-                                <input type="text" name="user_email" id="user_email" placeholder="전화번호" style="font-size: 12px; width: 100%">
+                                <input type="text" name="userPhoneNum" id="userPhoneNum" placeholder="전화번호" style="font-size: 12px; width: 100%">
                             </div>
                             <!-- 전송 버튼 -->
                             <div class="col-12">
                                 <ul class="actions stacked">
-                                    <li><input type="button" value="아이디 찾기" id="sendEmail"
+                                    <li><input type="submit" value="아이디 찾기" id="findId"
                                                class="button primary" onclick="" style="width: 100%; font-size: 12px;"></li>
                                 </ul>
                             </div>
+
+                            <span th:if="${check == 1}">일치하는 정보가 존재하지 않습니다</span>
+                            <span th:if="${check == 0}" th:text="|찾으시는 아이디는${id}입니다.|"></span>
+
                         </div>
                     </form>
                 </section>
@@ -67,24 +71,19 @@
                             <div class="col-12" style="text-align: center;">
                                 <h3 style="font-size: 14px">비밀번호 찾기</h3>
                             </div>
-                            <!-- 휴대폰번호 -->
-                            <div class="col-6 col-12-xsmall">
-                                <label>휴대폰 번호</label>
-                                <input type="text" name="user_phone_no" id="user_phone_no"
-                                       placeholder="휴대폰 번호(-제외)" class="phone" style="font-size: 12px; width: 230px;"/>
-                                <ul class="actions stacked">
-                                    <li><input style="width: 120px;" type="button" value="send code"
-                                               class="button primary" onclick=""></li>
-                                </ul>
-                                <label>인증번호</label>
-                                <input type="text" name="phone_no_check" id="phone_no_check"
-                                       placeholder="인증번호 입력" class="phone" style="font-size: 12px; width: 230px;"/>
-                                <ul class="actions stacked">
-                                    <li><input style="width: 120px;" type="button" value="confirm"
-                                               class="button primary" onclick=""></li>
-                                </ul>
-                            </div>
+                            <!--coolSms-->
+                            <label>전화번호</label>
+                            <label style="display: inline-flex; width: 100%;"><input type="text" placeholder="휴대폰 번호(-제외)"
+                                                                                     name="userPhoneNum" id="userPhoneNum2">
+                                <input type="button" value="인증번호 전송" class="button primary" onclick=""
+                                       style="border-radius: 0;" id="checkNum" ></label>
+                            <label>본인인증</label>
+                            <label style="display: inline-flex; width: 100%;"><input type="text" placeholder="인증번호를 입력해주세요"
+                                                                                     name="numStr" id="numStr">
+                                <input type="button" value="확인" class="button primary" onclick=""
+                                       style="border-radius: 0;" id="checkNumStr" ></label>
 
+                            <!--coolSms끝-->
                             <!-- 비밀번호 -->
                             <div class="col-12">
                                 <label>RESET PASSWORD</label>
@@ -126,6 +125,7 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
-
+<script>
+</script>
 </body>
 </html>

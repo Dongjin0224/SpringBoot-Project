@@ -10,6 +10,7 @@
          SEQ_USER.NEXTVAL, #{userId}, #{userPw}, #{userName}, #{userPhoneNum}, #{userEmail}
       )
    </insert>
+
     <select id="userLogin" resultType="UserVO">
         SELECT *
         FROM TABLE_USER WHERE USERID = #{userId} AND USERPW = #{userPw}
@@ -26,7 +27,9 @@
     <select id="findPw" resultType="UserVO">
         SELECT * FROM TABLE_USER WHERE USERiD= #{userId} AND USERNAME= #{userName} AND USERPHONENUM= #{userPhoneNum}
     </select>
+
     <update id="updatePassword">
-        UPDATE TABLE_USER SET USERPW=#{userPw} WHERE USERID=#{userId}
+        UPDATE TABLE_USER SET USERPW=#{userPw} WHERE USERID=#{userId} AND USERPHONENUM =#{userPhoneNum}
     </update>
+
 </mapper>
