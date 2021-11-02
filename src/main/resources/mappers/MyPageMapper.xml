@@ -23,8 +23,7 @@
 		UPDATE TABLE_DOC SET
 		DOCPW  = #{docPw}, DOCHOSPITALNAME = #{docHospitalName}, DOCHOSPHONE = #{docHosPhone},
 		DOCHISTORY = #{docHistory}, DOCLAT = #{docLat}, DOCLNG = #{docLng}, DOCADDRESS = #{docAddress},
-		DOCEMAIL = #{docEmail}, DOCPHONENUM = #{docPhoneNum}, DOCSERVICECNT = #{docServiceCnt},
-		DOCREPORTCNT = #{docReportCnt}, DOCLIKECNT = #{docLikeCnt}
+		DOCEMAIL = #{docEmail}, DOCPHONENUM = #{docPhoneNum}
 		WHERE DOCNO = #{docNo}
 	</update>
 
