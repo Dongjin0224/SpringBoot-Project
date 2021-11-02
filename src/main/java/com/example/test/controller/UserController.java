@@ -130,30 +130,31 @@ public class UserController {
         return numStr;
     }
 
-
-    @GetMapping("findAccount")
+   @GetMapping("userFindId")
     public String findAccount() {
-        return "user/findAccount";
+        return "user/userFindId";
     }
 
-    @PostMapping("findAccount")
-    public String findId(UserVO vo,Model model){
-        UserVO userVO = service.findId(vo);
 
-        if(userVO == null){
+
+    @PostMapping("userFindId")
+    public String findId(UserVO vo,Model model){
+        UserVO user = service.findId(vo);
+
+        if(user == null){
                 model.addAttribute("check",1);
         }else{
             model.addAttribute("check",0);
-            model.addAttribute("id",userVO.getUserId());
+            model.addAttribute("id",user.getUserId());
         }
-        return "user/login";
+        return "user/userFindId";
     }
-    /*아이디 찾기*/
-    @GetMapping("findAccount")
-    public String findPw(UserVO vo){
-        return "user/login";
+
+    @GetMapping("userFindPw")
+    public String findPw(){
+        return "user/userFindPw";
     }
-    /*비밀번호 찾기*/
+    /*비밀번호 찾기*//*
     @PostMapping("findAccount")
     public String findPw(UserVO vo,Model model){
         UserVO userVO = service.findPw(vo);
@@ -166,11 +167,11 @@ public class UserController {
         }
         return "user/findAccount";
     }
+
     /*비밀번호 변경*/
-   /* @PostMapping("updatePassword")
-    public String updatePassword(String id,UserVO vo){
-        vo.setUserId(id);
+    @PostMapping("userFindPw")
+    public String updatePassword(UserVO vo){
         service.updatePassword(vo);
-        return "user/"
-    }*/
+        return "user/userFindPw";
+    }
 }
