@@ -54,7 +54,6 @@ public class DocController {
             vo.getHosattachList().forEach(hosattach -> log.info(hosattach.toString()));
         }
 
-
         if(result == 1) {
             return "user/doctorSignUp";
         }else if(result == 0) {

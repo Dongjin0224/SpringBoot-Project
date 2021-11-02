@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/css/main.css"/>
 </head>
 <style>
+    textarea {resize: none;border-radius: 0;}
+
     .content.main {
         width: 90%;
         margin: auto;
@@ -370,6 +372,11 @@
                                         </div>
                                         <hr>
                                         <div>
+                                            <label class="profile">병원 번호<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div th:text="*{docHosPhone}"></div>
+                                        </div>
+                                        <hr>
+                                        <div>
                                             <label class="profile">e-mail<span style='color:red; font-size:1em;'> *</span></label>
                                             <div th:text="*{docEmail}"></div>
                                         </div>
@@ -385,9 +392,16 @@
                                         </div>
                                         <hr>
                                         <div>
+                                            <label class="profile">주소<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div th:text="*{docAddress}"></div>
+                                        </div>
+                                        <hr>
+                                        <div>
                                             <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
                                             <div th:text="*{docHistory}"></div>
                                         </div>
+                                        <input type="hidden" th:value="*{docNo}" id="docNo">
+                                        <div th:text="*{docNo}"></div>
                                         <hr>
                                         <hr class='dark'>
                                     </div>
@@ -395,7 +409,7 @@
                             </fieldset>
                             <!-- 수정 버튼 누르면 나오는 곳 -->
                             <fieldset class="first" style="display: none;">
-                                <form method="post" action="/myPage/updateDoc" id="updateDoc" name="updateDoc">
+<!--                                <form method="post" action="/myPage/updateDoc" id="updateDoc" name="updateDoc">-->
                                     <div class='area'>
                                         <h3 style="margin-bottom: 1%;">회원정보</h3>
                                         <div style="display: flex; justify-content: space-between;">
@@ -412,11 +426,11 @@
                                             </div>
                                             <hr>
                                             <div>
-                                                <label for="docPhoneNum" class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
+                                                <label for="docPhoneNum1" class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
                                                 <div>
-                                                    <input class='phone' type='text' id='docPhoneNum' name='docPhoneNum'>
-                                                    - <input class='phone' type='text' id='docPhoneNum2' name='docPhoneNum2'>
-                                                    - <input class='phone' type='text' id='docPhoneNum3' name='docPhoneNum3'>
+                                                    <input class='phone' th:value="*{docPhoneNum.split('-')[0]}" type='text' id='docPhoneNum1' name='docPhoneNum1'>
+                                                    - <input class='phone' th:value="*{docPhoneNum.split('-')[1]}" type='text' id='docPhoneNum2' name='docPhoneNum2'>
+                                                    - <input class='phone' th:value="*{docPhoneNum.split('-')[2]}" type='text' id='docPhoneNum3' name='docPhoneNum3'>
                                                 </div>
                                             </div>
                                             <div>
@@ -424,8 +438,7 @@
                                                 <div class="td6" style="padding: 0;">
                                                     <div class="div2">
                                                         <input type="text" id="code" name="code" placeholder="인증번호">
-                                                        <a class="button small" onclick=""
-                                                           style="width: 80px; margin: auto;">전송</a>
+                                                        <a class="button small" onclick="" style="width: 80px; margin: auto;">전송</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -438,47 +451,57 @@
                                             </div>
                                             <hr>
                                             <div>
+                                                <label for="docHosPhone" class="profile">병원 번호<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div>
+                                                    <input type='text' th:value="*{docHosPhone}" id='docHosPhone' name='docHosPhone'>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div>
                                                 <label class="profile">전공</label>
                                                 <div th:text="*{docMajor}">
                                                 </div>
                                             </div>
                                             <hr>
                                             <div>
-                                                <label for="docAddress" class="profile">소속기관<span style='color:red; font-size:1em;'> *</span></label>
+                                                <label for="docHospitalName" class="profile">소속기관<span style='color:red; font-size:1em;'> *</span></label>
                                                 <div>
                                                     <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 0%;'>
                                                         <span style='color:red;'>*</span>
                                                         기관명
                                                     </p>
                                                     <div>
-                                                        <input type='text' th:value="*{docHospitalName}" id='docAddress' name='docAddress'>
+                                                        <input type='text' th:value="*{docHospitalName}" id='docHospitalName' name='docHospitalName'>
                                                     </div>
                                                     <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 5%;'>
                                                         <span style='color:red;'>*</span>
                                                         원하는 위치를 클릭시 해당 지점으로 좌표가 등록됩니다.
                                                     </p>
                                                     <div id="map" style="width: 435px"></div>
+                                                    <label for="docAddress" class="profile">상세주소<span style='color:red; font-size:1em;'> *</span></label>
+                                                    <input type="text" th:value="*{docAddress}" name="docAddress" id="docAddress"/>
                                                 </div>
                                             </div>
                                             <hr>
                                             <div>
                                                 <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
                                                 <div class="td7">
-                                                    <div class="div3" style="display: flex;">
-                                                        <input id="history" type="text" th:value="*{docHistory}" name="" value="" placeholder="약력">
-                                                        <a class="button small" onclick="addInput()"
-                                                           style="width: 80px; margin: auto;">추가</a>
-                                                    </div>
+                                                    <textarea id="docHistory" th:text="*{docHistory}" name="docHistory" rows="5"></textarea>
+                                                    <!--<div class="div3" style="display: flex;">
+                                                        <input id="docHistory" type="text" th:value="*{docHistory}" name="history" value="" placeholder="약력">
+                                                        <input type="hidden" name="docHistory">
+                                                        <a class="button small" onclick="addInput()" style="width: 80px; margin: auto;">추가</a>
+                                                    </div>-->
                                                 </div>
                                             </div>
                                             <hr>
                                             <div>
                                                 <label for="password" class="profile">비밀번호<span style='color:red; font-size:1em;'> *</span></label>
-                                                <div><input type='password' id='password' name='password'></div>
+                                                <div><input id="password" type='password' name='password'></div>
                                             </div>
                                             <div>
-                                                <label for="password" class="profile">비밀번호 확인<span style='color:red; font-size:1em;'> *</span></label>
-                                                <div><input type='password' id='password1' name='password'></div>
+                                                <label for="passwordCheck" class="profile">비밀번호 확인<span style='color:red; font-size:1em;'> *</span></label>
+                                                <div><input id="passwordCheck" type='password' name='passwordCheck'></div>
                                             </div>
                                             <hr class='dark'>
                                         </div>
@@ -489,7 +512,7 @@
                                         <button id="back" class="button small" style="margin-right: 5%; width: 80px;">취소</button>
                                     </div>
 
-                                </form>
+<!--                                </form>-->
                             </fieldset>
                         </div>
                     </div>
@@ -560,7 +583,7 @@
 
                     <div id="myFour" class="tabcontent">
                         <h3 style="text-align: center">봉사 신청</h3>
-                        <table th:object="${content}">
+                        <table>
                             <thead>
                             <tr class="">
                                 <th class="th1"><strong>전공분야</strong></th>
@@ -663,19 +686,184 @@
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
 </body>
-<script>
+<script th:inline="javascript">
+
+    $("#map").on("click", function () {
+        console.log()
+    })
+
+    let arr;
+    let lat;
+    let lng;
+    let map;
+    let marker;
+    let geocoder;
+    let responseDiv;
+    let response;
+
+    function f1() {
+        const arr = map.location.split(",");
+        document.writeln(arr[0]);
+        document.writeln(arr[1]);
+
+    }
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: {lat: 37.555946, lng: 126.972317},
+            mapTypeControl: false,
+        });
+        geocoder = new google.maps.Geocoder();
+
+        const inputText = document.createElement("input");
+
+
+        inputText.type = "text";
+        inputText.class = "searchBar";
+        inputText.placeholder = "주소를 검색해 주세요.";
+
+        const submitButton = document.createElement("input");
+
+        submitButton.type = "button";
+        submitButton.value = "검색";
+        submitButton.classList.add("button1", "button-1", "search");
+
+        const clearButton = document.createElement("input");
+
+        clearButton.type = "button";
+        clearButton.value = "취소";
+        clearButton.classList.add("button1", "button-secondary1", "clear");
+        response = document.createElement("pre");
+        response.id = "response";
+        response.innerText = "";
+        responseDiv = document.createElement("div");
+        responseDiv.id = "response-container";
+        responseDiv.appendChild(response);
+
+        const instructionsElement = document.createElement("p");
+
+        instructionsElement.id = "instructions";
+        // instructionsElement.innerHTML =
+        //     "<strong>Instructions</strong>: Enter an address in the textbox to geocode or click on the map to reverse geocode.";
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputText);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(submitButton);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(clearButton);
+        map.controls[google.maps.ControlPosition.LEFT_TOP].push(instructionsElement);
+        map.controls[google.maps.ControlPosition.LEFT_TOP].push(responseDiv);
+        marker = new google.maps.Marker({
+            map,
+        });
+        map.addListener("click", (e) => {
+            geocode({location: e.latLng});
+        });
+        submitButton.addEventListener("click", () =>
+            geocode({address: inputText.value})
+        );
+        clearButton.addEventListener("click", () => {
+            clear();
+        });
+        clear();
+    }
+
+    function clear() {
+        marker.setMap(null);
+        responseDiv.style.display = "none";
+    }
+
+    $(".btn_close").on("click", function () {
+        $(".box_layer").css("display", "none");
+    })
+
+
+    function geocode(request) {
+        clear();
+        geocoder
+            .geocode(request)
+            .then((result) => {
+                const {results} = result;
+
+                map.setCenter(results[0].geometry.location);
+                marker.setPosition(results[0].geometry.location);
+                marker.setMap(map);
+                responseDiv.style.display = "none";
+                response.innerText = JSON.stringify(result, null, 2);
+
+                let location = results[0].geometry.location;
+                alert(location);
+                /*const arr = map.location.split(",");*/
+                console.log(location);
+                arr = location.toString().split(",");
+                lat = arr[0].substring(1).trim();
+                lng = arr[1].substring(0, 11).trim();
+                console.log(arr[0].substring(1).trim());
+                console.log(arr[1].substring(0, 11).trim());
+
+
+                // let form = document.doctorSignUpForm;
+                // form.docLat.value = arr[0].substring(1).trim();
+                // form.docLng.value = arr[1].substring(0, 11).trim();
+
+                return results;
+
+
+            })
+            .catch((e) => {
+                alert("Geocode was not successful for the following reason: " + e);
+            });
+    }
+
+
     $("#update").on("click", function(){
-        let updateForm = document.updateDoc;
 
-        $("#docPhoneNum").val();
-        $("#docPhoneNum2").val();
-        $("#docPhoneNum3").val();
-        $("#docEmail").val();
-        $("#docAddress").val();
-        $("#map").val();
-        $("#history").val();
+        let docPhoneNum1 = $("#docPhoneNum1").val();
+        let docPhoneNum2 = $("#docPhoneNum2").val();
+        let docPhoneNum3 = $("#docPhoneNum3").val();
+        let docPhoneNum = docPhoneNum1 + "-" + docPhoneNum2 + "-" + docPhoneNum3;
+        let docPw = $("#password").val();
+        let docEmail = $("#docEmail").val();
+        let docHospitalName = $("#docHospitalName").val();
+        let docAddress = $("#docAddress").val();
+        let docHosPhone = $("#docHosPhone").val();
+        let docHistory = $("#docHistory").val();
 
-        updateForm.submit();
+        /*let str2 = document.getElementById('docHistory').value;
+        for(let j=0;j<i;j++){
+            let e = document.querySelector('#text'+j+' input[type=text]').value;
+            console.log(e);
+            str2+='\n'+e;
+        }*/
+
+        // let map = $("#map").val();
+        // let history = $("#history").val();
+        let doc = [[${doc}]];
+        console.log(doc);
+        let arr = {
+            docPhoneNum: docPhoneNum,
+            docEmail: docEmail,
+            docHospitalName: docHospitalName,
+            docPw: docPw,
+            docAddress : docAddress,
+            docLat: lat,
+            docLng: lng,
+            docHistory: docHistory,
+            docHosPhone: docHosPhone
+        }
+
+        //질문리스트
+        //docHistory
+        //docAddress
+        //docLat, docLng 값을 가져오는 법
+
+        $.ajax({
+            url: "/myPage/updateDoc",
+            method: "post",
+            contentType:"application/json; charset=utf-8",
+            data: JSON.stringify(arr),
+            success:function(){
+                alert("수정 완료")
+            }
+        })
     })
 
     document.getElementById("defaultOpen").click();
@@ -715,115 +903,115 @@
     })
 
 
-
-    let i = 0;
+    /*let i = 0;
     function addInput(){
 
         document.getElementsByClassName('td7')[0].innerHTML+="<div class='div3' style='display: flex;' id='text"+i+"'>" +
-            "            <input type='text' name='' value='' placeholder='약력'>" +
+            "            <input type='text' name='history"+i+"' value='' placeholder='약력'>" +
             "            <a class='button small' onclick='fn1(" + i + ")'" +
             "                style='width: 80px; margin: auto;'>삭제</a>" +
             "        </div>";
 
         i++;
     }
-
     function fn1(i) {
         $('#text'+i).remove();
-    }
+    }*/
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMkjU3PD_8DSxtcmM3n4lfoAWRC7BEdQ8&callback=initMap&v=weekly"
         async>
 </script>
-<script>
-    let map;
-    let marker;
-    let geocoder;
-    let responseDiv;
-    let response;
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 13,
-            center: { lat: 37.555946, lng: 126.972317 },
-            mapTypeControl: false,
-        });
-        geocoder = new google.maps.Geocoder();
+<!--<script>-->
+<!--    let map;-->
+<!--    let marker;-->
+<!--    let geocoder;-->
+<!--    let responseDiv;-->
+<!--    let response;-->
+<!--    function initMap() {-->
+<!--        map = new google.maps.Map(document.getElementById("map"), {-->
+<!--            zoom: 13,-->
+<!--            center: { lat: 37.555946, lng: 126.972317 },-->
+<!--            mapTypeControl: false,-->
+<!--        });-->
+<!--        geocoder = new google.maps.Geocoder();-->
 
-        const inputText = document.createElement("input");
+<!--        const inputText = document.createElement("input");-->
 
-        inputText.type = "text";
-        inputText.class= "searchBar";
-        inputText.placeholder = "주소를 검색해 주세요.";
+<!--        inputText.type = "text";-->
+<!--        inputText.class= "searchBar";-->
+<!--        inputText.placeholder = "주소를 검색해 주세요.";-->
 
-        const submitButton = document.createElement("input");
+<!--        const submitButton = document.createElement("input");-->
 
-        submitButton.type = "button";
-        submitButton.value = "검색";
-        submitButton.classList.add("button1", "button-1","search");
+<!--        submitButton.type = "button";-->
+<!--        submitButton.value = "검색";-->
+<!--        submitButton.classList.add("button1", "button-1","search");-->
 
-        const clearButton = document.createElement("input");
+<!--        const clearButton = document.createElement("input");-->
 
-        clearButton.type = "button";
-        clearButton.value = "취소";
-        clearButton.classList.add("button1", "button-secondary1","clear");
-        response = document.createElement("pre");
-        response.id = "response";
-        response.innerText = "";
-        responseDiv = document.createElement("div");
-        responseDiv.id = "response-container";
-        responseDiv.appendChild(response);
+<!--        clearButton.type = "button";-->
+<!--        clearButton.value = "취소";-->
+<!--        clearButton.classList.add("button1", "button-secondary1","clear");-->
+<!--        response = document.createElement("pre");-->
+<!--        response.id = "response";-->
+<!--        response.innerText = "";-->
+<!--        responseDiv = document.createElement("div");-->
+<!--        responseDiv.id = "response-container";-->
+<!--        responseDiv.appendChild(response);-->
 
-        const instructionsElement = document.createElement("p");
+<!--        const instructionsElement = document.createElement("p");-->
 
-        instructionsElement.id = "instructions";
-        // instructionsElement.innerHTML =
-        //     "<strong>Instructions</strong>: Enter an address in the textbox to geocode or click on the map to reverse geocode.";
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputText);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(submitButton);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(clearButton);
-        map.controls[google.maps.ControlPosition.LEFT_TOP].push(instructionsElement);
-        map.controls[google.maps.ControlPosition.LEFT_TOP].push(responseDiv);
-        marker = new google.maps.Marker({
-            map,
-        });
-        map.addListener("click", (e) => {
-            geocode({ location: e.latLng });
-        });
-        submitButton.addEventListener("click", () =>
-            geocode({ address: inputText.value })
-        );
-        clearButton.addEventListener("click", () => {
-            clear();
-        });
-        clear();
-    }
+<!--        instructionsElement.id = "instructions";-->
+<!--        // instructionsElement.innerHTML =-->
+<!--        //     "<strong>Instructions</strong>: Enter an address in the textbox to geocode or click on the map to reverse geocode.";-->
+<!--        map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputText);-->
+<!--        map.controls[google.maps.ControlPosition.TOP_LEFT].push(submitButton);-->
+<!--        map.controls[google.maps.ControlPosition.TOP_LEFT].push(clearButton);-->
+<!--        map.controls[google.maps.ControlPosition.LEFT_TOP].push(instructionsElement);-->
+<!--        map.controls[google.maps.ControlPosition.LEFT_TOP].push(responseDiv);-->
+<!--        marker = new google.maps.Marker({-->
+<!--            map,-->
+<!--        });-->
+<!--        map.addListener("click", (e) => {-->
+<!--            geocode({ location: e.latLng });-->
+<!--        });-->
+<!--        submitButton.addEventListener("click", () =>-->
+<!--            geocode({ address: inputText.value })-->
+<!--        );-->
+<!--        clearButton.addEventListener("click", () => {-->
+<!--            clear();-->
+<!--        });-->
+<!--        clear();-->
+<!--    }-->
 
-    function clear() {
-        marker.setMap(null);
-        responseDiv.style.display = "none";
-    }
+<!--    function clear() {-->
+<!--        marker.setMap(null);-->
+<!--        responseDiv.style.display = "none";-->
+<!--    }-->
 
-    function geocode(request) {
-        clear();
-        geocoder
-            .geocode(request)
-            .then((result) => {
-                const { results } = result;
+<!--    function geocode(request) {-->
+<!--        clear();-->
+<!--        geocoder-->
+<!--            .geocode(request)-->
+<!--            .then((result) => {-->
+<!--                const { results } = result;-->
 
-                map.setCenter(results[0].geometry.location);
-                marker.setPosition(results[0].geometry.location);
-                marker.setMap(map);
-                responseDiv.style.display = "none";
-                response.innerText = JSON.stringify(result, null, 2);
+<!--                map.setCenter(results[0].geometry.location);-->
+<!--                marker.setPosition(results[0].geometry.location);-->
+<!--                marker.setMap(map);-->
+<!--                responseDiv.style.display = "none";-->
+<!--                response.innerText = JSON.stringify(result, null, 2);-->
 
-                var location = results[0].geometry.location;
-                alert(location);
-                return results;
-            })
-            .catch((e) => {
-                alert("Geocode was not successful for the following reason: " + e);
-            });
-    }
+<!--                var location = results[0].geometry.location;-->
+<!--                alert(location);-->
+<!--                return results;-->
+<!--            })-->
+<!--            .catch((e) => {-->
+<!--                alert("Geocode was not successful for the following reason: " + e);-->
+<!--            });-->
+<!--    }-->
 
-</script>
+
+<!--</script>-->
 </html>
