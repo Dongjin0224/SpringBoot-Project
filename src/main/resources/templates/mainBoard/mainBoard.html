@@ -419,6 +419,8 @@
     let check = false;
 
     let loginCheck = [[${loginCheck}]];
+    let paing = [[${pageMaker.criteria.listLink}]];
+    let pageNum = 1;
 
         $(".subject").on("click", function(e){
             e.preventDefault();
@@ -426,11 +428,40 @@
             $("h1").text($(this).text());
             $("h1").hide();
             $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
+
+            $.ajax({
+                url:"/mainBoard/Category?qnaMajor="+$(this).text(),
+                type:"get",
+                success:function(result){
+
+                }
+            });
+
             $("h1").fadeIn(500);
             check = true;
             setTimeout(function(){check = false;}, 500);
         });
 
+
+        function showList(){
+
+        }
+
+        function getList(params, callback, error){
+            let page = params.page || 1;
+            $.getJSON(
+                "/mainBoard/Category/" + param.subject + "/" + page,
+                function(result){
+                    if(callback){
+                        callback(result.replyCnt, result.list);
+                    }
+                }
+            ).fail(function(xhr, status, er){
+                if(error){
+                    error(er);
+                }
+            })
+        }
 
 
     $("table.categoryChoice tr td").on("mouseover", function(){
@@ -495,7 +526,7 @@
 
 
     let pageForm = $(document.pageForm);
-    let paing = [[${pageMaker.criteria.listLink}]];
+
     let searchForm = $(document.searchForm);
 
 
