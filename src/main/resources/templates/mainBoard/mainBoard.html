@@ -225,6 +225,19 @@
     .basic1 p{
         margin: 0;
     }
+
+    .qnaContent3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
+        line-height: 1.2em;
+        height: 2.5em;
+        margin-bottom: 1%;
+    }
+
 </style>
 <body class="is-preload">
 
@@ -238,8 +251,8 @@
     <section id="one" class="main alt">
         <header class="accent1" style="background-color: white; background-image: url('/img/mainBanner.jpg')">
             <div class="blur">
-                    <h1 style="color: white">지식 iN</h1>
-                    <p style="color: white">궁금한 병명에 대해서 질문하고 검색하세요.</p>
+                <h1 style="color: white">지식 iN</h1>
+                <p style="color: white">궁금한 병명에 대해서 질문하고 검색하세요.</p>
             </div>
         </header>
 
@@ -283,17 +296,19 @@
                                     <dl>
                                         <dt>
                                             <a th:href="|/mainBoard/detail?qnaNo=*{qnaNo}|"
-                                               target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor" ><span th:text="*{qnaTitle}"> </span></a>
-                                            <sub th:text="*{qnaDate}"> </sub>
+                                               target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor" >
+                                                <span class="qnaTitle3" th:text="*{qnaTitle}" style="font-weight: bolder;"></span></a>
+                                            <sub th:text="*{qnaDate}"></sub>
                                         </dt>
-<!--                                        <dd th:utext="*{qnaContent}"> </dd>-->
+                                        <div class="qnaContent3" th:utext="*{qnaContent}"></div>
+                                        <!--                                        <dd th:utext="*{qnaContent}"> </dd>-->
                                         <dd class="tag_area">
                                         </dd>
-                                        <dd class="txt_block">
+                                        <dd class="txt_block" style="margin-left: 0 !important;">
                                             <span
-                                               class="txt_g1 _nclicks:kin.cat1">진료과목</span>
+                                                    class="txt_g1 _nclicks:kin.cat1">진료과목</span>
                                             &gt; <span
-                                                class="txt_g1 _nclicks:kin.cat2" th:text="*{qnaMajor}"></span>
+                                                class="qnaMajor3 txt_g1 _nclicks:kin.cat2" th:text="*{qnaMajor}"></span>
                                             <span class="bar">|</span>
                                             <span class="hit">답변수 1</span>
                                             &nbsp;<span th:text="|조회수 *{qnaViewCnt}|"></span>
@@ -304,21 +319,23 @@
                         </div>
                     </section>
                     <div class="searchDiv">
-                        <form action="" name="searchForm" id="searchForm">
+                        <form action="/mainBoard/mainBoard" name="searchForm" id="searchForm">
                             <div class="field">
                                 <div id="searchWrap">
                                     <td>
-                                        <select name="city" id="city">
-                                            <option value="시 / 도">시 / 도</option>
+                                        <select name="city" id="city" >
+                                            <option value="">시 / 도</option>
                                         </select>
                                         <select name="town" id="town">
-                                        <option value="구 / 군">구 / 군</option>
+                                            <option value="">구 / 군</option>
                                         </select>
-                                    <input id="keyword" type="text" name="keyword"
-                                           style="border: 2px solid #358bca; border-radius: 0;">
-                                    <input type="submit" value="검색" class="search button primary icon solid fa-search"
-                                       style="border-radius: 0;">
                                     </td>
+                                    <!--<input type="hidden" name="qnaAddress" id="qnaAddress">-->
+                                    <input type="hidden" id="criteriaPageNum" name="pageNum">
+                                    <input type="hidden" id="criteriaAmount" name="amount">
+                                    <input type="hidden" id="criteriaQnaMajor" name="qnaMajor">
+                                    <input id="keyword" type="text" name="keyword" style="border: 2px solid #358bca; border-radius: 0;">
+                                    <input type="button" onclick="search1()" value="검색" class="search button primary icon solid fa-search" style="border-radius: 0;">
                                 </div>
                             </div>
                         </form>
@@ -326,22 +343,19 @@
                     <div class="pageWrap">
                         <div th:object="${pageMaker}">
                             <div style="text-align: center">
-<!--                                <a class="changePage" th:if="*{prev}" th:href="|mainBoard?pageNum=*{criteria.getPageNum() - 1}&amount=10|"><code>&lt;</code></a>-->
                                 <a class="changePage" th:if="*{prev}" th:href="*{criteria.getPageNum() - 1}"><code>&lt;</code></a>
                                 <th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
                                     <code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
-<!--                                    <code class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>-->
-<!--                                    <a class="changePage" th:if="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>-->
-<!--                                    <a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="|mainBoard?pageNum=${num}&amount=10|"><code th:text="${num}"></code></a>-->
                                     <a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
                                 </th:block>
                                 <a class="changePage" th:if="*{next}" th:href="*{criteria.getPageNum() + 1}"><code>&gt;</code></a>
-<!--                                <a class="changePage" th:if="*{next}" th:href="|mainBoard?pageNum=*{criteria.getPageNum() + 1}&amount=10|}"><code>&gt;</code></a>-->
                             </div>
                             <form  th:object="${criteria}" name="pageForm">
                                 <input type="hidden" name="pageNum" th:field="*{pageNum}">
                                 <input type="hidden" name="amount" th:field="*{amount}">
-
+                                <input type="hidden" name="keyword" th:field="*{keyword}">
+                                <input type="hidden" name="town" th:field="*{town}">
+                                <input type="hidden" name="qnaMajor" th:field="*{qnaMajor}">
                             </form>
                         </div>
                     </div>
@@ -419,49 +433,74 @@
     let check = false;
 
     let loginCheck = [[${loginCheck}]];
-    let paing = [[${pageMaker.criteria.listLink}]];
-    let pageNum = 1;
+    let pageForm = $(document.pageForm);
+    let paing0 = [[${pageMaker.criteria.listLink}]];
+    let paing1 = [[${pageMaker.criteria.amount}]];
+    let paing2 = [[${pageMaker.criteria.pageNum}]];
+    let paing3 = [[${pageMaker.criteria.qnaMajor}]];
+    // let paing4 = [[${pageMaker.criteria.keyword}]];
+    let searchForm = $(document.searchForm);
+    document.getElementById("criteriaPageNum").value = 1;
+    document.getElementById("criteriaAmount").value = paing1;
+    document.getElementById("criteriaQnaMajor").value = paing3;
 
-        $(".subject").on("click", function(e){
-            e.preventDefault();
-            if(check){return;}
-            $("h1").text($(this).text());
-            $("h1").hide();
-            $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
+    let qnaTitle3 = document.getElementById("qnaTitle3");
+    let qnaContent3 = document.getElementsByClassName("qnaContent3");
+    let qnaMajor3 = document.getElementsByClassName("qnaMajor3");
+    let keyword3 = [[${pageMaker.criteria.keyword}]];
 
-            $.ajax({
-                url:"/mainBoard/Category?qnaMajor="+$(this).text(),
-                type:"get",
-                success:function(result){
 
+    for(let a = 0;a< qnaContent3.length;a++){
+        if (qnaContent3[a].innerText.indexOf(keyword3)!=-1){
+            let index3 = qnaContent3[a].innerText.indexOf(keyword3);
+            qnaContent3[a].innerHTML=qnaContent3[a].innerText.substring(0,index3)+'<span style="font-weight: bold">'+qnaContent3[a].innerText.substring(index3,keyword3.length+index3)+'</span>'+
+                qnaContent3[a].innerText.substring(keyword3.length+index3,qnaContent3[a].innerText.length);
+
+            if(qnaContent3[a].innerHTML.length>60){
+                if(qnaContent3[a].innerText.substring(0, 10).indexOf(keyword3)!=-1){
+                    qnaContent3[a].innerHTML=qnaContent3[a].innerText.substring(0,index3)+
+                        '<span style="font-weight: bold">'+qnaContent3[a].innerText.substring(index3,keyword3.length+index3)+'</span>'+
+                        qnaContent3[a].innerText.substring(keyword3.length+index3,qnaContent3[a].innerText.length);
+                }else{
+                    qnaContent3[a].innerHTML=qnaContent3[a].innerText.substring(0, 10)+'... '+'<span style="font-weight: bold">'+qnaContent3[a].innerText.substring(index3,keyword3.length+index3)+'</span>'+
+                        qnaContent3[a].innerText.substring(keyword3.length+index3,qnaContent3[a].innerText.length);
                 }
-            });
 
-            $("h1").fadeIn(500);
-            check = true;
-            setTimeout(function(){check = false;}, 500);
-        });
+            }
 
-
-        function showList(){
 
         }
+        if (qnaMajor3[a].innerText.indexOf(keyword3)!=-1){
+            let index3 = qnaMajor3[a].innerText.indexOf(keyword3);
+            qnaMajor3[a].innerHTML=qnaMajor3[a].innerText.substring(0,index3)+'<span style="font-weight: bold">'+qnaMajor3[a].innerText.substring(index3,keyword3.length+index3)+'</span>'+
+                qnaMajor3[a].innerText.substring(keyword3.length+index3,qnaMajor3[a].innerText.length);
 
-        function getList(params, callback, error){
-            let page = params.page || 1;
-            $.getJSON(
-                "/mainBoard/Category/" + param.subject + "/" + page,
-                function(result){
-                    if(callback){
-                        callback(result.replyCnt, result.list);
-                    }
-                }
-            ).fail(function(xhr, status, er){
-                if(error){
-                    error(er);
-                }
-            })
         }
+    }
+
+
+
+
+    $(".subject").on("click", function(e){
+        e.preventDefault();
+        if(check){return;}
+        $("h1").text($(this).text());
+        $("h1").hide();
+        $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
+        $("h1").fadeIn(500);
+        check = true;
+        $('#criteriaQnaMajor').val($(this).text());
+        document.getElementById("criteriaPageNum").value = 1;
+        document.getElementById("criteriaAmount").value = paing1;
+        document.getElementById('keyword').value= keyword3;
+        setTimeout(function(){check = false;}, 500);
+        searchForm.submit();
+    });
+
+    function search1(){
+        document.getElementById("criteriaPageNum").value = 1;
+        searchForm.submit();
+    };
 
 
     $("table.categoryChoice tr td").on("mouseover", function(){
@@ -479,7 +518,7 @@
         var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
         var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
         var area3 = ["대덕구","동구","서구","유성구","중구"];
-        var area4 = ["광산구","남구","동구",     "북구","서구"];
+        var area4 = ["광산구","남구","동구", "북구","서구"];
         var area5 = ["남구","달서구","동구","북구","서구","수성구","중구","달성군"];
         var area6 = ["남구","동구","북구","중구","울주군"];
         var area7 = ["강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
@@ -514,9 +553,12 @@
                     $town.append("<option value='" + this + "'>" + this + "</option>");
                 });
             }
+            // if( document.getElementById("town").value == "구 / 군"){
+            //     document.getElementById("town").value = "";
+            // }
+            /*document.getElementById("qnaAddress").value = document.getElementById("town").value;*/
         });
     });
-
     // $(document).ready(function() {
     //     $("a[name='file-delete']").on("click", function(e) {
     //         e.preventDefault();
@@ -524,10 +566,6 @@
     //     });
     // })
 
-
-    let pageForm = $(document.pageForm);
-
-    let searchForm = $(document.searchForm);
 
 
     $("a.changePage").click(function(e){
@@ -558,7 +596,7 @@
             alert('로그인을 해주세요.');
             return;
         }
-       location.href='write';
+        location.href='write';
     });
 </script>
 </html>

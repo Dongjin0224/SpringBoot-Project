@@ -302,7 +302,7 @@
         padding-top: 4% !important;
     }
 
-    #formTitle{
+    #formTitle {
         text-align: center;
         font-size: 23px;
         color: #358bca !important;
@@ -342,7 +342,8 @@
                                 <div class="board_btn_reply" style="text-align: right;">
                                     <!--                                    <a href="#" class="button primary fit" style="border-radius: 15px">답변달기</a>-->
                                     <button type="button" class="button" onclick="openForm()" id="btn_reply"
-                                            style="border-radius: 0px;width: 25%;font-size: 20px;position: relative;left: 67px;">답변달기
+                                            style="border-radius: 0px;width: 25%;font-size: 20px;position: relative;left: 67px;">
+                                        답변달기
                                     </button>
                                 </div>
                             </div>
@@ -352,12 +353,11 @@
             </div>
 
 
-
             <!-- div_write 시작 -->
             <div id="div_write" style="width: 90%;margin: 40px auto 0 auto;">
                 <h2 id="formTitle">답변 하기</h2>
                 <!-- form 태그 시작 -->
-                <form action="" name="writeForm" method="post">
+                <form action="/detail/answer" name="writeForm" method="post">
                     <table border="1">
                         <colgroup>
                             <col style="width: 130px;">
@@ -365,8 +365,8 @@
                         </colgroup>
                         <tbody>
                         <tr style="border-top: none; border-bottom: none;">
-                            <td colspan="2" class="clear" style="padding-bottom: 3%;border-radius: 25px;"><textarea
-                                    style="width: 100%; display: none;" name="cs_board_content" id="content"
+                            <td colspan="2" class="clear"><textarea
+                                    style="width: 100%; display: none;" name="applicationContent" id="content"
                                     class="ec-fr-never-be-duplicated"></textarea> <input
                                     type="hidden" id="content_hidden"
                                     fw-filter="isSimplexEditorFill" fw-label="내용"
@@ -397,7 +397,7 @@
                                                 "iframe": true,
                                                 "iframeStyle": ".fr-view{font-size: 12px;}",
                                                 "iframeStyleFiles": ["\/\/img.echosting.cafe24.com\/editors\/froala\/css\/froala_style.min.css"],
-                                                "heightMin": 200,
+                                                "heightMin": 400,
                                                 "language": "ko_KR",
                                                 "paragraphFormatSelection": true,
                                                 "fontFamilySelection": true,
@@ -641,7 +641,6 @@
                                                     "#CCCCCC", "#E1E1E1",
                                                     "#EBEBEB", "#FFFFFF",
                                                     "#E97D81", "#E19B73",
-
                                                     "#D1B274", "#CFCCA2",
                                                     "#61B977", "#53AEA8",
                                                     "#518FBB", "#6A65BB",
@@ -914,10 +913,12 @@
                         <tbody class="">
                         <tr style="border-bottom: 0px; border-top: 0px;">
                             <td colspan="3" style=" padding-bottom: 0;">
-                                <input class="input_button" id="cancel_post" type="button" value="취소" style="font-size: 20px;"
+                                <input class="input_button" id="cancel_post" type="button" value="취소"
+                                       style="font-size: 20px;"
                                        onclick="closeForm()"/>
-                                <input class="input_button" id="write_post" type="submit" value="등록" style="font-size: 20px;"
-                                       />
+                                <input class="input_button" id="write_post" type="button" value="등록" onclick="send()"
+                                       style="font-size: 20px;"
+                                />
                             </td>
                         </tr>
                         </tbody>
@@ -928,79 +929,74 @@
             <!-- div_write 끝 -->
 
 
+            <!-- 답변 반복 돌리는 부분-->
+            <th:block th:each="answerList:${answerList}">
+            <br><br>
+            <div class="content main">
 
-        <!-- 답변 반복 돌리는 부분-->
-        <br><br>
-        <div class="content main">
-            <section class="tiles">
-                <div style="width: 100%;margin: auto">
-                    <div class="board_detail_wrap">
-                        <div class="board_question">
-                            <div class="board_title_wrap"><!--의사 프로필-->
-                                <span class="board_btn_wrap">
+                <section class="tiles">
+                    <form method="post" action="/detail/answerList">
+                        <div style="width: 100%;margin: auto" th:object="${answerList}">
+                            <div class="board_detail_wrap">
+                                <div class="board_question">
+                                    <div class="board_title_wrap"><!--의사 프로필-->
+                                        <span class="board_btn_wrap">
                                     <a href="appointment" class="btn_reple" style="line-height: 29px;">진료 <div></div> 예약</a>
                                 </span>
-                                <img src="/img/doc.png" alt=""><!--의사 사진-->
-                                <span class="board_title"><!--의사이름-->
-                                    이성은 (한의사)
+                                        <img src="/img/doc.png" alt=""><!--의사 사진-->
+                                        <span class="board_title" th:text="*{docName}"><!--의사이름-->
 
-                                    <div class="board_title_detail"><!--병원 주소-->
-                                        경기도 수원시 영통구 봉영로 1590 (밀레니엄프라자 3층)(22.0km)
+
+                                    <div class="board_title_detail" th:text="*{docAddress}"><!--병원 주소-->
+
                                     </div>
                                 </span>
-                            </div>
-                            <div style="display: inline;width: 116px;  text-align: right; float: left">
-                                <img src="https://cdn.iconscout.com/icon/free/png-256/a-button-blood-type-37808.png"
-                                     alt="" style="width: 60px">
-                            </div>
-                            <div class="board_content"><!--내용-->
+                                    </div>
+                                    <div style="display: inline;width: 116px;  text-align: right; float: left">
+                                        <img src="https://cdn.iconscout.com/icon/free/png-256/a-button-blood-type-37808.png"
+                                             alt="" style="width: 60px">
+                                    </div>
+                                    <div class="board_content"><!--내용-->
 
 
-                                <div style="margin: auto;">
-                                    안녕하세요, 헬로닥터 지식iN 상담 한의사 이성은 입니다.
+                                        <div style="margin: auto;" th:utext="*{reQnaContent}">
+
+                                        </div>
+                                    </div>
+
+
                                     <br><br>
-                                    지루성 피부염 증상이 악회되셔서 문의주셨는데요,
-                                    <br>
-                                    걱정이 많으시겠습니다.
-                                    <br>
-                                    먼저 지루성 피부염은 피지선이 발달한 부위(두피,얼굴 , 귀, 겨드랑이, 사타구니 등)에서
-                                    <br>
-                                    붉은 판상 형태로 생기며, 인설(하얀 부스러기)이 동반되는 질환입니다.
+                                    <div style=" height: 40px;clear: both;"></div>
+                                    <div class="board_date" style=" width: 74%; clear: both; margin: auto;" th:utext="*{reQnaDate}">
+                                        <!--2021.10.17-->
+                                    </div>
+                                    <div style="text-align: right">
+                                        <a href="#" class="button primary fit btn_like"
+                                           style="width: 25% !important; background: white; color: black !important;">
+                                            <img src="/img/like.jpg" alt=""
+                                                 style="width: 22px;position: relative;top: 4px;">
+                                            좋아요</a>
+                                        <a href="#" class="button primary fit btn_report"
+                                           style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
+                                            <img src="/img/report.png" alt=""
+                                                 style="width: 22px;position: relative;top: 4px;">
+                                            신고하기</a>
+                                    </div>
                                 </div>
                             </div>
-
-
-                            <br><br>
-                            <div style=" height: 40px;clear: both;"></div>
-                            <div class="board_date" style=" width: 74%; clear: both; margin: auto;">
-                                2021.10.17
-                            </div>
-                            <div style="text-align: right">
-                                <a href="#" class="button primary fit btn_like"
-                                   style="width: 25% !important; background: white; color: black !important;">
-                                    <img src="/img/like.jpg" alt=""
-                                         style="width: 22px;position: relative;top: 4px;">
-                                    좋아요</a>
-                                <a href="#" class="button primary fit btn_report"
-                                   style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
-                                    <img src="/img/report.png" alt=""
-                                         style="width: 22px;position: relative;top: 4px;">
-                                    신고하기</a>
-                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                    </form>
+                </section>
+            </div>
+            <!--반복 돌리는 부분-->
+            </th:block>
+
         </div>
-        <!--반복 돌리는 부분-->
+    </section>
 
 
-</div>
-</section>
-
-
-<!-- Footer -->
-<footer id="footer"></footer>
+    <!-- Footer -->
+    <footer id="footer"></footer>
 
 </div>
 
@@ -1016,22 +1012,43 @@
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
 <!-- Scripts -->
-<script>
+<script th:inline="javascript">
 
+    let loginCheck = [[${loginCheck}]];
 
     let btnReply = document.getElementById('btn_reply');
     let divWrite = document.getElementById('div_write');
     let cancel = document.getElementById('cancel_post')
 
-    divWrite.style.display='none';
-    function openForm(){
-        btnReply.style.visibility='hidden';
-        divWrite.style.display='block';
+    divWrite.style.display = 'none';
+
+    function openForm() {
+        if(loginCheck==0){
+            alert('의사 회원만 답변을 달 수 있습니다.');
+            return;
+        }
+        btnReply.style.visibility = 'hidden';
+        divWrite.style.display = 'block';
     }
 
-    function closeForm(){
-        btnReply.style.visibility='visible';
-        divWrite.style.display='none';
+    function closeForm() {
+        btnReply.style.visibility = 'visible';
+        divWrite.style.display = 'none';
+    }
+
+
+    function  send() {
+        let content1 = document.getElementById("content").value;
+        // let content1 ={"content1":$('#content').val()};
+        $.ajax({
+            url:"/detail/answer",
+            contentType:"application/json; charset=utf-8",
+            data: content1,
+            type:'post',
+            success:function(result){
+                alert(result);
+            }
+        });
     }
 
 </script>

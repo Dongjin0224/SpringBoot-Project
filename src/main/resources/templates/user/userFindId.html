@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<!--
+	Hypothesis by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Untitled</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+<style>
+    .content.main{
+        width: 74%;
+        border-radius: 25px;
+        padding: 2%;
+        margin: auto;
+    }
+</style>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+    </header>
+
+    <!-- Section -->
+    <section id="one" class="main alt">
+        <div class="inner alt">
+            <div class="content main">
+                <section class="tiles">
+                    <form method="post" action="/user/findAccount" name="findAccountForm">
+                        <div class="col-12" style="text-align: center;">
+                            <h3 style="font-size: 14px">id</h3>
+                        </div>
+                        <div class="row gtr-uniform">
+                            <!-- 아이디 찾기 -->
+                            <!-- 이름 -->
+                            <div class="col-12">
+                                <label style="margin-top: 5%;">이름</label>
+                                <input type="text" name="userName" id="userName" placeholder="이름" style="font-size: 12px; width: 100%;">
+                            </div>
+
+                            <!-- 휴대폰번호 -->
+                            <div class="col-6 col-12-small">
+                                <label>휴대폰 번호</label>
+                                <input type="text" name="userPhoneNum" id="userPhoneNum" placeholder="전화번호" style="font-size: 12px; width: 100%">
+                            </div>
+                            <!-- 전송 버튼 -->
+                            <div class="col-12">
+                                <ul class="actions stacked">
+                                    <li><input type="submit" value="아이디 찾기" id="findId"
+                                               class="button primary" onclick="" style="width: 100%; font-size: 12px;"></li>
+                                </ul>
+                            </div>
+
+                            <span th:if="${check == 1}">일치하는 정보가 존재하지 않습니다</span>
+                            <span th:if="${check == 0}" th:text="|찾으시는 아이디는${id}입니다.|"></span>
+
+                        </div>
+                    </form>
+                </section>
+                <!-- 비밀번호 찾기 -->
+                <section id="two">
+                    <form method="post" action="">
+                        <div class="row gtr-uniform">
+                            <div class="col-12" style="text-align: center;">
+                                <h3 style="font-size: 14px">비밀번호 찾기</h3>
+                            </div>
+                            <!--coolSms-->
+                            <label>전화번호</label>
+                            <label style="display: inline-flex; width: 100%;"><input type="text" placeholder="휴대폰 번호(-제외)"
+                                                                                     name="userPhoneNum" id="userPhoneNum2">
+                                <input type="button" value="인증번호 전송" class="button primary" onclick=""
+                                       style="border-radius: 0;" id="checkNum" ></label>
+                            <label>본인인증</label>
+                            <label style="display: inline-flex; width: 100%;"><input type="text" placeholder="인증번호를 입력해주세요"
+                                                                                     name="numStr" id="numStr">
+                                <input type="button" value="확인" class="button primary" onclick=""
+                                       style="border-radius: 0;" id="checkNumStr" ></label>
+
+                            <!--coolSms끝-->
+                            <!-- 비밀번호 -->
+                            <div class="col-12">
+                                <label>RESET PASSWORD</label>
+                                <input type="password" name="user_pw" id="user_pw" placeholder="비밀번호 재설정" style="font-size: 12px; width: 350px;"/>
+                            </div>
+                            <div class="col-12">
+                                <label>CONFIRM PASSWORD</label>
+                                <input type="password" name="user_pw_check" id="user_pw_check" placeholder="비밀번호 확인" style="font-size: 12px; width: 350px;"/>
+                            </div>
+
+                            <!-- 완료 -->
+                            <div class="col-12">
+                                <ul class="actions">
+                                    <li id="join" style="width: 100%;">
+                                        <input type="button" value="reset password" id="resetPw" class="button primary large" onclick="" style="width: 350px;"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.selectorr.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/fix.js"></script>
+<script>
+</script>
+</body>
+</html>

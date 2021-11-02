@@ -12,20 +12,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("")
 public class WebController {
-    public static HttpSession session = null;
+
+
     @GetMapping("index")
-    public String index(HttpSession session) {
-        if (null == session || this.session == null) {
-            return "index";
-        } else {
-            UserVO user = (UserVO) session.getAttribute("user");
-            Long userNo = user.getUserNo();
-            System.out.println(userNo);
-            return "index";
-        }
+    public String index(){
+        return "index";
     }
-
-
 
     @GetMapping("elements")
     public String elements(){

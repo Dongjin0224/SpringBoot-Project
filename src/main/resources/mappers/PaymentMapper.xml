@@ -11,13 +11,13 @@
 
     <update id="updateCustomer">
         UPDATE TABLE_PAYMENT
-        SET CARD_NUMBER = #{card_number}, EXPIRY = #{expiry}, BIRTH = #{birth}, PWD_2DIGIT = #{pwd_2digit}, CUSTOMER_UID = #{customer_uid}, AMOUNT = #{amount}
+        SET CARD_NUMBER = #{card_number}, EXPIRY = #{expiry}, BIRTH = #{birth}, PWD_2DIGIT = #{pwd_2digit}, CUSTOMER_UID = #{customer_uid}
         WHERE DOCNO = #{docNo}
     </update>
 
     <update id="pay">
         UPDATE TABLE_PAYMENT
-        SET PAYSTATUS = 1, AMOUNT = #{amount}, PAYDATE = SYSDATE, "NAME" = #{name}
+        SET PAYSTATUS = #{payStatus}, AMOUNT = #{amount}, PAYDATE = SYSDATE, "NAME" = #{name}
         WHERE DOCNO = #{docNo}
     </update>
 
@@ -26,6 +26,12 @@
         FROM TABLE_PAYMENT
         WHERE DOCNO = #{docNo}
     </select>
+
+    <insert id="cancelPay">
+        INSERT INTO TABLE_PAYMENT_CANCEL
+        (CANCELNO, DOCNO, CANCELREASON)
+        VALUES(SEQ_PAYMENT_CANCEL.NEXTVAL, #{docNo}, #{cancelReason});
+    </insert>
 
     <resultMap type="payVO" id="result">
         <result property="payNo" column="PAYNO"/>

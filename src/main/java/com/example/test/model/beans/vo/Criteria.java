@@ -11,6 +11,8 @@ public class Criteria {
     private int amount;
     private String keyword;
     private String type;
+    private String qnaMajor;
+    private String town;
 
     public Criteria(){
         this(1, 10);
@@ -29,6 +31,7 @@ public class Criteria {
                 .queryParam("keyword", keyword);
         return builder.toUriString();
     }
+
 
     public String[] getTypeArr(){
         return type == null ? new String[] {} : type.split("");

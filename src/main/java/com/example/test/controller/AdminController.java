@@ -22,7 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequiredArgsConstructor
 public class AdminController {
 
-    public final AdminService adminService;
+   public final AdminService adminService;
 
     @GetMapping("admin")
     public String admin(){return "admin/adminHome";}
@@ -32,7 +32,7 @@ public class AdminController {
     public String volunteer(){return "admin/adminVolunteer";}
 
 
-    /* 일반회원 관리 */
+    //* 일반회원 관리 *//*
     @GetMapping("adminUpdateUser")
     public void getUser(Model model){
         model.addAttribute("user", adminService.readUser());
@@ -50,7 +50,7 @@ public class AdminController {
         return new RedirectView("adminUpdateUser");
     }
 
-    /* 의사회원 관리 */
+    //* 의사회원 관리 *//*
     @GetMapping("adminUpdateDoc")
     public void getDoc(Model model){
         model.addAttribute("doc", adminService.readDoc());
@@ -68,7 +68,7 @@ public class AdminController {
         return new RedirectView("adminUpdateDoc");
     }
 
-    /* 공지사항 등록 */
+    //* 공지사항 등록 *//*
     @PostMapping("notice")
     public String insertNotice(NoticeVO noticeVO){
         log.info("insertNotice 들어옴");
@@ -77,7 +77,7 @@ public class AdminController {
         return "admin/adminNotice";
     }
 
-    /* 봉사공고 등록 */
+    //* 봉사공고 등록 *//*
     @PostMapping("volunteer")
     public String insertVolunteer(VolunteerBoardVO volunteerBoardVO){
 
@@ -90,20 +90,9 @@ public class AdminController {
         return "admin/adminVolunteer";
     }
 
-    /* 신고 관리 */
+    //* 신고 관리 *//*
     @GetMapping("adminReport")
     public void report(Model model){
         model.addAttribute("report", adminService.report());
-    }
-
-    @GetMapping("reportDoc")
-    public RedirectView reportDoc(DocVO doc, RedirectAttributes rttr){
-        log.info("-------------------------------");
-        log.info("modify : " + doc.toString());
-        log.info("-------------------------------");
-
-        adminService.updateDoc(doc);
-
-        return new RedirectView("adminReport");
     }
 }

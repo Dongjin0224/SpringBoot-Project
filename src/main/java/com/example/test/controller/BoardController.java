@@ -2,9 +2,11 @@ package com.example.test.controller;
 
 
 import com.example.test.model.beans.vo.PageDTO;
+import com.example.test.model.mainBoard.vo.AnswerVO;
 import com.example.test.model.mainBoard.vo.AttachFileVO;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
+import com.example.test.services.AnswerService;
 import com.example.test.services.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,15 +30,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
+    private final AnswerService answerService;
 
     @GetMapping("mainBoard")
     public String list(Criteria criteria,HttpServletRequest req, Model model){
+
+
+        if (criteria.getKeyword() == null){
+            criteria.setKeyword("");
+        }
+        if (criteria.getTown() == null){
+            criteria.setTown("");
+        }
+        if (criteria.getQnaMajor() == null){
+            criteria.setQnaMajor("");
+        }
+
         log.info("-------------------------------");
         log.info("list");
-        log.info(criteria.toString());
+        log.info("Criteria 출력" + criteria.toString());
         log.info("-------------------------------");
-
-
 
         HttpSession session = req.getSession();
         if(session.getAttribute("userNo")==null) {
@@ -45,13 +58,38 @@ public class BoardController {
             model.addAttribute("loginCheck",1);
         }
 
-
         model.addAttribute("like",boardService.getLikeCnt());
         model.addAttribute("reply",boardService.getReplyCnt());
-        model.addAttribute("list", boardService.getList(criteria));
+
+        model.addAttribute("list", boardService.getSearchList(criteria));
         model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
         return "mainBoard/mainBoard";
     }
+
+//    @GetMapping("mainBoard2")
+//    public String list2(Criteria criteria,HttpServletRequest req, Model model){
+//        log.info("-------------------------------");
+//        log.info("list");
+//        log.info(criteria.toString());
+//        log.info("-------------------------------");
+//
+//
+//
+//        HttpSession session = req.getSession();
+//        if(session.getAttribute("userNo")==null) {
+//            model.addAttribute("loginCheck", 0);
+//        }else{
+//            model.addAttribute("loginCheck",1);
+//        }
+//
+//
+//        model.addAttribute("like",boardService.getLikeCnt());
+//        model.addAttribute("reply",boardService.getReplyCnt());
+//
+//        model.addAttribute("list", boardService.getSearchList(criteria));
+//        model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
+//        return "mainBoard/mainBoard";
+//    }
 
     @PostMapping("write2")
     public RedirectView register(BoardVO boardVO,HttpServletRequest req, RedirectAttributes rttr){
@@ -82,6 +120,8 @@ public class BoardController {
     }
     @GetMapping("detail")
     public void read(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("qnaNo",qnaNo);
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
         //read 요청 시 read 출력
@@ -90,6 +130,13 @@ public class BoardController {
         log.info(reqType + " : " + qnaNo);
         log.info("-------------------------------");
 
+        if(session.getAttribute("docNo")==null) {
+            model.addAttribute("loginCheck", 0);
+        }else{
+            model.addAttribute("loginCheck",1);
+        }
+
+        model.addAttribute("answerList",answerService.answerList(qnaNo));
         boardService.updateView(qnaNo);
         model.addAttribute("board", boardService.get(qnaNo));
         model.addAttribute("criteria", criteria);
@@ -173,4 +220,8 @@ public class BoardController {
 //        log.info("getAttachList " + qnaNo);
 //        return boardService.getAttachList(qnaNo);
 //    }
+
+
+
+
 }
