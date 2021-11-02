@@ -33,6 +33,7 @@ public class MyPageController {
         UserVO user = (UserVO) session.getAttribute("user");
         Long userNo = user.getUserNo();
         model.addAttribute("user", myPageService.viewUser(userNo));
+        model.addAttribute("getResList", myPageService.getResList(userNo));
         return "myPage/myPageUser";
     }
 
@@ -68,13 +69,30 @@ public class MyPageController {
         model.addAttribute("doc", myPageService.viewDoc(docNo));
         model.addAttribute("getVolList", myPageService.getVolList(docNo));
         model.addAttribute("getAppList", myPageService.getAppList(docNo));
-        model.addAttribute("pageMaker", new PageDTO(volunteerService.getTotal(criteria), 10, criteria));
+        /*model.addAttribute("pageMaker", new PageDTO(volunteerService.getTotal(criteria), 10, criteria));*/
         log.info("------------------------------------");
         log.info("docNo" + String.valueOf(docNo));
         log.info("------------------------------------");
 
         return "myPage/myPageDoc";
     }
+
+    @GetMapping("applicationForm")
+    public String applicationForm(@RequestParam("applicantsNo") Long applicantsNo, Model model, HttpServletRequest request){
+        HttpSession session = (HttpSession)request.getSession();
+        Long docNo = (Long) session.getAttribute("docNo");
+
+        model.addAttribute("getAppContent", myPageService.getAppContent(docNo));
+        /*model.addAttribute("getAppContent", myPageService.getAppContent(applicantsNo));*/
+        return "myPage/applicationForm";
+    }
+
+    /*@GetMapping("volunteerContent")
+    public String volunteerContent(@RequestParam("volunteerBoardNo") Long volunteerBoardNo, Criteria criteria, Model model){
+        model.addAttribute("content", volunteerService.get(volunteerBoardNo));
+        model.addAttribute("criteria", criteria);
+        return "volunteer/volunteerContent";}*/
+
 
 
     @PostMapping("updateDoc")

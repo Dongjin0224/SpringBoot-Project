@@ -372,11 +372,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="table2">
-                                <td class="">신짱구</td>
-                                <td class="">010-1234-5678</td>
-                                <td class="">피부과</td>
-                                <td class="">2222.12.22</td>
+                            <tr class="table2" th:each="getResList:${getResList}" th:object="${getResList}">
+                                <td class="" th:text="*{docName}"></td>
+                                <td class="" th:text="*{docHosPhone}"></td>
+                                <td class="" th:text="*{docMajor}"></td>
+                                <td class="" th:text="*{#strings.substring(reserveDate, 0, 10)}"></td>
                             </tr>
                             </tbody>
                         </table>
