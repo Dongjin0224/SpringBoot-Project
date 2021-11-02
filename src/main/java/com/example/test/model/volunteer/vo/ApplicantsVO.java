@@ -15,5 +15,8 @@ public class ApplicantsVO {
     private int applicants;
     private String applicationContent;
     private String applicationDate;
+    private String docMajor;
 
+    private String volunteerArea;
+    private String volunteerBoardTitle;
 }

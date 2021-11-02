@@ -9,33 +9,34 @@
 
 <body>
 <!--<form action="/payment/customerTest" method="post" name="testForm">-->
-    <div>
-        <label for="card_number">카드 번호 XXXX-XXXX-XXXX-XXXX</label>
-        <input id="card_number" type="text" name="card_number">
-    </div>
-    <div>
-        <label for="expiry">카드 유효기간 YYYY-MM</label>
-        <input id="expiry" type="text" name="expiry">
-    </div>
-    <div>
-        <label for="birth">생년월일 YYMMDD</label>
-        <input id="birth" type="text" name="birth">
-    </div>
-    <div>
-        <label for="pwd_2digit">카드 비밀번호 앞 두자리 XX</label>
-        <input id="pwd_2digit" type="text" name="pwd_2digit">
-    </div>
-    <input type="hidden" id="amount" value="1001" name="amount">
-    <input type="hidden" id="name" value="TestProduct" name="name">
-    <input type="hidden" id="docNo" value=1 name="docNo">
-    <input type="submit" id="a" value="test">
+<div>
+    <label for="card_number">카드 번호 XXXX-XXXX-XXXX-XXXX</label>
+    <input id="card_number" type="text" name="card_number">
+</div>
+<div>
+    <label for="expiry">카드 유효기간 YYYY-MM</label>
+    <input id="expiry" type="text" name="expiry">
+</div>
+<div>
+    <label for="birth">생년월일 YYMMDD</label>
+    <input id="birth" type="text" name="birth">
+</div>
+<div>
+    <label for="pwd_2digit">카드 비밀번호 앞 두자리 XX</label>
+    <input id="pwd_2digit" type="text" name="pwd_2digit">
+</div>
+<input type="hidden" id="amount" value="2001" name="amount">
+<input type="hidden" id="name" value="TestProduct" name="name">
+<input type="hidden" id="docNo" value=2 name="docNo">
+<input type="submit" id="a" value="test">
 <!--</form>-->
 
 <!--<form action="/payment/schedule" method="post" name="scForm">-->
 <!--    <input type="hidden" value="dongjin1234" name="customer_uid">-->
 <!--    <input type="hidden" id="amount" value=1000 name="amount">-->
-    <input id="check_module" type="button" value="결제하기">
+<input id="check_module" type="button" value="결제하기">
 <input type="button" id="cancel" value="예약 취소">
+<input type="button" id="updateCard" value="카드 수정">
 <!--</form>-->
 
 </body>
@@ -44,24 +45,13 @@
     // let form = document.testForm;
     // form.serialize();
 
-    // $("#b").on("click", function(){
-    //     $.ajax({
-    //         url: "/payment/customerTest",
-    //         method: "post",
-    //         contentType:"application/json; charset=utf-8",
-    //         success:function (result) {
-    //             alert(result)
-    //         }
-    //     });
-    // })
+    //    customer_uid 값 등록
+    let amount = $("#amount").val();
+    let name = $("#name").val();
+    let docNo = $("#docNo").val();
+    let payStatus;
 
-
-//    customer_uid 값 등록
-let amount = $("#amount").val();
-let name = $("#name").val();
-let docNo = $("#docNo").val();
-
-    $("#a").on("click", function(){
+    $("#a").on("click", function () {
         let card_number = $("#card_number").val();
         let expiry = $("#expiry").val();
         let birth = $("#birth").val();
@@ -72,105 +62,130 @@ let docNo = $("#docNo").val();
             expiry: expiry,
             birth: birth,
             pwd_2digit: pwd_2digit,
+            // amount: amount,
+            docNo: docNo
+        };
+
+
+        $.ajax({
+            url: "/payment/cardCheck",
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(arr),
+            success: function (result) {
+                if (result == "success") {
+                    alert("등록 성공")
+                    $.ajax({
+                        url: "/payment/insertCustomer",
+                        method: "post",
+                        contentType:"application/json; charset=utf-8",
+                        data: JSON.stringify(arr),
+                        success:function () {
+                            alert("insert");
+                        }
+                    });
+                } else if (result == "fail") {
+                    alert("등록 실패")
+                }
+            }
+        });
+
+    });
+
+    //    결제와 동시에 예약등록
+    $("#check_module").click(function () {
+
+        var IMP = window.IMP; // 생략가능
+        IMP.init('imp82864473');
+        // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+        // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+        IMP.request_pay({
+            pg: 'nice',
+            pay_method: 'card',
+            merchant_uid: "merchant_" + new Date().getTime(), // 상점에서 관리하는 주문 번호
+            name: name,
             amount: amount,
+            buyer_email: 'iamport@siot.do',
+            buyer_name: '구매자이름',
+            buyer_tel: '010-1234-5678',
+            buyer_addr: '서울특별시 강남구 삼성동',
+            buyer_postcode: '123-456'
+
+        }, function (rsp) {
+            if (amount == 1001) {
+                payStatus = 1;
+            } else if (amount == 2001) {
+                payStatus = 2;
+            }
+            if (rsp.success) {
+                var msg = '결제가 완료되었습니다.';
+                msg += '\n결제 금액 : ' + rsp.paid_amount;
+                msg += '\n카드 승인번호 : ' + rsp.apply_num;
+
+                alert(msg);
+
+                $.ajax({
+                    url: "/payment/startPay",
+                    method: "post",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({name: name, docNo: docNo, amount: amount, payStatus: payStatus}),
+                })
+                //     } else {
+                //         //[3] 아직 제대로 결제가 되지 않았습니다.
+                //         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+                //     }
+                // });
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+
+                alert(msg);
+            }
+        });
+    });
+
+    $("#cancel").on("click", function () {
+        $.ajax({
+            url: "/payment/stopPay",
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({docNo: docNo}),
+            success: function () {
+                alert("예약 취소");
+            }
+        })
+    })
+
+    $("#updateCard").on("click", function () {
+
+        let card_number = $("#card_number").val();
+        let expiry = $("#expiry").val();
+        let birth = $("#birth").val();
+        let pwd_2digit = $("#pwd_2digit").val();
+
+        let arr = {
+            card_number: card_number,
+            expiry: expiry,
+            birth: birth,
+            pwd_2digit: pwd_2digit,
+            // amount: amount,
             docNo: docNo
         };
 
         $.ajax({
-            url: "/payment/getCustomer",
+            url: "/payment/updateCard",
             method: "post",
-            contentType:"application/json; charset=utf-8",
+            contentType: "application/json; charset=utf-8",
             data: JSON.stringify(arr),
-            success:function () {
-                alert("됐다");
+            success: function (result) {
+                if (result == "success") {
+                    alert("수정 성공")
+                } else if (result == "fail") {
+                    alert("수정 실패")
+                }
             }
-        });
-    });
-
-
-//    결제와 동시에 예약등록
-$("#check_module").click(function () {
-
-    var IMP = window.IMP; // 생략가능
-    IMP.init('imp82864473');
-    // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-    // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
-    IMP.request_pay({
-        pg : 'nice',
-        pay_method : 'card',
-        merchant_uid: "merchant_" + new Date().getTime(), // 상점에서 관리하는 주문 번호
-        name : name,
-        amount : amount,
-        buyer_email : 'iamport@siot.do',
-        buyer_name : '구매자이름',
-        buyer_tel : '010-1234-5678',
-        buyer_addr : '서울특별시 강남구 삼성동',
-        buyer_postcode : '123-456'
-
-    }, function(rsp) {
-        if ( rsp.success ) {
-            // //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-            // jQuery.ajax({
-            //     url: "/payments/token", //cross-domain error가 발생하지 않도록 주의해주세요
-            //     type: 'POST',
-            //     dataType: 'json',
-            //     data: {
-            //         access_token : rsp.access_token
-            //         //기타 필요한 데이터가 있으면 추가 전달
-            //     }
-            // }).done(function(data) {
-                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-                // if ( everythings_fine ) {
-                    var msg = '결제가 완료되었습니다.';
-                    msg += '\n고유ID : ' + rsp.imp_uid;
-                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-                    msg += '\n결제 금액 : ' + rsp.paid_amount;
-                    msg += '\n카드 승인번호 : ' + rsp.apply_num;
-
-                    alert(msg);
-            //     } else {
-            //         //[3] 아직 제대로 결제가 되지 않았습니다.
-            //         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-            //     }
-            // });
-        } else {
-            var msg = '결제에 실패하였습니다.';
-            msg += '에러내용 : ' + rsp.error_msg;
-
-            alert(msg);
-        }
-
-        $.ajax({
-            url: "/payment/schedule",
-            method: "post",
-            contentType:"application/json; charset=utf-8",
-            data: JSON.stringify({
-                name: name
-            }),
-            success:function () {
-                alert("예약 됐다");
-                setTimeout(function(){
-                    $.ajax({
-                        url: "/payment/startPay",
-                        method: "post",
-                        contentType: "application/json; charset=utf-8"
-                    })
-                }, 60000);
-            }
-        });
-    });
-});
-
-$("#cancel").on("click", function(){
-    $.ajax({
-        url: "/payment/stopPay",
-        method: "post",
-        contentType: "application/json; charset=utf-8",
-        success:function () {
-            alert("예약 취소");
-        }
+        })
     })
-})
 
 </script>
 </html>

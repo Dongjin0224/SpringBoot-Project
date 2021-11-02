@@ -44,23 +44,23 @@
         ]]>
     </select>
 
-    <select id="getSearchList" resultType="boardVO">
-          <![CDATA[
-        SELECT qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt
-        FROM
-        (
-            SELECT /*+ INDEX_DESC(TABLE_QNA PK_QNA) */
-            ROWNUM R, qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt
-            FROM TABLE_QNA
-            WHERE
-        ]]>
-        <include refid="search"></include>
-        <![CDATA[
-        ROWNUM <= #{pageNum} * #{amount}
-        )
-        WHERE R > (#{pageNum} - 1) * #{amount}
-        ]]>
-    </select>
+<!--    <select id="getSearchList" resultType="boardVO">-->
+<!--          <![CDATA[-->
+<!--        SELECT qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt-->
+<!--        FROM-->
+<!--        (-->
+<!--            SELECT /*+ INDEX_DESC(TABLE_QNA PK_QNA) */-->
+<!--            ROWNUM R, qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt-->
+<!--            FROM TABLE_QNA-->
+<!--            WHERE-->
+<!--        ]]>-->
+<!--        <include refid="search"></include>-->
+<!--        <![CDATA[-->
+<!--        ROWNUM <= #{pageNum} * #{amount}-->
+<!--        )-->
+<!--        WHERE R > (#{pageNum} - 1) * #{amount}-->
+<!--        ]]>-->
+<!--    </select>-->
 
 <!--    <insert id="insert">
         INSERT INTO TABLE_QNA (QNANO, USERNO, QNATITLE, QNAADDRESS, QNAAGE, QNAGENDER, QNADISEASE, QNAMAJOR, QNACONTENT)
@@ -98,14 +98,9 @@
         DELETE FROM TABLE_QNA WHERE qnaNo = #{qnaNo}
     </delete>
 
-    <select id="getTotal" resultType="_int">
-        SELECT COUNT(qnaNo) FROM TABLE_QNA
-        <where>
-            <trim suffixOverrides="AND">
-                <include refid="search"></include>
-            </trim>
-        </where>
-    </select>
+<!--    <select id="getTotal" resultType="_int">-->
+<!--        SELECT COUNT(qnaNo) FROM TABLE_QNA-->
+<!--    </select>-->
 
     <select id="getLikeCnt" resultType="DocVO">
         SELECT * FROM (SELECT ROWNUM R, D.* FROM (SELECT * FROM TABLE_DOC ORDER BY docLikeCnt DESC) D) WHERE <![CDATA[ (R < 6) ]]>
@@ -138,5 +133,45 @@ TABLE_DOC W,
 WHERE
 W.DOCNO = E.DOCNO
 ORDER BY R
+    </select>
+
+
+    <select id="getSearchList" resultType="boardVO">
+        <![CDATA[
+        SELECT qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt
+        FROM
+        (
+            SELECT
+            ROWNUM R, qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt
+            FROM
+            (
+            SELECT /*+ INDEX_DESC(TABLE_QNA PK_QNA) */
+            *
+            FROM TABLE_QNA WHERE (qnaTitle LIKE '%'||#{keyword}||'%' OR QNACONTENT LIKE '%'||#{keyword}||'%' OR QNADISEASE LIKE '%'||#{keyword}||'%' OR QNAMAJOR LIKE '%'||#{keyword}||'%' OR QNAADDRESS LIKE '%'||#{keyword}||'%')
+            AND QNAADDRESS LIKE '%'||#{town}||'%'
+            )
+            WHERE
+        ]]>
+        <![CDATA[
+        ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE R > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(qnaNo)
+        FROM
+        (
+            SELECT
+            ROWNUM R, qnaNo, userNo, qnaTitle, qnaAddress, qnaAge, qnaGender, qnaDisease, qnaMajor, qnaContent, qnaDate, qnaViewCnt
+            FROM
+            (
+            SELECT /*+ INDEX_DESC(TABLE_QNA PK_QNA) */
+            *
+            FROM TABLE_QNA WHERE (qnaTitle LIKE '%'||#{keyword}||'%' OR QNACONTENT LIKE '%'||#{keyword}||'%' OR QNADISEASE LIKE '%'||#{keyword}||'%' OR QNAMAJOR LIKE '%'||#{keyword}||'%' OR QNAADDRESS LIKE '%'||#{keyword}||'%')
+            AND QNAADDRESS LIKE '%'||#{town}||'%'
+            )
+        )
     </select>
 </mapper>

@@ -115,7 +115,7 @@
                             <tr style="border: 0 !important;">
                                 <td colspan="2">
                                     <select id="qnaMajor" name="qnaMajor" fw-filter="isFill"
-                                            fw-label="제목" fw-msg="" onchange="changeTitle()">
+                                            fw-label="제목" fw-msg="" onchange="">
                                         <option selected disabled>진료과목</option>
                                         <option value="정형외과">정형외과</option>
                                         <option value="성형외과">성형외과</option>
@@ -652,37 +652,37 @@
                                             return "//img.echosting.cafe24.com/editors/froala/css/froala_style_ec.min.css";
                                         }
 
-                                      /*  // 파일 업로드시 랜덤한 파라미터 값 추가
-                                        function getConvertUrlBeforeUpload(
-                                            sUploadUrl) {
-                                            var aSplitUrl = sUploadUrl.split("?");
-                                            var oParam = getParameterUploadUrl(aSplitUrl[1]);
+                                        /*  // 파일 업로드시 랜덤한 파라미터 값 추가
+                                          function getConvertUrlBeforeUpload(
+                                              sUploadUrl) {
+                                              var aSplitUrl = sUploadUrl.split("?");
+                                              var oParam = getParameterUploadUrl(aSplitUrl[1]);
 
-                                            return decodeURIComponent(aSplitUrl[0]
-                                                + "?"
-                                                + "uploadPath="
-                                                + oParam["uploadPath"]
-                                                + "&uploadId="
-                                                + Math
-                                                    .floor(
-                                                        (Math.random() * 100000))
-                                                    .toString());
-                                        }
+                                              return decodeURIComponent(aSplitUrl[0]
+                                                  + "?"
+                                                  + "uploadPath="
+                                                  + oParam["uploadPath"]
+                                                  + "&uploadId="
+                                                  + Math
+                                                      .floor(
+                                                          (Math.random() * 100000))
+                                                      .toString());
+                                          }
 
-                                        function getParameterUploadUrl(sQueryString) {
-                                            var aParam = {};
+                                          function getParameterUploadUrl(sQueryString) {
+                                              var aParam = {};
 
-                                            if (sQueryString) {
-                                                var aFields = sQueryString
-                                                    .split("&");
-                                                var aField = [];
-                                                for (var i = 0; i < aFields.length; i++) {
-                                                    aField = aFields[i].split("=");
-                                                    aParam[aField[0]] = aField[1];
-                                                }
-                                            }
-                                            return aParam;
-                                        }*/
+                                              if (sQueryString) {
+                                                  var aFields = sQueryString
+                                                      .split("&");
+                                                  var aField = [];
+                                                  for (var i = 0; i < aFields.length; i++) {
+                                                      aField = aFields[i].split("=");
+                                                      aParam[aField[0]] = aField[1];
+                                                  }
+                                              }
+                                              return aParam;
+                                          }*/
                                     </script></td>
                             </tr>
                             </tbody>

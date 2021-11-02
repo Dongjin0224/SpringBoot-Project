@@ -84,7 +84,7 @@ public class DocController {
     public int checkId(DocVO vo){
         int result= service.checkId(vo);
         return result;
-        }
+    }
 
     @GetMapping("docLogout")
     public String docLogout(HttpServletRequest req) {

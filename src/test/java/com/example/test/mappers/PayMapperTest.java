@@ -20,9 +20,7 @@ public class PayMapperTest {
 
     @Test
     public void insertCustomerTest(){
-        PayVO payVO = new PayVO();
-        payVO.setDocNo(1L);
-        payMapper.insertCustomer(payVO);
+        payMapper.insertCustomer(2L);
     }
 
     @Test

@@ -304,21 +304,22 @@
                         </div>
                     </section>
                     <div class="searchDiv">
-                        <form action="" name="searchForm" id="searchForm">
+                        <form action="/mainBoard/mainBoard" name="searchForm" id="searchForm">
                             <div class="field">
                                 <div id="searchWrap">
                                     <td>
-                                        <select name="city" id="city">
-                                            <option value="시 / 도">시 / 도</option>
+                                        <select name="city" id="city" >
+                                            <option value="">시 / 도</option>
                                         </select>
                                         <select name="town" id="town">
-                                        <option value="구 / 군">구 / 군</option>
+                                            <option value="">구 / 군</option>
                                         </select>
-                                    <input id="keyword" type="text" name="keyword"
-                                           style="border: 2px solid #358bca; border-radius: 0;">
-                                    <input type="submit" value="검색" class="search button primary icon solid fa-search"
-                                       style="border-radius: 0;">
                                     </td>
+                                    <!--<input type="hidden" name="qnaAddress" id="qnaAddress">-->
+                                    <input type="hidden" id="criteriaPageNum" name="pageNum">
+                                    <input type="hidden" id="criteriaAmount" name="amount">
+                                    <input id="keyword" type="text" name="keyword" style="border: 2px solid #358bca; border-radius: 0;">
+                                    <input type="submit" value="검색" class="search button primary icon solid fa-search" style="border-radius: 0;">
                                 </div>
                             </div>
                         </form>
@@ -326,22 +327,18 @@
                     <div class="pageWrap">
                         <div th:object="${pageMaker}">
                             <div style="text-align: center">
-<!--                                <a class="changePage" th:if="*{prev}" th:href="|mainBoard?pageNum=*{criteria.getPageNum() - 1}&amount=10|"><code>&lt;</code></a>-->
                                 <a class="changePage" th:if="*{prev}" th:href="*{criteria.getPageNum() - 1}"><code>&lt;</code></a>
                                 <th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
                                     <code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
-<!--                                    <code class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>-->
-<!--                                    <a class="changePage" th:if="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>-->
-<!--                                    <a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="|mainBoard?pageNum=${num}&amount=10|"><code th:text="${num}"></code></a>-->
                                     <a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
                                 </th:block>
                                 <a class="changePage" th:if="*{next}" th:href="*{criteria.getPageNum() + 1}"><code>&gt;</code></a>
-<!--                                <a class="changePage" th:if="*{next}" th:href="|mainBoard?pageNum=*{criteria.getPageNum() + 1}&amount=10|}"><code>&gt;</code></a>-->
                             </div>
                             <form  th:object="${criteria}" name="pageForm">
                                 <input type="hidden" name="pageNum" th:field="*{pageNum}">
                                 <input type="hidden" name="amount" th:field="*{amount}">
-
+                                <input type="hidden" name="keyword" th:field="*{keyword}">
+                                <input type="hidden" name="town" th:field="*{town}">
                             </form>
                         </div>
                     </div>
@@ -448,7 +445,7 @@
         var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
         var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
         var area3 = ["대덕구","동구","서구","유성구","중구"];
-        var area4 = ["광산구","남구","동구",     "북구","서구"];
+        var area4 = ["광산구","남구","동구", "북구","서구"];
         var area5 = ["남구","달서구","동구","북구","서구","수성구","중구","달성군"];
         var area6 = ["남구","동구","북구","중구","울주군"];
         var area7 = ["강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
@@ -483,9 +480,12 @@
                     $town.append("<option value='" + this + "'>" + this + "</option>");
                 });
             }
+            // if( document.getElementById("town").value == "구 / 군"){
+            //     document.getElementById("town").value = "";
+            // }
+            /*document.getElementById("qnaAddress").value = document.getElementById("town").value;*/
         });
     });
-
     // $(document).ready(function() {
     //     $("a[name='file-delete']").on("click", function(e) {
     //         e.preventDefault();
@@ -495,9 +495,12 @@
 
 
     let pageForm = $(document.pageForm);
-    let paing = [[${pageMaker.criteria.listLink}]];
+    let paing0 = [[${pageMaker.criteria.listLink}]];
+    let paing1 = [[${pageMaker.criteria.amount}]];
+    let paing2 = [[${pageMaker.criteria.pageNum}]];
     let searchForm = $(document.searchForm);
-
+    document.getElementById("criteriaPageNum").value = paing2;
+    document.getElementById("criteriaAmount").value = paing1;
 
     $("a.changePage").click(function(e){
         e.preventDefault();
