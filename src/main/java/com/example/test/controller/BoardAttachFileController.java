@@ -1,6 +1,7 @@
 package com.example.test.controller;
 
-import com.example.test.model.user.vo.DocAttachFileVO;
+
+import com.example.test.model.mainBoard.vo.AttachFileVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.core.io.FileSystemResource;
@@ -29,17 +30,16 @@ import java.util.UUID;
 
 @Controller
 @Slf4j
-@RequestMapping("/upload/*")
-public class DocAttachFileController {
+@RequestMapping("/boardUpload/*")
+public class BoardAttachFileController {
 
     @PostMapping(value = "uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<DocAttachFileVO> uploadAjaxAction(MultipartFile[] uploadFiles){
+    public List<AttachFileVO> uploadAjaxAction(MultipartFile[] uploadFiles){
         log.info("upload ajax action...........");
-        List<DocAttachFileVO> fileList = new ArrayList<>();
+        List<AttachFileVO> fileList = new ArrayList<>();
 
-
-        String uploadFolder = "/Users/kimdongjin/Desktop/gb_0900_kdj/spring/resource/temp/upload";
+        String uploadFolder = "C:/upload";
         String uploadFolderPath = getFolder();
 
         log.info("---------multipart length--------------");
@@ -56,35 +56,28 @@ public class DocAttachFileController {
             log.info("Upload File Name : " + multipartFile.getOriginalFilename());
             log.info("Upload File Size : " + multipartFile.getSize());
 
-            DocAttachFileVO docAttachFileVO = new DocAttachFileVO();
+            AttachFileVO attachFileVO = new AttachFileVO();
+
             String uploadFileName = multipartFile.getOriginalFilename();
 
-//            UUID
-//            네트워크 상에서 각각의 개체들을 식별하기 위하여 사용되었다.
-//            중복될 가능성이 거의 없다고 인정되기 때문에 많이 사용된다.
-
-//            UUID 개수
-//            340,282,366,920,938,463,463,374,607,431,768,211,456개
-//            10의 38승 : 만4, 억8, 조12, 경16, 해20, 자24, 양28, 구32, 간36
-//            340간
             UUID uuid = UUID.randomUUID();
             uploadFileName = uuid.toString() + "_" + uploadFileName;
             //IE에서는 파일 이름을 포함한 전체 경로가 나오기 때문에 잘라야한다.
             uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
             log.info("file name : " + uploadFileName);
 
-            docAttachFileVO.setFileName(uploadFileName);
+            attachFileVO.setFileName(uploadFileName);
 
             try {
                 File saveFile = new File(uploadPath,uploadFileName);
                 multipartFile.transferTo(saveFile);
                 InputStream in = new FileInputStream(saveFile);
 
-                docAttachFileVO.setUuid(uuid.toString());
-                docAttachFileVO.setUploadPath(uploadFolderPath);
+                attachFileVO.setUuid(uuid.toString());
+                attachFileVO.setUploadPath(uploadFolderPath);
 
                 if(checkImageType(saveFile)) {
-                    docAttachFileVO.setImage(true);
+                    attachFileVO.setImage(true);
                     FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
                     Thumbnailator.createThumbnail(in, thumbnail, 100, 100);
                     thumbnail.close();
@@ -95,9 +88,10 @@ public class DocAttachFileController {
                 System.gc();
                 //가비지 컬렉터가 포착한 해제 필드들을 모두 즉시 해제
                 System.runFinalization();
+                log.info("fileList에 add가 되냐?1");
+                fileList.add(attachFileVO);
 
-                fileList.add(docAttachFileVO);
-                log.info("fileList : " + String.valueOf(fileList));
+                log.info("fileList에 add가 되냐?2");
             } catch (IOException e) {
                 log.error(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e){
@@ -112,12 +106,11 @@ public class DocAttachFileController {
         Date date = new Date();
         String now = sdf.format(date);
 
-//        - 대신 각 디렉토리의 경로를 구분할 수 있도록 하기 위해서
-//        replace()를 사용한다.
+
         return now.replace("-", "/");
     }
 
-//    서버에 업로드된 파일은 시간이 걸리더라도 파일 자체가 이미지인지를 정확하게 체크한 뒤 저장해야 한다.
+    //    서버에 업로드된 파일은 시간이 걸리더라도 파일 자체가 이미지인지를 정확하게 체크한 뒤 저장해야 한다.
     private boolean checkImageType(File file){
         try {
             String contentType = Files.probeContentType(file.toPath());
@@ -127,11 +120,10 @@ public class DocAttachFileController {
         }
         return false;
     }
-
     @GetMapping("display")
     @ResponseBody
     public ResponseEntity<byte[]> getFile(String fileName){
-        File file = new File("/Users/kimdongjin/Desktop/gb_0900_kdj/spring/resource/temp/upload" + fileName);
+        File file = new File("C:/upload/" + fileName);
         log.info("file : " + file);
         HttpHeaders header = new HttpHeaders();
         ResponseEntity<byte[]> result = null;
@@ -144,12 +136,11 @@ public class DocAttachFileController {
         }
         return result;
     }
-
     @GetMapping(value = "download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(String fileName){
         log.info("download file : " + fileName);
-        Resource resource = new FileSystemResource("/Users/kimdongjin/Desktop/gb_0900_kdj/spring/resource/temp/upload" + fileName);
+        Resource resource = new FileSystemResource("C:/upload/" + fileName);
         log.info("resource : " + resource);
         String resourceName = resource.getFilename();
         HttpHeaders headers = new HttpHeaders();
@@ -162,14 +153,13 @@ public class DocAttachFileController {
         }
         return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
     }
-
     @PostMapping("deleteFile")
     @ResponseBody
     public ResponseEntity<String> deleteFile(String fileName, String type){
         log.info("deleteFile : " + fileName);
         try {
             fileName = URLDecoder.decode(fileName, "UTF-8");
-            File file = new File("/Users/kimdongjin/Desktop/gb_0900_kdj/spring/resource/temp/upload" + fileName);
+            File file = new File("C:/upload/" + fileName);
             file.delete();
             if(type.equals("image")){
                 //원본 삭제
@@ -182,21 +172,5 @@ public class DocAttachFileController {
         return new ResponseEntity<>("deleted", HttpStatus.OK);
     }
 
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

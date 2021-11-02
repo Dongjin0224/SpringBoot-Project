@@ -13,7 +13,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @SpringBootTest
 @Slf4j
-public class HosAttachFileControllerTest {
+public class HosBoardAttachFileControllerTest {
 
     private MockMvc mockMvc;
 

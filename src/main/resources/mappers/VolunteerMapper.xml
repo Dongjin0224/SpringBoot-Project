@@ -35,7 +35,7 @@
     <insert id="insert">
         INSERT INTO TABLE_APPLICANTS
         (APPLICANTSNO, VOLUNTEERBOARDNO, DOCNO, DOCNAME, DOCPHONENUM, APPLICANTS, APPLICATIONCONTENT)
-        VALUES(SEQ_APPLICANTS.NEXTVAL, #{volunteerBoardNo},1,  #{docName}, #{docPhoneNum}, #{applicants}, #{applicationContent})
+        VALUES(SEQ_APPLICANTS.NEXTVAL, #{volunteerBoardNo}, #{docNo},  #{docName}, #{docPhoneNum}, #{applicants}, #{applicationContent})
     </insert>
 
     <select id="getTitle" resultType="string">

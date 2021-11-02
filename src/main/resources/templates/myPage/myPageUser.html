@@ -441,10 +441,13 @@
             method: "post",
             contentType:"application/json; charset=utf-8",
             data: JSON.stringify(arr),
-            success: function(){
-                alert("수정 완료")
+            success: function(result){
+                if(result == "수정완료"){
+                    alert("수정 완료")
+                }
             }
         })
+        location.href="/myPage/myPageUser";
     })
 
     document.getElementById("defaultOpen").click();

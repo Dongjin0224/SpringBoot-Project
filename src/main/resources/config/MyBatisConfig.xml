@@ -12,6 +12,12 @@
         <typeAlias type="com.example.test.model.user.vo.DocAttachFileVO" alias="DocAttachFileVO"/>
         <typeAlias type="com.example.test.model.user.vo.DocHosAttachFileVO" alias="DocHosAttachFileVO"/>
         <typeAlias type="com.example.test.model.notice.vo.NoticeVO" alias="NoticeVO"/>
+        <typeAlias type="com.example.test.model.mainBoard.vo.AttachFileVO" alias="attachFileVO"/>
+        <typeAlias type="com.example.test.model.mainBoard.vo.BoardVO" alias="boardVO"/>
+        <typeAlias type="com.example.test.model.vo.ReplyVO" alias="replyVO"/>
         <typeAlias type="com.example.test.model.payment.vo.PayVO" alias="payVO"/>
+        <typeAlias type="com.example.test.model.appointment.vo.ReserveVO" alias="reserveVO"/>
+        <typeAlias type="com.example.test.model.appointment.vo.AppointmentVO" alias="appointmentVO"/>
+
     </typeAliases>
 </configuration>
