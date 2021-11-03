@@ -2,6 +2,7 @@ package com.example.test.mappers;
 
 import com.example.test.model.appointment.vo.AppointmentVO;
 import com.example.test.model.appointment.vo.ReserveVO;
+import com.example.test.model.myPage.vo.VolunteerContentVO;
 import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
 import com.example.test.model.volunteer.vo.ApplicantsVO;
@@ -28,6 +29,7 @@ public interface MyPageMapper {
 
     public List<AppointmentVO> getResList(Long userNo);
 
-    public ApplicantsVO getAppContent(Long docNo);
+    public List<ApplicantsVO> getVolContent(Long docNo);
 
+    public VolunteerContentVO get(Long docNo, Long applicantsNo);
 }

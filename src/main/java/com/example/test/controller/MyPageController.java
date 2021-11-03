@@ -82,8 +82,8 @@ public class MyPageController {
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
 
-        model.addAttribute("getAppContent", myPageService.getAppContent(docNo));
-        /*model.addAttribute("getAppContent", myPageService.getAppContent(applicantsNo));*/
+        model.addAttribute("get", myPageService.get(docNo, applicantsNo));
+        /*model.addAttribute("getVolContent", myPageService.getVolContent(docNo));*/
         return "myPage/applicationForm";
     }
 

@@ -36,7 +36,7 @@
 	</delete>
 
 	<select id="getVolList" resultType="ApplicantsVO">
-        SELECT * FROM TABLE_APPLICANTS A, TABLE_VOLUNTEER_BOARD B WHERE A.volunteerBoardNo = B.volunteerBoardNo AND A.DOCNO = ${docNo}
+        SELECT * FROM TABLE_APPLICANTS A, TABLE_VOLUNTEER_BOARD B WHERE A.VOLUNTEERBOARDNO = B.VOLUNTEERBOARDNO AND A.DOCNO = ${docNo}
     </select>
 
 	<select id="getAppList" resultType="appointmentVO">
@@ -47,9 +47,13 @@
 		SELECT * FROM TABLE_USER C, TABLE_DOC A, TABLE_RESERVE B WHERE C.USERNO = B.USERNO AND C.USERNO = ${userNo} AND B.DOCNO = A.DOCNO
 	</select>
 
-	<select id="getAppContent" resultType="ApplicantsVO">
+	<select id="getVolContent" resultType="ApplicantsVO">
 		SELECT * FROM TABLE_VOLUNTEER_BOARD C, TABLE_APPLICANTS B, TABLE_DOC A
 		WHERE A.DOCNO = B.DOCNO AND A.DOCNO = ${docNo} AND C.VOLUNTEERBOARDNO = B.VOLUNTEERBOARDNO
 	</select>
 
+	<select id="get" resultType="volunteerContentVO">
+        SELECT A.VOLUNTEERBOARDTITLE, B.DOCNAME, B.DOCPHONENUM, C.APPLICANTS, C.APPLICATIONCONTENT, C.APPLICANTSNO FROM TABLE_VOLUNTEER_BOARD A, TABLE_DOC B, TABLE_APPLICANTS C
+		WHERE B.DOCNO = C.DOCNO AND B.DOCNO=#{docNo} AND A.VOLUNTEERBOARDNO = C.VOLUNTEERBOARDNO AND C.APPLICANTSNO = #{applicantsNo}
+    </select>
 </mapper>

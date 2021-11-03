@@ -63,7 +63,7 @@
             <div class="content main">
                 <h3 style="text-align: center; border-bottom: none; margin-bottom: 5%;">의료봉사 신청서</h3>
                 <!-- div_write 시작 -->
-                <div id="div_write" th:object="${getAppContent}">
+                <div id="div_write" th:object="${get}">
                     <!-- form 태그 시작 -->
                     <form>
                         <table id="div_table" >
@@ -91,9 +91,14 @@
                             <tr style="border-top: none; border-bottom: none;">
                                 <td colspan="2" class="clear"><textarea
                                         style="width: 100%;" name="applicationContent" id="content"
-                                        class="ec-fr-never-be-duplicated" th:text="*{applicationContent}" readonly></textarea>
+                                        class="ec-fr-never-be-duplicated" th:utext="*{applicationContent}" readonly></textarea>
                                 </td>
+                            </tr>
                         </table>
+                        <div>
+                            <input class="input_button" id="cancel_post" type="button" value="취소"
+                                   onclick="history.back()"/>
+                        </div>
                     </form>
                     <!-- form 태그 끝 -->
                 </div>
