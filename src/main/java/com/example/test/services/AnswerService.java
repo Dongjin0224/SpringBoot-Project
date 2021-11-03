@@ -23,4 +23,8 @@ public class AnswerService {
     public List<AnswerVO> answerList(Long qnaNo){
         return answerDAO.answerList(qnaNo);
     }
+
+    public void delete(Long reQnaNo){
+        answerDAO.delete(reQnaNo);
+    }
 }

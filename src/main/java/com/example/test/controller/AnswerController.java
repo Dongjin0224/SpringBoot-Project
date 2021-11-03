@@ -38,7 +38,6 @@ public class AnswerController {
         answerService.insert(answerVO);
 //        model.addAttribute("qnaNo",qnaNo);
         return "등록완료";
-
     }
 
   /*  @GetMapping("detail")
