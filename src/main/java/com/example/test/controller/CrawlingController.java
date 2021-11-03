@@ -28,7 +28,7 @@ public class CrawlingController {
 
     //Properties 설정
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
-    public static String WEB_DRIVER_PATH = "C:/chromedriver.exe";
+    public static String WEB_DRIVER_PATH = "/Users/kimdongjin/eclipse/chromedriver";
     public static String URL = "https://center-pf.kakao.com/_rxigIb/messages/new/feed";
     // (여기선 naver 를 사용해봤습니다.)
 
