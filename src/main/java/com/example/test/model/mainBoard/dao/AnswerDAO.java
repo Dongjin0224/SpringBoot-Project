@@ -20,4 +20,6 @@ public class AnswerDAO {
     }
 
    public List<AnswerVO> answerList(Long qnaNo){return answerMapper.answerList(qnaNo);}
+
+
 }
