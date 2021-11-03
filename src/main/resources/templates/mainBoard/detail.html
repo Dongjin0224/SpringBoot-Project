@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <!--
-   Hypothesis by Pixelarity
-   pixelarity.com | hello@pixelarity.com
-   License: pixelarity.com/license
+	Hypothesis by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -294,6 +294,7 @@
     .content.main {
         width: 90%;
         border-radius: 25px;
+        margin: auto;
         padding-left: 8% !important;
         padding-right: 8% !important;
         padding-bottom: 2% !important;
@@ -660,7 +661,6 @@
                                                     "#CCCCCC", "#E1E1E1",
                                                     "#EBEBEB", "#FFFFFF",
                                                     "#E97D81", "#E19B73",
-
                                                     "#D1B274", "#CFCCA2",
                                                     "#61B977", "#53AEA8",
                                                     "#518FBB", "#6A65BB",
@@ -1000,17 +1000,15 @@
                                             <button type="button" th:onclick="'remove('+*{reQnaNo}+')'" style="font-size: 15px;">삭제</button>
                                         </div>
 
+                                        <input type="hidden" th:id="|likeDoc${i.index}|" th:value="*{docNo}">
+                                        <input type="hidden" th:id="|likeReply${i.index}|" th:value="*{reQnaNo}">
                                         <div style="text-align: right">
-                                            <a href="#" class="button primary fit btn_like"
-                                               style="width: 25% !important; background: white; color: black !important;">
-                                                <img src="/img/like.jpg" alt=""
-                                                     style="width: 22px;position: relative;top: 4px;">
-                                                좋아요</a>
-                                            <a href="#" class="button primary fit btn_report"
-                                               style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
-                                                <img src="/img/report.png" alt=""
-                                                     style="width: 22px;position: relative;top: 4px;">
-                                                신고하기</a>
+                                            <a th:onclick="'like('+${i.index}+')'" class="button primary fit btn_like" style="width: 25% !important; background: white; color: black !important;">
+                                                <img src="/img/like.jpg" alt="" style="width: 22px;position: relative;top: 4px;">좋아요
+                                            </a>
+                                            <a th:href="|/mainBoard/writeReport?reQnaNo=*{reQnaNo}|" class="button primary fit btn_report" style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
+                                                <img src="/img/report.png" alt="" style="width: 22px;position: relative;top: 4px;">신고하기
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -1096,18 +1094,6 @@
     let loginCheck = [[${loginCheck}]];
     let answerList = [[${answerList}]];
 
-    document.onload = function () {
-    }
-
-    // let reWrite = document.getElementsByClassName('reWrite');
-    // for(let b= 0;b<reWrite.length;b++){
-    //     reWrite[b].style.display='none';
-    //     console.log("login : "+loginCheck);
-    //     console.log(answerList[b].docNo);
-    //     if(loginCheck==answerList[b].docNo){
-    //         reWrite[b].style.display='block';
-    //     }
-    // }
 
 
     let btnReply = document.getElementById('btn_reply');
@@ -1115,7 +1101,6 @@
     let cancel = document.getElementById('cancel_post');
 
     divWrite.style.display = 'none';
-
 
     function openForm() {
         if (loginCheck == 0) {
@@ -1159,28 +1144,24 @@
     }
 
 
-    function getList(qnaNo) {
-        let content = "";
-        let address = "";
-
+   function like(index) {
+        let docNo = document.getElementById("likeDoc"+index).value;
+        let reQnaNo = document.getElementById("likeReply"+index).value;
+        let arr = {"docNo":docNo,"reQnaNo":reQnaNo}
         $.ajax({
-            url: "/mainBoard/replyList/" + qnaNo,
-            type: "get",
-            success: function (result) {
-                console.log(result);
-                if (result.length == 0) {
-                }
-                for (i = 0; i < result.length; i++) {
-                    content = result[i].reQnaContent;
-                    address = result[i].docAddress;
-
-                    $(".board_title").html(content);
-                    $(".board_title_detail").html(address);
+            url:"/user/like/" + reQnaNo + "/" + docNo,
+            contentType:"application/json; charset=utf-8",
+            data: JSON.stringify(arr),
+            type:'post',
+            success:function(result) {
+                if(result == "좋아요 성공"){
+                    alert("좋아요 성공");
+                }else if (result == "좋아요 실패"){
+                    alert("이미 추천하신 의사입니다.");
                 }
             }
         })
     }
-
 </script>
 
 </body>
