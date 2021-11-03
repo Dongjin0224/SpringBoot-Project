@@ -45,4 +45,45 @@
     <update id="updatePassword">
         UPDATE TABLE_DOC SET DOCPW=#{docPw} WHERE DOCID=#{docId} AND DOCPHONENUM =#{docPhoneNum}
     </update>
+
+    <!-- 좋아요(닥터테이블 카운트 누적) -->
+    <update id="like1">
+        UPDATE TABLE_DOC SET DOCLIKECNT=DOCLIKECNT+1 WHERE docNo = #{docNo}
+    </update>
+    <!-- 검사하기 위한 like테이블에 추가 -->
+    <insert id="like2">
+        INSERT INTO TABLE_LIKE VALUES (SEQ_LIKE.NEXTVAL, #{reQnaNo}, #{docNo}, #{userNo})
+    </insert>
+    <!-- 검사 -->
+    <select id="getlike" resultType="int">
+        SELECT COUNT(likeNo) FROM TABLE_LIKE WHERE docNo = #{docNo} AND  userNo = #{userNo} AND reQnaNo = #{reQnaNo}
+    </select>
+
+
+
+
+    <!-- 신고하기 페이지 뿌려주기 -->
+    <select id="viewReport" resultType="answerVO">
+        SELECT REQNANO,DOCNO,QNANO,DOCNAME, DOCMAJOR, DOCADDRESS, REQNACONTENT, REQNADATE, FILENAME,QNATITLE FROM
+        (
+        SELECT r.reQnaNo, r.DOCNO, r.QNANO, DOCNAME, DOCMAJOR, DOCADDRESS, REQNACONTENT, REQNADATE, a.FILENAME, q.QNATITLE
+        FROM TABLE_DOC d, TABLE_QNA_REPLY r,TABLE_DOC_ATTACH a, TABLE_QNA q
+        WHERE r.DOCNO = d.DOCNO AND r.DOCNO=a.DOCNO AND r.QNANO=q.QNANO ORDER BY r.QNANO desc
+        )
+        WHERE reQnaNo = #{reQnaNo}
+    </select>
+    <!-- 신고하기 누적 -->
+    <update id="report1">
+        UPDATE TABLE_DOC SET DOCREPORTCNT=DOCREPORTCNT+1 WHERE docNo = #{docNo}
+    </update>
+    <!-- 검사를 위한 report테이블에 추가-->
+    <insert id="report2">
+        INSERT INTO TABLE_REPORT VALUES (SEQ_REPORT.NEXTVAL, #{reQnaNo}, #{docNo}, #{userNo}, #{reportType}, #{reportContent})
+    </insert>
+    <!-- 검사 -->
+    <select id="getReport" resultType="int">
+        SELECT COUNT(reportNo) FROM TABLE_REPORT WHERE docNo = #{docNo} AND  userNo = #{userNo} AND reQnaNo = #{reQnaNo}
+    </select>
+
+
 </mapper>

@@ -24,4 +24,7 @@ public class AnswerService {
         return answerDAO.answerList(qnaNo);
     }
 
+    public void delete(Long reQnaNo){
+        answerDAO.delete(reQnaNo);
+    }
 }

@@ -1,7 +1,7 @@
 package com.example.test.mappers;
 
+import com.example.test.model.mainBoard.vo.AnswerVO;
 import com.example.test.model.user.vo.DocVO;
-import com.example.test.model.user.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import javax.servlet.http.HttpSession;
@@ -25,4 +25,15 @@ public interface DocMapper {
     public DocVO findPw(DocVO vo);
 
     public void updatePassword(DocVO vo);
+
+    /*좋아요*/
+    public void like1(Long docNo);
+    public void like2(Long docNo, Long userNo, Long reQnaNo);
+    public int getlike(Long docNo, Long userNo, Long reQnaNo);
+
+    /*신고하기*/
+    public AnswerVO viewReport(Long reQnaNo);
+    public void report1(Long docNo);
+    public void report2(Long reQnaNo, Long docNo, Long userNo, String reportType, String reportContent);
+    public int getReport(Long docNo, Long userNo, Long reQnaNo);
 }

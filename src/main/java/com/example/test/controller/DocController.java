@@ -1,5 +1,6 @@
 package com.example.test.controller;
 
+import com.example.test.model.user.vo.ReportVO;
 import com.example.test.model.user.vo.UserVO;
 import com.example.test.services.DocService;
 
@@ -8,7 +9,10 @@ import com.example.test.model.user.vo.DocVO;
 import com.example.test.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import oracle.ucp.proxy.annotation.Methods;
 import org.json.simple.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +21,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -196,5 +201,56 @@ public class DocController {
 //        return "user/docFindPw";
 //    }
 
+
+    /* 좋아요 */
+
+    @PostMapping(value = "like/{reQnaNo}/{docNo}", consumes = "application/json", produces = "text/plain; charset=utf-8")
+    @ResponseBody
+    public String like(@PathVariable("docNo") Long docNo,@PathVariable("reQnaNo") Long reQnaNo, HttpServletRequest request, Model model){
+        log.info("=================like 들어옴==================");
+        HttpSession session = (HttpSession)request.getSession();
+        Long userNo = (Long) session.getAttribute("userNo");
+        log.info("-----------------------------------------");
+        log.info("docNo : " + docNo);
+        log.info("userNo : " + userNo);
+        log.info("reply : " + reQnaNo);
+        log.info("-----------------------------------------");
+
+
+        if(service.getLike(docNo, userNo, reQnaNo) == 0){
+            service.like1(docNo);
+            service.like2(docNo, userNo, reQnaNo);
+            return "좋아요 성공";
+        } else {
+            return "좋아요 실패";
+        }
+    }
+
+    /* 신고하기 */
+    @PostMapping(value = "report", consumes = "application/json", produces = "text/plain; charset=utf-8")
+    @ResponseBody
+    public String report(@RequestBody ReportVO reportVO, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Long userNo = (Long)session.getAttribute("userNo");
+        reportVO.setUserNo(userNo);
+
+        log.info("-----------------------------------");
+        log.info("reportVO 출력 : " + reportVO);
+        log.info("-----------------------------------");
+
+        Long docNo = reportVO.getDocNo();
+        Long reQnaNo = reportVO.getReQnaNo();
+        String reportType = reportVO.getReportType();
+        String reportContent = reportVO.getReportContent();
+
+        if (service.getReport(docNo, userNo, reQnaNo) == 0){
+            service.report1(docNo);
+            service.report2(reQnaNo, docNo, userNo, reportType, reportContent);
+            return "성공";
+        } else {
+            return "실패";
+        }
+
+    }
 
 }

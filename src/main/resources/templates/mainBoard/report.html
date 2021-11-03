@@ -4,7 +4,7 @@
 	pixelarity.com | hello@pixelarity.com
 	License: pixelarity.com/license
 -->
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>report</title>
     <meta charset="utf-8"/>
@@ -86,7 +86,7 @@
                 <section class="tiles">
                     <div style="width: 80%;margin: auto">
                         <div class="report_wrapper">
-                            <form>
+<!--                            <form method="post" action="/user/report">-->
                                 <div class="report_title">
                                     헬로닥터 게시물 신고
                                 </div>
@@ -95,54 +95,60 @@
                                     회원님의 관심과 신고가 건전하고 올바른 헬로닥터 문화를 만듭니다.
                                     허위 신고의 경우 신고자가 제재받을 수 있음을 유념해 주세요.
                                 </div>
-                                <div class="report_detail_wrap">
-                                    <div class="detail_title">
-                                        <span class="detail_title_ns"
-                                              style="font-weight: bold;">게시물 제목&nbsp; &nbsp;:</span>
-                                        <span>
-                                    <input type="text" value="기침이 너무 심해요" name="" readonly>
-                                </span><!--게시물 제목 -->
-                                        <br>
-                                        <span class="detail_title_ns" style="font-weight: bold;">답변자&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;  :</span>
-                                        <span>
-                                    <input type="text" value="이성은(한의사)" name="" readonly>
-                                </span><!--답글 작성자-->
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <span style="font-weight: bold;">신고사유</span>
-                                        <span style="margin-left: 20px;color: darkgray;font-size: 13px;">여러 사유에 해당하는 경우 대표적인 사유 1개를 선택해주세요</span>
-                                    </div>
-                                    <div class="radio_wrap">
-                                        <input type="radio" id="report1" name="report" value="영리목적/홍보성"
-                                               class="radio_report">
-                                        <label for="report1">영리목적/홍보성</label>
-                                        <input type="radio" id="report2" name="report" value="개인정보노출"
-                                               class="radio_report">
-                                        <label for="report2">개인정보노출</label>
-                                        <input type="radio" id="report3" name="report" value="불법정보"
-                                               class="radio_report">
-                                        <label for="report3">불법정보</label>
-                                        <input type="radio" id="report4" name="report" value="음란성/선정성"
-                                               class="radio_report">
-                                        <label for="report4">음란성/선정성</label>
-                                        <input type="radio" id="report5" name="report" value="욕설/인신공격"
-                                               class="radio_report">
-                                        <label for="report5">욕설/인신공격</label>
-                                        <input type="radio" id="report6" name="report" value="아이디/DB거래"
-                                               class="radio_report">
-                                        <label for="report6">아이디/DB거래</label>
-                                        <input type="radio" id="report7" name="report" value="같은 내용 반복(도배)"
-                                               class="radio_report">
-                                        <label for="report7">같은 내용 반복(도배)</label>
-                                        <input type="radio" id="report8" name="report" value="기타" class="radio_report">
-                                        <label for="report8">기타</label>
-                                    </div>
-                                    <hr>
-                                    <div style="margin-bottom: 15px;font-weight: bold;">
-                                        상세내용(선택)
-                                    </div>
-                                    <textarea name="" id="" cols="30" rows="4" style="resize: none"></textarea>
+                                <div class="report_detail_wrap" th:object="${report}">
+                                          <div class="detail_title">
+                                              <span class="detail_title_ns"
+                                                    style="font-weight: bold;">게시물 제목&nbsp; &nbsp;:</span>
+                                              <span>
+                                          <input type="text" th:value="*{qnaTitle}" name="" readonly>
+                                      </span><!--게시물 제목 -->
+                                              <br>
+                                              <span class="detail_title_ns" style="font-weight: bold;">답변자&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;  :</span>
+                                              <span>
+
+                                                  <div><input type="text" th:value="*{docName}" name="" readonly><input type="text" th:value="(*{docMajor})" name="" readonly></div>
+                                      </span><!--답글 작성자-->
+                                          </div>
+                                          <hr>
+                                          <div>
+                                              <span style="font-weight: bold;">신고사유</span>
+                                              <span style="margin-left: 20px;color: darkgray;font-size: 13px;">여러 사유에 해당하는 경우 대표적인 사유 1개를 선택해주세요</span>
+                                          </div>
+                                          <div class="radio_wrap">
+                                              <input type="radio" id="report1" name="reportType" value="영리목적/홍보성"
+                                                     class="radio_report">
+                                              <label for="report1">영리목적/홍보성</label>
+                                              <input type="radio" id="report2" name="reportType" value="개인정보노출"
+                                                     class="radio_report">
+                                              <label for="report2">개인정보노출</label>
+                                              <input type="radio" id="report3" name="reportType" value="불법정보"
+                                                     class="radio_report">
+                                              <label for="report3">불법정보</label>
+                                              <input type="radio" id="report4" name="reportType" value="음란성/선정성"
+                                                     class="radio_report">
+                                              <label for="report4">음란성/선정성</label>
+                                              <input type="radio" id="report5" name="reportType" value="욕설/인신공격"
+                                                     class="radio_report">
+                                              <label for="report5">욕설/인신공격</label>
+                                              <input type="radio" id="report6" name="reportType" value="아이디/DB거래"
+                                                     class="radio_report">
+                                              <label for="report6">아이디/DB거래</label>
+                                              <input type="radio" id="report7" name="reportType" value="같은 내용 반복(도배)"
+                                                     class="radio_report">
+                                              <label for="report7">같은 내용 반복(도배)</label>
+                                              <input type="radio" id="report8" name="reportType" value="기타" class="radio_report">
+                                              <label for="report8">기타</label>
+                                          </div>
+                                          <hr>
+                                          <div style="margin-bottom: 15px;font-weight: bold;">
+                                              상세내용(선택)
+                                          </div>
+                                          <textarea name="reportContent" id="reportContent" cols="30" rows="4" style="resize: none"></textarea>
+
+
+                                    <input type="hidden" th:value="*{reQnaNo}" name="reQnaNo" id="reQnaNo">
+                                    <input type="hidden" th:value="*{docNo}" name="docNo" id="docNo">
+                                    <input type="hidden" th:text="${userNo}" name="userNo" id="userNo">                                 <
 
                                 </div>
                                 <div style="margin: 25px 0;text-align: center;font-size: 14px;">
@@ -150,9 +156,10 @@
                                 </div>
                                 <div style="text-align: center">
                                     <a href="" class="button" style="margin-bottom: 5px;box-shadow: none;font-size: 20px;">취소</a>
-                                    <input type="button" class="button" value="신고하기" style="box-shadow: none;font-size: 20px">
+                                    <input type="button" class="button" onclick="report()" value="신고하기" style="box-shadow: none;font-size: 20px">
                                 </div>
-                            </form>
+<!--                            </form>-->
+
                         </div>
                     </div>
                 </section>
@@ -177,4 +184,43 @@
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
 </body>
+<script>
+
+
+
+
+
+
+
+    function report() {
+        let reQnaNo = document.getElementById("reQnaNo").value;
+        let docNo = document.getElementById("docNo").value;
+        let type;
+        $(".radio_report").each(function(idx, item){
+            if($(this).is(":checked")){
+                type = $(this).val();
+            }
+        })
+        let reportContent = document.getElementById("reportContent").value;
+        $.ajax({
+            url: "/user/report",
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                reQnaNo: reQnaNo,
+                docNo: docNo,
+                reportType: type,
+                reportContent: reportContent
+            }),
+            success:function(result){
+                if(result == "성공"){
+                    alert("신고성공");
+                }else if(result == "실패"){
+                    alert("이미 신고하셨습니다.");
+                }
+            }
+        })
+    }
+
+</script>
 </html>

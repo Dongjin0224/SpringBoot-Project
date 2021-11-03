@@ -8,6 +8,7 @@ import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.services.AnswerService;
 import com.example.test.services.BoardService;
+import com.example.test.services.DocService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -31,6 +32,7 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
     private final AnswerService answerService;
+    private final DocService docService;
 
     @GetMapping("mainBoard")
     public String list(Criteria criteria,HttpServletRequest req, Model model){
@@ -130,12 +132,25 @@ public class BoardController {
         log.info(reqType + " : " + qnaNo);
         log.info("-------------------------------");
 
-        model.addAttribute("answerList",answerService.answerList(qnaNo));
+        if(session.getAttribute("docNo")==null) {
+            model.addAttribute("loginCheck", 0);
+        }else{
+            model.addAttribute("loginCheck",session.getAttribute("docNo"));
+        }
 
+        model.addAttribute("qnaNo",qnaNo);
+        model.addAttribute("answerList",answerService.answerList(qnaNo));
         boardService.updateView(qnaNo);
         model.addAttribute("board", boardService.get(qnaNo));
         model.addAttribute("criteria", criteria);
     }
+
+    @ResponseBody
+    @GetMapping("replyList/{qnaNo}")
+    public List<AnswerVO> replyList(@PathVariable("qnaNo") Long qnaNo){
+        return answerService.answerList(qnaNo);
+    }
+
 
     @GetMapping("modify")
     public void modify(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
@@ -216,7 +231,23 @@ public class BoardController {
 //        return boardService.getAttachList(qnaNo);
 //    }
 
+    @GetMapping("writeReport")
+    public String writeReport(Long reQnaNo, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+                Long userNo = (Long) session.getAttribute("userNo");
 
+        log.info("----------------------------------------");
+        log.info("reQnaNo" + reQnaNo);
+        log.info("----------------------------------------");
+        model.addAttribute("report", docService.viewReport(reQnaNo));
+        model.addAttribute("userNo",userNo);
+        return "mainBoard/report";
+    }
 
+    @DeleteMapping("remove/{qnaNo}")
+    @ResponseBody
+    public void remove(@PathVariable("qnaNo") Long qnaNo){
+        answerService.delete(qnaNo);
+    }
 
 }

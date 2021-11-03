@@ -45,7 +45,7 @@
     }
 
     .hos_img img {
-        width: 100px;
+        width: 150px;
     }
     .hosTitle{
         font-weight: bold;
@@ -77,16 +77,17 @@
 
             <th:block th:if="${#lists.size(searchList) > 0}">
                 <th:block th:each="searchList: ${searchList}">
-                    <div class="hos_wrap">
-                        <div class="hos_info" th:object="${searchList}">
+                    <div class="hos_wrap" th:object="${searchList}">
+                        <div class="hos_info">
                             <div class="hosTitle" th:text="*{docHospitalName}"><!--아주대학교 병원 <span style="font-size: 14px;color: darkgray;">부속 병원</span>-->
                             </div>
-                            <div style="font-size: 16px;">4221-1123</div>
+                            <div style="font-size: 16px;" th:text="*{docHosPhone}"></div>
                             <div style="font-size: 16px;" th:text="*{docAddress}"></div>
                         </div>
                         <div class="hos_img">
-                            <img src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_240%2F14410143078181stGq_JPEG%2F126981584748644_0.jpg"
-                                 alt="">
+<!--                            <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}" alt="no image" class="docPic">-->
+                            <img th:src="@{/hosupload/} + *{hosUploadPath} + @{/} + *{hosUuid} + @{_} + *{hosFileName}"
+                                 alt="이미지 없음" >
                         </div>
                     </div>
                 </th:block>
@@ -97,6 +98,7 @@
                     </div>
             </th:block>
 
+            
 
 
 

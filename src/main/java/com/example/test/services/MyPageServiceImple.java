@@ -3,6 +3,7 @@ package com.example.test.services;
 import com.example.test.model.appointment.vo.AppointmentVO;
 import com.example.test.model.appointment.vo.ReserveVO;
 import com.example.test.model.myPage.dao.MyPageDAO;
+import com.example.test.model.myPage.vo.VolunteerContentVO;
 import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
 import com.example.test.model.volunteer.vo.ApplicantsVO;
@@ -40,6 +41,5 @@ public class MyPageServiceImple implements MyPageService {
     public List<AppointmentVO> getResList(Long userNo) { return myPageDAO.getResList(userNo); }
 
     @Override
-    public List<ApplicantsVO> getAppContent(Long docNo) { return myPageDAO.getAppContent(docNo); }
-
+    public VolunteerContentVO getVolContent(Long docNo, Long applicantsNo) { return myPageDAO.getVolContent(docNo, applicantsNo); }
 }

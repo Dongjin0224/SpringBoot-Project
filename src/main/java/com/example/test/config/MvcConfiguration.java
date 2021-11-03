@@ -17,6 +17,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/img/**").addResourceLocations("classpath:/static/img/").setCachePeriod(60 * 60 * 24 * 365);
         registry.addResourceHandler("/webfonts/**").addResourceLocations("classpath:/static/webfonts/").setCachePeriod(60 * 60 * 24 * 365);
         registry.addResourceHandler("/upload/**").addResourceLocations("file:///C:/upload/").setCachePeriod(60 * 60 * 24 * 365);
+        registry.addResourceHandler("/hosupload/**").addResourceLocations("file:///C:/hosupload/").setCachePeriod(60 * 60 * 24 * 365);
     }
 
 
