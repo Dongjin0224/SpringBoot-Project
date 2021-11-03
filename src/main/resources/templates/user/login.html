@@ -49,7 +49,7 @@
                                             <p style="margin:0;">비밀번호</p>
                                             <input type="password" name="userPw" id="member_pw" placeholder="PassWord" value=""/>
                                             <div style="text-align:center; margin-top:9%">
-                                                <a href="#">아이디 찾기</a><span>&nbsp;|&nbsp;</span><a href="#">비밀번호 찾기</a>
+                                                <a id="findId">아이디 찾기</a><span>&nbsp;|&nbsp;</span><a id="findPw">비밀번호 찾기</a>
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +177,13 @@
 <script>
 
     $("#signup").on("click", function(){
-        location.href="doctorSignUp";
+        location.href="/user/explanation";
+    })
+    $("#findId").on("click", function(){
+        location.href="/user/userFindId";
+    })
+    $("#findPw").on("click", function(){
+        location.href="/user/userFindPw";
     })
 
     /*휴대폰 인증*/

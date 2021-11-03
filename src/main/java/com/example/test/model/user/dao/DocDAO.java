@@ -3,6 +3,7 @@ package com.example.test.model.user.dao;
 import com.example.test.mappers.DocMapper;
 import com.example.test.model.mainBoard.vo.AnswerVO;
 import com.example.test.model.user.vo.DocVO;
+import com.example.test.model.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -29,6 +30,17 @@ public class DocDAO {
     }
 
     public void docLogout(HttpSession session) { docMapper.docLogout(session); }
+
+    public DocVO findId(DocVO vo){
+        return docMapper.findId(vo);
+    }
+    public DocVO findPw(DocVO vo){
+        return docMapper.findPw(vo);
+    }
+
+    public void updatePassword(DocVO vo){
+        docMapper.updatePassword(vo);
+    }
 
     /* 좋아요 */
     public void like1(Long docNo) { docMapper.like1(docNo); }

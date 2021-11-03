@@ -8,7 +8,7 @@
 <head>
     <title>Untitled</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, doc-scalable=no"/>
     <link rel="stylesheet" href="/css/main.css"/>
 </head>
 <style>
@@ -44,12 +44,12 @@
                             </div>
                             <!--coolSms-->
                             <label>이름</label>
-                            <input type="text" name="userName" id="userName" style="width: 97%;margin-left: 5%;">
+                            <input type="text" name="docName" id="docName" style="width: 97%;margin-left: 5%;">
                             <label style="margin-bottom: -1%;margin-top: -1%;">전화번호</label>
                             <label style="display: inline-flex; width: 100%;"><input type="text"
                                                                                      placeholder="휴대폰 번호(-제외)"
-                                                                                     name="userPhoneNum"
-                                                                                     id="userPhoneNum">
+                                                                                     name="docPhoneNum"
+                                                                                     id="docPhoneNum">
                                 <input type="button" value="인증번호 전송" class="button primary" onclick=""
                                        style="border-radius: 0;" id="checkNum"></label>
                             <label style="margin-bottom: -1%;margin-top: -2%;">본인인증</label>
@@ -64,7 +64,7 @@
                             <div class="col-12">
                                 <label style="margin-top: -2%;">비밀번호 재설정</label>
                                 <label style="display: inline-flex; width: 100%;"><input type="text" placeholder=""
-                                                                                         name="userPw" id="userPw">
+                                                                                         name="docPw" id="docPw">
                                     <input type="button" value="변경" class="button primary" onclick=""
                                            style="border-radius: 0;" id=""></label>
                             </div>
@@ -102,13 +102,21 @@
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
 <script>
+    $("#findId").on("click", function(){
+        location.href="/user/docFindId";
+    })
+    $("#findPw").on("click", function(){
+        location.href="/user/docFindPw";
+    })
+
+
     /*휴대폰 인증*/
     $("#checkNum").on('click', function () {
         $.ajax({
-            url: "/user/sendUserSms",
+            url: "/user/sendSms",
             type: "post",
             dataType: "json",
-            data: {"userPhoneNum": $("#userPhoneNum").val()},
+            data: {"docPhoneNum": $("#docPhoneNum").val()},
             success: function (numStr) {
                 $('#checkNumStr').click(function () {
                     if ($.trim(numStr) == $('#numStr').val()) {

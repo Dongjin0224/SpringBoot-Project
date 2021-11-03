@@ -151,9 +151,10 @@ public class UserController {
     }
 
     @GetMapping("userFindPw")
-    public String findPw(){
+    public String userFindPw(){
         return "user/userFindPw";
     }
+
     /*비밀번호 찾기*//*
     @PostMapping("findAccount")
     public String findPw(UserVO vo,Model model){
@@ -168,10 +169,12 @@ public class UserController {
         return "user/findAccount";
     }
 
-    /*비밀번호 변경*/
-    @PostMapping("userFindPw")
-    public String updatePassword(UserVO vo){
-        service.updatePassword(vo);
-        return "user/userFindPw";
-    }
+//    /*비밀번호 변경*/
+//    @PostMapping("userFindPw")
+//    public String updatePassword(UserVO vo){
+//        service.updatePassword(vo);
+//        return "user/userFindPw";
+//    }
+
+
 }

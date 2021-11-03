@@ -26,7 +26,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-
 @Controller
 @Slf4j
 @RequestMapping("/upload/*")
@@ -117,7 +116,7 @@ public class DocAttachFileController {
         return now.replace("-", "/");
     }
 
-//    서버에 업로드된 파일은 시간이 걸리더라도 파일 자체가 이미지인지를 정확하게 체크한 뒤 저장해야 한다.
+    //    서버에 업로드된 파일은 시간이 걸리더라도 파일 자체가 이미지인지를 정확하게 체크한 뒤 저장해야 한다.
     private boolean checkImageType(File file){
         try {
             String contentType = Files.probeContentType(file.toPath());
@@ -131,7 +130,7 @@ public class DocAttachFileController {
     @GetMapping("display")
     @ResponseBody
     public ResponseEntity<byte[]> getFile(String fileName){
-        File file = new File("C:/upload" + fileName);
+        File file = new File("C:/upload/" + fileName);
         log.info("file : " + file);
         HttpHeaders header = new HttpHeaders();
         ResponseEntity<byte[]> result = null;
@@ -149,7 +148,7 @@ public class DocAttachFileController {
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(String fileName){
         log.info("download file : " + fileName);
-        Resource resource = new FileSystemResource("C:/upload" + fileName);
+        Resource resource = new FileSystemResource("C:/upload/" + fileName);
         log.info("resource : " + resource);
         String resourceName = resource.getFilename();
         HttpHeaders headers = new HttpHeaders();
@@ -169,7 +168,7 @@ public class DocAttachFileController {
         log.info("deleteFile : " + fileName);
         try {
             fileName = URLDecoder.decode(fileName, "UTF-8");
-            File file = new File("C:/upload" + fileName);
+            File file = new File("C:/upload/" + fileName);
             file.delete();
             if(type.equals("image")){
                 //원본 삭제
@@ -183,20 +182,3 @@ public class DocAttachFileController {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

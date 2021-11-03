@@ -66,7 +66,7 @@ public class DocController {
         }else if(result == 0) {
             service.DocSignUp(vo);
         }
-        return "user/login";
+        return "user/docLogin";
     }
 
     @PostMapping("docLogin")
@@ -150,6 +150,57 @@ public class DocController {
         }
         return numStr;
     }
+
+    @GetMapping("explanation")
+    public String explanation(){return "user/explanation";}
+
+
+    @GetMapping("docFindId")
+    public String docFindId() {
+        return "user/docFindId";
+    }
+
+
+
+    @PostMapping("docFindId")
+    public String findId(DocVO docVO, Model model){
+        DocVO doc = service.findId(docVO);
+
+        if(doc == null){
+            model.addAttribute("check",1);
+        }else{
+            model.addAttribute("check",0);
+            model.addAttribute("id",doc.getDocId());
+        }
+        return "user/docFindId";
+    }
+
+    @GetMapping("docFindPw")
+    public String docFindPw(){
+        return "user/docFindPw";
+    }
+
+    /*비밀번호 찾기*//*
+    @PostMapping("findAccount")
+    public String findPw(UserVO vo,Model model){
+        UserVO userVO = service.findPw(vo);
+
+        if(userVO == null){
+            model.addAttribute("check",1);
+        }else{
+            model.addAttribute("check",0);
+            model.addAttribute("updateid",userVO.getUserId());
+        }
+        return "user/findAccount";
+    }
+
+//    /*비밀번호 변경*/
+//    @PostMapping("docFindPw")
+//    public String updatePassword(DocVO vo){
+//        service.updatePassword(vo);
+//        return "user/docFindPw";
+//    }
+
 
     /* 좋아요 */
 

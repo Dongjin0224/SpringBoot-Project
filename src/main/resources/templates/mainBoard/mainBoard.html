@@ -148,7 +148,7 @@
         margin-right: 2%;
         width: 17%;
         margin-left: 2%;
-        padding-top: 30px;
+        /*padding-top: 30px;*/
     }
 
     div.ranking{
@@ -479,16 +479,24 @@
     }
 
 
+   $(document).ready(function(){
 
+       if(paing3!=''){
+           $("h1").text(paing3);
+           $("h1").hide();
+           $("header.accent1").css("background-image", "url('/img/" + paing3 + ".jpg')");
+       }
+       $("h1").fadeIn(500);
+   });
 
     $(".subject").on("click", function(e){
         e.preventDefault();
-        if(check){return;}
-        $("h1").text($(this).text());
-        $("h1").hide();
-        $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
-        $("h1").fadeIn(500);
-        check = true;
+        // if(check){return;}
+        // $("h1").text($(this).text());
+        // $("h1").hide();
+        // $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
+        // $("h1").fadeIn(500);
+        // check = true;
         $('#criteriaQnaMajor').val($(this).text());
         document.getElementById("criteriaPageNum").value = 1;
         document.getElementById("criteriaAmount").value = paing1;
