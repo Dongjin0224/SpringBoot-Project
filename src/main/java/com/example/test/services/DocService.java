@@ -29,6 +29,12 @@ public interface DocService {
 
     public void docLogout(HttpSession session);
 
+    public DocVO findId(DocVO vo);
+
+    public DocVO findPw(DocVO vo);
+
+    public void updatePassword(DocVO vo);
+
 /*
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
 

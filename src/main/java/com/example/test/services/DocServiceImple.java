@@ -82,4 +82,19 @@ public class DocServiceImple implements DocService{
     @Override
     public void docLogout(HttpSession session) { docDAO.docLogout(session); }
 
+    @Override
+    public DocVO findId(DocVO vo) {
+        return docDAO.findId(vo);
+    }
+
+    @Override
+    public DocVO findPw(DocVO vo) {
+        return docDAO.findPw(vo);
+    }
+
+    @Override
+    public void updatePassword(DocVO vo) {
+
+    }
+
 }

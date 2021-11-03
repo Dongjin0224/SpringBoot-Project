@@ -33,4 +33,16 @@
     <select id="checkId" resultType="_int">
         SELECT COUNT(DOCID) FROM TABLE_DOC WHERE DOCID=#{docId}
     </select>
+
+    <select id="findId" resultType="DocVO">
+        SELECT * FROM TABLE_DOC WHERE DOCNAME= #{docName} AND DOCPHONENUM= #{docPhoneNum}
+    </select>
+
+    <select id="findPw" resultType="DocVO">
+        SELECT * FROM TABLE_DOC WHERE DOCID= #{docId} AND DOCNAME= #{docName} AND DOCPHONENUM= #{docPhoneNum}
+    </select>
+
+    <update id="updatePassword">
+        UPDATE TABLE_DOC SET DOCPW=#{docPw} WHERE DOCID=#{docId} AND DOCPHONENUM =#{docPhoneNum}
+    </update>
 </mapper>

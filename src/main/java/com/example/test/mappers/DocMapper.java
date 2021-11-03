@@ -1,6 +1,7 @@
 package com.example.test.mappers;
 
 import com.example.test.model.user.vo.DocVO;
+import com.example.test.model.user.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import javax.servlet.http.HttpSession;
@@ -18,4 +19,10 @@ public interface DocMapper {
     public int checkId(DocVO vo);
 
     public void docLogout(HttpSession session);
+
+    public DocVO findId(DocVO vo);
+
+    public DocVO findPw(DocVO vo);
+
+    public void updatePassword(DocVO vo);
 }
