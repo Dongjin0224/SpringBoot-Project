@@ -21,5 +21,5 @@ public class AnswerDAO {
 
    public List<AnswerVO> answerList(Long qnaNo){return answerMapper.answerList(qnaNo);}
 
-
+   public void delete(Long reQnaNo){answerMapper.delete(reQnaNo);}
 }

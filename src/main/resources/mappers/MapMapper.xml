@@ -3,7 +3,8 @@
 
 <mapper namespace="com.example.test.mappers.MapMapper">
     <select id="getSearchList" parameterType="string" resultType="com.example.test.model.user.vo.DocVO">
-        SELECT * FROM TABLE_DOC WHERE docHospitalName LIKE '%'||#{search}||'%' OR docAddress LIKE '%'||#{search}||'%'
+        SELECT * FROM TABLE_DOC d, TABLE_HOSPITAL_ATTACH a
+        WHERE d.DOCNO = a.DOCNO AND (docHospitalName LIKE '%'||#{search}||'%' OR docAddress LIKE '%'||#{search}||'%')
     </select>
 
     <select id="getList" resultType="com.example.test.model.user.vo.DocVO">

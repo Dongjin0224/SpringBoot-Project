@@ -1,5 +1,6 @@
 package com.example.test.services;
 
+import com.example.test.model.mainBoard.vo.AnswerVO;
 import com.example.test.model.user.vo.DocAttachFileVO;
 import com.example.test.model.user.vo.DocHosAttachFileVO;
 import com.example.test.model.user.vo.DocVO;
@@ -53,4 +54,15 @@ public interface DocService {
         }
 
     }*/
+
+    /* 좋아요 */
+    public void like1(Long docNo);
+    public void like2(Long docNo, Long userNo, Long reQnaNo);
+    public int getLike(Long docNo, Long userNo, Long reQnaNo);
+
+    /* 신고하기 */
+    public AnswerVO viewReport(Long reQnaNo);
+    public void report1(Long docNo);
+    public void report2(Long reQnaNo, Long docNo, Long userNo, String reportType, String reportContent);
+    public int getReport(Long docNo, Long userNo, Long reQnaNo);
 }
