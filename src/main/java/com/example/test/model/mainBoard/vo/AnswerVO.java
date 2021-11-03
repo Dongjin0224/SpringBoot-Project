@@ -16,4 +16,6 @@ public class AnswerVO {
     private String docName;
     private String docAddress;
     private String docMajor;
+    private String fileName;
+    private String qnaTitle;
 }

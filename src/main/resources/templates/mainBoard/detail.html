@@ -982,17 +982,15 @@
                                     <div class="board_date" style=" width: 74%; clear: both; margin: auto;" th:utext="*{reQnaDate}">
                                         <!--2021.10.17-->
                                     </div>
+                                    <input type="hidden" th:id="|likeDoc${i.index}|" th:value="*{docNo}">
+                                    <input type="hidden" th:id="|likeReply${i.index}|" th:value="*{reQnaNo}">
                                     <div style="text-align: right">
-                                        <a href="#" class="button primary fit btn_like"
-                                           style="width: 25% !important; background: white; color: black !important;">
-                                            <img src="/img/like.jpg" alt=""
-                                                 style="width: 22px;position: relative;top: 4px;">
-                                            좋아요</a>
-                                        <a href="#" class="button primary fit btn_report"
-                                           style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
-                                            <img src="/img/report.png" alt=""
-                                                 style="width: 22px;position: relative;top: 4px;">
-                                            신고하기</a>
+                                        <a th:onclick="'like('+${i.index}+')'" class="button primary fit btn_like" style="width: 25% !important; background: white; color: black !important;">
+                                            <img src="/img/like.jpg" alt="" style="width: 22px;position: relative;top: 4px;">좋아요
+                                        </a>
+                                        <a th:href="|/mainBoard/writeReport?reQnaNo=*{reQnaNo}|" class="button primary fit btn_report" style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
+                                            <img src="/img/report.png" alt="" style="width: 22px;position: relative;top: 4px;">신고하기
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -1098,11 +1096,30 @@
             data: content1,
             type:'post',
             success:function(result){
-                alert(result);
+                history.go(0);
             }
         });
     }
 
+
+   function like(index) {
+        let docNo = document.getElementById("likeDoc"+index).value;
+        let reQnaNo = document.getElementById("likeReply"+index).value;
+        let arr = {"docNo":docNo,"reQnaNo":reQnaNo}
+        $.ajax({
+            url:"/user/like/" + reQnaNo + "/" + docNo,
+            contentType:"application/json; charset=utf-8",
+            data: JSON.stringify(arr),
+            type:'post',
+            success:function(result) {
+                if(result == "좋아요 성공"){
+                    alert("좋아요 성공");
+                }else if (result == "좋아요 실패"){
+                    alert("이미 추천하신 의사입니다.");
+                }
+            }
+        })
+    }
 </script>
 
 </body>

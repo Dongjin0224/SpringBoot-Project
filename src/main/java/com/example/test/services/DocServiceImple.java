@@ -1,5 +1,6 @@
 package com.example.test.services;
 
+import com.example.test.model.mainBoard.vo.AnswerVO;
 import com.example.test.model.user.dao.DocAttachFileDAO;
 import com.example.test.model.user.dao.DocDAO;
 import com.example.test.model.user.dao.DocHosAttachFileDAO;
@@ -81,5 +82,42 @@ public class DocServiceImple implements DocService{
 
     @Override
     public void docLogout(HttpSession session) { docDAO.docLogout(session); }
+
+
+    /* 좋아요 */
+    @Override
+    public void like1(Long docNo) {
+        docDAO.like1(docNo);
+    }
+
+    @Override
+    public void like2(Long docNo, Long userNo, Long reQnaNo) {
+        docDAO.like2(docNo, userNo, reQnaNo);
+    }
+
+    @Override
+    public int getLike(Long docNo, Long userNo, Long reQnaNo) {
+        return docDAO.getLike(docNo, userNo, reQnaNo);
+    }
+
+    @Override
+    public AnswerVO viewReport(Long reQnaNo) {
+        return docDAO.viewReport(reQnaNo);
+    }
+
+    @Override
+    public void report1(Long docNo) {
+        docDAO.report1(docNo);
+    }
+
+    @Override
+    public void report2(Long reQnaNo, Long docNo, Long userNo, String reportType, String reportContent) {
+        docDAO.report2(reQnaNo, docNo, userNo, reportType, reportContent);
+    }
+
+    @Override
+    public int getReport(Long docNo, Long userNo, Long reQnaNo) {
+        return docDAO.getReport(docNo, userNo, reQnaNo);
+    }
 
 }
