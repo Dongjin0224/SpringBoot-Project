@@ -14,11 +14,10 @@
 </head>
 <style>
     .content.main {
-        width: 57%;
+        width: 90%;
         border-radius: 25px;
         padding: 2%;
         margin: auto;
-        margin-top:4%;
     }
 
     .gm-control-active {
@@ -214,40 +213,6 @@
         border-bottom: none;
     }
 
-
-   /* .filebox label {
-        display: inline-block;
-        padding: .5em .75em;
-        color: #fff;
-        font-size: inherit;
-        line-height: normal;
-        vertical-align: middle;
-        background-color: #358bca;
-       !* cursor: pointer;*!
-        border: 1px solid #358bca;
-        border-radius: .25em;
-        -webkit-transition: background-color 0.2s;
-        transition: background-color 0.2s;
-    }
-
-    .filebox label:hover {
-        background-color: #358bca80;
-    }
-
-    .filebox label:active {
-        background-color: #358bca80;
-    }
-
-    .filebox input[type="file"] {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-       !* overflow: hidden;*!
-        clip: rect(0, 0, 0, 0);
-        border: 0;
-    }*/
 </style>
 <body class="is-preload">
 
@@ -264,14 +229,14 @@
             <div class="content main">
                 <section class="tiles" style="flex-flow: column;
     width: 56%;
-    margin-left: 10%;">
+    margin-left: 21%;">
                     <form method="post" action="/user/doctorSignUp" id="doctorSignUpForm" name="doctorSignUpForm">
-                        <div style="width: 143%;">
+                        <div>
                             <header style="margin-top: 15%;">
                                 <h3><i class="fas fa-user-md"> 의사 회원가입</i></h3>
                             </header>
-                            <label style="display: inline-block;">아이디<input type="text" placeholder="4자 이상, 16자 이하로 입력해주세요." id="docId" name="docId" style="width: 217%;">
-                            </label><button type="button" onclick="fn_idChk()" id="checkId" style="margin-left: 28%; border-radius: 0;">중복확인</button>
+                            <label style="display: inline-block;">아이디<input type="text" placeholder="4자 이상, 16자 이하로 입력해주세요." id="docId" name="docId" style="width: 255%;">
+                            </label><button type="button" onclick="fn_idChk()" id="checkId" style="margin-left: 39%; border-radius: 0;">중복확인</button>
                             <label>비밀번호<input type="password" placeholder="8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함" name="docPw"></label>
                             <label>전공<select id="major_select" name='docMajor1' style="border-radius: 0;">
                                 <option selected disabled>선택</option>
@@ -313,7 +278,7 @@
                                 <label>@</label>
                                 <span id="inputEmail">
                                 <select
-                                        id="email_select" name='docEmail2' style="border-radius: 0;width: 119%;">
+                                        id="email_select" name='docEmail2' style="border-radius: 0;width: 140%;">
                                     <option selected disabled>선택</option>
                                     <option value="naver.com">naver.com</option>
                                     <option value="daum.net">daum.net</option>
@@ -340,49 +305,27 @@
                             <!--coolSms끝-->
                             <!--첨부파일 추가-->
                             <label>의사 프로필</label>
-                            <table>
-                                <th>
-                                    <div class="filebox">
-                                        <label for="doc"></label>
-                                        <input type="file" id="doc" name="uploadFiles" multiple>
-                                    </div>
-                                </th>
-                                <tr>
-                                    <td>
-                                        <div style="border:solid 1px #eeeeee78">
-                                            <div class="uploadResult" >
-                                                <ul style="list-style: none;" ></ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div>
+                                <input type="file" id="doc" name="uploadFiles" multiple>
+                            </div>
 
+                            <!--썸네일-->
+                            <div style="border:solid 1px #eeeeee78">
+                                <div class="uploadResult" >
+                                    <ul style="list-style: none;" ></ul>
+                                </div>
+                            </div>
                             <div class="bigPictureWrapper">
                                 <div class="bigPicture"></div>
                             </div>
 
 
                             <!--첨부파일 추가2-->
-                            <table>
-                                <th>
-                                    <div class="filebox">
-                                        <label for="hos"></label>
-                                        <input type="file" id="hos" name="hosUploadFiles" multiple>
-                                    </div>
-                                </th>
-                                <tr>
-                                    <td>
-                                        <!--썸네일2-->
-                                        <div style="border:solid 1px #eeeeee78">
-                                            <div class="uploadResult1">
-                                                <ul style="list-style: none;"></ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-
+                            <label>병원사진</label>
+                            <div>
+                                <input type="file" id="hos" name="hosUploadFiles" multiple>
+                            </div>
+                            <!--썸네일2-->
                             <div style="border:solid 1px #eeeeee78">
                                 <div class="uploadResult1">
                                     <ul style="list-style: none;"></ul>
@@ -441,7 +384,7 @@
 
 
                         <div class="box_layer" data-index="0" style="display: none;">
-                            <div class="layer_poc" style="top: 2363.5px;">
+                            <div class="layer_poc" style="top: 1494.5px;">
                                 <div class="poc_top">
                                     <h1 class="poc_title">회원권 안내</h1>
                                     <p class="poc_text">기본으로 제공되는 회원권에 대한 정보입니다. 회원권을 구매하시면 더 많은 진료예약, 답변이 가능합니다.</p>

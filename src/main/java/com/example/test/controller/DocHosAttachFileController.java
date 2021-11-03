@@ -118,7 +118,7 @@ public class DocHosAttachFileController {
         return now.replace("-", "/");
     }
 
-//    서버에 업로드된 파일은 시간이 걸리더라도 파일 자체가 이미지인지를 정확하게 체크한 뒤 저장해야 한다.
+    //    서버에 업로드된 파일은 시간이 걸리더라도 파일 자체가 이미지인지를 정확하게 체크한 뒤 저장해야 한다.
     private boolean checkImageType(File file){
         try {
             String contentType = Files.probeContentType(file.toPath());
@@ -132,7 +132,7 @@ public class DocHosAttachFileController {
     @GetMapping("hosdisplay")
     @ResponseBody
     public ResponseEntity<byte[]> getFile(String hosFileName){
-        File file = new File("C:/hosupload" + hosFileName);
+        File file = new File("C:/hosupload/" + hosFileName);
         log.info("Hospital file : " + file);
         HttpHeaders header = new HttpHeaders();
         ResponseEntity<byte[]> result = null;
@@ -150,7 +150,7 @@ public class DocHosAttachFileController {
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(String fileName){
         log.info("download file : " + fileName);
-        Resource resource = new FileSystemResource("C:/hosupload" + fileName);
+        Resource resource = new FileSystemResource("C:/hosupload/" + fileName);
         log.info("resource : " + resource);
         String resourceName = resource.getFilename();
         HttpHeaders headers = new HttpHeaders();
@@ -166,11 +166,11 @@ public class DocHosAttachFileController {
 
     @PostMapping("hosdeleteFile")
     @ResponseBody
-    public ResponseEntity<String> deleteFile(String fileName, String type){
-        log.info("hosdeleteFile : " + fileName);
+    public ResponseEntity<String> deleteFile(String hosFileName, String type){
+        log.info("hosdeleteFile : " + hosFileName);
         try {
-            fileName = URLDecoder.decode(fileName, "UTF-8");
-            File file = new File("C:/hosupload" + fileName);
+            hosFileName = URLDecoder.decode(hosFileName, "UTF-8");
+            File file = new File("C:/hosupload/" + hosFileName);
             file.delete();
             if(type.equals("image")){
                 //원본 삭제
@@ -184,20 +184,3 @@ public class DocHosAttachFileController {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

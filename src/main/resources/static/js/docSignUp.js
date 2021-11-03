@@ -322,7 +322,7 @@ function formSubmit() {
     major.value = f.value;
 
     form.submit();
-
+    alert("될까요??")
 
 }
 
@@ -430,8 +430,6 @@ $(document).ready(function () {
         } else {
             check = true;
         }
-
-
 
         $("#submit1").on("click", function () {
             let idChkVal = $("#checkId").val();
@@ -556,7 +554,7 @@ function geocode(request) {
             response.innerText = JSON.stringify(result, null, 2);
 
             var location = results[0].geometry.location;
-            /*alert(location);*/
+            alert(location);
             /*const arr = map.location.split(",");*/
             console.log(location);
             var arr = location.toString().split(",");
@@ -585,8 +583,3 @@ $(".btn_close").on("click", function () {
 })
 
 /*})*/
-
-
-
-
-
