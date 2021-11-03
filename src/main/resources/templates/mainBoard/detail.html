@@ -1107,6 +1107,11 @@
             alert('의사 회원만 답글을 달 수 있습니다.');
             return;
         }
+        let reportCnt = [[${reportCnt}]];
+        if(reportCnt >= 5){
+            alert('신고 누적으로 답변하실 수 없습니다.');
+            return;
+        }
         btnReply.style.visibility = 'hidden';
         divWrite.style.display = 'block';
     }
