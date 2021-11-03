@@ -52,6 +52,11 @@ public class PayMapperTest {
     public void getPayList(){
         log.info("----------------------------------");
         log.info(String.valueOf(payMapper.getPayList(1L)));
+        if(payMapper.getPayList(1L) == null){
+            log.info("들어왔따");
+        }else{
+            log.info("card number : " + payMapper.getPayList(1L).getCard_number());
+        }
         log.info("----------------------------------");
     }
 }
