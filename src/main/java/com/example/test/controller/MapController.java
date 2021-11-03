@@ -57,7 +57,9 @@ public class MapController {
     public String map(Model model){
         log.info("들어옴---------------------");
         log.info(String.valueOf(service.getSearchList("sdfdsf2ewf32rf23f").size()));
+        log.info(service.getSearchList("").toString());
         log.info("들어옴---------------------");
+
         model.addAttribute("searchList", service.getSearchList(""));
         model.addAttribute("allList",service.getList());
         return "map/searchMap";
@@ -65,6 +67,9 @@ public class MapController {
 }
     @PostMapping("searchMap")
     public void searchMap(@RequestParam String search, Model model){
+        log.info("----------------------------------------------------");
+        log.info(service.getSearchList(search).toString());
+        log.info("----------------------------------------------------");
         model.addAttribute("searchList",service.getSearchList(search));
         model.addAttribute("allList",service.getList());
     }

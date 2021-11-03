@@ -135,14 +135,22 @@ public class BoardController {
         if(session.getAttribute("docNo")==null) {
             model.addAttribute("loginCheck", 0);
         }else{
-            model.addAttribute("loginCheck",1);
+            model.addAttribute("loginCheck",session.getAttribute("docNo"));
         }
 
+        model.addAttribute("qnaNo",qnaNo);
         model.addAttribute("answerList",answerService.answerList(qnaNo));
         boardService.updateView(qnaNo);
         model.addAttribute("board", boardService.get(qnaNo));
         model.addAttribute("criteria", criteria);
     }
+
+    @ResponseBody
+    @GetMapping("replyList/{qnaNo}")
+    public List<AnswerVO> replyList(@PathVariable("qnaNo") Long qnaNo){
+        return answerService.answerList(qnaNo);
+    }
+
 
     @GetMapping("modify")
     public void modify(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
@@ -234,6 +242,12 @@ public class BoardController {
         model.addAttribute("report", docService.viewReport(reQnaNo));
         model.addAttribute("userNo",userNo);
         return "mainBoard/report";
+    }
+
+    @DeleteMapping("remove/{qnaNo}")
+    @ResponseBody
+    public void remove(@PathVariable("qnaNo") Long qnaNo){
+        answerService.delete(qnaNo);
     }
 
 }

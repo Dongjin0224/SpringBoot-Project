@@ -42,7 +42,7 @@ public class DocHosAttachFileController {
         log.info(String.valueOf(hosUploadFiles.length));
         log.info("---------------------------------------");
 
-        String uploadFolder = "C:/upload";
+        String uploadFolder = "C:/hosupload";
         String uploadFolderPath = getFolder();
 
 //        년/월/일 폴더 생성
@@ -132,7 +132,7 @@ public class DocHosAttachFileController {
     @GetMapping("hosdisplay")
     @ResponseBody
     public ResponseEntity<byte[]> getFile(String hosFileName){
-        File file = new File("C:/upload" + hosFileName);
+        File file = new File("C:/hosupload" + hosFileName);
         log.info("Hospital file : " + file);
         HttpHeaders header = new HttpHeaders();
         ResponseEntity<byte[]> result = null;
@@ -150,7 +150,7 @@ public class DocHosAttachFileController {
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(String fileName){
         log.info("download file : " + fileName);
-        Resource resource = new FileSystemResource("C:/upload" + fileName);
+        Resource resource = new FileSystemResource("C:/hosupload" + fileName);
         log.info("resource : " + resource);
         String resourceName = resource.getFilename();
         HttpHeaders headers = new HttpHeaders();
@@ -170,7 +170,7 @@ public class DocHosAttachFileController {
         log.info("hosdeleteFile : " + fileName);
         try {
             fileName = URLDecoder.decode(fileName, "UTF-8");
-            File file = new File("C:/upload" + fileName);
+            File file = new File("C:/hosupload" + fileName);
             file.delete();
             if(type.equals("image")){
                 //원본 삭제

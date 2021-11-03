@@ -27,6 +27,8 @@ public class DocVO {
     private int docReportCnt;
     private int docLikeCnt;
 
+
+
     private int c;
 
 
@@ -34,6 +36,11 @@ public class DocVO {
     private String uploadPath;
     private String fileName;
     private boolean image;
+
+    private String hosUuid;
+    private String hosUploadPath;
+    private String hosFileName;
+    private boolean hosImage;
 
     private List<DocAttachFileVO> attachList;
     private List<DocHosAttachFileVO> hosattachList;
