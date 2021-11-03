@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.StringContent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
@@ -49,18 +50,22 @@ public class UserController {
     }
 
     @PostMapping("userLogin")
-    public RedirectView userLogin(UserVO vo, HttpServletRequest req, RedirectAttributes rttr) {
+    public String userLogin(UserVO vo, HttpServletRequest req, RedirectAttributes rttr, Model model) {
         HttpSession session = req.getSession();
         UserVO login = service.userLogin(vo);
 
         if (login == null) {
             session.setAttribute("user", null);
             /*rttr.addFlashAttribute("msg",false);*/
+            model.addAttribute("error",0);
+            return "/user/login";
         } else {
             session.setAttribute("user", login);
             session.setAttribute("userNo", login.getUserNo());
+            model.addAttribute("error",1);
+            return "/index";
         }
-        return new RedirectView("/index");
+
     }
 
     @GetMapping("userLogout")
