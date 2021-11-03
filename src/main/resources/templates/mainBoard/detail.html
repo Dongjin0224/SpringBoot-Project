@@ -295,11 +295,12 @@
     .content.main {
         width: 90%;
         border-radius: 25px;
-        margin: auto;
         padding-left: 8% !important;
         padding-right: 8% !important;
         padding-bottom: 2% !important;
         padding-top: 4% !important;
+
+        margin: 45px auto !important;
     }
 
     #formTitle {
@@ -307,6 +308,17 @@
         font-size: 23px;
         color: #358bca !important;
         font-weight: bold;
+    }
+
+    .newView{
+        text-align: center;
+        font-size: 21px;
+        font-weight: bold;
+        background: white;
+        border-radius: 14px;
+        width: 90%;
+        margin: 45px auto 0 auto;
+        border: 1px solid lightslategray;
     }
 </style>
 <body class="is-preload">
@@ -917,7 +929,7 @@
                                 <input class="input_button" id="cancel_post" type="button" value="취소"
                                        style="font-size: 20px;"
                                        onclick="closeForm()"/>
-                                <input class="input_button" id="write_post" type="submit" value="등록"
+                                <input class="input_button" id="write_post" type="button" value="등록" onclick="send()"
                                        style="font-size: 20px;"
                                 />
                             </td>
@@ -931,13 +943,12 @@
 
 
             <!-- 답변 반복 돌리는 부분-->
-            <th:block th:each="answerList:${answerList}">
-            <br><br>
-            <div class="content main">
+            <th:block th:each="answerList, i:${answerList}">
+            <div class="content main contentWrap"  th:id="|start${i.index}|" th:style="${i.index>4 ? 'display: none;' : 'display : block;'}">
 
                 <section class="tiles">
                     <form method="post" action="/detail/answerList">
-                        <div style="width: 100%;margin: auto" th:object="${answerList}">
+                        <div style="width: 100%;margin: auto" class="wrap" th:object="${answerList}">
                             <div class="board_detail_wrap">
                                 <div class="board_question">
                                     <div class="board_title_wrap"><!--의사 프로필-->
@@ -989,11 +1000,22 @@
                     </form>
                 </section>
             </div>
-            <!--반복 돌리는 부분-->
+
+
+
+                <th:block th:if="${i.index!=0&&i.index%5==0}">
+                    <div class="newView" th:id="|new${i.index}|">
+                        <button th:onclick="'viewOpen('+${i.index}+')'">5개 더보기</button>
+                    </div>
+                </th:block>
             </th:block>
+
+            <!--반복 돌리는 부분-->
+
 
         </div>
     </section>
+
 
 
     <!-- Footer -->
@@ -1013,12 +1035,46 @@
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
 <!-- Scripts -->
-<script>
+<script th:inline="javascript">
+    let a = 0;
+    let btnView = document.getElementsByClassName('newView');
+    for(let k=0;k<btnView.length;k++){
+        btnView[k].style.display='none';
+    }
+    btnView[a].style.display='block';
 
+    // $(function(){
+    //     $("#start").slice(0, 3).show(); // 최초 10개 선택
+    //     $("#load").click(function(e){ // Load More를 위한 클릭 이벤트e
+    //         e.preventDefault();
+    //         $("#start:hidden").slice(0, 3).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+    //         if($("#start:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
+    //             alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
+    //         }
+    //     });
+    // });
+
+    function viewOpen(index) {
+        let newView = document.getElementById('new'+index);
+        newView.style.display='none';
+        a++;
+        if(a!=btnView.length){
+            btnView[a].style.display='block';
+        }
+
+        for(let k = index;k<index+5;k++){
+            let start  = document.getElementById('start'+k);
+            if(start==null){break;}
+            start.style.display='block';
+
+        }
+    }
+
+    let loginCheck = [[${loginCheck}]];
 
     let btnReply = document.getElementById('btn_reply');
     let divWrite = document.getElementById('div_write');
-    let cancel = document.getElementById('cancel_post')
+    let cancel = document.getElementById('cancel_post');
 
     divWrite.style.display = 'none';
 
@@ -1030,6 +1086,21 @@
     function closeForm() {
         btnReply.style.visibility = 'visible';
         divWrite.style.display = 'none';
+    }
+
+
+    function  send() {
+        let content1 = document.getElementById("content").value;
+        // let content1 ={"content1":$('#content').val()};
+        $.ajax({
+            url:"/detail/answer",
+            contentType:"application/json; charset=utf-8",
+            data: content1,
+            type:'post',
+            success:function(result){
+                alert(result);
+            }
+        });
     }
 
 </script>

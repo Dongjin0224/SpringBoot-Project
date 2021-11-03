@@ -225,6 +225,19 @@
     .basic1 p{
         margin: 0;
     }
+
+    .qnaContent3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
+        line-height: 1.2em;
+        height: 2.5em;
+        margin-bottom: 1%;
+    }
+
 </style>
 <body class="is-preload">
 
@@ -425,6 +438,7 @@
     let paing1 = [[${pageMaker.criteria.amount}]];
     let paing2 = [[${pageMaker.criteria.pageNum}]];
     let paing3 = [[${pageMaker.criteria.qnaMajor}]];
+    // let paing4 = [[${pageMaker.criteria.keyword}]];
     let searchForm = $(document.searchForm);
     document.getElementById("criteriaPageNum").value = 1;
     document.getElementById("criteriaAmount").value = paing1;
@@ -441,6 +455,25 @@
             let index3 = qnaContent3[a].innerText.indexOf(keyword3);
             qnaContent3[a].innerHTML=qnaContent3[a].innerText.substring(0,index3)+'<span style="font-weight: bold">'+qnaContent3[a].innerText.substring(index3,keyword3.length+index3)+'</span>'+
                 qnaContent3[a].innerText.substring(keyword3.length+index3,qnaContent3[a].innerText.length);
+
+            if(qnaContent3[a].innerHTML.length>60){
+                if(qnaContent3[a].innerText.substring(0, 10).indexOf(keyword3)!=-1){
+                    qnaContent3[a].innerHTML=qnaContent3[a].innerText.substring(0,index3)+
+                        '<span style="font-weight: bold">'+qnaContent3[a].innerText.substring(index3,keyword3.length+index3)+'</span>'+
+                        qnaContent3[a].innerText.substring(keyword3.length+index3,qnaContent3[a].innerText.length);
+                }else{
+                    qnaContent3[a].innerHTML=qnaContent3[a].innerText.substring(0, 10)+'... '+'<span style="font-weight: bold">'+qnaContent3[a].innerText.substring(index3,keyword3.length+index3)+'</span>'+
+                        qnaContent3[a].innerText.substring(keyword3.length+index3,qnaContent3[a].innerText.length);
+                }
+
+            }
+
+
+        }
+        if (qnaMajor3[a].innerText.indexOf(keyword3)!=-1){
+            let index3 = qnaMajor3[a].innerText.indexOf(keyword3);
+            qnaMajor3[a].innerHTML=qnaMajor3[a].innerText.substring(0,index3)+'<span style="font-weight: bold">'+qnaMajor3[a].innerText.substring(index3,keyword3.length+index3)+'</span>'+
+                qnaMajor3[a].innerText.substring(keyword3.length+index3,qnaMajor3[a].innerText.length);
 
         }
     }
@@ -459,6 +492,7 @@
         $('#criteriaQnaMajor').val($(this).text());
         document.getElementById("criteriaPageNum").value = 1;
         document.getElementById("criteriaAmount").value = paing1;
+        document.getElementById('keyword').value= keyword3;
         setTimeout(function(){check = false;}, 500);
         searchForm.submit();
     });
