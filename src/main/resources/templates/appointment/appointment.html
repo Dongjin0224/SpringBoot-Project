@@ -87,7 +87,7 @@
                 </fieldset>
                 <div class="select">
                     <a onclick="reserve()" class="button  icon solid fa-medkit" style="box-shadow: none;">예약하기</a>
-                    <a href="javascript:void(0)" class="button icon solid fa-backspace" style="box-shadow: none;color: darkslategray !important;">돌아가기</a>
+                    <a onclick="history.go(-1)" class="button icon solid fa-backspace" style="box-shadow: none;color: darkslategray !important;">돌아가기</a>
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
                     if (result == "성공"){
                         alert("예약 신청 완료");
                     } else if (result == "실패"){
-                        alert("예약 신청 실패, 다시 확인해주세요");
+                        alert("로그인 후에 이용하실 수 있습니다");
                     }
                 }
             })
