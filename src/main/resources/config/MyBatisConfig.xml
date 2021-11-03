@@ -20,5 +20,6 @@
         <typeAlias type="com.example.test.model.appointment.vo.AppointmentVO" alias="appointmentVO"/>
         <typeAlias type="com.example.test.model.myPage.vo.VolunteerContentVO" alias="volunteerContentVO"/>
         <typeAlias type="com.example.test.model.mainBoard.vo.AnswerVO" alias="answerVO"/>
+        <typeAlias type="com.example.test.model.myPage.vo.QnaReplyVO" alias="qnaReplyVO"/>
     </typeAliases>
 </configuration>

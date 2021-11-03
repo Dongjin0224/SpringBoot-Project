@@ -3,6 +3,8 @@ package com.example.test.model.myPage.dao;
 import com.example.test.mappers.MyPageMapper;
 import com.example.test.model.appointment.vo.AppointmentVO;
 import com.example.test.model.appointment.vo.ReserveVO;
+import com.example.test.model.mainBoard.vo.BoardVO;
+import com.example.test.model.myPage.vo.QnaReplyVO;
 import com.example.test.model.myPage.vo.VolunteerContentVO;
 import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
@@ -29,4 +31,6 @@ public class MyPageDAO {
     public List<AppointmentVO> getAppList(Long docNo) { return myPageMapper.getAppList(docNo); }
     public List<AppointmentVO> getResList(Long userNo) { return myPageMapper.getResList(userNo); }
     public VolunteerContentVO getVolContent(Long docNo, Long applicantsNo) { return myPageMapper.getVolContent(docNo, applicantsNo); }
+    public List<BoardVO> getQnaList(Long userNo) { return myPageMapper.getQnaList(userNo); }
+    public List<QnaReplyVO> getQnaReply(Long docNo) { return myPageMapper.getQnaReply(docNo); }
 }

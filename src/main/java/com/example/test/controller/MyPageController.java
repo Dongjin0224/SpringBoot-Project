@@ -2,6 +2,7 @@ package com.example.test.controller;
 
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.model.beans.vo.PageDTO;
+import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
 import com.example.test.model.volunteer.vo.ApplicantsVO;
@@ -34,9 +35,9 @@ public class MyPageController {
         Long userNo = user.getUserNo();
         model.addAttribute("user", myPageService.viewUser(userNo));
         model.addAttribute("getResList", myPageService.getResList(userNo));
+        model.addAttribute("getQnaList", myPageService.getQnaList(userNo));
         return "myPage/myPageUser";
     }
-
 
     @PostMapping("updateUser")
     @ResponseBody
@@ -65,10 +66,10 @@ public class MyPageController {
     public String myPageDoc(Model model, HttpServletRequest request, Criteria criteria){
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
-
         model.addAttribute("doc", myPageService.viewDoc(docNo));
         model.addAttribute("getVolList", myPageService.getVolList(docNo));
         model.addAttribute("getAppList", myPageService.getAppList(docNo));
+        model.addAttribute("getQnaReply", myPageService.getQnaReply(docNo));
         /*model.addAttribute("pageMaker", new PageDTO(volunteerService.getTotal(criteria), 10, criteria));*/
         log.info("------------------------------------");
         log.info("docNo" + String.valueOf(docNo));
@@ -83,7 +84,6 @@ public class MyPageController {
         Long docNo = (Long) session.getAttribute("docNo");
 
         model.addAttribute("getVolContent", myPageService.getVolContent(docNo, applicantsNo));
-        /*model.addAttribute("getVolContent", myPageService.getVolContent(docNo));*/
         return "myPage/applicationForm";
     }
 
