@@ -24,7 +24,7 @@
     }
 
     .board_title_wrap img {
-        width: 60px;
+        width: 80px;
     }
 
     .board_title_wrap {
@@ -43,8 +43,8 @@
 
     .board_btn_wrap {
         text-align: center;
-        width: 60px;
-        margin-left: 58px;
+        width: 102px;
+        margin-left: -2px;
         margin-right: 0px;
     }
 
@@ -80,12 +80,11 @@
     }
 
     .btn_reple {
-        display: inline-block;
         width: 100% !important;
         border-radius: 0px !important;
-        font-size: 20px;
+        font-size: 17px;
         text-align: center;
-        height: 60px;
+        height: 31px;
         border-bottom: none;
         color: #358bca !important;
         font-weight: bold;
@@ -300,6 +299,8 @@
         padding-right: 8% !important;
         padding-bottom: 2% !important;
         padding-top: 4% !important;
+
+        margin: 45px auto !important;
     }
 
     #formTitle {
@@ -307,6 +308,23 @@
         font-size: 23px;
         color: #358bca !important;
         font-weight: bold;
+    }
+
+    .newView {
+        text-align: center;
+        font-size: 21px;
+        font-weight: bold;
+        background: white;
+        border-radius: 14px;
+        width: 90%;
+        margin: 45px auto 0 auto;
+        border: 1px solid lightslategray;
+    }
+    .replyTitleWrap{
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
     }
 </style>
 <body class="is-preload">
@@ -334,11 +352,13 @@
                                     </div>
                                 </div>
 
+                                <div style="margin-left: 2.5%;">
+                                    <div class="board_content" style="float: none" th:utext="*{qnaContent}"></div>
+                                    <div style=" height: 40px;clear: both;"></div>
+                                    <div class="board_date" style="width: 87%;margin: auto;" th:text="*{qnaDate}"></div>
+                                    <div style="width: 87%;margin: auto;" th:text="|조회수 : *{qnaViewCnt}|"></div>
+                                </div>
 
-                                <div class="board_content" style="float: none" th:utext="*{qnaContent}"></div>
-                                <div style=" height: 40px;clear: both;"></div>
-                                <div class="board_date" style="width: 87%;margin: auto;" th:text="*{qnaDate}"></div>
-                                <div style="width: 87%;margin: auto;" th:text="|조회수 : *{qnaViewCnt}|"></div>
                                 <div class="board_btn_reply" style="text-align: right;">
                                     <!--                                    <a href="#" class="button primary fit" style="border-radius: 15px">답변달기</a>-->
                                     <button type="button" class="button" onclick="openForm()" id="btn_reply"
@@ -365,10 +385,10 @@
                         </colgroup>
                         <tbody>
                         <tr style="border-top: none; border-bottom: none;">
-                            <td colspan="2" class="clear"><textarea
-                                    style="width: 100%; display: none;" name="applicationContent" id="content"
+                            <td colspan="2" class="clear" style="padding-bottom: 3%;border-radius: 25px;"><textarea
+                                    style="width: 100%; display: none;" name="reQnaContent" id="content"
                                     class="ec-fr-never-be-duplicated"></textarea> <input
-                                    type="hidden" id="content_hidden"
+                                    type="hidden" id="content_hidden" name="reQnaContent"
                                     fw-filter="isSimplexEditorFill" fw-label="내용"
                                     value="EC_FROALA_INSTANCE">
                                 <script
@@ -397,7 +417,7 @@
                                                 "iframe": true,
                                                 "iframeStyle": ".fr-view{font-size: 12px;}",
                                                 "iframeStyleFiles": ["\/\/img.echosting.cafe24.com\/editors\/froala\/css\/froala_style.min.css"],
-                                                "heightMin": 400,
+                                                "heightMin": 200,
                                                 "language": "ko_KR",
                                                 "paragraphFormatSelection": true,
                                                 "fontFamilySelection": true,
@@ -914,8 +934,8 @@
                         <tr style="border-bottom: 0px; border-top: 0px;">
                             <td colspan="3" style=" padding-bottom: 0;">
                                 <input class="input_button" id="cancel_post" type="button" value="취소"
-                                       style="font-size: 20px;"
-                                       onclick="closeForm()"/>
+                                       style="font-size: 20px;" onclick="closeForm()"/>
+
                                 <input class="input_button" id="write_post" type="button" value="등록" onclick="send()"
                                        style="font-size: 20px;"
                                 />
@@ -930,66 +950,85 @@
 
 
             <!-- 답변 반복 돌리는 부분-->
-            <th:block th:each="answerList:${answerList}">
-            <br><br>
-            <div class="content main">
+            <th:block th:each="answerList, i:${answerList}">
+                <div class="content main contentWrap" th:id="|start${i.index}|"
+                     th:style="${i.index>4 ? 'display: none;' : 'display : block;'}">
 
-                <section class="tiles">
-                    <form method="post" action="/detail/answerList">
-                        <div style="width: 100%;margin: auto" th:object="${answerList}">
-                            <div class="board_detail_wrap">
-                                <div class="board_question">
-                                    <div class="board_title_wrap"><!--의사 프로필-->
-                                        <span class="board_btn_wrap">
-                                    <a href="appointment" class="btn_reple" style="line-height: 29px;">진료 <div></div> 예약</a>
-                                </span>
-                                        <img src="/img/doc.png" alt=""><!--의사 사진-->
-                                        <span class="board_title" th:text="*{docName}"><!--의사이름-->
-
-
-                                    <div class="board_title_detail" th:text="*{docAddress}"><!--병원 주소-->
-
-                                    </div>
-                                </span>
-                                    </div>
-                                    <div style="display: inline;width: 116px;  text-align: right; float: left">
-                                        <img src="https://cdn.iconscout.com/icon/free/png-256/a-button-blood-type-37808.png"
-                                             alt="" style="width: 60px">
-                                    </div>
-                                    <div class="board_content"><!--내용-->
-
-
-                                        <div style="margin: auto;" th:utext="*{reQnaContent}">
+                    <section class="tiles">
+                        <form method="post" action="/detail/answerList">
+                            <div style="width: 100%;margin: auto" class="wrap" th:object="${answerList}">
+                                <div class="board_detail_wrap">
+                                    <div class="board_question">
+                                        <div class="board_title_wrap" style="margin-left: 7.7%;"><!--의사 프로필-->
+                                            <div style="display: flex;">
+                                                <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}"
+                                                     alt="이미지 없음"><!--의사 사진-->
+                                                <div style="margin-left: 10px;" class="replyTitleWrap">
+                                                    <div>
+                                                        <span class="board_title" th:text="*{docName}" style="font-size: 21px;"><!--의사이름--></span>
+                                                        <span class="board_btn_wrap">
+                                                         <a href="appointment" class="btn_reple">진료 예약</a>
+                                                        </span>
+                                                    </div>
+                                                    <div class="board_title_detail" style="font-size: 16px;"
+                                                         th:text="|*{docMajor} / *{docAddress}|"><!--병원 주소--></div>
+                                                </div>
+                                            </div>
 
                                         </div>
-                                    </div>
 
+                                        <div style="margin-left: 3.8%;">
+                                            <div style="display: inline;width: 116px;  text-align: right; float: left">
+                                                <img src="https://cdn.iconscout.com/icon/free/png-256/a-button-blood-type-37808.png"
+                                                     alt="" style="width: 80px">
+                                            </div>
+                                            <div class="board_content"><!--내용-->
+                                                <div style="margin: auto;margin-left: 0.8%;" th:utext="*{reQnaContent}"> </div>
+                                            </div>
+                                        </div>
 
-                                    <br><br>
-                                    <div style=" height: 40px;clear: both;"></div>
-                                    <div class="board_date" style=" width: 74%; clear: both; margin: auto;" th:utext="*{reQnaDate}">
-                                        <!--2021.10.17-->
-                                    </div>
-                                    <div style="text-align: right">
-                                        <a href="#" class="button primary fit btn_like"
-                                           style="width: 25% !important; background: white; color: black !important;">
-                                            <img src="/img/like.jpg" alt=""
-                                                 style="width: 22px;position: relative;top: 4px;">
-                                            좋아요</a>
-                                        <a href="#" class="button primary fit btn_report"
-                                           style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
-                                            <img src="/img/report.png" alt=""
-                                                 style="width: 22px;position: relative;top: 4px;">
-                                            신고하기</a>
+                                        <br><br>
+                                        <div style=" height: 40px;clear: both;"></div>
+                                        <div class="board_date" style=" width: 66%; clear: both; margin: auto;"
+                                             th:utext="*{reQnaDate}">
+                                            <!--2021.10.17-->
+                                        </div>
+
+                                        <div class="reWrite" style="margin: auto; width: 73%;"
+                                             th:if="${answerList.docNo==loginCheck}">
+
+                                            <button type="button" th:onclick="'remove('+*{reQnaNo}+')'" style="font-size: 15px;">삭제</button>
+                                        </div>
+
+                                        <input type="hidden" th:id="|likeDoc${i.index}|" th:value="*{docNo}">
+                                        <input type="hidden" th:id="|likeReply${i.index}|" th:value="*{reQnaNo}">
+                                        <div style="text-align: right">
+                                            <a th:onclick="'like('+${i.index}+')'" class="button primary fit btn_like" style="width: 25% !important; background: white; color: black !important;">
+                                                <img src="/img/like.jpg" alt="" style="width: 22px;position: relative;top: 4px;">좋아요
+                                            </a>
+                                            <a th:href="|/mainBoard/writeReport?reQnaNo=*{reQnaNo}|" class="button primary fit btn_report" style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
+                                                <img src="/img/report.png" alt="" style="width: 22px;position: relative;top: 4px;">신고하기
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </section>
-            </div>
-            <!--반복 돌리는 부분-->
+                        </form>
+                    </section>
+
+
+                </div>
+
+
+                <th:block th:if="${i.index!=0&&i.index%5==0}">
+                    <div class="newView" th:id="|new${i.index}|">
+                        <button th:onclick="'viewOpen('+${i.index}+')'">5개 더보기</button>
+                    </div>
+                </th:block>
             </th:block>
+
+            <!--반복 돌리는 부분-->
+
 
         </div>
     </section>
@@ -1013,18 +1052,59 @@
 <script src="/js/fix.js"></script>
 <!-- Scripts -->
 <script th:inline="javascript">
+    let a = 0;
+    let btnView = document.getElementsByClassName('newView');
+    for (let k = 0; k < btnView.length; k++) {
+        btnView[k].style.display = 'none';
+    }
+
+    if (btnView[a] != null) {
+        btnView[a].style.display = 'block';
+    }
+
+    // $(function(){
+    //     $("#start").slice(0, 3).show(); // 최초 10개 선택
+    //     $("#load").click(function(e){ // Load More를 위한 클릭 이벤트e
+    //         e.preventDefault();
+    //         $("#start:hidden").slice(0, 3).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+    //         if($("#start:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
+    //             alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
+    //         }
+    //     });
+    // });
+
+    function viewOpen(index) {
+        let newView = document.getElementById('new' + index);
+        newView.style.display = 'none';
+        a++;
+        if (a != btnView.length) {
+            btnView[a].style.display = 'block';
+        }
+
+        for (let k = index; k < index + 5; k++) {
+            let start = document.getElementById('start' + k);
+            if (start == null) {
+                break;
+            }
+            start.style.display = 'block';
+
+        }
+    }
 
     let loginCheck = [[${loginCheck}]];
+    let answerList = [[${answerList}]];
+
+
 
     let btnReply = document.getElementById('btn_reply');
     let divWrite = document.getElementById('div_write');
-    let cancel = document.getElementById('cancel_post')
+    let cancel = document.getElementById('cancel_post');
 
     divWrite.style.display = 'none';
 
     function openForm() {
-        if(loginCheck==0){
-            alert('의사 회원만 답변을 달 수 있습니다.');
+        if (loginCheck == 0) {
+            alert('의사 회원만 답글을 달 수 있습니다.');
             return;
         }
         btnReply.style.visibility = 'hidden';
@@ -1037,20 +1117,51 @@
     }
 
 
-    function  send() {
+    function send() {
         let content1 = document.getElementById("content").value;
+        let loginCheck = [[${loginCheck}]];
         // let content1 ={"content1":$('#content').val()};
         $.ajax({
-            url:"/detail/answer",
-            contentType:"application/json; charset=utf-8",
+            url: "/detail/answer",
+            contentType: "application/json; charset=utf-8",
             data: content1,
-            type:'post',
-            success:function(result){
-                alert(result);
+            type: 'post',
+            success: function (result) {
+                history.go(0);
             }
         });
     }
 
+
+    function remove(qnaNo) {
+        $.ajax({
+            url: "/mainBoard/remove/" + qnaNo,
+            type: 'delete',
+            success(result) {
+                history.go(0);
+            }
+        });
+    }
+
+
+   function like(index) {
+        let docNo = document.getElementById("likeDoc"+index).value;
+        let reQnaNo = document.getElementById("likeReply"+index).value;
+        let arr = {"docNo":docNo,"reQnaNo":reQnaNo}
+        $.ajax({
+            url:"/user/like/" + reQnaNo + "/" + docNo,
+            contentType:"application/json; charset=utf-8",
+            data: JSON.stringify(arr),
+            type:'post',
+            success:function(result) {
+                if(result == "좋아요 성공"){
+                    alert("좋아요 성공");
+                }else if (result == "좋아요 실패"){
+                    alert("이미 추천하신 의사입니다.");
+                }
+            }
+        })
+    }
 </script>
 
 </body>

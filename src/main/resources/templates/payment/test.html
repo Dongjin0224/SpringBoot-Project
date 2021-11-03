@@ -39,39 +39,11 @@
 <input type="button" id="updateCard" value="카드 수정">
 <!--</form>-->
 
-<input type="radio" name="aaaa" class="aaaa" value="a">
-<input type="radio" name="aaaa" class="aaaa" value="b">
-<input type="radio" name="aaaa" class="aaaa" value="c">
-<input type="radio" name="aaaa" class="aaaa" value="d">
-<input type="radio" name="aaaa" class="aaaa" value="e">
-<input type="radio" name="aaaa" class="aaaa" value="f">
-
-<input type="button" id="l">
-
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     // let form = document.testForm;
     // form.serialize();
-    var listVar = $('input[name=aaaa]:checked').val();
-    let s = $("input[name=aaaa]");
-    let t;
-
-    for(let i = 0; i < s.length; i++){
-        if(s[i].checked == true){
-            t = s[i].val();
-        }
-        console.log(s[i].checked);
-    }
-
-    $("#l").on("click", function(){
-        console.log("listVar : " + listVar);
-        console.log("s value : " + s.val());
-        console.log(s[0].checked)
-        console.log(s[0].value());
-        console.log("s " + s);
-        console.log("t : " + t);
-    })
 
     //    customer_uid 값 등록
     let amount = $("#amount").val();
@@ -214,24 +186,6 @@
             }
         })
     })
-    $.ajax({
-        url: "주소",
-        method: "post",
-        contentType: "application/json; charset=utf-8",
-        data: {
-            변수: 값,
-            변수2: 값,
-            변수3: 값
-        },
-        success: function (result) {
-            if(result == 1){
-                alert("정기결제 상태가 아닙니다.")
-            }else if(result == 0){
-                alert("정기결제가 취소되었습니다.")
-            }
-        }
-    })
-
 
 </script>
 </html>

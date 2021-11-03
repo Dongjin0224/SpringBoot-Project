@@ -33,11 +33,7 @@ public class PayController {
 
     @PostMapping("/insertCustomer")
     public void insertCustomer(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
-        HttpSession session = (HttpSession)request.getSession();
-        Long docNo = (Long) session.getAttribute("docNo");
-
-        payVO.setDocNo(docNo);
-
+        Long docNo = docNo(request);
         log.info("insertCustomer...........");
         log.info("docNo : " + docNo);
         pay.insertCustomer(docNo);
@@ -46,12 +42,7 @@ public class PayController {
 
     @ResponseBody
     @PostMapping("/cardCheck")
-    public String cardCheck(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
-        HttpSession session = (HttpSession)request.getSession();
-        Long docNo = (Long) session.getAttribute("docNo");
-
-        payVO.setDocNo(docNo);
-
+    public String cardCheck(@RequestBody PayVO payVO) throws UnsupportedEncodingException {
         int result = Integer.parseInt(pay.getCustomer(payVO).split(":")[1].split(",")[0]);
         log.info("-----------------------------------");
         System.out.println(payVO);
@@ -69,16 +60,13 @@ public class PayController {
     @ResponseBody
     @PostMapping("/updateCard")
     public String updateCard(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
-        HttpSession session = (HttpSession)request.getSession();
-        Long docNo = (Long) session.getAttribute("docNo");
-
-        payVO.setDocNo(docNo);
+        Long docNo = docNo(request);
 
         pay.unSchedule(payVO);
-        if(cardCheck(payVO, request) == "success"){
+        if(cardCheck(payVO) == "success"){
             log.info("카드 수정 성공");
-            cardCheck(payVO, request);
-        }else if(cardCheck(payVO, request) == "fail"){
+            cardCheck(payVO);
+        }else if(cardCheck(payVO) == "fail"){
             log.info("카드 수정 실패");
             code = 1;
             return "fail";
@@ -155,21 +143,9 @@ public class PayController {
 
     @PostMapping("/startPay")
     public void startPay(@RequestBody PayVO payVO, HttpServletRequest request){
-        PayVO vo = new PayVO();
-        HttpSession session = (HttpSession)request.getSession();
-        Long docNo = (Long) session.getAttribute("docNo");
+        Long docNo = docNo(request);
 
-        vo = pay.getPayList(docNo);
-        vo.setAmount(payVO.getAmount());
-        vo.setPayStatus(payVO.getPayStatus());
-        vo.setName(payVO.getName());
-        vo.setDocNo(docNo);
-
-        System.out.println(vo);
-
-        pay.pay(vo);
-        log.info("여기까진 들어오니???");
-
+        pay.pay(payVO);
         code = 0;
         while(true){
             if(code == 1){
@@ -185,40 +161,17 @@ public class PayController {
     }
 
     @PostMapping("/stopPay")
-    @ResponseBody
-    public int stopSchedulePay(HttpServletRequest request){
-        PayVO payVO = new PayVO();
-        HttpSession session = (HttpSession)request.getSession();
-        Long docNo = (Long) session.getAttribute("docNo");
-
-
-        if(payVO.getPayStatus() == 0){
-            return 1;
-        }
-
-        payVO = pay.getPayList(docNo);
-        payVO.setDocNo(docNo);
-        payVO.setPayStatus(0);
-        payVO.setName("");
-        payVO.setAmount(0);
-
+    public void stopSchedulePay(@RequestBody PayVO payVO){
         pay.unSchedule(payVO);
-        pay.pay(payVO);
-        System.out.println(payVO);
         code = 1;
-        return 0;
     }
 
-    @PostMapping("test")
-    public int test(HttpServletRequest request){
+    public Long docNo(HttpServletRequest request){
         HttpSession session = (HttpSession)request.getSession();
-        Long docNo = (Long) session.getAttribute("docNo");
+        DocVO doc = (DocVO) session.getAttribute("doc");
+        Long docNo = doc.getDocNo();
 
-        if(pay.getPayList(docNo) == null){
-            return 1;
-        }
-
-        return 0;
+        return docNo;
     }
 
 

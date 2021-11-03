@@ -1,6 +1,7 @@
 package com.example.test.model.user.dao;
 
 import com.example.test.mappers.DocMapper;
+import com.example.test.model.mainBoard.vo.AnswerVO;
 import com.example.test.model.user.vo.DocVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,4 +29,17 @@ public class DocDAO {
     }
 
     public void docLogout(HttpSession session) { docMapper.docLogout(session); }
+
+    /* 좋아요 */
+    public void like1(Long docNo) { docMapper.like1(docNo); }
+    public void like2(Long docNo, Long userNo, Long reQnaNo) { docMapper.like2(docNo, userNo, reQnaNo);}
+    public int getLike(Long docNo, Long userNo, Long reQnaNo) { return docMapper.getlike(docNo, userNo, reQnaNo); }
+
+    /* 신고하기 */
+    public AnswerVO viewReport(Long reQnaNo) { return docMapper.viewReport(reQnaNo);}
+    public void report1(Long docNo) {docMapper.report1(docNo);};
+    public void report2(Long reQnaNo, Long docNo, Long userNo, String reportType, String reportContent) {
+        docMapper.report2(reQnaNo, docNo, userNo, reportType, reportContent);
+    }
+    public int getReport(Long docNo, Long userNo, Long reQnaNo){ return docMapper.getReport(docNo, userNo, reQnaNo);}
 }
