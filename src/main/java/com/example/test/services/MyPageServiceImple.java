@@ -41,8 +41,5 @@ public class MyPageServiceImple implements MyPageService {
     public List<AppointmentVO> getResList(Long userNo) { return myPageDAO.getResList(userNo); }
 
     @Override
-    public List<ApplicantsVO> getVolContent(Long docNo) { return myPageDAO.getVolContent(docNo); }
-
-    @Override
-    public VolunteerContentVO get(Long docNo, Long applicantsNo) { return myPageDAO.get(docNo, applicantsNo); }
+    public VolunteerContentVO getVolContent(Long docNo, Long applicantsNo) { return myPageDAO.getVolContent(docNo, applicantsNo); }
 }

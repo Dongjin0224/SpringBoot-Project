@@ -82,18 +82,10 @@ public class MyPageController {
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
 
-        model.addAttribute("get", myPageService.get(docNo, applicantsNo));
+        model.addAttribute("getVolContent", myPageService.getVolContent(docNo, applicantsNo));
         /*model.addAttribute("getVolContent", myPageService.getVolContent(docNo));*/
         return "myPage/applicationForm";
     }
-
-    /*@GetMapping("volunteerContent")
-    public String volunteerContent(@RequestParam("volunteerBoardNo") Long volunteerBoardNo, Criteria criteria, Model model){
-        model.addAttribute("content", volunteerService.get(volunteerBoardNo));
-        model.addAttribute("criteria", criteria);
-        return "volunteer/volunteerContent";}*/
-
-
 
     @PostMapping("updateDoc")
     @ResponseBody

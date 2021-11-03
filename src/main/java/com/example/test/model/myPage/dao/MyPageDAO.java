@@ -28,6 +28,5 @@ public class MyPageDAO {
     public List<ApplicantsVO> getVolList(Long docNo) { return myPageMapper.getVolList(docNo); }
     public List<AppointmentVO> getAppList(Long docNo) { return myPageMapper.getAppList(docNo); }
     public List<AppointmentVO> getResList(Long userNo) { return myPageMapper.getResList(userNo); }
-    public List<ApplicantsVO> getVolContent(Long docNo) { return myPageMapper.getVolContent(docNo); }
-    public VolunteerContentVO get(Long docNo, Long applicantsNo) { return myPageMapper.get(docNo, applicantsNo); }
+    public VolunteerContentVO getVolContent(Long docNo, Long applicantsNo) { return myPageMapper.getVolContent(docNo, applicantsNo); }
 }
