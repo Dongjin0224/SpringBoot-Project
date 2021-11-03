@@ -70,7 +70,7 @@ public class MyPageController {
         model.addAttribute("getVolList", myPageService.getVolList(docNo));
         model.addAttribute("getAppList", myPageService.getAppList(docNo));
         model.addAttribute("getQnaReply", myPageService.getQnaReply(docNo));
-        /*model.addAttribute("pageMaker", new PageDTO(volunteerService.getTotal(criteria), 10, criteria));*/
+        /*model.addAttribute("pageMaker", new PageDTO(myPageService.getVolTotal(criteria), 5, criteria));*/
         log.info("------------------------------------");
         log.info("docNo" + String.valueOf(docNo));
         log.info("------------------------------------");

@@ -3,6 +3,7 @@ package com.example.test.model.myPage.dao;
 import com.example.test.mappers.MyPageMapper;
 import com.example.test.model.appointment.vo.AppointmentVO;
 import com.example.test.model.appointment.vo.ReserveVO;
+import com.example.test.model.beans.vo.Criteria;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.myPage.vo.QnaReplyVO;
 import com.example.test.model.myPage.vo.VolunteerContentVO;
@@ -33,4 +34,5 @@ public class MyPageDAO {
     public VolunteerContentVO getVolContent(Long docNo, Long applicantsNo) { return myPageMapper.getVolContent(docNo, applicantsNo); }
     public List<BoardVO> getQnaList(Long userNo) { return myPageMapper.getQnaList(userNo); }
     public List<QnaReplyVO> getQnaReply(Long docNo) { return myPageMapper.getQnaReply(docNo); }
+    /*public int getVolTotal(Criteria criteria) { return myPageMapper.getVolTotal(criteria); }*/
 }

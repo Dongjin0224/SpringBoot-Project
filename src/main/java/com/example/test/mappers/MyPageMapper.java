@@ -2,6 +2,7 @@ package com.example.test.mappers;
 
 import com.example.test.model.appointment.vo.AppointmentVO;
 import com.example.test.model.appointment.vo.ReserveVO;
+import com.example.test.model.beans.vo.Criteria;
 import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.myPage.vo.QnaReplyVO;
 import com.example.test.model.myPage.vo.VolunteerContentVO;
@@ -36,4 +37,7 @@ public interface MyPageMapper {
     public List<BoardVO> getQnaList(Long userNo);
 
     public List<QnaReplyVO> getQnaReply(Long docNo);
+
+    /*public int getVolTotal(Criteria criteria);*/
+
 }
