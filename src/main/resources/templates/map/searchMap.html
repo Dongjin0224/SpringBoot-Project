@@ -76,8 +76,8 @@
 
 
             <th:block th:if="${#lists.size(searchList) > 0}">
-                <th:block th:each="searchList: ${searchList}">
-                    <div class="hos_wrap" th:object="${searchList}">
+                <th:block th:each="searchList: ${searchList}"  th:object="${searchList}">
+                    <a class="hos_wrap" th:href="@{/map/searchDocs(docHospitalName=*{docHospitalName})}">
                         <div class="hos_info">
                             <div class="hosTitle" th:text="*{docHospitalName}"><!--아주대학교 병원 <span style="font-size: 14px;color: darkgray;">부속 병원</span>-->
                             </div>
@@ -89,7 +89,7 @@
                             <img th:src="@{/hosupload/} + *{hosUploadPath} + @{/} + *{hosUuid} + @{_} + *{hosFileName}"
                                  alt="이미지 없음" >
                         </div>
-                    </div>
+                    </a>
                 </th:block>
             </th:block>
             <th:block th:unless="${#lists.size(searchList) > 0}">
@@ -252,7 +252,7 @@
 
 
         var iwContent = '<div style="padding:5px;" class="title_wrap" >' +
-            '<a href="' + positions[i].href + '" style="color:black;border-bottom: none;" target="_blank">' + positions[i].title + '</a> </div>'
+            '<a href="' + positions[i].href + '" style="color:black;border-bottom: none;" target="_self">' + positions[i].title + '</a> </div>'
         // '<a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> ' +
         // '<a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
         // iwPosition = new kakao.maps.LatLng(33.250542, 126.416746); //인포윈도우 표시 위치입니다

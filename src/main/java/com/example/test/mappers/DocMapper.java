@@ -20,6 +20,12 @@ public interface DocMapper {
 
     public void docLogout(HttpSession session);
 
+    public DocVO findId(DocVO vo);
+
+    public DocVO findPw(DocVO vo);
+
+    public void updatePassword(DocVO vo);
+
     /*좋아요*/
     public void like1(Long docNo);
     public void like2(Long docNo, Long userNo, Long reQnaNo);

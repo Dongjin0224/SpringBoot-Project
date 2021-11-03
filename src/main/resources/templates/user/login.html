@@ -41,6 +41,7 @@
                                     <div style="float: left;"><h3><i class="fas fa-user">  회원 로그인</i></h3></div>
                                     <div><input type="button" id="goDocLogin" value="의사 로그인" style="box-shadow: none;"></div>
                                     <div style="margin-top: 2%;"><h6>건강상담을 위해서는 로그인이 필요합니다.</h6></div>
+                                    <div id="loginFail" style="margin-bottom: 5px;"></div>
                                     <div>
                                         <div  style="width:100%">
                                             <p style="margin:0;">아이디 </p>
@@ -49,7 +50,7 @@
                                             <p style="margin:0;">비밀번호</p>
                                             <input type="password" name="userPw" id="member_pw" placeholder="PassWord" value=""/>
                                             <div style="text-align:center; margin-top:9%">
-                                                <a href="#">아이디 찾기</a><span>&nbsp;|&nbsp;</span><a href="#">비밀번호 찾기</a>
+                                                <a id="findId">아이디 찾기</a><span>&nbsp;|&nbsp;</span><a id="findPw">비밀번호 찾기</a>
                                             </div>
                                         </div>
                                     </div>
@@ -174,10 +175,22 @@
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script>
+<script th:inline="javascript">
+    let error = [[${error}]];
+    if(error==0){
+        let loginFail = document.getElementById('loginFail');
+        loginFail.innerHTML="<span style='color:red;font-size: 15px;font-weight: bold;'>아이디와 비밀번호를 확인해 주세요..</span>";
+    }
+
 
     $("#signup").on("click", function(){
-        location.href="doctorSignUp";
+        location.href="/user/explanation";
+    })
+    $("#findId").on("click", function(){
+        location.href="/user/userFindId";
+    })
+    $("#findPw").on("click", function(){
+        location.href="/user/userFindPw";
     })
 
     /*휴대폰 인증*/

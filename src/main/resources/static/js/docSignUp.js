@@ -583,8 +583,3 @@ $(".btn_close").on("click", function () {
 })
 
 /*})*/
-
-
-
-
-

@@ -34,6 +34,18 @@
         SELECT COUNT(DOCID) FROM TABLE_DOC WHERE DOCID=#{docId}
     </select>
 
+    <select id="findId" resultType="DocVO">
+        SELECT * FROM TABLE_DOC WHERE DOCNAME= #{docName} AND DOCPHONENUM= #{docPhoneNum}
+    </select>
+
+    <select id="findPw" resultType="DocVO">
+        SELECT * FROM TABLE_DOC WHERE DOCID= #{docId} AND DOCNAME= #{docName} AND DOCPHONENUM= #{docPhoneNum}
+    </select>
+
+    <update id="updatePassword">
+        UPDATE TABLE_DOC SET DOCPW=#{docPw} WHERE DOCID=#{docId} AND DOCPHONENUM =#{docPhoneNum}
+    </update>
+
     <!-- 좋아요(닥터테이블 카운트 누적) -->
     <update id="like1">
         UPDATE TABLE_DOC SET DOCLIKECNT=DOCLIKECNT+1 WHERE docNo = #{docNo}

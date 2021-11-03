@@ -213,40 +213,6 @@
         border-bottom: none;
     }
 
-
-    .filebox label {
-        display: inline-block;
-        padding: .5em .75em;
-        color: #fff;
-        font-size: inherit;
-        line-height: normal;
-        vertical-align: middle;
-        background-color: #358bca;
-        cursor: pointer;
-        border: 1px solid #358bca;
-        border-radius: .25em;
-        -webkit-transition: background-color 0.2s;
-        transition: background-color 0.2s;
-    }
-
-    .filebox label:hover {
-        background-color: #358bca80;
-    }
-
-    .filebox label:active {
-        background-color: #358bca80;
-    }
-
-    .filebox input[type="file"] {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        border: 0;
-    }
 </style>
 <body class="is-preload">
 
@@ -339,17 +305,16 @@
                             <!--coolSms끝-->
                             <!--첨부파일 추가-->
                             <label>의사 프로필</label>
-                            <div class="filebox">
-                                <label for="doc">+</label>
+                            <div>
                                 <input type="file" id="doc" name="uploadFiles" multiple>
-                                <div style="border:solid 1px #eeeeee78">
-                                    <div class="uploadResult" >
-                                        <ul style="list-style: none;" ></ul>
-                                    </div>
+                            </div>
+
+                            <!--썸네일-->
+                            <div style="border:solid 1px #eeeeee78">
+                                <div class="uploadResult" >
+                                    <ul style="list-style: none;" ></ul>
                                 </div>
                             </div>
-                            <!--썸네일-->
-
                             <div class="bigPictureWrapper">
                                 <div class="bigPicture"></div>
                             </div>
@@ -357,16 +322,15 @@
 
                             <!--첨부파일 추가2-->
                             <label>병원사진</label>
-                            <div class="filebox">
-                                <label for="hos">+</label>
+                            <div>
                                 <input type="file" id="hos" name="hosUploadFiles" multiple>
-                                <div style="border:solid 1px #eeeeee78">
-                                    <div class="uploadResult1">
-                                        <ul style="list-style: none;"></ul>
-                                    </div>
-                                </div>
                             </div>
                             <!--썸네일2-->
+                            <div style="border:solid 1px #eeeeee78">
+                                <div class="uploadResult1">
+                                    <ul style="list-style: none;"></ul>
+                                </div>
+                            </div>
                             <div class="bigPictureWrapper1">
                                 <div class="bigPicture1"></div>
                             </div>
