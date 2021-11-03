@@ -89,7 +89,7 @@
                         <div class="select">
                             <input type="hidden" th:id="|docNo${i.index}|" th:value="*{docNo}">
                             <a th:onclick="'reserve('+${i.index}+')'" class="button  icon solid fa-medkit" style="box-shadow: none;">예약하기</a>
-                            <a href="javascript:void(0)" class="button icon solid fa-backspace" style="box-shadow: none;color: darkslategray !important;">돌아가기</a>
+                            <a onclick="history.go(-1)" class="button icon solid fa-backspace" style="box-shadow: none;color: darkslategray !important;">돌아가기</a>
                         </div>
                     </fieldset>
                     </th:block>
