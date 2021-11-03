@@ -21,6 +21,6 @@
         SELECT r.DOCNO, r.QNANO, DOCNAME, DOCMAJOR, DOCADDRESS, REQNACONTENT, REQNADATE FROM TABLE_DOC d, TABLE_QNA_REPLY r
         WHERE r.DOCNO = d.DOCNO
         )
-        WHERE QNANO ='N' ORDER BY REQNANO DESC LIMIT #{start},#{end}
+        WHERE QNANO =#{qnaNo} ORDER BY REQNANO DESC LIMIT #{start},#{end}
     </select>
 </mapper>

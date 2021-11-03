@@ -403,6 +403,16 @@
                                         <input type="hidden" th:value="*{docNo}" id="docNo">
                                         <div th:text="*{docNo}"></div>
                                         <hr>
+                                        <div style="display: flex;">
+                                        <div style="display: flex;">
+                                            <label class="profile">신고 횟수</label>
+                                            <div th:text="*{docReportCnt}"></div>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <label class="profile">좋아요</label>
+                                            <div th:text="*{docLikeCnt}"></div>
+                                        </div>
+                                        </div>
                                         <hr class='dark'>
                                     </div>
                                 </div>
