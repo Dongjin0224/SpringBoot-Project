@@ -59,12 +59,17 @@ public class UserController {
             /*rttr.addFlashAttribute("msg",false);*/
             model.addAttribute("error",0);
             return "/user/login";
-        } else {
+        }else if (login.getUserStatus() == 4 || login.getUserStatus() == 5){
+            session.setAttribute("user", null);
+            model.addAttribute("status", login.getUserStatus());
+            return "/user/login";
+        }else{
             session.setAttribute("user", login);
             session.setAttribute("userNo", login.getUserNo());
             model.addAttribute("error",1);
             return "/index";
         }
+
 
     }
 

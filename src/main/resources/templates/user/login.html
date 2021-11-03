@@ -179,7 +179,17 @@
     let error = [[${error}]];
     if(error==0){
         let loginFail = document.getElementById('loginFail');
-        loginFail.innerHTML="<span style='color:red;font-size: 15px;font-weight: bold;'>아이디와 비밀번호를 확인해 주세요..</span>";
+        loginFail.innerHTML="<span style='color:red;font-size: 15px;font-weight: bold;'>아이디와 비밀번호를 확인해 주세요.</span>";
+    }
+
+    let status = [[${status}]];
+    if(status == 4){
+        let loginFail = document.getElementById('loginFail');
+        loginFail.innerHTML="<span style='color:red;font-size: 15px;font-weight: bold;'>현재 정지중인 아이디입니다.</span>";
+    }
+    if(status == 5){
+        let loginFail = document.getElementById('loginFail');
+        loginFail.innerHTML="<span style='color:red;font-size: 15px;font-weight: bold;'>탈퇴한 계정입니다.</span>";
     }
 
 
