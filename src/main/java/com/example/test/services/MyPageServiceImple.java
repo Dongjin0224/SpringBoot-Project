@@ -2,7 +2,10 @@ package com.example.test.services;
 
 import com.example.test.model.appointment.vo.AppointmentVO;
 import com.example.test.model.appointment.vo.ReserveVO;
+import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.mainBoard.vo.BoardVO;
 import com.example.test.model.myPage.dao.MyPageDAO;
+import com.example.test.model.myPage.vo.QnaReplyVO;
 import com.example.test.model.myPage.vo.VolunteerContentVO;
 import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
@@ -42,4 +45,14 @@ public class MyPageServiceImple implements MyPageService {
 
     @Override
     public VolunteerContentVO getVolContent(Long docNo, Long applicantsNo) { return myPageDAO.getVolContent(docNo, applicantsNo); }
+
+    @Override
+    public List<BoardVO> getQnaList(Long userNo) { return myPageDAO.getQnaList(userNo); }
+
+    @Override
+    public List<QnaReplyVO> getQnaReply(Long docNo) { return myPageDAO.getQnaReply(docNo); }
+
+    /*@Override
+    public int getVolTotal(Criteria criteria) { return myPageDAO.getVolTotal(criteria); }*/
+
 }

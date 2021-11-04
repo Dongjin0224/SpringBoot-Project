@@ -19,6 +19,11 @@ public class MyPageDAO_test {
     @Test
     public void viewDoc(){ log.info(myPageDAO.viewDoc(1L).toString()); }
 
+
+    @Test
+    public void getQnaListTest(){
+        myPageDAO.getQnaList(1L).forEach(list -> log.info(list.toString()));
+    }
     @Test
     public void updateUserTest(){
         if(myPageDAO.viewUser(1L) == null){
