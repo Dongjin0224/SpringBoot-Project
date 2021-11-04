@@ -4,7 +4,7 @@
    pixelarity.com | hello@pixelarity.com
    License: pixelarity.com/license
 -->
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Untitled</title>
     <meta charset="utf-8"/>
@@ -276,7 +276,7 @@
                                 <label>@</label>
                                 <span id="inputEmail">
                                 <select
-                                        id="email_select" name='docEmail2' style="border-radius: 0;width: 140%;">
+                                        id="email_select" name='docEmail2' style="border-radius: 0;width: 130%;">
                                     <option selected disabled>선택</option>
                                     <option value="naver.com">naver.com</option>
                                     <option value="daum.net">daum.net</option>
@@ -305,7 +305,7 @@
                             <label>의사 프로필</label>
                             <table>
                                 <th>
-                                    <div>
+                                    <div style="padding-top: 12px;">
                                         <input type="file" id="doc" name="uploadFiles" multiple>
                                     </div>
                                 </th>
@@ -330,7 +330,7 @@
                             <label>병원사진</label>
                             <table>
                                 <th>
-                                    <div>
+                                    <div style="padding-top: 12px;">
                                         <input type="file" id="hos" name="hosUploadFiles" multiple>
                                     </div>
                                 </th>
@@ -488,11 +488,15 @@
         async
 ></script>
 <script src="/js/docSignUp.js"></script>
-<script>
+<script th:inline="javascript">
 
-    /* $(document).ready(function () {*/
+    $(document).keypress(function(e) { if (e.keyCode == 13) e.preventDefault(); });
 
-    /* });*/
+
+    let SignCheck =[[${SignCheck}]];
+    if(SignCheck==1) {
+        alert("회원가입 실패");
+    }
 
 
     /*휴대폰 인증*/
@@ -506,13 +510,19 @@
                 $('#checkNumStr').click(function(){
                     if($.trim(numStr)==$('#numStr').val()){
                         alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
+                        check= true;
                     }else{
                         alert("인증 실패. 인증번호를 다시 확인해 주세요.");
+                        check= false;
                     }
                 });
             }
         });
     })
+
+    var check = false;
+
+
     /*휴대폰인증 끝*/
 
     /*아이디 중복검사*/

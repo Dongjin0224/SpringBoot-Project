@@ -43,7 +43,7 @@ public class DocController {
     public String doctorSignUp(){return "user/doctorSignUp";}
 
     @PostMapping("doctorSignUp")
-    public String doctorSignUp(DocVO vo){
+    public String doctorSignUp(DocVO vo,Model model){
         log.info("---------------DocController...들어옴------------------");
 
         int result =service.checkId(vo);
@@ -62,8 +62,10 @@ public class DocController {
 
 
         if(result == 1) {
+            model.addAttribute("SignCheck",1);
             return "user/doctorSignUp";
         }else if(result == 0) {
+            model.addAttribute("SignCheck",0);
             service.DocSignUp(vo);
         }
         return "user/docLogin";
@@ -107,6 +109,7 @@ public class DocController {
     @PostMapping("sendSms")
     @ResponseBody
     public String sendSms(HttpServletRequest request){
+
 
 
         Random rand  = new Random();
