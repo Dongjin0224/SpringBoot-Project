@@ -22,7 +22,7 @@
     </update>
 
     <select id="getPayList" resultMap="result">
-        SELECT PAYNO, AMOUNT, CARD_NUMBER, EXPIRY, BIRTH, PWD_2DIGIT, CUSTOMER_UID, "NAME"
+        SELECT PAYNO, DOCNO, PAYSTATUS, AMOUNT, PAYDATE, CARD_NUMBER, EXPIRY, BIRTH, PWD_2DIGIT, CUSTOMER_UID, "NAME"
         FROM TABLE_PAYMENT
         WHERE DOCNO = #{docNo}
     </select>

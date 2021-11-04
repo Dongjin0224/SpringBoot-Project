@@ -6,6 +6,7 @@ import com.example.test.services.DocService;
 
 import com.example.test.model.user.vo.DocVO;
 
+import com.example.test.services.PayService;
 import com.example.test.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ import java.util.Random;
 public class DocController {
 
     private final DocService service;
+    private final PayService payService;
 
 
     @GetMapping("docLogin")
@@ -67,6 +69,7 @@ public class DocController {
         }else if(result == 0) {
             model.addAttribute("SignCheck",0);
             service.DocSignUp(vo);
+            payService.insertCustomer(vo.getDocNo());
         }
         return "user/docLogin";
     }
