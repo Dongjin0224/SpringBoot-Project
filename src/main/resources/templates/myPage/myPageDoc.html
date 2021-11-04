@@ -783,7 +783,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                            <div>
+                                                <button class="button small" id="stop">구독 취소</button>
+                                            </div>
                                             <hr class='dark'>
                                         </div>
 
@@ -978,9 +980,10 @@
                             success: function (result) {
                                 console.log(result)
                                 if (result == "success") {
-                                    alert("수정 성공")
+                                    alert("카드 정보가 수정되었습니다.")
+                                    $(".module").css("display", "none");
                                 } else if (result == "fail") {
-                                    alert("수정 실패")
+                                    alert("카드 정보를 다시 확인해주세요.")
                                 }
                             }
                         })
@@ -988,6 +991,22 @@
                 }
             }
         });
+    })
+
+    $("#stop").on("click", function () {
+        $.ajax({
+            url: "/payment/stopPay",
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                if(result == 1){
+                    alert("정기결제 상태가 아닙니다.")
+                }else if(result == 0){
+                    alert("정기결제가 취소되었습니다.")
+                    history.go(0);
+                }
+            }
+        })
     })
 
     $("a#goRead").on("click", function(e){

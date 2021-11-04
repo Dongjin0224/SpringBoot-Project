@@ -79,18 +79,24 @@ public class PayController {
 
         payVO.setDocNo(docNo);
 
-        pay.unSchedule(payVO);
         if(cardCheck(payVO, request) == "success"){
             log.info("카드 수정 성공");
             cardCheck(payVO, request);
         }else if(cardCheck(payVO, request) == "fail"){
             log.info("카드 수정 실패");
-            code = 1;
             return "fail";
         }
+        payVO = pay.getPayList(docNo);
+        payVO.setCard_number(payVO.getCard_number());
+        payVO.setExpiry(payVO.getExpiry());
+        payVO.setBirth(payVO.getBirth());
+        payVO.setPwd_2digit(payVO.getPwd_2digit());
+        payVO.setCustomer_uid("");
+
+        pay.pay(payVO);
+
         pay.getCustomer(payVO);
 
-        startPay(payVO, request);
         return "success";
     }
 
@@ -153,10 +159,6 @@ public class PayController {
         PayVO vo = new PayVO();
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
-        log.info("잘 담아오고 있니?..................");
-        System.out.println(payVO.getAmount());
-        System.out.println(payVO.getName());
-        log.info("....................................");
 
         vo = pay.getPayList(docNo);
         vo.setAmount(payVO.getAmount());
@@ -164,15 +166,11 @@ public class PayController {
         vo.setName(payVO.getName());
         vo.setDocNo(docNo);
 
-        log.info("startPay..................");
         System.out.println(vo);
-        log.info("....................................");
-
         if(payVO.getName() == null){
             return;
         }
 
-        System.out.println(vo);
 
         pay.pay(vo);
         log.info("여기까진 들어오니???");
@@ -229,5 +227,21 @@ public class PayController {
         return 0;
     }
 
+    public void again(HttpServletRequest request){
+        HttpSession session = (HttpSession)request.getSession();
+        Long docNo = (Long) session.getAttribute("docNo");
+        code = 0;
+        while(true){
+            if(code == 1){
+                break;
+            }
+            pay.schedulePay(docNo);
+            try {
+                Thread.sleep(60000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

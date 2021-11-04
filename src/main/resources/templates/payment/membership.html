@@ -293,10 +293,6 @@
         <div class="inner alt">
             <div class="content main">
                 <h3>멤버쉽 선택 <sub>회원권에 대한 정보는 물음표를 클릭하세요.</sub> </h3>
-                <!--                <div class="basic">-->
-                <!--                    <div></div>-->
-                <!--                    <div></div>-->
-                <!--                </div>-->
                 <div class="product">
                     <div class="standard">
                         <div class="product_titleArea">
@@ -343,9 +339,6 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" value="users_0001" name="customer_uid">
-                    <input id="stop_pay" type="button" value="구독 취소">
-                    <input id="updateCard" type="button" value="card update">
                 </div>
             </div>
     </section>
@@ -497,9 +490,6 @@
                     method: "post",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({name: payName, amount: price, payStatus: payStatus}),
-                    success:function(){
-                        location.href="/myPageDoc";
-                    }
                 })
                 //     } else {
                 //         //[3] 아직 제대로 결제가 되지 않았습니다.
@@ -515,50 +505,6 @@
         });
     });
 
-    $("#stop_pay").on("click", function () {
-        $.ajax({
-            url: "/payment/stopPay",
-            method: "post",
-            contentType: "application/json; charset=utf-8",
-            success: function (result) {
-                if(result == 1){
-                    alert("정기결제 상태가 아닙니다.")
-                }else if(result == 0){
-                    alert("정기결제가 취소되었습니다.")
-                }
-            }
-        })
-    })
-
-    $("#updateCard").on("click", function () {
-
-        let card_number = $("#card_number").val();
-        let expiry = $("#expiry").val();
-        let birth = $("#birth").val();
-        let pwd_2digit = $("#pwd_2digit").val();
-
-        let arr = {
-            card_number: card_number,
-            expiry: expiry,
-            birth: birth,
-            pwd_2digit: pwd_2digit,
-            // amount: amount,
-        };
-
-        $.ajax({
-            url: "/payment/updateCard",
-            method: "post",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(arr),
-            success: function (result) {
-                if (result == "success") {
-                    alert("카드정보 수정 성공")
-                } else if (result == "fail") {
-                    alert("카드정보를 다시 확인하고 입력해주세요.")
-                }
-            }
-        })
-    })
 </script>
 </body>
 </html>
