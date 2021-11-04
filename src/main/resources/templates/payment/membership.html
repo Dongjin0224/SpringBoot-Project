@@ -292,7 +292,6 @@
     <section id="one" class="main alt">
         <div class="inner alt">
             <div class="content main">
-                <th:block></th:block>
                 <h3>멤버쉽 선택 <sub>회원권에 대한 정보는 물음표를 클릭하세요.</sub> </h3>
                 <!--                <div class="basic">-->
                 <!--                    <div></div>-->
@@ -420,7 +419,7 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/fix.js"></script>
-<script>
+<script th:inline="javascript">
     let standard = $("#standard").val();
     let premium = $("#premium").val();
 
@@ -429,12 +428,12 @@
 
     $($(".pay_module")[0]).on("click", function(){
         price = standard;
-        payName = "STANDARD 회원권 결제";
+        payName = "STANDARD 회원권";
     })
 
     $($(".pay_module")[1]).on("click", function(){
         price = premium;
-        payName = "PREMIUM 회원권 결제";
+        payName = "PREMIUM 회원권";
     })
 
     $(document).ready(function(){
@@ -496,11 +495,9 @@
                     method: "post",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({name: payName, amount: price, payStatus: payStatus}),
-                    // success:function(result){
-                    //     if(result == 1){
-                    //         alert()
-                    //     }
-                    // }
+                    success:function(){
+                        location.href="/myPageDoc";
+                    }
                 })
                 //     } else {
                 //         //[3] 아직 제대로 결제가 되지 않았습니다.

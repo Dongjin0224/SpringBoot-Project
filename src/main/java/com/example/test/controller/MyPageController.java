@@ -6,6 +6,7 @@ import com.example.test.model.user.vo.DocVO;
 import com.example.test.model.user.vo.UserVO;
 import com.example.test.model.volunteer.vo.ApplicantsVO;
 import com.example.test.services.MyPageService;
+import com.example.test.services.PayService;
 import com.example.test.services.VolunteerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,7 @@ public class MyPageController {
 
     public final MyPageService myPageService;
     public final VolunteerService volunteerService;
+    public final PayService payService;
 
     @GetMapping("myPageUser")
     public String myPageUser(Model model, HttpServletRequest request) {
@@ -69,6 +71,7 @@ public class MyPageController {
         model.addAttribute("doc", myPageService.viewDoc(docNo));
         model.addAttribute("getVolList", myPageService.getVolList(docNo));
         model.addAttribute("getAppList", myPageService.getAppList(docNo));
+        model.addAttribute("pay", payService.getPayList(docNo));
         /*model.addAttribute("pageMaker", new PageDTO(volunteerService.getTotal(criteria), 10, criteria));*/
         log.info("------------------------------------");
         log.info("docNo" + String.valueOf(docNo));
