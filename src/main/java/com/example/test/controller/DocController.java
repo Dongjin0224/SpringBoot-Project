@@ -70,18 +70,21 @@ public class DocController {
     }
 
     @PostMapping("docLogin")
-    public RedirectView docLogin(DocVO vo, HttpServletRequest req, RedirectAttributes rttr) {
+    public String docLogin(DocVO vo, HttpServletRequest req, RedirectAttributes rttr, Model model) {
         HttpSession session = req.getSession();
         DocVO login = service.docLogin(vo);
 
         if (login == null) {
             session.setAttribute("doc", null);
+            model.addAttribute("error",0);
             /*rttr.addFlashAttribute("msg",false);*/
+            return "/user/docLogin";
         } else {
             session.setAttribute("doc", login);
             session.setAttribute("docNo", login.getDocNo());
+            return "/index";
         }
-        return new RedirectView("/index");
+
     }
 
 
@@ -250,7 +253,6 @@ public class DocController {
         } else {
             return "실패";
         }
-
     }
 
 }

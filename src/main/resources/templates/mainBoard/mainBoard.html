@@ -296,7 +296,7 @@
                                     <dl>
                                         <dt>
                                             <a th:href="|/mainBoard/detail?qnaNo=*{qnaNo}|"
-                                               target="_blank" class="_nclicks:kin.txt _searchListTitleAnchor" >
+                                               target="_self" class="_nclicks:kin.txt _searchListTitleAnchor" >
                                                 <span class="qnaTitle3" th:text="*{qnaTitle}" style="font-weight: bolder;"></span></a>
                                             <sub th:text="*{qnaDate}"></sub>
                                         </dt>
@@ -479,16 +479,24 @@
     }
 
 
+   $(document).ready(function(){
 
+       if(paing3!=''){
+           $("h1").text(paing3);
+           $("h1").hide();
+           $("header.accent1").css("background-image", "url('/img/" + paing3 + ".jpg')");
+       }
+       $("h1").fadeIn(500);
+   });
 
     $(".subject").on("click", function(e){
         e.preventDefault();
-        if(check){return;}
-        $("h1").text($(this).text());
-        $("h1").hide();
-        $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
-        $("h1").fadeIn(500);
-        check = true;
+        // if(check){return;}
+        // $("h1").text($(this).text());
+        // $("h1").hide();
+        // $("header.accent1").css("background-image", "url('/img/" + $(this).text() + ".jpg')");
+        // $("h1").fadeIn(500);
+        // check = true;
         $('#criteriaQnaMajor').val($(this).text());
         document.getElementById("criteriaPageNum").value = 1;
         document.getElementById("criteriaAmount").value = paing1;

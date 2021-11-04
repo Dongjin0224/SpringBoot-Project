@@ -404,6 +404,16 @@
                                         <input type="hidden" th:value="*{docNo}" id="docNo">
                                         <div th:text="*{docNo}"></div>
                                         <hr>
+                                        <div style="display: flex;">
+                                        <div style="display: flex;">
+                                            <label class="profile">신고 횟수</label>
+                                            <div th:text="*{docReportCnt}"></div>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <label class="profile">좋아요</label>
+                                            <div th:text="*{docLikeCnt}"></div>
+                                        </div>
+                                        </div>
                                         <hr class='dark'>
                                     </div>
                                 </div>
@@ -429,9 +439,9 @@
                                             <div>
                                                 <label for="docPhoneNum1" class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
                                                 <div>
-                                                    <input class='phone' th:value="*{docPhoneNum.split('-')[0]}" type='text' id='docPhoneNum1' name='docPhoneNum1'>
-                                                    - <input class='phone' th:value="*{docPhoneNum.split('-')[1]}" type='text' id='docPhoneNum2' name='docPhoneNum2'>
-                                                    - <input class='phone' th:value="*{docPhoneNum.split('-')[2]}" type='text' id='docPhoneNum3' name='docPhoneNum3'>
+                                                    <input class='phone' th:value="*{#strings.substring(docPhoneNum, 0, 3)}" type='text' id='docPhoneNum1' name='docPhoneNum1'>
+                                                    - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 3, 7)}" type='text' id='docPhoneNum2' name='docPhoneNum2'>
+                                                    - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 7, 11)}" type='text' id='docPhoneNum3' name='docPhoneNum3'>
                                                 </div>
                                             </div>
                                             <div>
@@ -530,18 +540,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="">
-                                <td class="">[정형외과]</td>
-                                <td class=""><a>발목 삐었어요</a></td>
-                                <td class="">2222.2.22</td>
-                                <td class="">12345</td>
-                            </tr>
-                            <tr class="">
-                                <td class="">[정형외과]</td>
-                                <td class=""><a>발목 삐었어요</a></td>
-                                <td class="">2222.2.22</td>
-                                <td class="">12345</td>
-                            </tr>
+                            <th:block th:each="list:${getQnaReply}">
+                                <tr class="" th:object="${list}">
+                                    <td class="" th:text="*{qnaMajor}"></td>
+                                    <!--<td class="" th:text="*{volunteerBoardTitle}"></td>-->
+                                    <td class=""><a id="goReply" th:href="*{qnaNo}" th:text="*{qnaTitle}"></a></td>
+                                    <td class="" th:text="*{#strings.substring(reQnaDate, 0, 10)}"></td>
+                                    <td class="" th:text="*{reQnaLike}"></td>
+                                </tr>
+                            </th:block>
                             </tbody>
                         </table>
                         <!--<div th:object="${pageMaker}">
@@ -717,6 +724,11 @@
     $("a#goRead").on("click", function(e){
         e.preventDefault();
         location.href = "/myPage/applicationForm" + "?applicationForm&applicantsNo=" + $(this).attr("href");
+    })
+
+    $("a#goReply").on("click", function(e){
+        e.preventDefault();
+        location.href = "/mainBoard/detail" + "?qnaNo=" + $(this).attr("href");
     })
 
 

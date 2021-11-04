@@ -272,9 +272,9 @@
                                             <label for="userPhoneNum1" class="profile">휴대폰 번호<span
                                                     style='color:red; font-size:1em;'> *</span></label>
                                             <div>
-                                                <input class='phone' th:value="*{userPhoneNum.split('-')[0]}" type='text' id='userPhoneNum1' name='userPhoneNum1'>
-                                                - <input class='phone' th:value="*{userPhoneNum.split('-')[1]}" type='text' id='userPhoneNum2' name='userPhoneNum2'>
-                                                - <input class='phone' th:value="*{userPhoneNum.split('-')[2]}" type='text' id='userPhoneNum3' name='userPhoneNum3'>
+                                                <input class='phone' th:value="*{#strings.substring(userPhoneNum, 0, 3)}" type='text' id='userPhoneNum1' name='userPhoneNum1'>
+                                                - <input class='phone' th:value="*{#strings.substring(userPhoneNum, 3, 7)}" type='text' id='userPhoneNum2' name='userPhoneNum2'>
+                                                - <input class='phone' th:value="*{#strings.substring(userPhoneNum, 7, 11)}" type='text' id='userPhoneNum3' name='userPhoneNum3'>
                                             </div>
                                         </div>
                                         <div>
@@ -330,18 +330,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="table2">
-                                <td class="">[정형외과]</td>
-                                <td class=""><a>발목 삐었어요</a></td>
-                                <td class="">2222.2.22</td>
-                                <td class="">12345</td>
+                            <th:block th:each="list:${getQnaList}">
+                            <tr class="table2" th:object="${list}">
+                                <td class="" th:text="*{qnaMajor}"></td>
+                                <td class=""><a id="goRead" th:href="*{qnaNo}" th:text="*{qnaTitle}"></a></td>
+                                <td class="" th:text="*{qnaDate}"></td>
+                                <td class="" th:text="*{qnaViewCnt}"></td>
                             </tr>
-                            <tr class="table2">
-                                <td class="">[정형외과]</td>
-                                <td class=""><a>발목 삐었어요</a></td>
-                                <td class="">2222.2.22</td>
-                                <td class="">12345</td>
-                            </tr>
+                            </th:block>
+                            </tbody>
+
+                            <tbody>
+                            <th:block th:each="list:${getVolList}">
+                                <tr class="" th:object="${list}">
+                                    <td class="" th:text="*{volunteerArea}"></td>
+                                    <!--<td class="" th:text="*{volunteerBoardTitle}"></td>-->
+                                    <td class=""><a th:href="*{applicantsNo}" th:text="*{volunteerBoardTitle}"></a></td>
+                                    <td class="" th:text="*{applicants}"></td>
+                                    <td class="" th:text="*{#strings.substring(applicationDate, 0, 10)}"></td>
+                                </tr>
+                            </th:block>
                             </tbody>
                         </table>
                         <!--<div th:object="${pageMaker}">
@@ -484,6 +492,11 @@
         let target = document.getElementsByClassName("first");
         target[0].style.display = "block";
         target[1].style.display = "none";
+    })
+
+    $("a#goRead").on("click", function(e){
+        e.preventDefault();
+        location.href = "/mainBoard/detail" + "?qnaNo=" + $(this).attr("href");
     })
 
 </script>
