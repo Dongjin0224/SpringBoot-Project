@@ -1,20 +1,25 @@
 /*의사 사진 등록*/
 
-$("#doc").on("click", function(){
+$("#doc").on("click", function () {
 
     let check = false;
-    function showImage(fileCallPath){
-        if(check) {return;}
+
+    function showImage(fileCallPath) {
+        if (check) {
+            return;
+        }
         $(".bigPictureWrapper").css("display", "flex").show();
         $(".bigPicture").html("<img src='/upload/display?fileName=" + encodeURIComponent(fileCallPath) + "'>")
-            .animate({width:"100%", height:"100%"}, 1000);
+            .animate({width: "100%", height: "100%"}, 1000);
         check = true;
     }
 
-    $(".bigPictureWrapper").on("click", function(){
-        if(!check){return;}
+    $(".bigPictureWrapper").on("click", function () {
+        if (!check) {
+            return;
+        }
         $(".bigPicture").animate({width: "0%", height: "0%"}, 1000);
-        setTimeout(function(){
+        setTimeout(function () {
             check = false;
             $(".bigPictureWrapper").hide();
         }, 1000)
@@ -27,11 +32,11 @@ $("#doc").on("click", function(){
     let uploadResult = $(".uploadResult ul");
 
 
-    $("input[type='submit']").on("click", function(e){
+    $("input[type='submit']").on("click", function (e) {
         e.preventDefault();
         let form = $("form#doctorSignUpForm");
         let str = "";
-        $(".uploadResult ul li").each(function(i, obj){
+        $(".uploadResult ul li").each(function (i, obj) {
             str += "<input type='hidden' name='attachList[" + i + "].fileName' value='" + $(obj).data('name') + "'>"
             str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + $(obj).data('uuid') + "'>"
             str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + $(obj).data('path') + "'>"
@@ -40,13 +45,13 @@ $("#doc").on("click", function(){
         form.append(str).submit();
     })
 
-    function showUploadFile(uploadFiles){
+    function showUploadFile(uploadFiles) {
         let str = "";
-        $(uploadFiles).each(function(i, obj){
-            if(!obj.image){
+        $(uploadFiles).each(function (i, obj) {
+            if (!obj.image) {
                 let fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.fileName);
 
-                str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
+                str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image + "'>";
                 str += "<div>";
                 str += "<a href='/upload/download?fileName=" + fileCallPath + "'>";
                 str += "<img src='/img/attach.png' width='100px'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
@@ -54,11 +59,11 @@ $("#doc").on("click", function(){
                 str += "<span data-file='" + fileCallPath + "' data-type='file'>❌</span>";
                 str += "</div>";
                 str += "</li>";
-            }else{
+            } else {
                 let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.fileName);
                 let originPath = encodeURIComponent(obj.uploadPath + "/" + obj.fileName);
 
-                str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
+                str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image + "'>";
                 str += "<div>";
                 str += "<a href=\"javascript:showImage(\'" + originPath + "\')\">";
                 str += "<img src='/upload/display?fileName=" + fileCallPath + "'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
@@ -71,7 +76,7 @@ $("#doc").on("click", function(){
         uploadResult.append(str);
     }
 
-    $(".uploadResult").on("click", "span", function(){
+    $(".uploadResult").on("click", "span", function () {
         let targetFile = $(this).data("file");
         let type = $(this).data("type");
         let li = $(this).parents("li");
@@ -79,9 +84,9 @@ $("#doc").on("click", function(){
         $.ajax({
             url: "/upload/deleteFile",
             type: "POST",
-            data: {fileName:targetFile, type:type},
+            data: {fileName: targetFile, type: type},
             dataType: "text",
-            success: function(result){
+            success: function (result) {
                 li.remove();
             }
         });
@@ -89,25 +94,27 @@ $("#doc").on("click", function(){
     })
 
     //확장자 별 업로드 제한, 특정 크기 이상의 파일은 업로드 제한
-    function checkExtension(fileName, fileSize){
-        if(regex.test(fileName)){
+    function checkExtension(fileName, fileSize) {
+        if (regex.test(fileName)) {
             alert("업로드 할 수 없는 파일의 형식입니다.");
             return false;
         }
-        if(fileSize >= maxSize){
+        if (fileSize >= maxSize) {
             alert("파일 사이즈 초과");
             return false;
         }
         return true;
     }
 
-    $("#doc").change(function(){
+    $("#doc").change(function () {
         let formData = new FormData();
         let inputFile = $("input[name='uploadFiles']");
         let files = inputFile[0].files;
 
-        for(let i=0; i<files.length; i++){
-            if(!checkExtension(files[i].name, files[i].size)){ return; }
+        for (let i = 0; i < files.length; i++) {
+            if (!checkExtension(files[i].name, files[i].size)) {
+                return;
+            }
             formData.append("uploadFiles", files[i]);
         }
 
@@ -117,7 +124,7 @@ $("#doc").on("click", function(){
             data: formData,
             contentType: false,
             processData: false,
-            success: function(fileList){
+            success: function (fileList) {
                 showUploadFile(fileList);
                 inputFile.val("");
             }
@@ -127,20 +134,25 @@ $("#doc").on("click", function(){
 /*의사 사진 등록 끝*/
 
 /*병원 사진 등록*/
-$("#hos").on("click", function(){
+$("#hos").on("click", function () {
     let check = false;
-    function showImage1(fileCallPath){
-        if(check) {return;}
+
+    function showImage1(fileCallPath) {
+        if (check) {
+            return;
+        }
         $(".bigPictureWrapper1").css("display", "flex").show();
         $(".bigPicture1").html("<img src='/hosupload/hosdisplay?hosFileName=" + encodeURIComponent(fileCallPath) + "'>")
-            .animate({width:"100%", height:"100%"}, 1000);
+            .animate({width: "100%", height: "100%"}, 1000);
         check = true;
     }
 
-    $(".bigPictureWrapper1").on("click", function(){
-        if(!check){return;}
+    $(".bigPictureWrapper1").on("click", function () {
+        if (!check) {
+            return;
+        }
         $(".bigPicture1").animate({width: "0%", height: "0%"}, 1000);
-        setTimeout(function(){
+        setTimeout(function () {
             check = false;
             $(".bigPictureWrapper1").hide();
         }, 1000)
@@ -152,11 +164,11 @@ $("#hos").on("click", function(){
     let inputFile = $(".uploadDiv input");
     let uploadResult = $(".uploadResult1 ul");
 
-    $("input[type='submit']").on("click", function(e){
+    $("input[type='submit']").on("click", function (e) {
         e.preventDefault();
         let form = $("form#doctorSignUpForm");
         let str = "";
-        $(".uploadResult1 ul li").each(function(i, obj){
+        $(".uploadResult1 ul li").each(function (i, obj) {
             str += "<input type='hidden' name='hosattachList[" + i + "].hosFileName' value='" + $(obj).data('name') + "'>"
             str += "<input type='hidden' name='hosattachList[" + i + "].hosUuid' value='" + $(obj).data('uuid') + "'>"
             str += "<input type='hidden' name='hosattachList[" + i + "].hosUploadPath' value='" + $(obj).data('path') + "'>"
@@ -165,13 +177,13 @@ $("#hos").on("click", function(){
         form.append(str).submit();
     })
 
-    function showUploadFile1(hosUploadFiles){
+    function showUploadFile1(hosUploadFiles) {
         let str = "";
-        $(hosUploadFiles).each(function(i, obj){
-            if(!obj.hosImage){
+        $(hosUploadFiles).each(function (i, obj) {
+            if (!obj.hosImage) {
                 let fileCallPath = encodeURIComponent(obj.hosUploadPath + "/" + obj.hosFileName);
 
-                str += "<li data-path='" + obj.hosUploadPath + "' data-uuid='" + obj.hosUuid + "' data-name='" + obj.hosFileName.substring(obj.hosFileName.indexOf("_") + 1) + "' data-type='" + obj.hosImage +"'>";
+                str += "<li data-path='" + obj.hosUploadPath + "' data-uuid='" + obj.hosUuid + "' data-name='" + obj.hosFileName.substring(obj.hosFileName.indexOf("_") + 1) + "' data-type='" + obj.hosImage + "'>";
                 str += "<div>";
                 str += "<a href='/hosupload/download?hosFileName=" + fileCallPath + "'>";
                 str += "<img src='/img/attach.png' width='100px'>" + obj.hosFileName.substring(obj.hosFileName.indexOf("_") + 1);
@@ -179,11 +191,11 @@ $("#hos").on("click", function(){
                 str += "<span data-file='" + fileCallPath + "' data-type='file'>❌</span>";
                 str += "</div>";
                 str += "</li>";
-            }else{
+            } else {
                 let fileCallPath = encodeURIComponent(obj.hosUploadPath + "/s_" + obj.hosFileName);
                 let originPath = encodeURIComponent(obj.hosUploadPath + "/" + obj.hosFileName);
 
-                str += "<li data-path='" + obj.hosUploadPath + "' data-uuid='" + obj.hosUuid + "' data-name='" + obj.hosFileName.substring(obj.hosFileName.indexOf("_") + 1) + "' data-type='" + obj.hosImage +"'>";
+                str += "<li data-path='" + obj.hosUploadPath + "' data-uuid='" + obj.hosUuid + "' data-name='" + obj.hosFileName.substring(obj.hosFileName.indexOf("_") + 1) + "' data-type='" + obj.hosImage + "'>";
                 str += "<div>";
                 str += "<a href=\"javascript:showImage1(\'" + originPath + "\')\">";
                 str += "<img src='/hosupload/hosdisplay?hosFileName=" + fileCallPath + "'>" + obj.hosFileName.substring(obj.hosFileName.indexOf("_") + 1);
@@ -196,7 +208,7 @@ $("#hos").on("click", function(){
         uploadResult.append(str);
     }
 
-    $(".uploadResult1").on("click", "span", function(){
+    $(".uploadResult1").on("click", "span", function () {
         let targetFile = $(this).data("file");
         let type = $(this).data("type");
         let li = $(this).parents("li");
@@ -204,9 +216,9 @@ $("#hos").on("click", function(){
         $.ajax({
             url: "/hosupload/hosdeleteFile",
             type: "POST",
-            data: {hosFileName:targetFile, type:type},
+            data: {hosFileName: targetFile, type: type},
             dataType: "text",
-            success: function(result){
+            success: function (result) {
                 li.remove();
             }
         });
@@ -214,25 +226,27 @@ $("#hos").on("click", function(){
     })
 
     //확장자 별 업로드 제한, 특정 크기 이상의 파일은 업로드 제한
-    function checkExtension(hosFileName, fileSize){
-        if(regex.test(hosFileName)){
+    function checkExtension(hosFileName, fileSize) {
+        if (regex.test(hosFileName)) {
             alert("업로드 할 수 없는 파일의 형식입니다.");
             return false;
         }
-        if(fileSize >= maxSize){
+        if (fileSize >= maxSize) {
             alert("파일 사이즈 초과");
             return false;
         }
         return true;
     }
 
-    $("#hos").change(function(){
+    $("#hos").change(function () {
         let formData = new FormData();
         let inputFile = $("input[name='hosUploadFiles']");
         let files = inputFile[0].files;
 
-        for(let i=0; i<files.length; i++){
-            if(!checkExtension(files[i].name, files[i].size)){ return; }
+        for (let i = 0; i < files.length; i++) {
+            if (!checkExtension(files[i].name, files[i].size)) {
+                return;
+            }
             formData.append("hosUploadFiles", files[i]);
         }
 
@@ -249,6 +263,7 @@ $("#hos").on("click", function(){
         });
     });
 })
+
 /*병원 사진 등록 끝*/
 
 function checkSelectAll() {
@@ -321,9 +336,11 @@ function formSubmit() {
     let f = document.getElementById('major_select');
     major.value = f.value;
 
-    form.submit();
-    alert("될까요??")
-
+    if (check) {
+        form.submit();
+    } else {
+        alert("인증번호를 확인해주세요");
+    }
 }
 
 $(document).ready(function () {
@@ -409,9 +426,10 @@ $(document).ready(function () {
             form.numStr.focus();
             return;
         }
-        /*/!*약관동의 확인*!/*/
-        check = false;
-
+        if (form.numStr.value) {
+            /*/!*약관동의 확인*!/*/
+            check = false;
+        }
         $.each($(".terms"), function (index, item) {
             if (!$(item).is(":checked")) {
                 check = true;
@@ -583,3 +601,63 @@ $(".btn_close").on("click", function () {
 })
 
 /*})*/
+
+let numStr2;
+
+$('#checkNumStr').click(function () {
+    if ($.trim(numStr2) == $('#numStr').val()) {
+        alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
+        check = true;
+    } else {
+        alert("인증 실패. 인증번호를 다시 확인해 주세요.");
+        check = false;
+    }
+});
+
+
+/*휴대폰 인증*/
+$("#checkNum").on('click', function () {
+    $.ajax({
+        url: "/user/sendSms",
+        type: "post",
+        dataType: "json",
+        data: {"docPhoneNum": $("#docPhoneNum").val()},
+        success: function (numStr) {
+            numStr2 = numStr;
+            /* $('#checkNumStr').click(function(){
+                 if($.trim(numStr)==$('#numStr').val()){
+                     alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
+                     check= true;
+                 }else{
+                     alert("인증 실패. 인증번호를 다시 확인해 주세요.");
+                     check= false;
+                 }
+             });*/
+        }
+    });
+})
+
+var check = false;
+
+
+/*휴대폰인증 끝*/
+
+/*아이디 중복검사*/
+/*
+function fn_idChk() {
+    $.ajax({
+        url: "/user/checkDocId",
+        type: "post",
+        dataType: "json",
+        data: {"docId": $("#docId").val()},
+        success: function (data) {
+            if (data == 1) {
+                alert("중복된 아이디 입니다.");
+            } else if (data == 0) {
+                $("#checkId").attr("value", "Y");
+                alert("사용가능한 아이디 입니다.");
+            }
+        }
+
+    });
+}*/
