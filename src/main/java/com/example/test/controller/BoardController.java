@@ -127,8 +127,13 @@ public class BoardController {
     public void read(@RequestParam("qnaNo") Long qnaNo, Criteria criteria, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         session.setAttribute("qnaNo",qnaNo);
-        DocVO doc = (DocVO) session.getAttribute("doc");
-        int reportCnt = doc.getDocReportCnt();
+
+        if(session.getAttribute("doc") != null){
+            DocVO doc = (DocVO) session.getAttribute("doc");
+            int reportCnt = doc.getDocReportCnt();
+            model.addAttribute("reportCnt", reportCnt);
+        }
+
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
         //read 요청 시 read 출력
@@ -142,7 +147,7 @@ public class BoardController {
         }else{
             model.addAttribute("loginCheck",session.getAttribute("docNo"));
         }
-        model.addAttribute("reportCnt", reportCnt);
+
         model.addAttribute("qnaNo",qnaNo);
         model.addAttribute("answerList",answerService.answerList(qnaNo));
         boardService.updateView(qnaNo);

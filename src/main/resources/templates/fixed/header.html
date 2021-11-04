@@ -7,14 +7,14 @@
 <link rel="stylesheet" href="/css/header.css">
 <body>
 <!-- Logo -->
-<div class="logo">
+<!--<div class="logo">
     <a href="/index"><strong>QueU</strong><span class="extra"></span></a>
-</div>
+</div>-->
 <!-- Nav -->
 <nav id="nav">
     <ul>
-        <li>
-            <a href="#" class="icon solid fa-angle-down">메뉴</a>
+        <li style="margin: 0;">
+            <a href="#" style="font-size: smaller;">메뉴</a>
             <ul class="headerBar">
                 <li>
                     <a href="#" class="headerCategory" style="float: left;"><img src="/img/note.png" alt="" class="categoryImg">지식 iN</a>
@@ -30,8 +30,8 @@
                 </li>
             </ul>
         </li>
-        <li>
-            <a href="#" class="icon solid fa-angle-down">카테고리</a>
+        <li style="margin-right: 0;">
+            <a href="#" style="font-size: smaller;">카테고리</a>
             <ul class="headerBar">
                 <li>
                     <a href="#" class="headerCategory" style="float: left;"><img src="/img/joints.png" alt="" class="categoryImg">정형외과</a>
@@ -61,16 +61,18 @@
         </li>
 
             <th:block th:if="${session.user == null && session.doc==null}">
-                <li><a href="/user/userLogin">로그인</a></li>
+                <li style="position: relative; top: -10px;">
+                    <a href="/user/userLogin" style="font-size: smaller; background: #358bca; width: 70px; height: 29px; text-align: center; line-height: 29px; border-radius: 3px; color: white;">로그인</a>
+                </li>
             </th:block>
             <th:block th:unless="${session.user == null && session.doc==null}">
                 <th:block th:if="${session.user} != null">
-                    <li><a id="userMyPage" href="">마이페이지</a></li>
-                    <li><a id="userLogout" href="" >로그아웃</a></li>
+                    <li style="margin-right: 0"><a id="userMyPage" href="" style="font-size: smaller;">마이페이지</a></li>
+                    <li><a id="userLogout" href="" style="font-size: smaller;">로그아웃</a></li>
                 </th:block>
                 <th:block th:unless="${session.user} != null">
-                    <li><a id="docMyPage" href="">마이페이지</a></li>
-                    <li><a id="docLogout" href="" >로그아웃</a></li>
+                    <li style="margin-right: 0"><a id="docMyPage" href="" style="font-size: smaller;">마이페이지</a></li>
+                    <li><a id="docLogout" href="" style="font-size: smaller;">로그아웃</a></li>
                 </th:block>
             </th:block>
     </ul>
