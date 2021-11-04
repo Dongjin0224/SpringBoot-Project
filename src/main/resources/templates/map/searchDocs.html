@@ -56,6 +56,13 @@
         width: 15%;
     }
 
+    .docWrap{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
 </style>
 <body class="is-preload">
 
@@ -73,9 +80,9 @@
                     <h3 style="text-align: center;" ><span th:text="${hosName}"></span> 의료진</h3>
                     <th:block th:each="docs,i:${docs}">
                     <fieldset class="info" th:object="${docs}" >
-                        <div>
-                            <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}" alt="no image" class="docPic">
-                            <div>
+                        <div class="docWrap">
+                            <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}" alt="no image" class="docPic" style="margin-bottom: 2rem">
+                            <div style="width: 100%;">
                                 <ul class="doctor">
                                     <li><strong><div class="docInfo">이름  :</div></strong> <span th:text="*{docName}"></span></li>
                                     <li><strong><div class="docInfo">병원 이름  :</div></strong> <span th:text="*{docHospitalName}"></span></li>
