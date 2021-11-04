@@ -32,21 +32,16 @@ public class PayController {
     static int code = 0;
 
     @PostMapping("/insertCustomer")
-    public String insertCustomer(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
+    public void insertCustomer(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
 
         payVO.setDocNo(docNo);
 
-        if(pay.getPayList(docNo) != null){
-            return "exist";
-        }
 
         log.info("insertCustomer...........");
         log.info("docNo : " + docNo);
-        pay.insertCustomer(docNo);
         pay.getCustomer(payVO);
-        return "none";
     }
 
     @ResponseBody
@@ -226,22 +221,4 @@ public class PayController {
 
         return 0;
     }
-
-    public void again(HttpServletRequest request){
-        HttpSession session = (HttpSession)request.getSession();
-        Long docNo = (Long) session.getAttribute("docNo");
-        code = 0;
-        while(true){
-            if(code == 1){
-                break;
-            }
-            pay.schedulePay(docNo);
-            try {
-                Thread.sleep(60000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
 }

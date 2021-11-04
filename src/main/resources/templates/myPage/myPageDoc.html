@@ -463,14 +463,14 @@
                                         <div th:text="*{docNo}"></div>
                                         <hr>
                                         <div style="display: flex;">
-                                        <div style="display: flex;">
-                                            <label class="profile">신고 횟수</label>
-                                            <div th:text="*{docReportCnt}"></div>
-                                        </div>
-                                        <div style="display: flex;">
-                                            <label class="profile">좋아요</label>
-                                            <div th:text="*{docLikeCnt}"></div>
-                                        </div>
+                                            <div style="display: flex;">
+                                                <label class="profile">신고 횟수</label>
+                                                <div th:text="*{docReportCnt}"></div>
+                                            </div>
+                                            <div style="display: flex;">
+                                                <label class="profile">좋아요</label>
+                                                <div th:text="*{docLikeCnt}"></div>
+                                            </div>
                                         </div>
                                         <hr class='dark'>
                                     </div>
@@ -478,110 +478,110 @@
                             </fieldset>
                             <!-- 수정 버튼 누르면 나오는 곳 -->
                             <fieldset class="first" style="display: none;">
-<!--                                <form method="post" action="/myPage/updateDoc" id="updateDoc" name="updateDoc">-->
-                                    <div class='area'>
-                                        <h3 style="margin-bottom: 1%;">회원정보</h3>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <p style='font-size: 0.6em; margin-bottom: 1%; padding-top: 2%;'>
-                                                <span style='color:red;'>*</span>
-                                                표시는 필수입력 항목 이오니 반드시 입력해 주세요.
-                                            </p>
-                                        </div>
-                                        <div class='info'>
-                                            <hr class='dark'>
-                                            <div>
-                                                <label class="profile">이름</label>
-                                                <div th:text="*{docName}"></div>
-                                            </div>
-                                            <hr>
-                                            <div>
-                                                <label for="docPhoneNum1" class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
-                                                <div>
-                                                    <input class='phone' th:value="*{#strings.substring(docPhoneNum, 0, 3)}" type='text' id='docPhoneNum1' name='docPhoneNum1'>
-                                                    - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 3, 7)}" type='text' id='docPhoneNum2' name='docPhoneNum2'>
-                                                    - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 7, 11)}" type='text' id='docPhoneNum3' name='docPhoneNum3'>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label for="code" class="profile">인증번호<span style='color:red; font-size:1em;'> *</span></label>
-                                                <div class="td6" style="padding: 0;">
-                                                    <div class="div2">
-                                                        <input type="text" id="code" name="code" placeholder="인증번호">
-                                                        <a class="button small" onclick="" style="width: 80px; margin: auto;">전송</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div>
-                                                <label for="docEmail" class="profile">e-mail<span style='color:red; font-size:1em;'> *</span></label>
-                                                <div>
-                                                    <input type='text' th:value="*{docEmail}" id='docEmail' name='docEmail'>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div>
-                                                <label for="docHosPhone" class="profile">병원 번호<span style='color:red; font-size:1em;'> *</span></label>
-                                                <div>
-                                                    <input type='text' th:value="*{docHosPhone}" id='docHosPhone' name='docHosPhone'>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div>
-                                                <label class="profile">전공</label>
-                                                <div th:text="*{docMajor}">
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div>
-                                                <label for="docHospitalName" class="profile">소속기관<span style='color:red; font-size:1em;'> *</span></label>
-                                                <div>
-                                                    <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 0%;'>
-                                                        <span style='color:red;'>*</span>
-                                                        기관명
-                                                    </p>
-                                                    <div>
-                                                        <input type='text' th:value="*{docHospitalName}" id='docHospitalName' name='docHospitalName'>
-                                                    </div>
-                                                    <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 5%;'>
-                                                        <span style='color:red;'>*</span>
-                                                        원하는 위치를 클릭시 해당 지점으로 좌표가 등록됩니다.
-                                                    </p>
-                                                    <div id="map" style="width: 435px"></div>
-                                                    <label for="docAddress" class="profile">상세주소<span style='color:red; font-size:1em;'> *</span></label>
-                                                    <input type="text" th:value="*{docAddress}" name="docAddress" id="docAddress"/>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div>
-                                                <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
-                                                <div class="td7">
-                                                    <textarea id="docHistory" th:text="*{docHistory}" name="docHistory" rows="5"></textarea>
-                                                    <!--<div class="div3" style="display: flex;">
-                                                        <input id="docHistory" type="text" th:value="*{docHistory}" name="history" value="" placeholder="약력">
-                                                        <input type="hidden" name="docHistory">
-                                                        <a class="button small" onclick="addInput()" style="width: 80px; margin: auto;">추가</a>
-                                                    </div>-->
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div>
-                                                <label for="password" class="profile">비밀번호<span style='color:red; font-size:1em;'> *</span></label>
-                                                <div><input id="password" type='password' name='password'></div>
-                                            </div>
-                                            <div>
-                                                <label for="passwordCheck" class="profile">비밀번호 확인<span style='color:red; font-size:1em;'> *</span></label>
-                                                <div><input id="passwordCheck" type='password' name='passwordCheck'></div>
-                                            </div>
-                                            <hr class='dark'>
-                                        </div>
+                                <!--                                <form method="post" action="/myPage/updateDoc" id="updateDoc" name="updateDoc">-->
+                                <div class='area'>
+                                    <h3 style="margin-bottom: 1%;">회원정보</h3>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <p style='font-size: 0.6em; margin-bottom: 1%; padding-top: 2%;'>
+                                            <span style='color:red;'>*</span>
+                                            표시는 필수입력 항목 이오니 반드시 입력해 주세요.
+                                        </p>
                                     </div>
-                                    <div style="display: flex; justify-content: center">
-                                        <!--<a href="#" onclick="" class="button small" style="margin-right: 5%; width: 80px; padding: initial;">변경하기</a>-->
-                                        <button type="button" id="update" class="button small" style="margin-right: 5%; width: 80px;">수정</button>
-                                        <button id="back" class="button small" style="margin-right: 5%; width: 80px;">취소</button>
+                                    <div class='info'>
+                                        <hr class='dark'>
+                                        <div>
+                                            <label class="profile">이름</label>
+                                            <div th:text="*{docName}"></div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label for="docPhoneNum1" class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                <input class='phone' th:value="*{#strings.substring(docPhoneNum, 0, 3)}" type='text' id='docPhoneNum1' name='docPhoneNum1'>
+                                                - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 3, 7)}" type='text' id='docPhoneNum2' name='docPhoneNum2'>
+                                                - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 7, 11)}" type='text' id='docPhoneNum3' name='docPhoneNum3'>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="code" class="profile">인증번호<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div class="td6" style="padding: 0;">
+                                                <div class="div2">
+                                                    <input type="text" id="code" name="code" placeholder="인증번호">
+                                                    <a class="button small" onclick="" style="width: 80px; margin: auto;">전송</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label for="docEmail" class="profile">e-mail<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                <input type='text' th:value="*{docEmail}" id='docEmail' name='docEmail'>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label for="docHosPhone" class="profile">병원 번호<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                <input type='text' th:value="*{docHosPhone}" id='docHosPhone' name='docHosPhone'>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label class="profile">전공</label>
+                                            <div th:text="*{docMajor}">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label for="docHospitalName" class="profile">소속기관<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div>
+                                                <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 0%;'>
+                                                    <span style='color:red;'>*</span>
+                                                    기관명
+                                                </p>
+                                                <div>
+                                                    <input type='text' th:value="*{docHospitalName}" id='docHospitalName' name='docHospitalName'>
+                                                </div>
+                                                <p style='font-size: 0.6em; margin-bottom: 0%; padding-top: 5%;'>
+                                                    <span style='color:red;'>*</span>
+                                                    원하는 위치를 클릭시 해당 지점으로 좌표가 등록됩니다.
+                                                </p>
+                                                <div id="map" style="width: 435px"></div>
+                                                <label for="docAddress" class="profile">상세주소<span style='color:red; font-size:1em;'> *</span></label>
+                                                <input type="text" th:value="*{docAddress}" name="docAddress" id="docAddress"/>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div class="td7">
+                                                <textarea id="docHistory" th:text="*{docHistory}" name="docHistory" rows="5"></textarea>
+                                                <!--<div class="div3" style="display: flex;">
+                                                    <input id="docHistory" type="text" th:value="*{docHistory}" name="history" value="" placeholder="약력">
+                                                    <input type="hidden" name="docHistory">
+                                                    <a class="button small" onclick="addInput()" style="width: 80px; margin: auto;">추가</a>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label for="password" class="profile">비밀번호<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div><input id="password" type='password' name='password'></div>
+                                        </div>
+                                        <div>
+                                            <label for="passwordCheck" class="profile">비밀번호 확인<span style='color:red; font-size:1em;'> *</span></label>
+                                            <div><input id="passwordCheck" type='password' name='passwordCheck'></div>
+                                        </div>
+                                        <hr class='dark'>
                                     </div>
+                                </div>
+                                <div style="display: flex; justify-content: center">
+                                    <!--<a href="#" onclick="" class="button small" style="margin-right: 5%; width: 80px; padding: initial;">변경하기</a>-->
+                                    <button type="button" id="update" class="button small" style="margin-right: 5%; width: 80px;">수정</button>
+                                    <button id="back" class="button small" style="margin-right: 5%; width: 80px;">취소</button>
+                                </div>
 
-<!--                                </form>-->
+                                <!--                                </form>-->
                             </fieldset>
                         </div>
                     </div>
@@ -674,13 +674,13 @@
                             </thead>
                             <tbody>
                             <th:block th:each="list:${getVolList}">
-                            <tr class="" th:object="${list}">
-                                <td class="" th:text="*{volunteerArea}"></td>
-                                <!--<td class="" th:text="*{volunteerBoardTitle}"></td>-->
-                                <td class=""><a id="goRead" th:href="*{applicantsNo}" th:text="*{volunteerBoardTitle}"></a></td>
-                                <td class="" th:text="*{applicants}"></td>
-                                <td class="" th:text="*{#strings.substring(applicationDate, 0, 10)}"></td>
-                            </tr>
+                                <tr class="" th:object="${list}">
+                                    <td class="" th:text="*{volunteerArea}"></td>
+                                    <!--<td class="" th:text="*{volunteerBoardTitle}"></td>-->
+                                    <td class=""><a id="goRead" th:href="*{applicantsNo}" th:text="*{volunteerBoardTitle}"></a></td>
+                                    <td class="" th:text="*{applicants}"></td>
+                                    <td class="" th:text="*{#strings.substring(applicationDate, 0, 10)}"></td>
+                                </tr>
                             </th:block>
                             </tbody>
                         </table>
@@ -718,79 +718,76 @@
                                                     <button id="goPay" class="button small">회원권 구매</button>
                                                 </div>
                                             </div>
-                                                <hr class='dark'>
-                                                <div th:object="${doc}">
-                                                    <hr>
-                                                    <div class="basic">
-                                                        <div class="product_titleArea" th:object="${pay}">
-                                                            <th:block th:if="*{name == null}">
+                                            <hr class='dark'>
+                                            <div th:object="${doc}">
+                                                <hr>
+                                                <div class="basic">
+                                                    <div class="product_titleArea" th:object="${pay}">
+                                                        <th:block th:if="*{name == null}">
                                                             <h4 class="title">BASIC 회원권</h4>
-                                                            </th:block>
-                                                            <th:block th:unless="*{name == null}">
+                                                        </th:block>
+                                                        <th:block th:unless="*{name == null}">
                                                             <h4 class="title" th:text="*{name}">BASIC 회원권</h4>
-                                                            </th:block>
-                                                        </div>
-                                                        <div class="product_info">
-                                                            <div class="regular_payment">
-                                                                <div class="ulBox" style="padding-left: 2%">
-                                                                    <ul style="padding: revert; font-weight: 900; line-height: 35px;">
-                                                                        <li th:text="|*{docName} [*{docMajor}]|"></li>
-                                                                        <li th:text="*{docHospitalName}"></li>
-                                                                        <li th:text="*{docHistory}"></li>
-                                                                        <li>진료 예약 : 5회</li>
-                                                                        <li>답변 개수 : 10회</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        </th:block>
                                                     </div>
-                                                    <div class="standard">
-                                                        <div class="product_titleArea" th:object="${pay}">
-                                                            <th:block th:if="*{name == null}">
-                                                            <h4 class="title">BASIC 회원권</h4>
-                                                            </th:block>
-                                                            <th:block th:unless="*{name == null}">
-                                                            <h4 class="title" th:text="*{name}">BASIC 회원권</h4>
-                                                            </th:block>
-                                                        </div>
-                                                        <div class="product_info">
-                                                            <div class="regular_payment">
-                                                                <div class="ulBox" style="padding-left: 2%">
-                                                                    <ul style="padding: revert; font-weight: 900; line-height: 35px;">
-                                                                        <li th:text="|*{docName} [*{docMajor}]|"></li>
-                                                                        <li th:text="*{docHospitalName}"></li>
-                                                                        <li th:text="*{docHistory}"></li>
-                                                                        <li>진료 예약 : 10회</li>
-                                                                        <li>답변 개수 : 50회</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="premium">
-                                                        <div class="product_titleArea" th:object="${pay}">
-                                                            <th:block th:if="*{name == null}">
-                                                            <h4 class="title">BASIC 회원권</h4>
-                                                            </th:block>
-                                                            <th:block th:unless="*{name == null}">
-                                                            <h4 class="title" th:text="*{name}">BASIC 회원권</h4>
-                                                            </th:block>
-                                                        </div>
-                                                        <div class="product_info">
-                                                            <div class="regular_payment">
-                                                                <div class="ulBox" style="padding-left: 2%">
-                                                                    <ul style="padding: revert; font-weight: 900; line-height: 35px;">
-                                                                        <li th:text="|*{docName} [*{docMajor}]|"></li>
-                                                                        <li th:text="*{docHospitalName}"></li>
-                                                                        <li th:text="*{docHistory}"></li>
-                                                                        <li>진료 예약 : 무제한</li>
-                                                                        <li>답변 개수 : 무제한</li>
-                                                                    </ul>
-                                                                </div>
+                                                    <div class="product_info">
+                                                        <div class="regular_payment">
+                                                            <div class="ulBox" style="padding-left: 2%">
+                                                                <ul style="padding: revert; font-weight: 900; line-height: 35px;">
+                                                                    <li th:text="|*{docName} [*{docMajor}]|"></li>
+                                                                    <li th:text="*{docHospitalName}"></li>
+                                                                    <li>진료 예약 : 5회</li>
+                                                                    <li>답변 개수 : 10회</li>
+                                                                </ul>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="standard">
+                                                    <div class="product_titleArea" th:object="${pay}">
+                                                        <th:block th:if="*{name == null}">
+                                                            <h4 class="title">BASIC 회원권</h4>
+                                                        </th:block>
+                                                        <th:block th:unless="*{name == null}">
+                                                            <h4 class="title" th:text="*{name}">BASIC 회원권</h4>
+                                                        </th:block>
+                                                    </div>
+                                                    <div class="product_info">
+                                                        <div class="regular_payment">
+                                                            <div class="ulBox" style="padding-left: 2%">
+                                                                <ul style="padding: revert; font-weight: 900; line-height: 35px;">
+                                                                    <li th:text="|*{docName} [*{docMajor}]|"></li>
+                                                                    <li th:text="*{docHospitalName}"></li>
+                                                                    <li>진료 예약 : 10회</li>
+                                                                    <li>답변 개수 : 50회</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="premium">
+                                                    <div class="product_titleArea" th:object="${pay}">
+                                                        <th:block th:if="*{name == null}">
+                                                            <h4 class="title">BASIC 회원권</h4>
+                                                        </th:block>
+                                                        <th:block th:unless="*{name == null}">
+                                                            <h4 class="title" th:text="*{name}">BASIC 회원권</h4>
+                                                        </th:block>
+                                                    </div>
+                                                    <div class="product_info">
+                                                        <div class="regular_payment">
+                                                            <div class="ulBox" style="padding-left: 2%">
+                                                                <ul style="padding: revert; font-weight: 900; line-height: 35px;">
+                                                                    <li th:text="|*{docName} [*{docMajor}]|"></li>
+                                                                    <li th:text="*{docHospitalName}"></li>
+                                                                    <li>진료 예약 : 무제한</li>
+                                                                    <li>답변 개수 : 무제한</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div>
                                                 <button class="button small" id="stop">구독 취소</button>
                                             </div>
@@ -920,15 +917,9 @@
                         method: "post",
                         contentType:"application/json; charset=utf-8",
                         data: JSON.stringify(arr),
-                        success:function (result) {
-                            console.log(result);
-                            if(result == "exist"){
-                                alert("이미 카드가 등록되었습니다.")
-                                $(".module").css("display", "none");
-                            }else if(result == "none"){
-                                alert("카드 정보가 등록되었습니다.")
-                                $(".module").css("display", "none");
-                            };
+                        success:function () {
+                            alert("카드 정보가 등록되었습니다.")
+                            $(".module").css("display", "none");
                         }
                     });
                 } else if (result == "fail") {

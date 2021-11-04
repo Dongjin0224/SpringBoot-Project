@@ -65,9 +65,9 @@ public class PayServiceImple implements PayService{
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(access_token);
 
-
         log.info("getCustomer............imple");
         log.info(payVO.getCard_number());
+
         Map<String, Object> map = new HashMap<>();
         payVO.setCustomer_uid("queu_" + payVO.getCard_number().split("-")[3]);
         map.put("card_number", payVO.getCard_number());
@@ -177,7 +177,7 @@ public class PayServiceImple implements PayService{
     }
 
     public void insertCustomer(Long docNo){
-        log.info("insert customer_uid.........");
+        log.info("insert payment.........");
         payDAO.insertCustomer(docNo);
     }
 
