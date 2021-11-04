@@ -32,16 +32,21 @@ public class PayController {
     static int code = 0;
 
     @PostMapping("/insertCustomer")
-    public void insertCustomer(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
+    public String insertCustomer(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
 
         payVO.setDocNo(docNo);
 
+        if(pay.getPayList(docNo) != null){
+            return "exist";
+        }
+
         log.info("insertCustomer...........");
         log.info("docNo : " + docNo);
         pay.insertCustomer(docNo);
         pay.getCustomer(payVO);
+        return "none";
     }
 
     @ResponseBody
@@ -74,29 +79,24 @@ public class PayController {
 
         payVO.setDocNo(docNo);
 
-        pay.unSchedule(payVO);
         if(cardCheck(payVO, request) == "success"){
             log.info("카드 수정 성공");
             cardCheck(payVO, request);
         }else if(cardCheck(payVO, request) == "fail"){
             log.info("카드 수정 실패");
-            code = 1;
             return "fail";
         }
+        payVO = pay.getPayList(docNo);
+        payVO.setCard_number(payVO.getCard_number());
+        payVO.setExpiry(payVO.getExpiry());
+        payVO.setBirth(payVO.getBirth());
+        payVO.setPwd_2digit(payVO.getPwd_2digit());
+        payVO.setCustomer_uid("");
+
+        pay.pay(payVO);
+
         pay.getCustomer(payVO);
 
-        code = 0;
-        while(true){
-            if(code == 1){
-                break;
-            }
-            pay.schedulePay(docNo);
-            try {
-                Thread.sleep(60000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
         return "success";
     }
 
@@ -153,15 +153,26 @@ public class PayController {
 //        return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class);
 //    }
 
+    @ResponseBody
     @PostMapping("/startPay")
-    public void startPay(HttpServletRequest request){
-        PayVO payVO = new PayVO();
+    public void startPay(@RequestBody PayVO payVO, HttpServletRequest request){
+        PayVO vo = new PayVO();
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
 
-        payVO.setDocNo(docNo);
-        System.out.println(payVO);
-        pay.pay(payVO);
+        vo = pay.getPayList(docNo);
+        vo.setAmount(payVO.getAmount());
+        vo.setPayStatus(payVO.getPayStatus());
+        vo.setName(payVO.getName());
+        vo.setDocNo(docNo);
+
+        System.out.println(vo);
+        if(payVO.getName() == null){
+            return;
+        }
+
+
+        pay.pay(vo);
         log.info("여기까진 들어오니???");
 
         code = 0;
@@ -179,16 +190,58 @@ public class PayController {
     }
 
     @PostMapping("/stopPay")
-    public void stopSchedulePay(HttpServletRequest request){
+    @ResponseBody
+    public int stopSchedulePay(HttpServletRequest request){
         PayVO payVO = new PayVO();
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
 
+        payVO = pay.getPayList(docNo);
+
+        if(payVO.getPayStatus() == 0){
+            return 1;
+        }
+
+        payVO = pay.getPayList(docNo);
         payVO.setDocNo(docNo);
+        payVO.setPayStatus(0);
+        payVO.setName("");
+        payVO.setAmount(0);
 
         pay.unSchedule(payVO);
+        pay.pay(payVO);
+        System.out.println(payVO);
         code = 1;
+        return 0;
     }
 
+    @PostMapping("registCheck")
+    public int test(HttpServletRequest request){
+        HttpSession session = (HttpSession)request.getSession();
+        Long docNo = (Long) session.getAttribute("docNo");
+
+        if(pay.getPayList(docNo) == null){
+            return 1;
+        }
+
+        return 0;
+    }
+
+    public void again(HttpServletRequest request){
+        HttpSession session = (HttpSession)request.getSession();
+        Long docNo = (Long) session.getAttribute("docNo");
+        code = 0;
+        while(true){
+            if(code == 1){
+                break;
+            }
+            pay.schedulePay(docNo);
+            try {
+                Thread.sleep(60000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }
