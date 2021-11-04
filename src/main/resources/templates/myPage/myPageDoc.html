@@ -429,9 +429,9 @@
                                             <div>
                                                 <label for="docPhoneNum1" class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
                                                 <div>
-                                                    <input class='phone' th:value="*{docPhoneNum.split('-')[0]}" type='text' id='docPhoneNum1' name='docPhoneNum1'>
-                                                    - <input class='phone' th:value="*{docPhoneNum.split('-')[1]}" type='text' id='docPhoneNum2' name='docPhoneNum2'>
-                                                    - <input class='phone' th:value="*{docPhoneNum.split('-')[2]}" type='text' id='docPhoneNum3' name='docPhoneNum3'>
+                                                    <input class='phone' th:value="*{#strings.substring(docPhoneNum, 0, 3)}" type='text' id='docPhoneNum1' name='docPhoneNum1'>
+                                                    - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 3, 7)}" type='text' id='docPhoneNum2' name='docPhoneNum2'>
+                                                    - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 7, 11)}" type='text' id='docPhoneNum3' name='docPhoneNum3'>
                                                 </div>
                                             </div>
                                             <div>
