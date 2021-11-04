@@ -147,17 +147,26 @@ public class PayController {
 //        return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class);
 //    }
 
+    @ResponseBody
     @PostMapping("/startPay")
     public void startPay(@RequestBody PayVO payVO, HttpServletRequest request){
         PayVO vo = new PayVO();
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
+        log.info("잘 담아오고 있니?..................");
+        System.out.println(payVO.getAmount());
+        System.out.println(payVO.getName());
+        log.info("....................................");
 
         vo = pay.getPayList(docNo);
         vo.setAmount(payVO.getAmount());
         vo.setPayStatus(payVO.getPayStatus());
         vo.setName(payVO.getName());
         vo.setDocNo(docNo);
+
+        log.info("startPay..................");
+        System.out.println(vo);
+        log.info("....................................");
 
         if(payVO.getName() == null){
             return;
@@ -189,6 +198,7 @@ public class PayController {
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
 
+        payVO = pay.getPayList(docNo);
 
         if(payVO.getPayStatus() == 0){
             return 1;

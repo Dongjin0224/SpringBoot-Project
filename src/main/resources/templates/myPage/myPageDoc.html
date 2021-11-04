@@ -733,7 +733,52 @@
                                                                         <li>답변 개수 : 10회</li>
                                                                     </ul>
                                                                 </div>
-
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="standard">
+                                                        <div class="product_titleArea" th:object="${pay}">
+                                                            <th:block th:if="*{name == null}">
+                                                            <h4 class="title">BASIC 회원권</h4>
+                                                            </th:block>
+                                                            <th:block th:unless="*{name == null}">
+                                                            <h4 class="title" th:text="*{name}">BASIC 회원권</h4>
+                                                            </th:block>
+                                                        </div>
+                                                        <div class="product_info">
+                                                            <div class="regular_payment">
+                                                                <div class="ulBox" style="padding-left: 2%">
+                                                                    <ul style="padding: revert; font-weight: 900; line-height: 35px;">
+                                                                        <li th:text="|*{docName} [*{docMajor}]|"></li>
+                                                                        <li th:text="*{docHospitalName}"></li>
+                                                                        <li th:text="*{docHistory}"></li>
+                                                                        <li>진료 예약 : 10회</li>
+                                                                        <li>답변 개수 : 50회</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="premium">
+                                                        <div class="product_titleArea" th:object="${pay}">
+                                                            <th:block th:if="*{name == null}">
+                                                            <h4 class="title">BASIC 회원권</h4>
+                                                            </th:block>
+                                                            <th:block th:unless="*{name == null}">
+                                                            <h4 class="title" th:text="*{name}">BASIC 회원권</h4>
+                                                            </th:block>
+                                                        </div>
+                                                        <div class="product_info">
+                                                            <div class="regular_payment">
+                                                                <div class="ulBox" style="padding-left: 2%">
+                                                                    <ul style="padding: revert; font-weight: 900; line-height: 35px;">
+                                                                        <li th:text="|*{docName} [*{docMajor}]|"></li>
+                                                                        <li th:text="*{docHospitalName}"></li>
+                                                                        <li th:text="*{docHistory}"></li>
+                                                                        <li>진료 예약 : 무제한</li>
+                                                                        <li>답변 개수 : 무제한</li>
+                                                                    </ul>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -805,6 +850,26 @@
 <script src="/js/fix.js"></script>
 </body>
 <script th:inline="javascript">
+    let membership = [[${pay.getAmount()}]];
+
+    $(document).ready(function(){
+        if(membership == 0){
+            $(".basic").show();
+            $(".standard").hide();
+            $(".premium").hide();
+        }
+        if(membership == 49900){
+            $(".basic").hide();
+            $(".standard").show();
+            $(".premium").hide();
+        }
+        if(membership == 99900){
+            $(".basic").hide();
+            $(".standard").hide();
+            $(".premium").show();
+        }
+    })
+
     $(document).ready(function(){
         $("#regist_card").on("click", function(){
             $(".module").css("display", "block");
