@@ -572,7 +572,6 @@ function geocode(request) {
             response.innerText = JSON.stringify(result, null, 2);
 
             var location = results[0].geometry.location;
-            alert(location);
             /*const arr = map.location.split(",");*/
             console.log(location);
             var arr = location.toString().split(",");
