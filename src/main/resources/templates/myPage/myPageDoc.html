@@ -859,6 +859,38 @@
 </body>
 <script th:inline="javascript">
 
+<<<<<<< HEAD
+=======
+    /*휴대폰 인증*/
+  $("#checkNum").on('click',function(){
+        let docPhoneNum1 = $("#docPhoneNum1").val();
+        let docPhoneNum2 = $("#docPhoneNum2").val();
+        let docPhoneNum3 = $("#docPhoneNum3").val();
+        let docPhoneNum = docPhoneNum1+docPhoneNum2+docPhoneNum3;
+        $.ajax({
+            url : "/myPage/sendSms",
+            type: "post",
+            dataType: "json",
+            data: {docPhoneNum:docPhoneNum},
+            success : function(numStr){
+                $('#checkNumStr').click(function(){
+                    if($.trim(numStr)==$('#numStr').val()){
+                        alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
+
+                    }else{
+                        alert("인증 실패. 인증번호를 다시 확인해 주세요.");
+                    }
+                });
+            }
+        });
+   })
+
+
+    /*휴대폰인증 끝*/
+
+
+
+>>>>>>> origin/main
     let membership = [[${pay.getAmount()}]];
 
     $(document).ready(function(){

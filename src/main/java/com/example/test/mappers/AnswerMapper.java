@@ -13,4 +13,6 @@ public interface AnswerMapper {
     public List<AnswerVO> answerList(Long qnaNo);
 
     public void delete(Long reQnaNo);
+
+    public int checkAnswer(Long qnaNo, Long docNo);
 }
