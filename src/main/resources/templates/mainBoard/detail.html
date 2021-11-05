@@ -1161,23 +1161,34 @@
 
 
    function like(index) {
-
+        let likeCheck = [[${likeCheck}]];
         let docNo = document.getElementById("likeDoc"+index).value;
         let reQnaNo = document.getElementById("likeReply"+index).value;
         let arr = {"docNo":docNo,"reQnaNo":reQnaNo}
-        $.ajax({
-            url:"/user/like/" + reQnaNo + "/" + docNo,
-            contentType:"application/json; charset=utf-8",
-            data: JSON.stringify(arr),
-            type:'post',
-            success:function(result) {
-                if(result == "좋아요 성공"){
-                    alert("좋아요 성공");
-                }else if (result == "좋아요 실패"){
-                    alert("이미 추천하신 의사입니다.");
+
+        if (likeCheck == 0){
+            alert('로그인 후에 이용하실 수 있습니다.');
+            return;
+        } else if (likeCheck != 0){
+            $.ajax({
+                url:"/user/like/" + reQnaNo + "/" + docNo,
+                contentType:"application/json; charset=utf-8",
+                data: JSON.stringify(arr),
+                type:'post',
+                success:function(result) {
+                    if(result == "좋아요 성공"){
+                        alert("추천 완료!");
+                    }else if (result == "좋아요 실패"){
+                        alert("이미 추천하신 의사입니다.");
+                    }else if (result == "의사"){
+                        alert("일반 회원만 추천하실 수 있습니다.")
+                    }
                 }
-            }
-        })
+            })
+        }
+
+
+
     }
 
     /* 신고하기 */
