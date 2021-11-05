@@ -326,10 +326,6 @@
         flex-direction: column;
         justify-content: space-evenly;
     }
-
-    .board_content div p{
-        margin: 0;
-    }
 </style>
 <body class="is-preload">
 
@@ -1011,7 +1007,7 @@
                                             <a th:onclick="'like('+${i.index}+')'" class="button primary fit btn_like" style="width: 25% !important; background: white; color: black !important;">
                                                 <img src="/img/like.jpg" alt="" style="width: 22px;position: relative;top: 4px;">좋아요
                                             </a>
-                                            <a th:href="|/mainBoard/writeReport?reQnaNo=*{reQnaNo}|" class="button primary fit btn_report" style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
+                                            <a th:onclick="'report2('+*{reQnaNo}+')'" class="button primary fit btn_report" style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
                                                 <img src="/img/report.png" alt="" style="width: 22px;position: relative;top: 4px;">신고하기
                                             </a>
                                         </div>
@@ -1034,7 +1030,6 @@
 
             <!--<img src="/img/코로나19.png" style="width: 186px;position: absolute;left: 3%;top: 79%;"/>-->
         </div>
-
     </section>
 
 
@@ -1136,7 +1131,11 @@
             data: content1,
             type: 'post',
             success: function (result) {
-                history.go(0);
+                if (result == "성공") {
+                    history.go(0);
+                } else if (result == "실패") {
+                    alert("해당 게시글에 이미 답변을 하셨습니다.")
+                }
             }
         });
     }
@@ -1154,7 +1153,7 @@
 
 
 
-    function reserve(index) {
+    function reserve(reQnaNo) {
         let docNo = document.getElementById("likeDoc"+index).value;
         location.href = "/appointment/appointment?docNo=" + docNo;
     }
@@ -1178,6 +1177,21 @@
                 }
             }
         })
+    }
+
+    /* 신고하기 */
+    function report2(reQnaNo) {
+        let checkDoc = [[${checkDoc}]];
+        let checkUser = [[${checkUser}]];
+        if (checkDoc == null){
+            if (checkUser == null){
+                alert("로그인 후에 이용하실 수 있습니다.");
+                return;
+            }
+            location.href="/mainBoard/writeReport?reQnaNo=" + reQnaNo
+        } else {
+            alert("일반 회원만 신고하실 수 있습니다.");
+        }
     }
 </script>
 
