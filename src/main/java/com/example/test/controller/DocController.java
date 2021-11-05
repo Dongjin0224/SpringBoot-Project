@@ -247,20 +247,18 @@ public class DocController {
         log.info("reportVO 출력 : " + reportVO);
         log.info("-----------------------------------");
 
-
         Long docNo = reportVO.getDocNo();
         Long reQnaNo = reportVO.getReQnaNo();
         String reportType = reportVO.getReportType();
         String reportContent = reportVO.getReportContent();
 
-
-            if (service.getReport(docNo, userNo, reQnaNo) == 0){
-                service.report1(docNo);
-                service.report2(reQnaNo, docNo, userNo, reportType, reportContent);
-                return "성공";
-            } else {
-                return "실패";
-            }
+        if (service.getReport(docNo, userNo, reQnaNo) == 0){
+            service.report1(docNo);
+            service.report2(reQnaNo, docNo, userNo, reportType, reportContent);
+            return "성공";
+        } else {
+            return "실패";
+        }
     }
 
 }

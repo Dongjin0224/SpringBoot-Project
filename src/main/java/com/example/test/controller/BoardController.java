@@ -128,9 +128,13 @@ public class BoardController {
         HttpSession session = request.getSession();
         session.setAttribute("qnaNo",qnaNo);
 
+        /* 로그인 후에 신고 가능 하기 위해 넘김*/
+        Long checkUser = (Long) session.getAttribute("userNo");
+        model.addAttribute("checkUser", checkUser);
         /* 의사는 신고 못하게 막기 위해 넘김 */
         Long checkDoc = (Long) session.getAttribute("docNo");
         model.addAttribute("checkDoc", checkDoc);
+
 
         if(session.getAttribute("doc") != null){
             DocVO doc = (DocVO) session.getAttribute("doc");

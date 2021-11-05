@@ -1180,9 +1180,15 @@
         })
     }
 
+    /* 신고하기 */
     function report2(reQnaNo) {
-        let check = [[${checkDoc}]];
-        if (check == null){
+        let checkDoc = [[${checkDoc}]];
+        let checkUser = [[${checkUser}]];
+        if (checkDoc == null){
+            if (checkUser == null){
+                alert("로그인 후에 이용하실 수 있습니다.");
+                return;
+            }
             location.href="/mainBoard/writeReport?reQnaNo=" + reQnaNo
         } else {
             alert("일반 회원만 신고하실 수 있습니다.");

@@ -209,6 +209,7 @@
             success:function(result){
                 if(result == "성공"){
                     alert("신고성공");
+                    history.go(-1);
                 }else{
                     alert("이미 신고하셨습니다.");
                 }
