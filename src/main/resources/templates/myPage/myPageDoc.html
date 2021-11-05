@@ -478,7 +478,7 @@
                             </fieldset>
                             <!-- 수정 버튼 누르면 나오는 곳 -->
                             <fieldset class="first" style="display: none;">
-                                <!--                                <form method="post" action="/myPage/updateDoc" id="updateDoc" name="updateDoc">-->
+                                <!--<form method="post" action="/myPage/updateDoc" id="updateDoc" name="updateDoc">-->
                                 <div class='area'>
                                     <h3 style="margin-bottom: 1%;">회원정보</h3>
                                     <div style="display: flex; justify-content: space-between;">
@@ -501,13 +501,14 @@
                                                 - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 3, 7)}" type='text' id='docPhoneNum2' name='docPhoneNum2'>
                                                 - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 7, 11)}" type='text' id='docPhoneNum3' name='docPhoneNum3'>
                                             </div>
+                                            <button type="button" id="checkNum">인증</button>
                                         </div>
                                         <div>
-                                            <label for="code" class="profile">인증번호<span style='color:red; font-size:1em;'> *</span></label>
+                                            <label for="numStr" class="profile">인증번호<span style='color:red; font-size:1em;'> *</span></label>
                                             <div class="td6" style="padding: 0;">
                                                 <div class="div2">
-                                                    <input type="text" id="code" name="code" placeholder="인증번호">
-                                                    <a class="button small" onclick="" style="width: 80px; margin: auto;">전송</a>
+                                                    <input type="text" id="numStr" name="code" placeholder="인증번호">
+                                                   <button type="button" id="checkNumStr">확인</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -734,7 +735,7 @@
                                                         <div class="regular_payment">
                                                             <div class="ulBox" style="padding-left: 2%">
                                                                 <ul style="padding: revert; font-weight: 900; line-height: 35px;">
-                                                                    <li th:text="|*{docName} [*{docMajor}]|"></li>
+                                                                    <li th:text="|*{docName}[*{docMajor}]|"></li>
                                                                     <li th:text="*{docHospitalName}"></li>
                                                                     <li>진료 예약 : 5회</li>
                                                                     <li>답변 개수 : 10회</li>
@@ -857,6 +858,36 @@
 <script src="/js/fix.js"></script>
 </body>
 <script th:inline="javascript">
+
+    /*휴대폰 인증*/
+  $("#checkNum").on('click',function(){
+        let docPhoneNum1 = $("#docPhoneNum1").val();
+        let docPhoneNum2 = $("#docPhoneNum2").val();
+        let docPhoneNum3 = $("#docPhoneNum3").val();
+        let docPhoneNum = docPhoneNum1+docPhoneNum2+docPhoneNum3;
+        $.ajax({
+            url : "/myPage/sendSms",
+            type: "post",
+            dataType: "json",
+            data: {docPhoneNum:docPhoneNum},
+            success : function(numStr){
+                $('#checkNumStr').click(function(){
+                    if($.trim(numStr)==$('#numStr').val()){
+                        alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
+
+                    }else{
+                        alert("인증 실패. 인증번호를 다시 확인해 주세요.");
+                    }
+                });
+            }
+        });
+   })
+
+
+    /*휴대폰인증 끝*/
+
+
+
     let membership = [[${pay.getAmount()}]];
 
     $(document).ready(function(){

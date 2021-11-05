@@ -37,7 +37,7 @@ public class ReplyMapperTest {
 
     @Test
     public void testRead(){
-        log.info(replyMapper.read(16L).toString());
+        log.info(replyMapper.read(63L).toString());
     }
 
     @Test
@@ -56,5 +56,10 @@ public class ReplyMapperTest {
     public void testGetListWithPaging(){
         Criteria criteria = new Criteria();
         replyMapper.getListWithPaging(arBno[0], criteria).forEach(reply -> log.info(reply.toString()));
+    }
+
+    @Test
+    public void getTotal(){
+        replyMapper.getTotal(1L);
     }
 }

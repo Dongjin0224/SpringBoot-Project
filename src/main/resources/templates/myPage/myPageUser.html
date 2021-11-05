@@ -271,20 +271,20 @@
                                         <div>
                                             <label for="userPhoneNum1" class="profile">휴대폰 번호<span
                                                     style='color:red; font-size:1em;'> *</span></label>
-                                            <div>
+                                            <div style="display: contents;">
                                                 <input class='phone' th:value="*{#strings.substring(userPhoneNum, 0, 3)}" type='text' id='userPhoneNum1' name='userPhoneNum1'>
                                                 - <input class='phone' th:value="*{#strings.substring(userPhoneNum, 3, 7)}" type='text' id='userPhoneNum2' name='userPhoneNum2'>
                                                 - <input class='phone' th:value="*{#strings.substring(userPhoneNum, 7, 11)}" type='text' id='userPhoneNum3' name='userPhoneNum3'>
+                                                <button type="button" id="checkNum" style="box-shadow: none;">인증</button>
                                             </div>
                                         </div>
                                         <div>
-                                            <label for="code" class="profile">인증번호<span
+                                            <label for="numStr" class="profile">인증번호<span
                                                     style='color:red; font-size:1em;'> *</span></label>
                                             <div class="td6" style="padding: 0;">
                                                 <div class="div2">
-                                                    <input type="text" id="code" name="code" placeholder="인증번호">
-                                                    <a class="button small" onclick=""
-                                                       style="width: 80px; margin: auto;">전송</a>
+                                                    <input type="text" id="numStr" name="code" placeholder="인증번호">
+                                                    <button type="button" id="checkNumStr" style="box-shadow:none;margin-top: -13px;">확인</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -428,6 +428,34 @@
 <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 <script th:inline="javascript">
+
+    /*휴대폰 인증*/
+    $("#checkNum").on('click',function(){
+        let userPhoneNum1 = $("#userPhoneNum1").val();
+        let userPhoneNum2 = $("#userPhoneNum2").val();
+        let userPhoneNum3 = $("#userPhoneNum3").val();
+        let userPhoneNum = userPhoneNum1+userPhoneNum2+userPhoneNum3;
+        $.ajax({
+            url : "/myPage/sendSmsUser",
+            type: "post",
+            dataType: "json",
+            data: {userPhoneNum:userPhoneNum},
+            success : function(numStr){
+                $('#checkNumStr').click(function(){
+                    if($.trim(numStr)==$('#numStr').val()){
+                        alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
+
+                    }else{
+                        alert("인증 실패. 인증번호를 다시 확인해 주세요.");
+                    }
+                });
+            }
+        });
+    })
+
+
+    /*휴대폰인증 끝*/
+
 
     $("#update").on("click", function(){
 
