@@ -125,14 +125,22 @@
             status.innerHTML='(모집중)';
             let checkDoc = [[${checkDoc}]];
             let checkUser = [[${checkUser}]];
-
+            let checkCnt = [[${checkCnt}]]
               if (checkUser == null){
                   if (checkDoc != null){
                           goWrite[0].addEventListener('click',function(e){
-                              location.href="/volunteer/volunteerForm?boardNo="+bno;
+                              if (checkCnt == 0 ){
+                                  location.href="/volunteer/volunteerForm?boardNo="+bno;
+                              }else {
+                                  alert("이미 신청하신 공고입니다.")
+                              }
                           });
                           goWrite[1].addEventListener('click',function(e){
+                              if (checkCnt == 0 ){
                               location.href="/volunteer/volunteerForm?boardNo="+bno;
+                              }else {
+                                  alert("이미 신청하신 공고입니다.")
+                              }
                           });
                   }
               } else {

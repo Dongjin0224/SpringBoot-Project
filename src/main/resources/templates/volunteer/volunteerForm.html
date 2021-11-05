@@ -769,15 +769,8 @@
     });
 
     function application() {
-        let checkCnt = [[${checkCnt}]]
-        if (checkCnt == 0 ){
             let submit = document.getElementById("checkCnt");
             submit.submit();
-        }else {
-            alert("이미 신청하신 공고입니다.")
-            history.go(-1);
-            return;
-        }
     }
 
   /*  function write(){

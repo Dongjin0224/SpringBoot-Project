@@ -84,6 +84,8 @@ public class VolunteerController {
         /* 로그인 후에 신청 가능 하기 위해 넘김*/
         Long checkDoc = (Long) session.getAttribute("docNo");
         model.addAttribute("checkDoc", checkDoc);
+        int checkCnt = volunteerService.checkCnt(checkDoc, volunteerBoardNo);
+        model.addAttribute("checkCnt", checkCnt);
 
         model.addAttribute("file",volunteerService.findByBno(volunteerBoardNo));
         model.addAttribute("content", volunteerService.get(volunteerBoardNo));
