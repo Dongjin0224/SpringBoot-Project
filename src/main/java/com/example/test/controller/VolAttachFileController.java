@@ -134,6 +134,7 @@ public class VolAttachFileController {
         HttpHeaders header = new HttpHeaders();
         ResponseEntity<byte[]> result = null;
         try {
+            //asdsadsd
             //png 파일이면 image/png타입, jpeg파일이면 image/jpeg 타입으로 설정
             header.add("Content-Type", Files.probeContentType(file.toPath()));
             result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
