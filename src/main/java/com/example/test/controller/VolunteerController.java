@@ -26,8 +26,17 @@ public class VolunteerController {
 
     //  vanny
     @GetMapping("volunteerForm")
-    public String volunteerForm(@RequestParam("boardNo") Long bno, Model model){
+    public String volunteerForm(@RequestParam("boardNo") Long bno, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
         model.addAttribute("bno",bno);
+        /* 로그인 후에 신청 가능 하기 위해 넘김*/
+        Long checkDoc = (Long) session.getAttribute("docNo");
+        model.addAttribute("checkDoc", checkDoc);
+
+        int checkCnt = volunteerService.checkCnt(checkDoc, bno);
+        model.addAttribute("checkCnt", checkCnt);
+
+
         log.info("-------------------------------------------------");
         log.info(bno.toString());
         log.info(volunteerService.getTitle(bno));
@@ -66,7 +75,17 @@ public class VolunteerController {
 
     //  jin
     @GetMapping("volunteerContent")
-    public String volunteerContent(@RequestParam("volunteerBoardNo") Long volunteerBoardNo, Criteria criteria, Model model){
+    public String volunteerContent(@RequestParam("volunteerBoardNo") Long volunteerBoardNo, Criteria criteria, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+
+        /* 일반 회원 신청 불가 */
+        Long checkUser = (Long) session.getAttribute("userNo");
+        model.addAttribute("checkUser", checkUser);
+        /* 로그인 후에 신청 가능 하기 위해 넘김*/
+        Long checkDoc = (Long) session.getAttribute("docNo");
+        model.addAttribute("checkDoc", checkDoc);
+
+        model.addAttribute("file",volunteerService.findByBno(volunteerBoardNo));
         model.addAttribute("content", volunteerService.get(volunteerBoardNo));
         model.addAttribute("criteria", criteria);
         return "volunteer/volunteerContent";}
