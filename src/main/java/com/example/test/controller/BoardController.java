@@ -128,6 +128,10 @@ public class BoardController {
         HttpSession session = request.getSession();
         session.setAttribute("qnaNo",qnaNo);
 
+        /* 의사는 신고 못하게 막기 위해 넘김 */
+        Long checkDoc = (Long) session.getAttribute("docNo");
+        model.addAttribute("checkDoc", checkDoc);
+
         if(session.getAttribute("doc") != null){
             DocVO doc = (DocVO) session.getAttribute("doc");
             int reportCnt = doc.getDocReportCnt();

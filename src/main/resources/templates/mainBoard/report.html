@@ -155,7 +155,7 @@
                                     권리 침해/저작권 위반 등은 권리침해 신고센터를 통해 문의해주세요.
                                 </div>
                                 <div style="text-align: center">
-                                    <a href="" class="button" style="margin-bottom: 5px;box-shadow: none;font-size: 20px;">취소</a>
+                                    <a onclick="history.go(-1)" class="button" style="margin-bottom: 5px;box-shadow: none;font-size: 20px;">취소</a>
                                     <input type="button" class="button" onclick="report()" value="신고하기" style="box-shadow: none;font-size: 20px">
                                 </div>
 <!--                            </form>-->
@@ -186,12 +186,6 @@
 </body>
 <script>
 
-
-
-
-
-
-
     function report() {
         let reQnaNo = document.getElementById("reQnaNo").value;
         let docNo = document.getElementById("docNo").value;
@@ -215,7 +209,7 @@
             success:function(result){
                 if(result == "성공"){
                     alert("신고성공");
-                }else if(result == "실패"){
+                }else{
                     alert("이미 신고하셨습니다.");
                 }
             }
