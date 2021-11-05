@@ -38,7 +38,7 @@ public class VolAttachFileController {
         log.info("upload ajax action...........");
         List<VolAttachFileVO> fileList = new ArrayList<>();
 
-        String uploadFolder = "/Users/kimdongjin/Desktop/gb_0900_kdj/spring/resource/temp/upload";
+        String uploadFolder = "C:/upload";
         String uploadFolderPath = getFolder();
 
         log.info("---------multipart length--------------");
@@ -129,7 +129,7 @@ public class VolAttachFileController {
     @GetMapping("display")
     @ResponseBody
     public ResponseEntity<byte[]> getFile(String fileName){
-        File file = new File("/Users/kimdongjin/Desktop/gb_0900_kdj/spring/resource/temp/upload/" + fileName);
+        File file = new File("C:/upload" + fileName);
         log.info("file : " + file);
         HttpHeaders header = new HttpHeaders();
         ResponseEntity<byte[]> result = null;
@@ -147,7 +147,7 @@ public class VolAttachFileController {
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(String fileName){
         log.info("download file : " + fileName);
-        Resource resource = new FileSystemResource("/Users/kimdongjin/Desktop/gb_0900_kdj/spring/resource/temp/upload/" + fileName);
+        Resource resource = new FileSystemResource("C:/upload" + fileName);
         log.info("resource : " + resource);
         String resourceName = resource.getFilename();
         HttpHeaders headers = new HttpHeaders();
@@ -167,7 +167,7 @@ public class VolAttachFileController {
         log.info("deleteFile : " + fileName);
         try {
             fileName = URLDecoder.decode(fileName, "UTF-8");
-            File file = new File("/Users/kimdongjin/Desktop/gb_0900_kdj/spring/resource/temp/upload/" + fileName);
+            File file = new File("C:/upload" + fileName);
             file.delete();
             if(type.equals("image")){
                 //원본 삭제

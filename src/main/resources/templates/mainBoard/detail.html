@@ -1132,7 +1132,11 @@
             data: content1,
             type: 'post',
             success: function (result) {
-                history.go(0);
+                if (result == "성공") {
+                    history.go(0);
+                } else if (result == "실패") {
+                    alert("해당 게시글에 이미 답변을 하셨습니다.")
+                }
             }
         });
     }

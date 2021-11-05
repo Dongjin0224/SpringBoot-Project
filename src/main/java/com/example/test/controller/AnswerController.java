@@ -29,15 +29,18 @@ public class AnswerController {
         Long docNo = (Long)session.getAttribute("docNo");
         Long qnaNo = (Long)session.getAttribute("qnaNo");
 
+        if (answerService.checkAnswer(qnaNo, docNo) == 0) {
+            answerVO.setDocNo(docNo);
+            answerVO.setReQnaContent(content1);
+            answerVO.setQnaNo(qnaNo);
 
-        answerVO.setDocNo(docNo);
-        answerVO.setReQnaContent(content1);
-        answerVO.setQnaNo(qnaNo);
-
-        log.info(answerVO.toString());
-        answerService.insert(answerVO);
+            log.info(answerVO.toString());
+            answerService.insert(answerVO);
 //        model.addAttribute("qnaNo",qnaNo);
-        return "등록완료";
+            return "성공";
+        } else {
+            return "실패";
+        }
     }
 
   /*  @GetMapping("detail")
