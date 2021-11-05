@@ -1,17 +1,24 @@
 package com.example.test.controller;
 
 import com.example.test.model.user.vo.UserVO;
+import com.example.test.services.MyPageService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("")
 public class WebController {
+
+    private final MyPageService myPageService;
 
 
     @GetMapping("index")
@@ -63,7 +70,14 @@ public class WebController {
     public String appointment(){return "appointment/appointment";}
     //  dong
     @GetMapping("membership")
-    public String membership(){return "payment/membership";}
+    public String membership(Model model, HttpServletRequest request){
+        HttpSession session = (HttpSession)request.getSession();
+        Long docNo = (Long) session.getAttribute("docNo");
+
+        model.addAttribute("doc", myPageService.viewDoc(docNo));
+
+        return "payment/membership";
+    }
     //  dong
     @GetMapping("payTerm")
     public String payTerm(){return "term/payTerm";}

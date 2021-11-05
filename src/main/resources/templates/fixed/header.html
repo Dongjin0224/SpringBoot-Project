@@ -25,7 +25,9 @@
 <!--                    <a href="#" class="headerCategory"><img src="/img/electricity.png" alt="" class="categoryImg">의학상식</a>-->
                 </li>
                 <li>
-                    <a href="/membership" class="headerCategory" style="float: left;"><img src="/img/membership.png" alt="" class="categoryImg">멤버십</a>
+                    <th:block th:if="${session.doc!=null}">
+                        <a href="/membership" class="headerCategory" style="float: left;"><img src="/img/membership.png" alt="" class="categoryImg">멤버십</a>
+                    </th:block>
                     <a href="/volunteer/volunteerBoard" class="headerCategory" style="float: left;"><img src="/img/volunteer.png" alt="" class="categoryImg">의료봉사</a>
                 </li>
             </ul>

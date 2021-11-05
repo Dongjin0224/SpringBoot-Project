@@ -395,6 +395,7 @@
             </div>
             <a href="#" class="btn_close">팝업 닫기</a>
         </div>
+        <th:block th:object="${doc}"></th:block>
         <div class="layer_bg"></div>
     </div>
     <!-- Footer -->
@@ -418,6 +419,16 @@
 
     let payName = "";
     let price = 0;
+
+    let buyer_email = [[${doc.docEmail}]];
+    let buyer_name = [[${doc.docName}]];
+    let buyer_tel = [[${doc.docPhoneNum}]];
+    let buyer_addr = [[${doc.docAddress}]];
+
+    console.log(buyer_email)
+    console.log(buyer_name)
+    console.log(buyer_tel)
+    console.log(buyer_addr)
 
     $($(".pay_module")[0]).on("click", function(){
         price = standard;
@@ -466,10 +477,10 @@
             merchant_uid: "merchant_" + new Date().getTime(), // 상점에서 관리하는 주문 번호
             name: payName,
             amount: price,
-            buyer_email: 'iamport@siot.do',
-            buyer_name: '구매자이름',
-            buyer_tel: '010-1234-5678',
-            buyer_addr: '서울특별시 강남구 삼성동',
+            buyer_email: buyer_email,
+            buyer_name: buyer_name,
+            buyer_tel: buyer_tel,
+            buyer_addr: buyer_addr,
             buyer_postcode: '123-456'
 
         }, function (rsp) {
