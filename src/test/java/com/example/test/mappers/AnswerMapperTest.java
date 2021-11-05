@@ -26,6 +26,6 @@ public class AnswerMapperTest {
 
     @Test
     public void answerListTest(){
-        mapper.answerList(1L).forEach(answerVO -> log.info(answerVO.toString()));
+        mapper.answerList(160L).forEach(answerVO -> log.info(answerVO.toString()));
     }
 }
