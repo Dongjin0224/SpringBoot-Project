@@ -31,13 +31,17 @@ public class DocDAO {
 
     public void docLogout(HttpSession session) { docMapper.docLogout(session); }
 
+    /*아이디찾기*/
     public DocVO findId(DocVO vo){
         return docMapper.findId(vo);
     }
+
+    /*비밀번호찾기*/
     public DocVO findPw(DocVO vo){
         return docMapper.findPw(vo);
     }
 
+    /*비밀번호변경*/
     public void updatePassword(DocVO vo){
         docMapper.updatePassword(vo);
     }

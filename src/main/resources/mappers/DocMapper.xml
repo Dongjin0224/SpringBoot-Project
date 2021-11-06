@@ -43,7 +43,7 @@
     </select>
 
     <update id="updatePassword">
-        UPDATE TABLE_DOC SET DOCPW=#{docPw} WHERE DOCID=#{docId} AND DOCPHONENUM =#{docPhoneNum}
+        UPDATE TABLE_DOC SET DOCPW=#{docPw} WHERE DOCID=#{docId}
     </update>
 
     <!-- 좋아요(닥터테이블 카운트 누적) -->

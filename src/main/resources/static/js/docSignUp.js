@@ -335,12 +335,12 @@ function formSubmit() {
     let major = document.getElementById("major");
     let f = document.getElementById('major_select');
     major.value = f.value;
-
-    if (check) {
+    form.submit();
+   /* if (check) {
         form.submit();
     } else {
         alert("인증번호를 확인해주세요");
-    }
+    }*/
 }
 
 $(document).ready(function () {
@@ -601,7 +601,7 @@ $(".btn_close").on("click", function () {
 
 /*})*/
 
-let numStr2;
+/*let numStr2;
 
 $('#checkNumStr').click(function () {
     if ($.trim(numStr2) == $('#numStr').val()) {
@@ -611,7 +611,7 @@ $('#checkNumStr').click(function () {
         alert("인증 실패. 인증번호를 다시 확인해 주세요.");
         check = false;
     }
-});
+});*/
 
 
 /*휴대폰 인증*/
@@ -622,8 +622,8 @@ $("#checkNum").on('click', function () {
         dataType: "json",
         data: {"docPhoneNum": $("#docPhoneNum").val()},
         success: function (numStr) {
-            numStr2 = numStr;
-            /* $('#checkNumStr').click(function(){
+          /*  numStr2 = numStr;*/
+            $('#checkNumStr').click(function(){
                  if($.trim(numStr)==$('#numStr').val()){
                      alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
                      check= true;
@@ -631,12 +631,12 @@ $("#checkNum").on('click', function () {
                      alert("인증 실패. 인증번호를 다시 확인해 주세요.");
                      check= false;
                  }
-             });*/
+             });
         }
     });
 })
 
-var check = false;
+/*var check = false;*/
 
 
 /*휴대폰인증 끝*/

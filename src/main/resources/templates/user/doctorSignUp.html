@@ -232,7 +232,8 @@
                     <form method="post" action="/user/doctorSignUp" id="doctorSignUpForm" name="doctorSignUpForm">
                         <div>
                             <header style="margin-top: 15%;">
-                                <h3><i class="fas fa-user-md"> 의사 회원가입</i></h3>
+                                <h3 style="display: inline-block;"><i class="fas fa-user-md"> 의사 회원가입</i></h3>
+                                <input type="button" id="goUserSignUp" value="일반회원가입" style="box-shadow: none;">
                             </header>
                             <label style="display: inline-block;">아이디<input type="text" placeholder="4자 이상, 16자 이하로 입력해주세요." id="docId" name="docId" style="width: 236%;">
                             </label><button type="button" onclick="fn_idChk()" id="checkId" style="margin-left: 34%;border-radius: 0;padding-top: 0.3%;">중복확인</button>
@@ -351,7 +352,8 @@
                             </div>
                             <label>약력</label>
                             <div>
-                                <input type="text" placeholder="약력을 입력해주세요." name="docHistory">
+                               <!-- <input type="text" placeholder="약력을 입력해주세요." name="docHistory">-->
+                                <textarea name="docHistory" placeholder="약력을입력해주세요" ></textarea>
                             </div>
                             <!--이용약관2-->
                             <label style="padding-top: 40px;">이용약관</label>
@@ -396,8 +398,6 @@
                                 </ul>
                             </div>
                         </div>
-
-
                         <div class="box_layer" data-index="0" style="display: none;">
                             <div class="layer_poc" style="top: 1494.5px;">
                                 <div class="poc_top">
@@ -490,6 +490,10 @@
 ></script>
 <script src="/js/docSignUp.js"></script>
 <script th:inline="javascript">
+
+    $("#goUserSignUp").on("click", function(){
+        location.href="/user/userLogin";
+    })
 
     $(document).keypress(function(e) { if (e.keyCode == 13) e.preventDefault(); });
 

@@ -74,7 +74,8 @@
                     <section class="tiles" style="margin:0 auto; width:61%">
                         <form method="post" action="/user/docLogin" name="loginForm">
                             <div>
-                                <div><h3><i class="fas fa-user-md"> 의사 로그인</i></h3></div>
+                                <div style="display: inline-block;"><h3><i class="fas fa-user-md"> 의사 로그인</i></h3></div>
+                                <input type="button" id="goUserLoin" onclick="history.go(-1)" value="회원로그인" style="box-shadow: none;">
                                 <div style="margin-top: 2%;"><h6>건강상담을 위해서는 로그인이 필요합니다.</h6></div>
                                 <div id="loginFail" style="margin-bottom: 5px;"></div>
                                 <div>

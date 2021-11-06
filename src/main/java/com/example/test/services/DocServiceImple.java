@@ -95,7 +95,7 @@ public class DocServiceImple implements DocService{
 
     @Override
     public void updatePassword(DocVO vo) {
-
+            docDAO.updatePassword(vo);
     }
 
 
