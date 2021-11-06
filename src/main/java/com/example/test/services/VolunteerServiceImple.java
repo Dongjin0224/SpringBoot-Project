@@ -1,8 +1,10 @@
 package com.example.test.services;
 
 import com.example.test.model.beans.vo.Criteria;
+import com.example.test.model.volunteer.dao.VolAttachFileDAO;
 import com.example.test.model.volunteer.dao.VolunteerDAO;
 import com.example.test.model.volunteer.vo.ApplicantsVO;
+import com.example.test.model.volunteer.vo.VolAttachFileVO;
 import com.example.test.model.volunteer.vo.VolunteerBoardVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import java.util.List;
 public class VolunteerServiceImple implements VolunteerService {
 
     private final VolunteerDAO volunteerDAO;
+    private final VolAttachFileDAO volAttachFileDAO;
 
     @Override
     public List<VolunteerBoardVO> getList(Criteria criteria) {
@@ -21,9 +24,7 @@ public class VolunteerServiceImple implements VolunteerService {
     }
 
     @Override
-    public VolunteerBoardVO get(Long volunteerBoardNo) {
-        return volunteerDAO.get(volunteerBoardNo);
-    }
+    public VolunteerBoardVO get(Long volunteerBoardNo) { return volunteerDAO.get(volunteerBoardNo); }
 
     @Override
     public void insert(ApplicantsVO applicantsVO) {
@@ -47,4 +48,11 @@ public class VolunteerServiceImple implements VolunteerService {
 
     @Override
     public int getTotal(Criteria criteria) { return volunteerDAO.getTotal(criteria); }
+
+    @Override
+    public List<VolAttachFileVO> findByBno(Long volunteerBoardNo) {
+        return volAttachFileDAO.findByBno(volunteerBoardNo);
+    }
+
+    public int checkCnt(Long docNo, Long volunteerBoardNo){ return volunteerDAO.checkCnt(docNo, volunteerBoardNo); }
 }

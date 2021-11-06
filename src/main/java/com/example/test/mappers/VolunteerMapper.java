@@ -24,4 +24,5 @@ public interface VolunteerMapper {
 
     public int getTotal(Criteria criteria);
 
+    public int checkCnt(Long docNo, Long volunteerBoardNo);
 }

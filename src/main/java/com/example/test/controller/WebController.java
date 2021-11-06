@@ -76,9 +76,6 @@ public class WebController {
     //  jin
     @GetMapping("doctorSignUp")
     public String doctorSignUp(){return "user/doctorSignUp";}
-    //  jin
-    @GetMapping("explanation")
-    public String explanation(){return "user/explanation";}
     //  dong
     @GetMapping("footer")
     public String footer(){return "fixed/footer";}

@@ -18,7 +18,7 @@
 <style>
     .content.main {
         width: 74%;
-        border-radius: 25px;
+       /* border-radius: 25px;*/
         padding: 2%;
         margin: auto;
     }
@@ -88,6 +88,7 @@
         border-bottom: none;
         color: #358bca !important;
         font-weight: bold;
+        cursor: pointer;
     }
 
     .btn_reple:hover {
@@ -181,7 +182,7 @@
     }
 
     .board_content {
-        width: 87%;
+        width: 82%;
         margin: auto;
         display: block;
         float: right;
@@ -292,8 +293,8 @@
     }
 
     .content.main {
-        width: 90%;
-        border-radius: 25px;
+        width: 82%;
+       /* border-radius: 25px;*/
         margin: auto;
         padding-left: 8% !important;
         padding-right: 8% !important;
@@ -337,12 +338,12 @@
 
     <!-- Section -->
     <section id="one" class="main alt">
-        <div class="inner alt" style="margin-top: -3%">
-            <div class="content main">
+        <div class="inner alt" style="margin-top: -6.2%;">
+            <div class="content main" style="width: 124%;padding-left: -9px !important;margin-left: -19%;position: relative;left: -12%;box-shadow: 3px -1px 3px 3px rgb(0 0 0 / 14%);">
                 <section class="tiles" th:object="${board}">
                     <div style="width: 80%;margin: auto">
                         <div class="board_detail_wrap">
-                            <div class="board_question">
+                            <div class="board_question" style="padding: 25px;padding-left: 15%;padding-right: 12%;">
                                 <div class="board_title_wrap">
                                     <img src="/img/q.png" alt="" style=" position: relative; right: 23px;">
                                     <div style="position: relative; right: 10px;">
@@ -362,9 +363,10 @@
                                 <div class="board_btn_reply" style="text-align: right;">
                                     <!--                                    <a href="#" class="button primary fit" style="border-radius: 15px">답변달기</a>-->
                                     <button type="button" class="button" onclick="openForm()" id="btn_reply"
-                                            style="border-radius: 0px;width: 25%;font-size: 20px;position: relative;left: 67px;">
+                                            style="border-radius: 0px;width: 22%;font-size: 20px;position: relative;left: 49px;">
                                         답변달기
                                     </button>
+                                    <button onclick="history.go(-1);" type="button" style="font-size: 20px;padding-left: 50px;padding-right: 50px;">뒤로가기</button>
                                 </div>
                             </div>
                         </div>
@@ -958,7 +960,7 @@
                         <form method="post" action="/detail/answerList">
                             <div style="width: 100%;margin: auto" class="wrap" th:object="${answerList}">
                                 <div class="board_detail_wrap">
-                                    <div class="board_question">
+                                    <div class="board_question" style="margin-left: -7%;">
                                         <div class="board_title_wrap" style="margin-left: 7.7%;"><!--의사 프로필-->
                                             <div style="display: flex;">
                                                 <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}"
@@ -1006,7 +1008,7 @@
                                             <a th:onclick="'like('+${i.index}+')'" class="button primary fit btn_like" style="width: 25% !important; background: white; color: black !important;">
                                                 <img src="/img/like.jpg" alt="" style="width: 22px;position: relative;top: 4px;">좋아요
                                             </a>
-                                            <a th:href="|/mainBoard/writeReport?reQnaNo=*{reQnaNo}|" class="button primary fit btn_report" style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
+                                            <a th:onclick="'report2('+*{reQnaNo}+')'" class="button primary fit btn_report" style="width: 28% !important;    background-color: white !important; color: black!important;  border-radius: 0px !important;">
                                                 <img src="/img/report.png" alt="" style="width: 22px;position: relative;top: 4px;">신고하기
                                             </a>
                                         </div>
@@ -1015,8 +1017,6 @@
                             </div>
                         </form>
                     </section>
-
-
                 </div>
 
 
@@ -1029,7 +1029,7 @@
 
             <!--반복 돌리는 부분-->
 
-
+            <!--<img src="/img/코로나19.png" style="width: 186px;position: absolute;left: 3%;top: 79%;"/>-->
         </div>
     </section>
 
@@ -1132,7 +1132,11 @@
             data: content1,
             type: 'post',
             success: function (result) {
-                history.go(0);
+                if (result == "성공") {
+                    history.go(0);
+                } else if (result == "실패") {
+                    alert("해당 게시글에 이미 답변을 하셨습니다.")
+                }
             }
         });
     }
@@ -1174,6 +1178,22 @@
                 }
             }
         })
+    }
+
+    /* 신고하기 */
+    function report2(reQnaNo) {
+        let checkDoc = [[${checkDoc}]];
+        let checkUser = [[${checkUser}]];
+        if (checkDoc == null){
+            if (checkUser == null){
+                alert("로그인 후에 이용하실 수 있습니다.");
+                return;
+            }
+            location.href="/mainBoard/writeReport?reQnaNo=" + reQnaNo
+        } else {
+            alert("일반 회원만 신고하실 수 있습니다.");
+            return;
+        }
     }
 </script>
 

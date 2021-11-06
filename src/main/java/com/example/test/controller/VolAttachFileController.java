@@ -38,7 +38,7 @@ public class VolAttachFileController {
         log.info("upload ajax action...........");
         List<VolAttachFileVO> fileList = new ArrayList<>();
 
-        String uploadFolder = "C:/upload/";
+        String uploadFolder = "C:/upload";
         String uploadFolderPath = getFolder();
 
         log.info("---------multipart length--------------");
@@ -179,5 +179,4 @@ public class VolAttachFileController {
         }
         return new ResponseEntity<>("deleted", HttpStatus.OK);
     }
-
 }

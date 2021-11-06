@@ -27,9 +27,13 @@ public class AppointmentController {
 
     @GetMapping("appointment")
     public void read(@RequestParam("docNo") Long docNo, Criteria criteria, Model model, HttpServletRequest request){
-
         HttpSession session = request.getSession();
-        session.setAttribute("docNo",docNo);
+
+        if(session.getAttribute("userNo") == null && session.getAttribute("docNo") == null){
+            model.addAttribute("loginCheck", 0);
+        }
+
+        session.setAttribute("docNo2",docNo);
 
         model.addAttribute("appointment", appointmentService.get(docNo));
         model.addAttribute("file", appointmentService.getFile(docNo));
@@ -41,22 +45,24 @@ public class AppointmentController {
     public String reserve(ReserveVO reserveVO, HttpServletRequest request, Model model) {
         /* 로그인 한 유저 번호 가져오기 (세션) */
         HttpSession session = (HttpSession) request.getSession();
+//        if (session.getAttribute("userNo") == null && session.getAttribute("docNo") == null) {
+//            model.addAttribute("loginCheck", 0);
+//            return "실패";
+//        } else
 
-
-        if (session.getAttribute("userNo") == null) {
-            model.addAttribute("loginCheck", 0);
-            return "실패";
-        } else {
+         if(session.getAttribute("userNo") != null && session.getAttribute("docNo") == null) {
+             log.info("일반회원 로그인됨");
             model.addAttribute("loginCheck", session.getAttribute("userNo"));
+            /* 로그인한 유저번호 가져오기 */
             UserVO userVO = (UserVO) session.getAttribute("user");
             Long userNo = userVO.getUserNo();
             /*  해당 의사 번호 가져오기*/
-            Long docNo = (Long) session.getAttribute("docNo");
-            System.out.println("의사번호 = " + docNo);
+            Long docNo2 = (Long) session.getAttribute("docNo2");
+            System.out.println("의사번호 = " + docNo2);
 
             /*유저 회원번호와 의사 회원번호를 reserveVO에 담기 */
             reserveVO.setUserNo(userNo);
-            reserveVO.setDocNo(docNo);
+            reserveVO.setDocNo(docNo2);
             System.out.println("reservVO = " + reserveVO);
 
             /* DB에 예약 정보 넘기기 */
@@ -64,8 +70,8 @@ public class AppointmentController {
 
             /*세션에 담긴 의사 번호 초기화 */
             session.setAttribute("docNo", null);
-            docNo = (Long) session.getAttribute("docNo");
-            System.out.println("초기화 된 의사번호 = " + docNo);
+            docNo2 = (Long) session.getAttribute("docNo");
+            System.out.println("초기화 된 의사번호 = " + docNo2);
 
             /*크롤링으로 문자 보내기 */
             ReserveUserVO user = appointmentService.getUserPhone(reserveVO.getUserNo());
@@ -82,6 +88,46 @@ public class AppointmentController {
             test.open(name, phoneNum);
 
             return "성공";
+        } else if (session.getAttribute("userNo") == null && session.getAttribute("docNo") != null){
+             log.info("의사 로그인됨");
+             model.addAttribute("loginCheck", session.getAttribute("docNo"));
+            /* 로그인한 의사 번호 가져오기 */
+            Long docNo = (Long) session.getAttribute("docNo");
+            /*  해당 의사 번호 가져오기*/
+            Long docNo2 = (Long) session.getAttribute("docNo2");
+            System.out.println("의사번호 = " + docNo2);
+
+            /*유저 회원번호와 의사 회원번호를 reserveVO에 담기 */
+            reserveVO.setUserNo(docNo);
+            reserveVO.setDocNo(docNo2);
+            System.out.println("reservVO = " + reserveVO);
+
+            /* DB에 예약 정보 넘기기 */
+            appointmentService.reserve(reserveVO);
+
+            /*세션에 담긴 의사 번호 초기화 */
+            session.setAttribute("docNo2", null);
+            docNo2 = (Long) session.getAttribute("docNo2");
+            System.out.println("초기화 된 의사번호 = " + docNo2);
+
+            /*크롤링으로 문자 보내기 */
+            ReserveUserVO user = appointmentService.getUserPhone(reserveVO.getUserNo());
+            ReserveDocVO doc = appointmentService.getDocPhone(reserveVO.getDocNo());
+            String userName = user.getUserName();
+            String docName = doc.getDocName();
+            String userPhoneNum = user.getUserPhoneNum();
+            String docPhoneNum = doc.getDocPhoneNum();
+
+            String[] name = {userName, docName};
+            String[] phoneNum = {userPhoneNum, docPhoneNum};
+
+            CrawlingController test = new CrawlingController();
+            test.open(name, phoneNum);
+
+            return "성공";
+        }else {
+             model.addAttribute("loginCheck", 0);
+             return "실패";
         }
     }
 
@@ -89,14 +135,14 @@ public class AppointmentController {
     @ResponseBody
     public String reserve2(@PathVariable("docNo") Long docNo, ReserveVO reserveVO, HttpServletRequest request, Model model) {
         /* 로그인 한 유저 번호 가져오기 (세션) */
-        HttpSession session = (HttpSession) request.getSession();
-        log.info("=============" + session.getAttribute("userNo"));
+        HttpSession session = request.getSession();
 
-        if (session.getAttribute("userNo") == null) {
-            model.addAttribute("loginCheck", 0);
-            return "실패";
-        } else {
-            model.addAttribute("loginCheck", session.getAttribute("userNo"));
+//        if (session.getAttribute("userNo") == null) {
+//            model.addAttribute("loginCheck", 0);
+//            return "실패";
+//        } else
+        if (session.getAttribute("userNo") != null && session.getAttribute("docNo") == null){
+
             UserVO userVO = (UserVO) session.getAttribute("user");
             Long userNo = userVO.getUserNo();
 
@@ -126,6 +172,41 @@ public class AppointmentController {
             test.open(name, phoneNum);
 
             return "성공";
+        } else if (session.getAttribute("userNo") == null && session.getAttribute("docNo") != null){
+
+            model.addAttribute("loginCheck", session.getAttribute("docNo"));
+            Long docNo3 = (Long) session.getAttribute("docNo");
+
+            /*  해당 의사 번호 가져오기*/
+            System.out.println("의사번호 = " + docNo);
+
+            /*유저 회원번호와 의사 회원번호를 reserveVO에 담기 */
+            reserveVO.setUserNo(docNo3);
+            reserveVO.setDocNo(docNo);
+            System.out.println("reservVO = " + reserveVO);
+
+            /* DB에 예약 정보 넘기기 */
+            appointmentService.reserve(reserveVO);
+
+            /*크롤링으로 문자 보내기 */
+            ReserveUserVO user = appointmentService.getUserPhone(reserveVO.getUserNo());
+            ReserveDocVO doc = appointmentService.getDocPhone(reserveVO.getDocNo());
+            String userName = user.getUserName();
+            String docName = doc.getDocName();
+            String userPhoneNum = user.getUserPhoneNum();
+            String docPhoneNum = doc.getDocPhoneNum();
+
+            String[] name = {userName, docName};
+            String[] phoneNum = {userPhoneNum, docPhoneNum};
+
+            CrawlingController test = new CrawlingController();
+            test.open(name, phoneNum);
+
+            return "성공";
+
+        } else{
+                model.addAttribute("loginCheck", 0);
+                return "실패";
         }
     }
 }

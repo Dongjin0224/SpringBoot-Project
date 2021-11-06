@@ -29,7 +29,7 @@
 
     .subject {
         font-weight: bold;
-        font-size: 14px !important;
+        font-size: 16px !important;
         text-align: center;
         font-weight: bold !important;
     }
@@ -238,6 +238,15 @@
         margin-bottom: 1%;
     }
 
+    #allMajor{
+        position: relative;
+        bottom: 33px;
+        left: 22px;
+        font-size: 20px !important;
+        text-align: center;
+        font-weight: bold;
+    }
+
 </style>
 <body class="is-preload">
 
@@ -262,6 +271,7 @@
             </div>
             <div class="content main">
                 <div class="searchMain">
+                    <a href="/mainBoard/mainBoard" id="allMajor">전체보기</a>
                     <div class="category" style="display: flex">
                         <table class="categoryChoice">
                             <tr>
@@ -450,6 +460,9 @@
     let keyword3 = [[${pageMaker.criteria.keyword}]];
 
 
+
+
+
     for(let a = 0;a< qnaContent3.length;a++){
         if (qnaContent3[a].innerText.indexOf(keyword3)!=-1){
             let index3 = qnaContent3[a].innerText.indexOf(keyword3);
@@ -487,6 +500,8 @@
            $("header.accent1").css("background-image", "url('/img/" + paing3 + ".jpg')");
        }
        $("h1").fadeIn(500);
+
+       document.getElementById('keyword').value=keyword3;
    });
 
     $(".subject").on("click", function(e){
