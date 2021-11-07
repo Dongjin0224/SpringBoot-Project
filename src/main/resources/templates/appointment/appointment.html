@@ -116,9 +116,9 @@
         if (loginCheck == 0) {
             alert('로그인 후에 이용하실 수 있습니다.');
             return;
-        } else {
+        } else if(loginCheck != 0) {
             let test = "test";
-            alert('예약중입니다. \n 잠시 기다려 주세요.');
+            alert('예약중입니다. \n잠시 기다려 주세요.');
             $.ajax({
                 url:"/appointment/reserve",
                 type:"post",

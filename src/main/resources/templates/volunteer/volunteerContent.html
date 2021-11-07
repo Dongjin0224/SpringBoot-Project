@@ -96,8 +96,8 @@
                             </table>
                             <h3 style="margin-top: 6%; margin-bottom: -3%;">모집내용</h3>
                             <hr>
-                            <div>
-                                <img style="width: 100%;" src="/img/service.png"/>
+                            <div th:each="file:${file}" th:object="${file}">
+                                <img style="width: 100%;" th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}"/>
                             </div>
                             <h3 style="margin-top: 6%; margin-bottom: -3%;">내용상세</h3>
                             <hr>
@@ -106,10 +106,9 @@
                             </div>
                             <div style="text-align: center;">
                                 <a href="/volunteer/volunteerBoard" class="button" style="font-size: large; border-radius: 0px; margin-right: 4%;">목록</a>
-                                <a  class="button goWrite" style="font-size: large; border-radius: 0px;">신청하기</a>
+                                <a class="button goWrite" style="font-size: large; border-radius: 0px;">신청하기</a>
                             </div>
                         </div>
-
                     </div>
                 </section>
             </div>
@@ -124,13 +123,30 @@
 
         if(volunteers-volunteerApplicants>0){
             status.innerHTML='(모집중)';
-            goWrite[0].addEventListener('click',function(e){
-                location.href="/volunteer/volunteerForm?boardNo="+bno;
-            });
-            goWrite[1].addEventListener('click',function(e){
-                location.href="/volunteer/volunteerForm?boardNo="+bno;
-            });
-
+            let checkDoc = [[${checkDoc}]];
+            let checkUser = [[${checkUser}]];
+            let checkCnt = [[${checkCnt}]]
+              if (checkUser == null){
+                  if (checkDoc != null){
+                          goWrite[0].addEventListener('click',function(e){
+                              if (checkCnt == 0 ){
+                                  location.href="/volunteer/volunteerForm?boardNo="+bno;
+                              }else {
+                                  alert("이미 신청하신 공고입니다.")
+                              }
+                          });
+                          goWrite[1].addEventListener('click',function(e){
+                              if (checkCnt == 0 ){
+                              location.href="/volunteer/volunteerForm?boardNo="+bno;
+                              }else {
+                                  alert("이미 신청하신 공고입니다.")
+                              }
+                          });
+                  }
+              } else {
+                  alert("의사 회원만 신청하실 수 있습니다.");
+                  history.go(-1);
+              }
         }else{
             status.innerHTML='(마감)';
             goWrite[0].addEventListener('click',function(e){

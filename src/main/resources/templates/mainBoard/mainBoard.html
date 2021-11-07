@@ -460,6 +460,9 @@
     let keyword3 = [[${pageMaker.criteria.keyword}]];
 
 
+
+
+
     for(let a = 0;a< qnaContent3.length;a++){
         if (qnaContent3[a].innerText.indexOf(keyword3)!=-1){
             let index3 = qnaContent3[a].innerText.indexOf(keyword3);
@@ -497,6 +500,8 @@
            $("header.accent1").css("background-image", "url('/img/" + paing3 + ".jpg')");
        }
        $("h1").fadeIn(500);
+
+       document.getElementById('keyword').value=keyword3;
    });
 
     $(".subject").on("click", function(e){

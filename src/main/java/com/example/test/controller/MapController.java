@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +30,14 @@ public class MapController {
     public final AppointmentService appointmentService;
 
     @GetMapping("searchDocs")
-    public String searchDocs(@RequestParam String docHospitalName, Model model){
+    public String searchDocs(@RequestParam String docHospitalName, Model model, HttpServletRequest request){
         List<DocVO> list = service.getDocs(docHospitalName);
+
+        HttpSession session = request.getSession();
+        if(session.getAttribute("userNo") == null && session.getAttribute("docNo") == null){
+            model.addAttribute("loginCheck", 0);
+        }
+
 
         model.addAttribute("hosName",docHospitalName);
         log.info("---------------------");
