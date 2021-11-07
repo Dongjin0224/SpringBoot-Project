@@ -19,7 +19,22 @@ import java.util.List;
 @Slf4j
 public class CrawlingController {
 
+    /*
+        웹 크롤링 라이브러리
+        1. Jsoup
+	        정적 데이터를 비교적 빠르게 수집할 수 있지만 브라우저가 아닌
+	        HTTP Request를 사용하기 때문에 동적 데이터를 수집하기 위해서는
+	        해당 서버의 인증키 요구 등 수집할 수 없는 경우가 많다.
 
+        2. Selenium
+	        Jsoup에 비해 느리지만 브라우저 드라이버를 사용하여 동적 데이터도 수집 가능하다.
+
+        Selenium을 이용한 크롤링 - ebdriver라는 API를 통해 운영체제에 설치된 Chrome등의 브라우저를 제어
+        1. Selenium Library 추가 - build 툴은 maven으로 pom.xml에 추가해준다. 이때, 크롬드라이버의 버전과 일치해야한다.
+        https://www.seleniumhq.org/download/ 여기서 java버전을 받아 Build Pathed에 넣어주는 방식도 있다.
+        2. 크롬 드라이버 다운 (https://chromedriver.chromium.org/downloads)
+        3. 설정 및 세팅
+      */
 
     //WebDriver 설정
     private WebDriver driver;
@@ -27,19 +42,22 @@ public class CrawlingController {
     private String url;
 
     //Properties 설정
+        //드라이버 설정
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
+        //드라이버 경로 설정
     public static String WEB_DRIVER_PATH = "C:/chromedriver.exe";
+        //최초에 들어갈 URL 설정
     public static String URL = "https://center-pf.kakao.com/_rxigIb/messages/new/feed";
-    // (여기선 naver 를 사용해봤습니다.)
 
     public CrawlingController(){
         //System Property SetUp
-        System.setProperty("webdriver.chrome.whitelistedIps", "");
+        System.setProperty("webdriver.chrome.whitelistedIps", ""); //여기서 화이트 리스트란 특정 권한, 서비스, 이동, 접근, 인식에 대해 명시적으로 허가하는 목록을 말함.
         System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
         //Driver SetUp
         ChromeOptions options = new ChromeOptions();
         options.setCapability("ignoreProtectedModeSettings", true);
         options.addArguments("headless");
+        //여러 드라이버 중 크롬드라이버에 옵션을 넣고 세팅
         driver = new ChromeDriver(options);
     }
 
