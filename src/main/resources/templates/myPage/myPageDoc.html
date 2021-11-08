@@ -119,11 +119,8 @@
     }
 
     div.info {
-        font-size: 0.9rem;
-    }
-
-    div.info div div {
-        font-size: 12px;
+        font-size: 0.9em
+    ;
     }
     div.info label {
         margin:0;
@@ -272,9 +269,9 @@
     }
 
     .search {
-        width: 23% !important;
+        width: 88px !important;
         background-color: white !important;
-        left: 54.8% !important;
+        left: 59.8% !important;
         box-shadow: none !important;
         border-radius: 0 !important;
         height: 40px !important;
@@ -287,10 +284,10 @@
         color: white !important;
     }
     .clear {
-        width: 23% !important;
+        width: 87px !important;
         background-color: white !important;
         color: #1a73e8;
-        left: 77% !important;
+        left: 80% !important;
         box-shadow: none !important;
         border-radius: 0 !important;
         height: 40px !important;
@@ -516,7 +513,7 @@
                                             <div class="td6" style="padding: 0;">
                                                 <div class="div2">
                                                     <input type="text" id="numStr" name="code" placeholder="인증번호">
-                                                   <button type="button" id="checkNumStr" style="border-radius: 0">확인</button>
+                                                    <button type="button" id="checkNumStr" style="border-radius: 0">확인</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -819,7 +816,7 @@
                                                         </div>
                                                         <div style="margin-bottom: 5%;">
                                                             <label for="expiry">카드 유효기간 YYYY-MM</label>
-                                                            <input id="expiry" type="text" name="expiry">
+                                                            <input id="expiry" type="password" name="expiry">
                                                         </div>
                                                         <div style="margin-bottom: 5%;">
                                                             <label for="birth">생년월일 YYMMDD</label>
@@ -883,7 +880,7 @@
     }
 
     /*휴대폰 인증*/
-  $("#checkNum").on('click',function(){
+    $("#checkNum").on('click',function(){
         let docPhoneNum1 = $("#docPhoneNum1").val();
         let docPhoneNum2 = $("#docPhoneNum2").val();
         let docPhoneNum3 = $("#docPhoneNum3").val();
@@ -904,7 +901,7 @@
                 });
             }
         });
-   })
+    })
 
 
     /*휴대폰인증 끝*/
@@ -1408,26 +1405,26 @@
 
 <!--    function geocode(request) {-->
 <!--        clear();-->
-<!--        geocoder-->
-<!--            .geocode(request)-->
-<!--            .then((result) => {-->
-<!--                const { results } = result;-->
+<!—        geocoder—>
+<!—            .geocode(request)—>
+<!—            .then((result) => {—>
+<!—                const { results } = result;—>
 
-<!--                map.setCenter(results[0].geometry.location);-->
-<!--                marker.setPosition(results[0].geometry.location);-->
-<!--                marker.setMap(map);-->
-<!--                responseDiv.style.display = "none";-->
-<!--                response.innerText = JSON.stringify(result, null, 2);-->
+<!—                map.setCenter(results[0].geometry.location);—>
+<!—                marker.setPosition(results[0].geometry.location);—>
+<!—                marker.setMap(map);—>
+<!—                responseDiv.style.display = "none";—>
+<!—                response.innerText = JSON.stringify(result, null, 2);—>
 
-<!--                var location = results[0].geometry.location;-->
-<!--                alert(location);-->
-<!--                return results;-->
-<!--            })-->
-<!--            .catch((e) => {-->
-<!--                alert("Geocode was not successful for the following reason: " + e);-->
-<!--            });-->
-<!--    }-->
+<!—                var location = results[0].geometry.location;—>
+<!—                alert(location);—>
+<!—                return results;—>
+<!—            })—>
+<!—            .catch((e) => {—>
+<!—                alert("Geocode was not successful for the following reason: " + e);—>
+<!—            });—>
+<!—    }—>
 
 
-<!--</script>-->
+<!—</script>—>
 </html>
