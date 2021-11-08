@@ -43,14 +43,14 @@
                                 <h4>비밀번호 찾기</h4>
                             </div>
                             <!--coolSms-->
-                            <label style="margin-bottom: -1%;margin-top: -2%;">아이디</label>
-                            <label style=" width: 100%;"><input type="text" placeholder="아이디를 입력해주세요." name="docId"
+                            <label th:style="${check == 0 ? 'display:none;' : 'display:block;margin-bottom: -1%;margin-top: -2%;'}" style="margin-bottom: -1%;margin-top: -2%;">아이디</label>
+                            <label th:style="${check == 0 ? 'display:none;' : 'display:block;width: 100%;'}" style=" width: 100%;"><input type="text" placeholder="아이디를 입력해주세요." name="docId"
                                                                 id="docId" style="margin-bottom: -5%;"></label>
-                                <label style="margin-bottom: -1%;margin-top: -2%;">이름</label>
-                            <label style=" width: 100%;"><input type="text" name="docName" id="docName"   style="margin-bottom: -5%;"></label>
+                                <label th:style="${check == 0 ? 'display:none;' : 'display:block;margin-bottom: -1%;margin-top: -2%;'}" style="margin-bottom: -1%;margin-top: -2%;">이름</label>
+                            <label th:style="${check == 0 ? 'display:none;' : 'display:block;width: 100%;'}" style=" width: 100%;"><input type="text" name="docName" id="docName"   style="margin-bottom: -5%;"></label>
 
-                                <label style="margin-bottom: -1%;margin-top: -1%;">전화번호</label>
-                                <label style="width: 100%;"><input type="text"
+                                <label th:style="${check == 0 ? 'display:none;' : 'display:block;margin-bottom: -1%;margin-top: -1%;'}" style="margin-bottom: -1%;margin-top: -1%;">전화번호</label>
+                                <label th:style="${check == 0 ? 'display:none;' : 'display:block;width: 100%;'}" style="width: 100%;"><input type="text"
                                                                                          placeholder="휴대폰 번호(-제외)"
                                                                                          name="docPhoneNum"
                                                                                          id="docPhoneNum" style="margin-bottom: 10%;">
