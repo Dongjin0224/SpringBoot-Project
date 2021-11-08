@@ -62,7 +62,7 @@
         height: 22px;
     }
 
-    textarea {resize: none;border-radius: 0;}
+    textarea {resize: none;border-radius: 0;box-shadow: none;}
 
     .content.main {
         width: 90%;
@@ -457,8 +457,8 @@
                                         <hr>
                                         <div>
                                             <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
-                                            <div th:text="*{docHistory}"></div>
-                                        </div>
+                                            <textarea th:utext="*{docHistory}" onkeydown="resize(this)" onkeyup="resize(this)"name="docHistory" readonly style="margin-left: 23%;width: 72%;border: none;overflow:visible;font-size: 17px;"></textarea>
+                                        </div><!--*{#strings.replace(docHistory,'line.separator','&lt;br /&gt;')}-->
                                         <input type="hidden" th:value="*{docNo}" id="docNo">
                                         <div th:text="*{docNo}"></div>
                                         <hr>
@@ -858,6 +858,11 @@
 <script src="/js/fix.js"></script>
 </body>
 <script th:inline="javascript">
+
+    function resize(obj) {
+        obj.style.height = "1px";
+        obj.style.height = (12+obj.scrollHeight)+"px";
+    }
 
     /*휴대폰 인증*/
   $("#checkNum").on('click',function(){

@@ -54,12 +54,18 @@
                                 <input type="text" name="userPhoneNum" id="userPhoneNum" placeholder="전화번호" style="font-size: 12px; width: 182%">
                             </div>
                             <span name="find" th:if="${check == 1}">일치하는 정보가 존재하지 않습니다</span>
-                            <span name="find" th:if="${check == 0}" th:text="|찾으시는 아이디는${id}입니다.|"></span>
+                            <div name="find" th:if="${check == 0}">
+                                <div th:text="|찾으시는 아이디는${id}입니다.|" style="padding-bottom: 8%;"></div>
+                                <div style="display: inline-flex;">
+                                    <input type="button" id="goUserLogin" value="로그인하러가기" style="margin-left: 5%;box-shadow: none;">
+                                    <input type="button" id="goFindUserPw" value="비밀번호 찾기" style="box-shadow: none;">
+                                </div>
+                            </div>
                             <!-- 전송 버튼 -->
                             <div class="col-12">
                                 <ul class="actions stacked">
-                                    <li><input type="submit" value="아이디 찾기" id="findId"
-                                               class="button primary" onclick="" style="width: 86%; font-size: 12px;"></li>
+                                    <li><input  th:style="${check == 0 ? 'display:none;' : 'display:block;width: 86%;'}" type="submit" value="아이디 찾기" id="findId"
+                                                class="button primary" onclick="" style="width: 86%;"></li>
                                 </ul>
                             </div>
 
@@ -95,6 +101,13 @@
             form.find.style.display='none';
         }
     });
+
+    $("#goUserLogin").on("click", function(){
+        location.href="/user/userLogin";
+    })
+    $("#goFindUserPw").on("click", function(){
+        location.href="/user/userFindPw";
+    })
 
 </script>
 </body>

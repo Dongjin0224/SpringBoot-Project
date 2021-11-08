@@ -189,26 +189,29 @@ public class DocController {
         return "user/docFindPw";
     }
 
-    /*비밀번호 찾기*//*
-    @PostMapping("findAccount")
-    public String findPw(UserVO vo,Model model){
-        UserVO userVO = service.findPw(vo);
+    /*비밀번호 찾기*/
+    @PostMapping("docFindPw")
+    public String findPw(DocVO vo,Model model){
+        DocVO docVO = service.findPw(vo);
 
-        if(userVO == null){
+        if(docVO == null){
             model.addAttribute("check",1);
         }else{
             model.addAttribute("check",0);
-            model.addAttribute("updateid",userVO.getUserId());
+            model.addAttribute("updateid",docVO.getDocId());
         }
-        return "user/findAccount";
+        return "user/docFindPw";
     }
 
-//    /*비밀번호 변경*/
-//    @PostMapping("docFindPw")
-//    public String updatePassword(DocVO vo){
-//        service.updatePassword(vo);
-//        return "user/docFindPw";
-//    }
+    /*비밀번호 변경*/
+    @PostMapping("updatedocPw")
+    public String updatePasswordAction(DocVO vo,@RequestParam(value="updateid",defaultValue = "",required = false)String id){
+
+        vo.setDocId(id);
+        service.updatePassword(vo);
+        return "user/docFindPasswordConfirm";
+    }
+
 
 
     /* 좋아요 */
