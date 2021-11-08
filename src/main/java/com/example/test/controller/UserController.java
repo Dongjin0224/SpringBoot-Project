@@ -31,6 +31,9 @@ public class UserController {
 
     private final UserService service;
 
+    @GetMapping("guide")
+    public String guide(){return "user/guide";}
+
     @GetMapping("userLogin")
     public String memberSignUp() {
         return "user/login";

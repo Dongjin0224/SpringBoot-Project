@@ -1,6 +1,5 @@
 package com.example.test.controller;
 
-import com.example.test.model.user.vo.UserVO;
 import com.example.test.services.MyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -61,6 +60,8 @@ public class WebController {
     @GetMapping("detail")
     public String detail(){return "mainBoard/detail";}
 
+    @GetMapping("error_page")
+    public String error(){return "error/error_page";}
 
     //  hong
     @GetMapping("report")
@@ -94,9 +95,6 @@ public class WebController {
     @GetMapping("footer")
     public String footer(){return "fixed/footer";}
 
-    //  young
-    @GetMapping("guide")
-    public String guide(){return "guide";}
 
     // index test
     @GetMapping("index3")
