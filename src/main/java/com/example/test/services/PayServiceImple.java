@@ -130,7 +130,7 @@ public class PayServiceImple implements PayService{
         long timestamp = 0;
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.KOREA);
-        cal.add(Calendar.MINUTE, +1);
+        cal.add(Calendar.MONTH, +1);
         String date = sdf.format(cal.getTime());
 
         try {
