@@ -24,4 +24,6 @@ public class AnswerDAO {
    public void delete(Long reQnaNo){answerMapper.delete(reQnaNo);}
 
     public int checkAnswer(Long qnaNo, Long docNo) { return answerMapper.checkAnswer(qnaNo, docNo); }
+
+    public void getTotal(Long qnaNo){ answerMapper.getTotal(qnaNo);}
 }

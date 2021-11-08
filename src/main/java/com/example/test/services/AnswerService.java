@@ -29,4 +29,6 @@ public class AnswerService {
     }
 
     public int checkAnswer(Long qnaNo, Long docNo) { return answerDAO.checkAnswer(qnaNo, docNo); }
+
+    public void getTotal(Long qnaNo){ answerDAO.getTotal(qnaNo);}
 }

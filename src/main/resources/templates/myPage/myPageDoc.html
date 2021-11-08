@@ -113,7 +113,7 @@
     }
 
     input.phone   {
-        width: 83.3px;
+        width: 80px;
         height: 30px;
         display: inline;
     }
@@ -145,7 +145,8 @@
 
     div.info input[type='text'], div.info input[type='password']{
         border-color: #bfb9b95c;
-        font-size: 0.8em;
+        padding-right: 0;
+        padding-left: 4.7%;
     }
 
 
@@ -264,6 +265,7 @@
         height: 40px;
         width: 261px;
         border-color: #bfb9b95c;
+        padding: 0;
     }
 
     .search {
@@ -428,7 +430,7 @@
                                         <hr>
                                         <div>
                                             <label class="profile">휴대폰 번호<span style='color:red; font-size:1em;'> *</span></label>
-                                            <div th:text="*{docPhoneNum}"></div>
+                                            <div th:text="|*{#strings.substring(docPhoneNum, 0, 3)} - *{#strings.substring(docPhoneNum, 3, 7)} - *{#strings.substring(docPhoneNum, 7, 11)}|"></div>
                                         </div>
                                         <hr>
                                         <div>
@@ -502,7 +504,7 @@
                                                     <input class='phone' th:value="*{#strings.substring(docPhoneNum, 0, 3)}" type='text' id='docPhoneNum1' name='docPhoneNum1'>
                                                     - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 3, 7)}" type='text' id='docPhoneNum2' name='docPhoneNum2'>
                                                     - <input class='phone' th:value="*{#strings.substring(docPhoneNum, 7, 11)}" type='text' id='docPhoneNum3' name='docPhoneNum3'>
-                                                    <button type="button" id="checkNum">인증</button>
+                                                    <button type="button" id="checkNum" style="border-radius: 0">인증</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -511,7 +513,7 @@
                                             <div class="td6" style="padding: 0;">
                                                 <div class="div2">
                                                     <input type="text" id="numStr" name="code" placeholder="인증번호">
-                                                   <button type="button" id="checkNumStr">확인</button>
+                                                   <button type="button" id="checkNumStr" style="border-radius: 0">확인</button>
                                                 </div>
                                             </div>
                                         </div>
