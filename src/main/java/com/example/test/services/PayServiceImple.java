@@ -186,11 +186,13 @@ public class PayServiceImple implements PayService{
 //        payDAO.updateCustomer(payVO);
 //    }
 
+    //상품 명과 구매날짜가 업데이트 되는 메소드
     public void pay(PayVO payVO){
         log.info("pay................");
         payDAO.pay(payVO);
     }
 
+    //결제 정보를 가져오는 메소드(하나만)
     public PayVO getPayList(Long docNo){
         log.info("payList................");
         return payDAO.getPayList(docNo);

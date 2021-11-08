@@ -29,6 +29,7 @@ public class PayController {
 
 
     private final PayService pay;
+    //code는 자동 결제를 취소하기 위한 flag
     static int code = 0;
 
     @PostMapping("/insertCustomer")
@@ -44,7 +45,7 @@ public class PayController {
         pay.getCustomer(payVO);
     }
 
-    @ResponseBody
+//    @ResponseBody
     @PostMapping("/cardCheck")
     public String cardCheck(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
         HttpSession session = (HttpSession)request.getSession();
@@ -66,7 +67,7 @@ public class PayController {
         }
     }
 
-    @ResponseBody
+//    @ResponseBody
     @PostMapping("/updateCard")
     public String updateCard(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
         HttpSession session = (HttpSession)request.getSession();
@@ -79,76 +80,28 @@ public class PayController {
             cardCheck(payVO, request);
         }else if(cardCheck(payVO, request) == "fail"){
             log.info("카드 수정 실패");
-            return "fail";
+            return "updateFail";
         }
+
         payVO = pay.getPayList(docNo);
         payVO.setCard_number(payVO.getCard_number());
         payVO.setExpiry(payVO.getExpiry());
         payVO.setBirth(payVO.getBirth());
         payVO.setPwd_2digit(payVO.getPwd_2digit());
+        payVO.setName(payVO.getName());
         payVO.setCustomer_uid("");
 
+        log.info("---------------ㅇㅕ기보세요-----------------");
+        System.out.println(payVO);
+        log.info("--------------------------------");
         pay.pay(payVO);
 
         pay.getCustomer(payVO);
-
-        return "success";
+        return "updateSuccess";
     }
 
-//    @PostMapping("/schedule")
-//    public String schedulePay(Long docNo) {
-//        String token = pay.getToken();
-//
-//        long timestamp = 0;
-//        Calendar cal = Calendar.getInstance();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.KOREA);
-//        cal.add(Calendar.MINUTE, +1);
-//        String date = sdf.format(cal.getTime());
-//
-//        try {
-//            Date stp = sdf.parse(date);
-//            timestamp = stp.getTime()/1000;
-//        } catch (ParseException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//
-//        Gson str = new Gson();
-//        token = token.substring(token.indexOf("response") +10);
-//        token = token.substring(0, token.length() - 1);
-//        GetTokenVO vo = str.fromJson(token, GetTokenVO.class);
-//        String access_token = vo.getAccess_token();
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//        headers.setBearerAuth(access_token);
-//
-//        JsonObject jsonObject = new JsonObject();
-//        jsonObject.addProperty("merchant_uid", "merchant_" + timestamp);
-//        jsonObject.addProperty("schedule_at", timestamp);
-//        jsonObject.addProperty("name", pay.getPayList(docNo).getName());
-//        jsonObject.addProperty("amount", pay.getPayList(docNo).getAmount());
-//
-//        JsonArray jsonArr = new JsonArray();
-//
-//        jsonArr.add(jsonObject); JsonObject reqJson = new JsonObject();
-//
-//        reqJson.addProperty("customer_uid", pay.getPayList(docNo).getCustomer_uid());
-//        reqJson.add("schedules",jsonArr);
-//        String json = str.toJson(reqJson);
-//        System.out.println(json);
-//        HttpEntity<String> entity = new HttpEntity<>(json, headers);
-//
-//        int code = Integer.parseInt(restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class).split(",")[0].split(":")[1]);
-//
-//        log.info("---------------------");
-//        log.info("예약 성공");
-//        log.info("---------------------");
-//        return restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class);
-//    }
 
-    @ResponseBody
+//    @ResponseBody
     @PostMapping("/startPay")
     public void startPay(@RequestBody PayVO payVO, HttpServletRequest request){
         PayVO vo = new PayVO();
@@ -168,7 +121,6 @@ public class PayController {
 
 
         pay.pay(vo);
-        log.info("여기까진 들어오니???");
 
         code = 0;
         while(true){
@@ -184,8 +136,8 @@ public class PayController {
         }
     }
 
+//    @ResponseBody
     @PostMapping("/stopPay")
-    @ResponseBody
     public int stopSchedulePay(HttpServletRequest request){
         PayVO payVO = new PayVO();
         HttpSession session = (HttpSession)request.getSession();
@@ -211,11 +163,11 @@ public class PayController {
     }
 
     @PostMapping("registCheck")
-    public int test(HttpServletRequest request){
+    public int registCheck(HttpServletRequest request){
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
 
-        if(pay.getPayList(docNo) == null){
+        if(pay.getPayList(docNo).getCard_number() == null){
             return 1;
         }
 

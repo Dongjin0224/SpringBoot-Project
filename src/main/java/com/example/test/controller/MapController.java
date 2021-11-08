@@ -67,9 +67,10 @@ public class MapController {
         log.info(String.valueOf(service.getSearchList("sdfdsf2ewf32rf23f").size()));
         log.info(service.getSearchList("").toString());
         log.info("들어옴---------------------");
-
         model.addAttribute("searchList", service.getSearchList(""));
         model.addAttribute("allList",service.getList());
+        model.addAttribute("check",0);
+
         return "map/searchMap";
 
 }
@@ -80,6 +81,8 @@ public class MapController {
         log.info("----------------------------------------------------");
         model.addAttribute("searchList",service.getSearchList(search));
         model.addAttribute("allList",service.getList());
+        model.addAttribute("check",1);
+
     }
 
 
