@@ -15,4 +15,6 @@ public interface AnswerMapper {
     public void delete(Long reQnaNo);
 
     public int checkAnswer(Long qnaNo, Long docNo);
+
+    public void getTotal(Long qnaNo);
 }

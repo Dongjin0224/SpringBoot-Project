@@ -256,7 +256,7 @@ public class BoardController {
     @GetMapping("writeReport")
     public String writeReport(Long reQnaNo, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
-                Long userNo = (Long) session.getAttribute("userNo");
+        Long userNo = (Long) session.getAttribute("userNo");
 
         log.info("----------------------------------------");
         log.info("reQnaNo" + reQnaNo);
