@@ -56,7 +56,7 @@ public class CrawlingController {
         //Driver SetUp
         ChromeOptions options = new ChromeOptions();
         options.setCapability("ignoreProtectedModeSettings", true);
-//        options.addArguments("headless");
+        options.addArguments("headless");
         //여러 드라이버 중 크롬드라이버에 옵션을 넣고 세팅
         driver = new ChromeDriver(options);
     }
