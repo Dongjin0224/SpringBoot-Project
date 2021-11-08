@@ -29,6 +29,7 @@ public class PayController {
 
 
     private final PayService pay;
+    //code는 자동 결제를 취소하기 위한 flag
     static int code = 0;
 
     @PostMapping("/insertCustomer")
@@ -79,20 +80,24 @@ public class PayController {
             cardCheck(payVO, request);
         }else if(cardCheck(payVO, request) == "fail"){
             log.info("카드 수정 실패");
-            return "fail";
+            return "updateFail";
         }
+
         payVO = pay.getPayList(docNo);
         payVO.setCard_number(payVO.getCard_number());
         payVO.setExpiry(payVO.getExpiry());
         payVO.setBirth(payVO.getBirth());
         payVO.setPwd_2digit(payVO.getPwd_2digit());
+        payVO.setName(payVO.getName());
         payVO.setCustomer_uid("");
 
+        log.info("---------------ㅇㅕ기보세요-----------------");
+        System.out.println(payVO);
+        log.info("--------------------------------");
         pay.pay(payVO);
 
         pay.getCustomer(payVO);
-
-        return "success";
+        return "updateSuccess";
     }
 
 
@@ -116,7 +121,6 @@ public class PayController {
 
 
         pay.pay(vo);
-        log.info("여기까진 들어오니???");
 
         code = 0;
         while(true){
@@ -163,7 +167,7 @@ public class PayController {
         HttpSession session = (HttpSession)request.getSession();
         Long docNo = (Long) session.getAttribute("docNo");
 
-        if(pay.getPayList(docNo) == null){
+        if(pay.getPayList(docNo).getCard_number() == null){
             return 1;
         }
 

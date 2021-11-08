@@ -29,4 +29,9 @@ public class DocMapperTest {
         doc.setDocPhoneNum("hds1204");
         mapper.insertSelectKey_bno(doc);
     }
+
+//    @Test
+//    public void getLikeTest(){
+//        mapper.getlike()
+//    }
 }
