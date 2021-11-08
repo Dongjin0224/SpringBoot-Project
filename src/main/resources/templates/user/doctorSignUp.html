@@ -353,7 +353,7 @@
                             <label>약력</label>
                             <div>
                                <!-- <input type="text" placeholder="약력을 입력해주세요." name="docHistory">-->
-                                <textarea name="docHistory" placeholder="약력을입력해주세요" style="border-radius: 0;"></textarea>
+                                <textarea rows="6" name="docHistory" placeholder="약력을 입력해주세요" style="border-radius: 0; resize: none"></textarea>
                             </div>
                             <!--이용약관2-->
                             <label style="padding-top: 40px;">이용약관</label>
@@ -365,23 +365,28 @@
                                 </div>
                                 <hr>
                                 <div class="col-12">
-                                    <input type="checkbox" id="agree" name="term" class="terms"
-                                           onclick="checkSelectAll()"> <label for="agree"><strong>[필수]</strong><a
-                                        onclick="location.href='term/privacyPolicy'"
+                                    <input type="checkbox" id="privacyPolicy" name="term" class="terms"
+                                           onclick="checkSelectAll()"> <label for="privacyPolicy"><strong>[필수]</strong><a
+                                        href="http://localhost:10007/privacyPolicy"
                                         target="_blank">&nbsp;개인정보 수집 및 이용 동의</a></label>
                                 </div>
                                 <div class="col-12">
-                                    <input type="checkbox" id="term" name="term" class="terms"
-                                           onclick="checkSelectAll()"> <label for="term"><strong>[필수]</strong><a
-                                        onclick="location.href='term/locationPolicy'"
-                                        target="_blank">&nbsp;이용약관</a></label>
+                                    <input type="checkbox" id="locationPolicy" name="term" class="terms"
+                                           onclick="checkSelectAll()"> <label for="locationPolicy"><strong>[필수]</strong><a
+                                        href="http://localhost:10007/locationPolicy"
+                                        target="_blank">&nbsp;위치정보 이용 동의</a></label>
                                 </div>
                                 <div class="col-12">
-                                    <input type="checkbox" id="event" name="term" class="termSel"
-                                           onclick="checkSelectAll()"> <label for="event"
-                                                                              style="padding-bottom: 5%;"><strong>
-                                    <!-- style="color: #A4C2EF;">-->[선택]</strong>&nbsp;이벤트, 프로모션 알림 메일 및
-                                    SMS 수신</label>
+                                    <input type="checkbox" id="payTerm" name="term" class="terms"
+                                           onclick="checkSelectAll()"> <label for="payTerm"><strong>[필수]</strong><a
+                                        href="http://localhost:10007/payTerm"
+                                        target="_blank">&nbsp;전자결제서비스 이용 약관</a></label>
+                                </div>
+                                <div class="col-12">
+                                    <input type="checkbox" id="terms" name="term" class="terms"
+                                           onclick="checkSelectAll()"> <label for="terms"><strong>[필수]</strong><a
+                                        href="http://localhost:10007/terms"
+                                        target="_blank">&nbsp;이용 약관</a></label>
                                 </div>
                             </fieldset>
 
