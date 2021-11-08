@@ -334,7 +334,7 @@
                             <tr class="table2" th:object="${list}">
                                 <td class="" th:text="*{qnaMajor}"></td>
                                 <td class=""><a id="goRead" th:href="*{qnaNo}" th:text="*{qnaTitle}"></a></td>
-                                <td class="" th:text="*{qnaDate}"></td>
+                                <td class="" th:text="*{#strings.substring(qnaDate, 0, 10)}"></td>
                                 <td class="" th:text="*{qnaViewCnt}"></td>
                             </tr>
                             </th:block>
