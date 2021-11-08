@@ -56,7 +56,7 @@ public class CrawlingController {
         //Driver SetUp
         ChromeOptions options = new ChromeOptions();
         options.setCapability("ignoreProtectedModeSettings", true);
-        options.addArguments("headless");
+//        options.addArguments("headless");
         //여러 드라이버 중 크롬드라이버에 옵션을 넣고 세팅
         driver = new ChromeDriver(options);
     }
@@ -83,7 +83,7 @@ public class CrawlingController {
             element = driver.findElement(By.className("submit"));
             element.click();
             log.info("로그인 버튼 클릭 완료");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             WebElement parent4 = driver.findElement(By.className("wrap_inp"));
             List<WebElement> button4 = parent4.findElements(By.className("lab_g"));
