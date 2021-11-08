@@ -75,6 +75,7 @@ public class PayController {
 
         payVO.setDocNo(docNo);
 
+        pay.unSchedule(pay.getPayList(docNo));
         if(cardCheck(payVO, request) == "success"){
             log.info("카드 수정 성공");
             cardCheck(payVO, request);
