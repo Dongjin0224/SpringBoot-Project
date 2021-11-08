@@ -32,12 +32,12 @@ public class AppointmentController {
         if(session.getAttribute("userNo") == null && session.getAttribute("docNo") == null){
             model.addAttribute("loginCheck", 0);
         }
-
+        /* 내가 누른 의사의 번호를 세션에 담는다. */
         session.setAttribute("docNo2",docNo);
 
         model.addAttribute("appointment", appointmentService.get(docNo));
         model.addAttribute("file", appointmentService.getFile(docNo));
-          model.addAttribute("criteria", criteria);
+        model.addAttribute("criteria", criteria);
     }
 
     @PostMapping(value = "reserve",  consumes = "application/json", produces = "text/plain; charset=utf-8")
@@ -45,10 +45,6 @@ public class AppointmentController {
     public String reserve(ReserveVO reserveVO, HttpServletRequest request, Model model) {
         /* 로그인 한 유저 번호 가져오기 (세션) */
         HttpSession session = (HttpSession) request.getSession();
-//        if (session.getAttribute("userNo") == null && session.getAttribute("docNo") == null) {
-//            model.addAttribute("loginCheck", 0);
-//            return "실패";
-//        } else
 
          if(session.getAttribute("userNo") != null && session.getAttribute("docNo") == null) {
              log.info("일반회원 로그인됨");

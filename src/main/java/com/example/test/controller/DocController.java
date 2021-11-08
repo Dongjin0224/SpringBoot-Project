@@ -227,9 +227,9 @@ public class DocController {
         log.info("userNo : " + userNo);
         log.info("reply : " + reQnaNo);
         log.info("-----------------------------------------");
-
-
-        if(service.getLike(docNo, userNo, reQnaNo) == 0){
+        if(session.getAttribute("userNo") == null){
+            return "의사";
+        } else if(service.getLike(docNo, userNo, reQnaNo) == 0){
             service.like1(docNo);
             service.like2(docNo, userNo, reQnaNo);
             return "좋아요 성공";
