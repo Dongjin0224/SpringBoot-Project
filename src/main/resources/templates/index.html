@@ -142,10 +142,12 @@
                 <div class="div3" style="display: flex; margin-top:8vh">
                     <img style="width: 38%; margin: auto; margin-bottom: 55px;" src="../img/logo.png">
                 </div>
+                <form action="/mainBoard/mainBoard" name="form">
                 <div class="bar">
-                    <input class="searchbar" type="text">
-                    <div class="fa fa-search" aria-hidden="true" style="position:absolute; margin: 1.5%"></div>
+                    <input class="searchbar" type="text" name="keyword" id="keyword">
+                    <button id="searchBoard" class="fa fa-search" aria-hidden="true" style="position:absolute; box-shadow:none;" type="button" onclick="goBoard()"></button>
                 </div>
+                </form>
                 <div class="buttons">
                     <button class="button" type="button" onclick="location.href='/mainBoard/mainBoard'">지식 iN으로 이동</button>
                     <button class="button" type="button" onclick="location.href='/map/searchMap'">병원 찾기</button>
@@ -185,6 +187,16 @@
 <script src="/js/fix.js"></script>
 <!-- Channel Plugin Scripts -->
 <script>
+    function goBoard(){
+        var form = document.form;
+        if(form.keyword.value==''){
+            alert('검색어를 입력해주세요.');
+            form.keyword.focus();
+            return;
+        }
+        location.href=" /mainBoard/mainBoard?city=&town=&pageNum=1&amount=10&qnaMajor=&keyword="+form.keyword.value;
+
+    }
     // (function() {
     //     var w = window;
     //     if (w.ChannelIO) {

@@ -55,4 +55,8 @@
     <select id="getTotal" resultType="_int">
         SELECT COUNT(VOLUNTEERBOARDNO) FROM TABLE_VOLUNTEER_BOARD
     </select>
+
+    <select id="checkCnt" resultType="_int">
+        SELECT COUNT(APPLICANTSNO) FROM TABLE_APPLICANTS WHERE DOCNO = #{docNo} AND VOLUNTEERBOARDNO = #{volunteerBoardNo}
+    </select>
 </mapper>

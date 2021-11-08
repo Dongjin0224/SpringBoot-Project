@@ -35,4 +35,6 @@ public class VolunteerDAO {
     public void update(Long volunteerBoardNo){volunteerMapper.update(volunteerBoardNo);}
 
     public int getTotal(Criteria criteria){ return volunteerMapper.getTotal(criteria); }
+
+    public int checkCnt(Long docNo, Long volunteerBoardNo){ return volunteerMapper.checkCnt(docNo, volunteerBoardNo); }
 }

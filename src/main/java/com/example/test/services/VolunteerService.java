@@ -2,6 +2,7 @@ package com.example.test.services;
 
 import com.example.test.model.beans.vo.Criteria;
 import com.example.test.model.volunteer.vo.ApplicantsVO;
+import com.example.test.model.volunteer.vo.VolAttachFileVO;
 import com.example.test.model.volunteer.vo.VolunteerBoardVO;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +26,8 @@ public interface VolunteerService {
     public void update(Long volunteerBoardNo);
 
     public int getTotal(Criteria criteria);
+
+    public List<VolAttachFileVO> findByBno(Long volunteerBoardNo);
+
+    public int checkCnt(Long docNo, Long volunteerBoardNo);
 }

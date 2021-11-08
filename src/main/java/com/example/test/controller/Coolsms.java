@@ -18,6 +18,7 @@ import org.json.simple.JSONValue;
  * RestApi JAVA
  * v1.1
  * POST?GET REQUEST
+ * Coolsms 클래스, 문자 전송을 위한 coolsms관련 메소드를 사용하기 위한 클래스
  */
 public class Coolsms extends Https {
     final String URL = "https://api.coolsms.co.kr";

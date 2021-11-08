@@ -29,7 +29,7 @@
     </select>
 
     <update id="updatePassword">
-        UPDATE TABLE_USER SET USERPW=#{userPw} WHERE USERID=#{userId} AND USERPHONENUM =#{userPhoneNum}
+        UPDATE TABLE_USER SET USERPW=#{userPw} WHERE USERID=#{userId}
     </update>
 
 </mapper>

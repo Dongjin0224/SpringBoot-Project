@@ -165,8 +165,9 @@ public class UserController {
         return "user/userFindPw";
     }
 
-    /*비밀번호 찾기*//*
-    @PostMapping("findAccount")
+
+    /*비밀번호 찾기*/
+    @PostMapping("userFindPw")
     public String findPw(UserVO vo,Model model){
         UserVO userVO = service.findPw(vo);
 
@@ -176,15 +177,17 @@ public class UserController {
             model.addAttribute("check",0);
             model.addAttribute("updateid",userVO.getUserId());
         }
-        return "user/findAccount";
+        return "user/userFindPw";
     }
 
-//    /*비밀번호 변경*/
-//    @PostMapping("userFindPw")
-//    public String updatePassword(UserVO vo){
-//        service.updatePassword(vo);
-//        return "user/userFindPw";
-//    }
+    /*비밀번호 변경*/
+    @PostMapping("updateUserPw")
+    public String updatePasswordAction(UserVO vo,@RequestParam(value="updateid",defaultValue = "",required = false)String id){
+
+        vo.setUserId(id);
+        service.updatePassword(vo);
+        return "user/userFindPasswordConfirm";
+    }
 
 
 }
