@@ -18,7 +18,7 @@
 <style>
     .content.main {
         width: 74%;
-       /* border-radius: 25px;*/
+        /* border-radius: 25px;*/
         padding: 2%;
         margin: auto;
     }
@@ -294,7 +294,7 @@
 
     .content.main {
         width: 82%;
-       /* border-radius: 25px;*/
+        /* border-radius: 25px;*/
         margin: auto;
         padding-left: 8% !important;
         padding-right: 8% !important;
@@ -355,14 +355,19 @@
                                              th:text="|*{qnaAddress} / *{qnaAge} / *{qnaGender} / *{qnaDisease}|"></div>
                                     </div>
                                 </div>
-
+                                <div style="margin-left: 2.5%;">
+                                    <th:block th:if="${not #lists.isEmpty(file)}">">
+                                        <th:block th:each="list : ${file}" th:object="${list}">
+                                            <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}" alt="no image" ></img>
+                                        </th:block>
+                                    </th:block>
+                                </div>
                                 <div style="margin-left: 2.5%;">
                                     <div class="board_content" style="float: none" th:utext="*{qnaContent}"></div>
                                     <div style=" height: 40px;clear: both;"></div>
                                     <div class="board_date" style="width: 87%;margin: auto;" th:text="*{qnaDate}"></div>
                                     <div style="width: 87%;margin: auto;" th:text="|조회수 : *{qnaViewCnt}|"></div>
                                 </div>
-
                                 <div class="board_btn_reply" style="text-align: right;">
                                     <!--                                    <a href="#" class="button primary fit" style="border-radius: 15px">답변달기</a>-->
                                     <button type="button" class="button" onclick="openForm()" id="btn_reply"
@@ -1163,7 +1168,7 @@
     }
 
 
-   function like(index) {
+    function like(index) {
         let likeCheck = [[${likeCheck}]];
         let docNo = document.getElementById("likeDoc"+index).value;
         let reQnaNo = document.getElementById("likeReply"+index).value;

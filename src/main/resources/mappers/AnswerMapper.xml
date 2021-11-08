@@ -35,4 +35,8 @@
     <delete id="delete">
         DELETE FROM TABLE_QNA_REPLY WHERE REQNANO=${reQnaNo}
     </delete>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(reQnaNo) FROM TABLE_QNA_REPLY WHERE qnaNo = #{qnaNo}
+    </select>
 </mapper>
