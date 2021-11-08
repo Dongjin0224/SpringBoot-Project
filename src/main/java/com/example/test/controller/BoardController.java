@@ -150,6 +150,9 @@ public class BoardController {
         log.info(reqType + " : " + qnaNo);
         log.info("-------------------------------");
 
+        if(session.getAttribute("userNo") == null && session.getAttribute("docNo") == null){
+            model.addAttribute("likeCheck", 0);
+        }
         if(session.getAttribute("docNo")==null) {
             model.addAttribute("loginCheck", 0);
         }else{

@@ -75,10 +75,10 @@
                             <tr style="border: 0 !important;">
                                 <td colspan="4">
                                     <input id="volunteer_name" name="docName"
-                                           type="text" placeholder="신청자 성함" th:value="*{docName}">
+                                           type="text" placeholder="신청자 성함" th:value="*{docName}" readonly>
                                     <input id="volunteer_tel" name="docPhoneNum" type="text"
-                                           placeholder="휴대폰 번호 ( - ) 제외" th:value="*{docPhoneNum}">
-                                    <input id="volunteers" name="applicants" type="text" placeholder="신청 인원수" th:value="*{applicants}">
+                                           placeholder="휴대폰 번호 ( - ) 제외" th:value="*{docPhoneNum}" readonly>
+                                    <input id="volunteers" name="applicants" type="text" placeholder="신청 인원수" th:value="*{applicants}" readonly>
                                 </td>
                             </tr>
                         </table>
