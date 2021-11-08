@@ -76,8 +76,8 @@
     </insert>
 
     <select id="read" resultType="boardVO">
-        SELECT * FROM TABLE_QNA
-        WHERE qnaNo = #{qnaNo}
+        SELECT * FROM TABLE_QNA a, TABLE_QNA_ATTACH b
+        WHERE a.qnaNo = b.qnaNo AND a.qnaNo = #{qnaNo}
     </select>
 
     <update id="update">
