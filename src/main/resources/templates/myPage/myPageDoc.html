@@ -458,7 +458,7 @@
                                         <hr>
                                         <div>
                                             <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
-                                            <textarea th:utext="*{docHistory}" onkeydown="resize(this)" onkeyup="resize(this)"name="docHistory" readonly style="margin-left: 23%;width: 72%;border: none;overflow:visible;font-size: 17px;"></textarea>
+                                            <textarea rows="6" th:utext="*{docHistory}" onkeydown="resize(this)" onkeyup="resize(this)"name="docHistory" readonly style="margin-left: 23%;width: 72%;overflow:visible; margin-bottom: 3%;"></textarea>
                                         </div><!--*{#strings.replace(docHistory,'line.separator','&lt;br /&gt;')}-->
                                         <input type="hidden" th:value="*{docNo}" id="docNo">
                                         <div th:text="*{docNo}"></div>
@@ -558,8 +558,8 @@
                                         <hr>
                                         <div>
                                             <label class="profile">약력<span style='color:red; font-size:1em;'> *</span></label>
-                                            <div class="td7">
-                                                <textarea id="docHistory" th:text="*{docHistory}" name="docHistory" rows="5"></textarea>
+                                            <div class="td7" style="width: 100%">
+                                                <textarea id="docHistory" th:text="*{docHistory}" name="docHistory" rows="6" style="width: 72%; margin-left: 25%;"></textarea>
                                                 <!--<div class="div3" style="display: flex;">
                                                     <input id="docHistory" type="text" th:value="*{docHistory}" name="history" value="" placeholder="약력">
                                                     <input type="hidden" name="docHistory">
@@ -629,7 +629,7 @@
                         </div>-->
                     </div>
 
-                    <div id="myThree" class="tabcontent" th:each="getAppList:${getAppList}" th:object="${getAppList}">
+                    <div id="myThree" class="tabcontent">
                         <h3 style="text-align: center">진료 예약</h3>
                         <table>
                             <thead>
@@ -641,12 +641,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="">
-                                <td class="" th:text="*{userName}"></td>
-                                <td class="" th:text="*{userPhoneNum}"></td>
-                                <td class="" th:text="*{docMajor}">피부과</td>
-                                <td class="" th:text="*{#strings.substring(reserveDate, 0, 10)}"></td>
-                            </tr>
+                            <th:block th:each="getAppList:${getAppList}">
+                                <tr class="" th:object="${getAppList}">
+                                    <td class="" th:text="*{userName}"></td>
+                                    <td class="" th:text="*{userPhoneNum}"></td>
+                                    <td class="" th:text="*{docMajor}">피부과</td>
+                                    <td class="" th:text="*{#strings.substring(reserveDate, 0, 10)}"></td>
+                                </tr>
+                            </th:block>
                             </tbody>
                         </table>
                         <!--<div th:object="${pageMaker}">
