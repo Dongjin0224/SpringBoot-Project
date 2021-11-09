@@ -615,26 +615,26 @@ $('#checkNumStr').click(function () {
 
 
 /*휴대폰 인증*/
-$("#checkNum").on('click', function () {
-    $.ajax({
-        url: "/user/sendSms",
-        type: "post",
-        dataType: "json",
-        data: {"docPhoneNum": $("#docPhoneNum").val()},
-        success: function (numStr) {
-          /*  numStr2 = numStr;*/
-            $('#checkNumStr').click(function(){
-                 if($.trim(numStr)==$('#numStr').val()){
-                     alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
-                     check= true;
-                 }else{
-                     alert("인증 실패. 인증번호를 다시 확인해 주세요.");
-                     check= false;
-                 }
-             });
-        }
-    });
-})
+// $("#checkNum").on('click', function () {
+//     $.ajax({
+//         url: "/user/sendSms",
+//         type: "post",
+//         dataType: "json",
+//         data: {"docPhoneNum": $("#docPhoneNum").val()},
+//         success: function (numStr) {
+//           /*  numStr2 = numStr;*/
+//             $('#checkNumStr').click(function(){
+//                  if($.trim(numStr)==$('#numStr').val()){
+//                      alert("인증 성공. 휴대폰인증이 정상적으로 완료되었습니다.");
+//                      check= true;
+//                  }else{
+//                      alert("인증 실패. 인증번호를 다시 확인해 주세요.");
+//                      check= false;
+//                  }
+//              });
+//         }
+//     });
+// })
 
 /*var check = false;*/
 
