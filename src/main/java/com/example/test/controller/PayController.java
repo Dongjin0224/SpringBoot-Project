@@ -45,7 +45,7 @@ public class PayController {
         pay.getCustomer(payVO);
     }
 
-//    @ResponseBody
+    //    @ResponseBody
     @PostMapping("/cardCheck")
     public String cardCheck(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
         HttpSession session = (HttpSession)request.getSession();
@@ -67,7 +67,7 @@ public class PayController {
         }
     }
 
-//    @ResponseBody
+    //    @ResponseBody
     @PostMapping("/updateCard")
     public String updateCard(@RequestBody PayVO payVO, HttpServletRequest request) throws UnsupportedEncodingException {
         HttpSession session = (HttpSession)request.getSession();
@@ -102,7 +102,7 @@ public class PayController {
     }
 
 
-//    @ResponseBody
+    //    @ResponseBody
     @PostMapping("/startPay")
     public void startPay(@RequestBody PayVO payVO, HttpServletRequest request){
         PayVO vo = new PayVO();
@@ -137,7 +137,7 @@ public class PayController {
         }
     }
 
-//    @ResponseBody
+    //    @ResponseBody
     @PostMapping("/stopPay")
     public int stopSchedulePay(HttpServletRequest request){
         PayVO payVO = new PayVO();

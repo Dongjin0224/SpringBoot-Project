@@ -6,7 +6,7 @@
 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Untitled</title>
+    <title>메인게시판</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/css/main.css"/>
@@ -355,17 +355,17 @@
                                              th:text="|*{qnaAddress} / *{qnaAge} / *{qnaGender} / *{qnaDisease}|"></div>
                                     </div>
                                 </div>
-                                <div style="margin-left: 2.5%;">
-                                    <th:block th:if="${not #lists.isEmpty(file)}">">
+                                <div style="margin-left: 11.5%;">
+                                    <th:block th:if="${not #lists.isEmpty(file)}">
                                         <th:block th:each="list : ${file}" th:object="${list}">
-                                            <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}" alt="no image" ></img>
+                                            <img th:src="@{/upload/} + *{uploadPath} + @{/} + *{uuid} + @{_} + *{fileName}" alt="no image" style="width: 500px;"></img>
                                         </th:block>
                                     </th:block>
                                 </div>
                                 <div style="margin-left: 2.5%;">
                                     <div class="board_content" style="float: none" th:utext="*{qnaContent}"></div>
                                     <div style=" height: 40px;clear: both;"></div>
-                                    <div class="board_date" style="width: 87%;margin: auto;" th:text="*{qnaDate}"></div>
+                                    <div class="board_date" style="width: 87%;margin: auto;" th:text="*{#strings.substring(qnaDate, 0, 10)}"></div>
                                     <div style="width: 87%;margin: auto;" th:text="|조회수 : *{qnaViewCnt}|"></div>
                                 </div>
                                 <div class="board_btn_reply" style="text-align: right;">
