@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <!--
-	Hypothesis by Pixelarity
-	pixelarity.com | hello@pixelarity.com
-	License: pixelarity.com/license
+   Hypothesis by Pixelarity
+   pixelarity.com | hello@pixelarity.com
+   License: pixelarity.com/license
 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>메인게시판</title>
+    <title>Untitled</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/css/main.css"/>
@@ -329,6 +329,17 @@
     }
     .board_content div p{
         margin: 0;
+    }
+    i.one{
+        color: gold;
+    }
+
+    i.two{
+        color: silver;
+    }
+
+    i.three{
+        color: #CD7F32;
     }
 </style>
 <body class="is-preload">
@@ -958,7 +969,6 @@
             </div>
             <!-- div_write 끝 -->
 
-
             <!-- 답변 반복 돌리는 부분-->
             <th:block th:each="answerList, i:${answerList}">
                 <div class="content main contentWrap" th:id="|start${i.index}|"
@@ -1060,6 +1070,7 @@
 <script src="/js/fix.js"></script>
 <!-- Scripts -->
 <script th:inline="javascript">
+
     let a = 0;
     let btnView = document.getElementsByClassName('newView');
     for (let k = 0; k < btnView.length; k++) {

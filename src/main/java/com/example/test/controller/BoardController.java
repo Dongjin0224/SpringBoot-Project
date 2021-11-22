@@ -164,6 +164,7 @@ public class BoardController {
         model.addAttribute("answerList",answerService.answerList(qnaNo));
         boardService.updateView(qnaNo);
         model.addAttribute("board", boardService.get(qnaNo));
+        model.addAttribute("reply",boardService.getReplyCnt());
         model.addAttribute("file", boardService.getAttachList(qnaNo));
         model.addAttribute("criteria", criteria);
     }

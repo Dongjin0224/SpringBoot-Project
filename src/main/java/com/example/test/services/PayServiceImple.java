@@ -168,8 +168,6 @@ public class PayServiceImple implements PayService{
         System.out.println(json);
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
 
-        int code = Integer.parseInt(restTemplate.postForObject("https://api.iamport.kr/subscribe/payments/schedule", entity, String.class).split(",")[0].split(":")[1]);
-
         log.info("---------------------");
         log.info("예약 성공");
         log.info("---------------------");
@@ -181,10 +179,6 @@ public class PayServiceImple implements PayService{
         payDAO.insertCustomer(docNo);
     }
 
-//    public void updateCustomer(PayVO payVO){
-//        log.info("update customer_uid.........");
-//        payDAO.updateCustomer(payVO);
-//    }
 
     //상품 명과 구매날짜가 업데이트 되는 메소드
     public void pay(PayVO payVO){
